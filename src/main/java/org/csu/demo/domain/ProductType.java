@@ -25,4 +25,14 @@ public enum ProductType {
         this.categoryType = categoryType;
         this.index = index;
     }
+
+    public static ProductType fromIndex(int index) {
+        for (ProductType type : ProductType.values()) {
+            if (type.getIndex() == index) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("No enum constant for index: " + index);
+    }
+
 }

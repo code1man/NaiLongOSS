@@ -1,11 +1,14 @@
 package org.csu.demo;
 
+import org.csu.demo.domain.ProductType;
 import org.csu.demo.domain.User;
 import org.csu.demo.persistence.BusinessDao;
+import org.csu.demo.persistence.ItemDao;
 import org.csu.demo.persistence.UserDao;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -17,6 +20,9 @@ class NaiLongApplicationTests {
 
     @Autowired
     private BusinessDao businessDao;
+    @Qualifier("itemDao")
+    @Autowired
+    private ItemDao itemDao;
 
     @Test
     void test1(){
@@ -42,7 +48,8 @@ class NaiLongApplicationTests {
 
     @Test
     void test3() {
-        System.out.println(businessDao.getAllBusinessItems());
+/*        System.out.println(ProductType.fromIndex(9));*/
+        System.out.println(itemDao.getItem(10101));
     }
 
 }

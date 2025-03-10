@@ -13,8 +13,8 @@ import java.io.Serializable;
 public class Item implements Serializable {
     private int id;
     private String name;
-    private ProductType type;
-    private String URL;
+    private int product_id;
+    private String url;
     private int price;
     private String description;
     private int businessId;

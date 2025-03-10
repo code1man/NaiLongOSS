@@ -2,24 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.demo.persistence.BusinessDao">
+
+    <resultMap id="itemResultMap" type="org.csu.demo.domain.Item">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="product_type" property="product_type"/>
+        <result column="URL" property="URL"/>
+        <result column="price" property="price"/>
+        <result column="description" property="description"/>
+        <result column="business_id" property="businessId"/>
+        <result column="remain_numb" property="RemainingNumb"/>
+    </resultMap>
+
     <!-- 查询所有商品库存信息 -->
-    <select id="getAllBusinessItems" resultType="Business">
+    <select id="getAllBusinessItems" resultMap="itemResultMap">
         SELECT * FROM businessItemRemaining;
     </select>
 
     <!-- 根据 itemId 查询库存信息 -->
-    <select id="getBusinessItemById" parameterType="int" resultType="Business">
+    <select id="getBusinessItemById" parameterType="int" resultMap="itemResultMap">
         SELECT * FROM businessItemRemaining WHERE itemId = #{itemId};
     </select>
 
     <!-- 插入新的商品库存信息 -->
-    <insert id="insertBusinessItem" parameterType="Business">
+    <insert id="insertBusinessItem" parameterType="org.csu.demo.domain.Item">
         INSERT INTO businessItemRemaining (itemId, businessId, RemaingNumb)
         VALUES (#{itemId}, #{businessId}, #{remainingNumb});
     </insert>
 
     <!-- 更新商品库存 -->
-    <update id="updateBusinessItem" parameterType="Business">
+    <update id="updateBusinessItem" parameterType="org.csu.demo.domain.Item">
         UPDATE businessItemRemaining
         SET businessId = #{businessId}, RemaingNumb = #{remainingNumb}
         WHERE itemId = #{itemId};
@@ -32,6 +44,6 @@
 
     <!-- 查询库存数量 -->
     <select id="queryBusinessItemCount" parameterType="int" resultType="int">
-        SELECT RemaingNumb FROM businessItemRemaining WHERE itemId = #{itemId}
+        SELECT RemaingNumb FROM businessItemRemaining WHERE itemId = #{itemId};
     </select>
 </mapper>
