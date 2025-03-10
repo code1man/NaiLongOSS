@@ -25,4 +25,5 @@ public interface UserDao {
                        @Param("password") String password,
                        @Param("email") String email,
                        @Param("age") int age);
+    boolean deleteUser(@Param("id") int id);
 }

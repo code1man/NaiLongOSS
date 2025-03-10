@@ -5,6 +5,8 @@ import org.csu.demo.persistence.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("UserService")
 public class UserService {
     @Autowired
@@ -24,5 +26,29 @@ public class UserService {
 
     public boolean checkUsername(String username) {
         return userDao.getUserByUsername(username) != null;
+    }
+
+    public User getUser(int id) {
+        return userDao.getUser(id);
+    }
+
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
+    }
+
+    public User getUserByUsername(String username) {
+        return userDao.getUserByUsername(username);
+    }
+
+    public User getUserByUsernameAndPassword(String username, String password) {
+        return userDao.getUserByUsernameAndPassword(username, password);
+    }
+
+    public boolean deleteUser(int id) {
+        return userDao.deleteUser(id);
+    }
+
+    public int addUser(User user) {
+        return userDao.addUser(user);
     }
 }

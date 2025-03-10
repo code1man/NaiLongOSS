@@ -36,4 +36,9 @@
     <select id="getUserByUsername" parameterType="string" resultType="org.csu.demo.domain.User">
         SELECT * FROM userinfo WHERE username = #{username};
     </select>
+
+    <!-- 通过id删除用户 -->
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
 </mapper>
