@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ProductDao {
-    List<ProductType> getProductListByCategory(String categoryId) throws SQLException;
+    List<ProductType> getProductListByCategory(String categoryId);
 
-    ProductType getProduct(int  productId) throws SQLException;
+    ProductType getProduct(int productId);
 
     List<Product> searchProductList(String keywords);
 }

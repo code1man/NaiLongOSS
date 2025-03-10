@@ -24,17 +24,9 @@ public class User {
 
     private int age;
     private String email;
-    private boolean isAdmin;
+    private String responsibility;
 
     private final List<Item> hasBeenPutInShoppingCartProducts = new ArrayList<Item>();
 
     public User(){};
-
-    public int getTotalPrice() {
-        int totalPrice = 0;
-        for (Item item : hasBeenPutInShoppingCartProducts) {
-            totalPrice += item.getPrice();
-        }
-        return totalPrice;
-    }
 }
