@@ -43,7 +43,7 @@
     </delete>
 
     <!--根据关键词搜索商品-->
-    <select id="searchItems" parameterType="String">
+    <select id="SearchItems" parameterType="String">
         SELECT i.*, b.businessId AS businessId, b.RemaingNumb AS remain_numb
             FROM Item i
             LEFT JOIN producttype p ON i.product_id = p.id

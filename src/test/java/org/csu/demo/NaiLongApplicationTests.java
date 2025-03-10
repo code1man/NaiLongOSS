@@ -51,8 +51,8 @@ class NaiLongApplicationTests {
 
     @Test
     void test3() {
-/*        System.out.println(itemDao.getItem(10101));
-        System.out.println(businessDao.getAllBusinessItems());*/
+        System.out.println(itemDao.getItem(10101));
+        System.out.println(businessDao.getAllBusinessItems());
         System.out.println(itemDao.SearchItems("奶龙唐唐表情包"));
     }
 }
