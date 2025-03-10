@@ -1,6 +1,7 @@
 package org.csu.demo;
 
 import org.csu.demo.domain.User;
+import org.csu.demo.persistence.BusinessDao;
 import org.csu.demo.persistence.UserDao;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
@@ -13,6 +14,9 @@ class NaiLongApplicationTests {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private BusinessDao businessDao;
 
     @Test
     void test1(){
@@ -34,6 +38,11 @@ class NaiLongApplicationTests {
 
         System.out.println(user.toString());
         System.out.println(student.toString());
+    }
+
+    @Test
+    void test3() {
+        System.out.println(businessDao.getAllBusinessItems());
     }
 
 }
