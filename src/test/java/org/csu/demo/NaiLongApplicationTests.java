@@ -49,7 +49,19 @@ class NaiLongApplicationTests {
     @Test
     void test3() {
 /*        System.out.println(ProductType.fromIndex(9));*/
-        System.out.println(itemDao.getItem(10101));
+//        System.out.println(itemDao.getItem(10101));
+    }
+
+
+    @Test
+    void test4() {
+        User user = new User();
+        user.setUsername("esrwer");
+        user.setPassword("123");
+        user.setAge(20);
+        user.setEmail("123@123.com");
+        user.setAdmin(true);
+        System.out.println(userDao.addUser(user));
     }
 
 }

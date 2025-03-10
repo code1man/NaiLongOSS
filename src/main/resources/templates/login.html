@@ -38,6 +38,16 @@
         <img src="../images/cursor.gif" alt="跟随鼠标的GIF"/>
     </div>
 </body>
+<script>
+    let message = sessionStorage.getItem("message");
+    // 检查是否有注册成功的消息
+    window.addEventListener('DOMContentLoaded', (event) => {
+        if (message === "注册成功，请登录！") {
+            sessionStorage.removeItem("message");                   // 移除消息
+            alert(message); // 显示弹出框
+        }
+    });
+</script>
 <script src="../js/cursorFollow.js"></script>
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
 <script src="../js/checkAgreement.js"></script>
