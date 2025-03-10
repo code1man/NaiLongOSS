@@ -53,15 +53,11 @@ public class UserController {
     public String register(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email, @RequestParam("age") int age, @RequestParam("is_admin") String pro,
                            Model model) {
             User user = new User();
-            boolean is_admin = false;
-            if (pro.equals("管理员")) {
-                is_admin = true;
-            }
             user.setUsername(username);
             user.setPassword(password);
             user.setEmail(email);
             user.setAge(age);
-            user.setAdmin(is_admin);
+            user.setResponsibility(pro);
             boolean isSuccess = userService.register(user);
             if (!isSuccess) {
                 model.addAttribute("message", "注册失败，请检查用户名或邮箱是否已被注册！");

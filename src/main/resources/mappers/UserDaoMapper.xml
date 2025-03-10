@@ -18,8 +18,8 @@
 
     <!-- 添加用户 -->
     <insert id="addUser" parameterType="org.csu.demo.domain.User">
-        INSERT INTO userinfo (username, password, email, age, is_admin)
-        VALUES (#{username}, #{password}, #{email}, #{age}, #{isAdmin, jdbcType=BIT});
+        INSERT INTO userinfo (username, password, email, age, responsibility)
+        VALUES (#{username}, #{password}, #{email}, #{age}, #{responsibility});
     </insert>
 
     <!-- 更新用户信息 -->

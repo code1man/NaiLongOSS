@@ -24,7 +24,7 @@ public class User {
 
     private int age;
     private String email;
-    private boolean isAdmin;
+    private String responsibility;
 
     private final List<Item> hasBeenPutInShoppingCartProducts = new ArrayList<Item>();
 

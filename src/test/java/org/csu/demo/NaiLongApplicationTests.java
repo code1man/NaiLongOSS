@@ -42,7 +42,7 @@ class NaiLongApplicationTests {
                 .password("123456")
                 .age(12)
                 .email("11")
-                .isAdmin(false)
+                .responsibility("管理员")
                 .build();
 
         userDao.addUser(student);
