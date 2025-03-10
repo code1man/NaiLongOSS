@@ -1,0 +1,144 @@
+body {
+    cursor: none; /* 隐藏默认光标 */
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #fffde7;
+    /* 淡黄色背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+    /* 或者使用 contain，或指定具体大小 */
+    background-image: url("../images/bg.jpg");
+}
+
+#feedback {
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+.register-container {
+    background-color: #fffde7;
+    border-radius: 25px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    width: 350px;
+}
+
+
+.register-container input[type="text"],
+.register-container input[type="password"],
+.register-container input[type="email"],
+.register-container input[type="number"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #fdd835;
+    /* 边框为黄色 */
+    border-radius: 15px;
+    outline: none;
+    background-color: #fff9c4;
+    /* 输入框淡黄色背景 */
+    color: #6d4c41;
+    /* 深棕色字体 */
+}
+
+.register-container input[type="submit"] {
+    width: 85%;
+    padding: 12px;
+    background-color: #fbc02d;
+    /* 按钮黄色背景 */
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.register-container input[type="submit"]:hover {
+    background-color: #fdd835;
+    /* 按钮悬停时浅黄色 */
+}
+
+
+.footer-text {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #8d6e63;
+    /* 深棕色小字 */
+}
+
+.naidragon-image {
+    width: 150px;
+    /* 调整图片宽度 */
+    height: auto;
+    /* 自动适应高度 */
+    margin-bottom: 10px;
+    /* 与下方标题的间距 */
+}
+
+.register-container select {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #fdd835;
+    /* 边框为黄色 */
+    border-radius: 15px;
+    outline: none;
+    background-color: #fff9c4;
+    /* 下拉框淡黄色背景 */
+    color: #6d4c41;
+    /* 深棕色字体 */
+    font-size: 16px;
+    appearance: none;
+    /* 移除默认样式 */
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23fdd835" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    cursor: pointer;
+    /* 鼠标悬停效果 */
+    box-sizing: border-box;
+}
+
+/* 添加悬停和聚焦效果 */
+.login-container select:hover,
+.login-container select:focus {
+    border-color: #ffc107;
+    /* 悬停时边框更亮 */
+    background-color: #fff59d;
+    /* 悬停时背景更浅 */
+}
+
+
+.mouse-follow-icon {
+    position: absolute;
+    pointer-events: none; /* 防止干扰鼠标事件 */
+    transition: transform 0.1s ease; /* 动画效果 */
+    z-index: 10; /* 确保图标在最上层 */
+}
+
+.custom-cursor {
+    width: 5px; /* 圆点的宽度 */
+    height: 5px; /* 圆点的高度 */
+    background-color: yellow; /* 圆点颜色 */
+    border-radius: 50%; /* 使其为圆形 */
+    position: absolute; /* 绝对定位 */
+    pointer-events: none; /* 使其不捕获鼠标事件 */
+    z-index: 1000; /* 确保在其他元素上方 */
+}
+
+.agreement {
+    font-size: 12px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}

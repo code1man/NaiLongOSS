@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./static/css/Register.css">
+    <link rel="stylesheet" type="text/css" href="/css/Register.css">
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -12,9 +12,9 @@
 <body>
 <div class="register-container">
     <div class="cute-dragon">
-        <img src="./static/images/register.gif" alt="奶龙图片" class="naidragon-image">
+        <img src="/images/register.gif" alt="奶龙图片" class="naidragon-image">
     </div>
-    <form action="${pageContext.request.contextPath}/handlerRegister" method="post">
+    <form action="register" method="post">
             <span>
                 <i class="fa-regular fa-user"></i>
                 <input type="text" placeholder="用户名" name="username" id="username" required>
@@ -42,6 +42,7 @@
                 <option value="" disabled selected>身份选择</option>
                 <option value="user">用户</option>
                 <option value="admin">管理员</option>
+                <option value="merchant">商家</option>
             </select>
         </span>
         <br>
@@ -71,12 +72,12 @@
 
 <div class="mouse-follow-icon" id="mouse-follow-icon"
      style="display: inline-flex; align-items: center; justify-content: center;">
-    <img style="width: 25px !important; height: auto !important; border-radius: 50%;" src="./static/images/cursor.gif"
+    <img style="width: 25px !important; height: auto !important; border-radius: 50%;" src="/images/cursor.gif"
          alt="跟随鼠标的GIF"/>
 </div>
 
-<script src="./static/js/cursorFollow.js"></script>
-<script src="./static/js/checkuserinfo.js"></script>
+<script src="/js/cursorFollow.js"></script>
+<script src="/js/checkuserinfo.js"></script>
 
 <script type="text/javascript">
     // 当用户点击“换一换”链接时，调用此函数以刷新验证码图像
