@@ -39,17 +39,20 @@ class NaiLongApplicationTests {
 
         User student = User.builder()
                 .username("张三")
+                .password("123456")
                 .age(12)
+                .email("11")
+                .isAdmin(false)
                 .build();
 
-        System.out.println(user.toString());
+        userDao.addUser(student);
         System.out.println(student.toString());
     }
 
     @Test
     void test3() {
-/*        System.out.println(ProductType.fromIndex(9));*/
         System.out.println(itemDao.getItem(10101));
+        System.out.println(businessDao.getAllBusinessItems());
     }
 
 }

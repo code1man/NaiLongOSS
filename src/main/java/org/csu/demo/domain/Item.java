@@ -18,5 +18,5 @@ public class Item implements Serializable {
     private int price;
     private String description;
     private int businessId;
-    private int remainNumb;
+    private int remainingNumb;
 }
