@@ -41,4 +41,14 @@
     <delete id="deleteItem" parameterType="int">
         DELETE FROM item WHERE id = #{itemId};
     </delete>
+
+    <!--根据关键词搜索商品-->
+    <select id="searchItems" parameterType="String">
+        SELECT i.*, b.businessId AS businessId, b.RemaingNumb AS remain_numb
+            FROM Item i
+            LEFT JOIN producttype p ON i.product_id = p.id
+            LEFT JOIN category c ON p.category_id = c.id
+            LEFT JOIN businessItemRemaining b ON i.id = b.itemId
+            WHERE (c.name LIKE #{keyword} OR p.description LIKE #{keyword} OR i.name LIKE #{keyword})
+    </select>
 </mapper>

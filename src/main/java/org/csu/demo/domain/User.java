@@ -29,12 +29,4 @@ public class User {
     private final List<Item> hasBeenPutInShoppingCartProducts = new ArrayList<Item>();
 
     public User(){};
-
-    public int getTotalPrice() {
-        int totalPrice = 0;
-        for (Item item : hasBeenPutInShoppingCartProducts) {
-            totalPrice += item.getPrice();
-        }
-        return totalPrice;
-    }
 }
