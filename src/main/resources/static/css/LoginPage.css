@@ -1,0 +1,111 @@
+body {
+    cursor: none; /* 隐藏默认光标 */
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #fffde7;
+    /* 淡黄色背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+    /* 或者使用 contain，或指定具体大小 */
+    background-image: url("../images/bg.jpg");
+}
+
+.login-container {
+    background-color: #fffde7;
+    border-radius: 25px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    width: 350px;
+}
+
+.login-container h1 {
+    color: #fbc02d;
+    /* 明亮的黄色标题 */
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #fdd835;
+    /* 边框为黄色 */
+    border-radius: 15px;
+    outline: none;
+    background-color: #fff9c4;
+    /* 输入框淡黄色背景 */
+    color: #6d4c41;
+    /* 深棕色字体 */
+}
+
+.login-container input[type="submit"] {
+    width: 85%;
+    padding: 12px;
+    background-color: #fbc02d;
+    /* 按钮黄色背景 */
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.login-container input[type="submit"]:hover {
+    background-color: #fdd835;
+    /* 按钮悬停时浅黄色 */
+}
+
+
+.footer-text {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #8d6e63;
+    /* 深棕色小字 */
+}
+
+.naidragon-image {
+    width: 150px; /* 调整图片宽度 */
+    height: auto; /* 自动适应高度 */
+    margin-bottom: 10px; /* 与下方标题的间距 */
+}
+
+
+.mouse-follow-icon {
+    position: absolute;
+    pointer-events: none; /* 防止干扰鼠标事件 */
+    transition: transform 0.1s ease; /* 动画效果 */
+    z-index: 10; /* 确保图标在最上层 */
+}
+
+.mouse-follow-icon img {
+    width: 25px !important; /* 根据需要调整图片的宽度 */
+    height: auto !important; /* 自动适应高度 */
+    border-radius: 50%; /* 设置为圆形 */
+}
+
+.custom-cursor {
+    width: 5px; /* 圆点的宽度 */
+    height: 5px; /* 圆点的高度 */
+    background-color: yellow; /* 圆点颜色 */
+    border-radius: 50%; /* 使其为圆形 */
+    position: absolute; /* 绝对定位 */
+    pointer-events: none; /* 使其不捕获鼠标事件 */
+    z-index: 1000; /* 确保在其他元素上方 */
+}
+
+.agreement {
+    font-size: 12px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}

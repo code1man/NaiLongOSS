@@ -1,0 +1,39 @@
+package org.csu.demo;
+
+import org.csu.demo.domain.User;
+import org.csu.demo.persistence.UserDao;
+import org.junit.jupiter.api.Test;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+@MapperScan("org.csu.demo.persistence")
+class NaiLongApplicationTests {
+
+    @Autowired
+    private UserDao userDao;
+
+    @Test
+    void test1(){
+        System.out.println(userDao);
+        User user = userDao.getUserByUsernameAndPassword("zkd", "123");
+        System.out.println(user);
+    }
+
+    @Test
+    void test2() {
+        User user = User.builder().build();
+        user.setUsername("AnyCode");
+        user.setAge(20);
+
+        User student = User.builder()
+                .username("张三")
+                .age(12)
+                .build();
+
+        System.out.println(user.toString());
+        System.out.println(student.toString());
+    }
+
+}

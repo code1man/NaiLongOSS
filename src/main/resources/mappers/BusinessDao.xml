@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.demo.persistence.UserDao">
+    <!-- 查询所有商品库存信息 -->
+    <select id="getAllBusinessItems" resultType="Business">
+        SELECT * FROM businessItemRemaining;
+    </select>
+
+    <!-- 根据 itemId 查询库存信息 -->
+    <select id="getBusinessItemById" parameterType="int" resultType="Business">
+        SELECT * FROM businessItemRemaining WHERE itemId = #{itemId};
+    </select>
+
+    <!-- 插入新的商品库存信息 -->
+    <insert id="insertBusinessItem" parameterType="Business">
+        INSERT INTO businessItemRemaining (itemId, businessId, RemaingNumb)
+        VALUES (#{itemId}, #{businessId}, #{remainingNumb});
+    </insert>
+
+    <!-- 更新商品库存 -->
+    <update id="updateBusinessItem" parameterType="Business">
+        UPDATE businessItemRemaining
+        SET businessId = #{businessId}, RemaingNumb = #{remainingNumb}
+        WHERE itemId = #{itemId};
+    </update>
+
+    <!-- 删除库存记录 -->
+    <delete id="deleteBusinessItem" parameterType="int">
+        DELETE FROM businessItemRemaining WHERE itemId = #{itemId};
+    </delete>
+
+    <!-- 查询库存数量 -->
+    <select id="queryBusinessItemCount" parameterType="int" resultType="int">
+        SELECT RemaingNumb FROM businessItemRemaining WHERE itemId = #{itemId}
+    </select>
+</mapper>

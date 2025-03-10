@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.demo.persistence.UserDao">
+    <select id="getUserByUsernameAndPassword" resultType="org.csu.demo.domain.User">
+        select * from userinfo where username = #{username} and password = #{password}
+    </select>
+
+    <!-- 查询所有用户，返回 List<User> -->
+    <select id="getAllUsers" resultType="org.csu.demo.domain.User">
+        SELECT * FROM userinfo;
+    </select>
+
+    <!-- 通过 ID 查询单个用户 -->
+    <select id="getUser" parameterType="int" resultType="org.csu.demo.domain.User">
+        SELECT * FROM userinfo WHERE id = #{id};
+    </select>
+
+    <!-- 添加用户 -->
+    <insert id="addUser" parameterType="org.csu.demo.domain.User">
+        INSERT INTO userinfo (username, password, email, age, is_admin)
+        VALUES (#{username}, #{password}, #{age}, #{email}, #{isAdmin, jdbcType=BIT});
+    </insert>
+
+    <!-- 更新用户信息 -->
+    <update id="updateUser" parameterType="org.csu.demo.domain.User">
+        UPDATE userinfo
+        SET username = #{username},
+            password = #{password},
+            email = #{email},
+            age = #{age}
+        WHERE id = #{id};
+    </update>
+
+    <!-- 通过用户名查询用户 -->
+    <select id="getUserByUsername" parameterType="string" resultType="org.csu.demo.domain.User">
+        SELECT * FROM userinfo WHERE username = #{username};
+    </select>
+</mapper>

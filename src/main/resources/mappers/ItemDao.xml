@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.demo.persistence.UserDao">
+
+    <resultMap id="itemResultMap" type="org.csu.demo.domain.Item">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="product_type" property="type" typeHandler="org.csu.demo.handler.ProductTypeHandler"/>
+        <result column="URL" property="URL"/>
+        <result column="price" property="price"/>
+        <result column="description" property="description"/>
+        <result column="business_id" property="businessId"/>
+        <result column="remain_numb" property="RemainNumb"/>
+    </resultMap>
+
+    <!-- 根据 productId 获取 Item 列表 -->
+    <select id="getItemListByProduct" parameterType="int" resultType="org.csu.demo.domain.Item">
+        SELECT * FROM item WHERE product_id = #{product_Id}
+    </select>
+
+    <!-- 根据 itemId 获取单个 Item -->
+    <select id="getItem" parameterType="int" resultType="org.csu.demo.domain.Item">
+        SELECT * FROM item WHERE id = #{itemId}
+    </select>
+</mapper>
