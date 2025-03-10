@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Validated
-@SessionAttributes(value = {"loginUser"})
+@SessionAttributes(value = {"loginUser","message"})
 public class UserController {
     @Autowired
     private UserService userService;
@@ -27,10 +27,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@Validated @ModelAttribute User user,
+    public String login(@ModelAttribute User user,
                            BindingResult bindingResult,
                            Model model) {
-        System.out.println(user.getUsername() + ',' + user.getPassword());
         User loginUser;
         if (bindingResult.hasErrors()) {
             return errorValidated("login", bindingResult, model);
@@ -40,27 +39,44 @@ public class UserController {
 
         if (loginUser != null) {
             model.addAttribute("loginUser", loginUser);
-            return "main";
+            return "redirect:/main";
         } else {
             model.addAttribute("loginMsg", "账号或密码错误");
             return "login";
         }
     }
 
+
+
+    // 还要判断验证码是否正确
     @PostMapping("/register")
-    public String register(@Validated @ModelAttribute User user,
-                           BindingResult bindingResult,
+    public String register(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email, @RequestParam("age") int age, @RequestParam("is_admin") String pro,
                            Model model) {
-        System.out.println(user.getUsername() + ',' + user.getPassword());
-
-        if (bindingResult.hasErrors()) {
-            return errorValidated("register", bindingResult, model);
-        } else {
-            model.addAttribute("registerMsg", userService.register(user) ? "注册成功！" : "注册失败！");
-        }
-
-        return "register";
+            User user = new User();
+            boolean is_admin = false;
+            if (pro.equals("管理员")) {
+                is_admin = true;
+            }
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setEmail(email);
+            user.setAge(age);
+            user.setAdmin(is_admin);
+            boolean isSuccess = userService.register(user);
+            if (!isSuccess) {
+                model.addAttribute("message", "注册失败，请检查用户名或邮箱是否已被注册！");
+                return "redirect:/registerForm";
+            }
+            model.addAttribute("message", "注册成功，请登录！");
+            return "redirect:/loginForm";
+            // 使用重定向，防止表单重复提交
     }
+
+    @RequestMapping("/main")
+    public String mainForm() {
+        return "main";
+    }
+
 
     private String errorValidated(String locationForm, BindingResult bindingResult, Model model) {
         StringBuilder validationErrorsMsg = new StringBuilder();
