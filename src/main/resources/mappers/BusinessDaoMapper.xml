@@ -6,22 +6,27 @@
     <resultMap id="itemResultMap" type="org.csu.demo.domain.Item">
         <result column="id" property="id"/>
         <result column="name" property="name"/>
-        <result column="product_type" property="product_type"/>
-        <result column="URL" property="URL"/>
+        <result column="product_id" property="product_id"/>
+        <result column="url" property="url"/>
         <result column="price" property="price"/>
         <result column="description" property="description"/>
-        <result column="business_id" property="businessId"/>
-        <result column="remain_numb" property="RemainingNumb"/>
+        <result column="businessId" property="businessId" />
+        <result column="RemainingNumb" property="RemainingNumb"/>
     </resultMap>
 
     <!-- 查询所有商品库存信息 -->
     <select id="getAllBusinessItems" resultMap="itemResultMap">
-        SELECT * FROM businessItemRemaining;
+        SELECT i.*, b.businessId ,b.RemaingNumb
+        FROM item i LEFT JOIN businessItemRemaining b ON i.id = b.itemId;
     </select>
+
 
     <!-- 根据 itemId 查询库存信息 -->
     <select id="getBusinessItemById" parameterType="int" resultMap="itemResultMap">
-        SELECT * FROM businessItemRemaining WHERE itemId = #{itemId};
+        SELECT i.*, b.businessId, b.RemaingNumb
+        FROM item i
+                 LEFT JOIN businessItemRemaining b ON i.id = b.itemId
+        WHERE i.id = #{itemId};
     </select>
 
     <!-- 插入新的商品库存信息 -->
@@ -33,8 +38,8 @@
     <!-- 更新商品库存 -->
     <update id="updateBusinessItem" parameterType="org.csu.demo.domain.Item">
         UPDATE businessItemRemaining
-        SET businessId = #{businessId}, RemaingNumb = #{remainingNumb}
-        WHERE itemId = #{itemId};
+        SET RemaingNumb = #{remainingNumb}
+        WHERE itemId = #{itemId} AND businessId = #{businessId};
     </update>
 
     <!-- 删除库存记录 -->
