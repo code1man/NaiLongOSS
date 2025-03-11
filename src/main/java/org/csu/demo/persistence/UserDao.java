@@ -3,7 +3,9 @@ package org.csu.demo.persistence;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.csu.demo.domain.User;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -25,5 +27,25 @@ public interface UserDao {
                        @Param("password") String password,
                        @Param("email") String email,
                        @Param("age") int age);
+
     boolean deleteUser(@Param("id") int id);
+
+    List<User> getUserByIsOnlineTrue();
+
+    List<User> getUserByIsOnlineFalse();
+
+    List<User> getUserByIsFrozenTrue();
+
+    List<User> getUserByIsFrozenFalse();
+
+    int countAllUsers();
+
+    int countOnlineUsers();
+
+    int countFrozenUsers();
+
+    String getFrozenReason(@Param("id") int id);
+
+    ResponseEntity<?> freezeUser(@Param("id") int id, @RequestBody FreezeRequest request);
+
 }

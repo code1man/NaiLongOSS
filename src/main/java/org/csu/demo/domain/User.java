@@ -26,6 +26,11 @@ public class User {
     private String email;
     private String responsibility;
 
+
+    private boolean is_online=false;
+    private boolean is_frozen=false;
+    private String frozen_reason="";
+
     private final List<Item> hasBeenPutInShoppingCartProducts = new ArrayList<Item>();
 
     public User(){};

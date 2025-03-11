@@ -51,4 +51,23 @@ public class UserService {
     public int addUser(User user) {
         return userDao.addUser(user);
     }
+
+    List<User> getUserByIsOnlineTrue(){return userDao.getUserByIsOnlineTrue();}
+
+    List<User> getUserByIsOnlineFalse(){return userDao.getUserByIsOnlineFalse();}
+
+    List<User> getUserByIsFrozenTrue(){return userDao.getUserByIsFrozenTrue();}
+
+    List<User> getUserByIsFrozenFalse(){return userDao.getUserByIsFrozenFalse();}
+
+    long countAllUsers(){return userDao.countAllUsers();}
+
+    long countOnlineUsers(){return userDao.countOnlineUsers();}
+
+    long countFrozenUsers(){return userDao.countFrozenUsers();}
+
+    String getFrozenReason(int id){return userDao.getFrozenReason(id);}
+
+
+
 }
