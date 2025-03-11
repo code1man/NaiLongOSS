@@ -1,4 +1,4 @@
-package org.csu.demo.web;
+package org.csu.demo.Controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;

@@ -1,4 +1,4 @@
-package org.csu.demo.web;
+package org.csu.demo.Controller;
 
 import org.csu.demo.domain.User;
 import org.csu.demo.service.UserService;
@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
@@ -51,7 +52,7 @@ public class UserController {
     // 还要判断验证码是否正确
     @PostMapping("/register")
     public String register(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email, @RequestParam("age") int age, @RequestParam("is_admin") String pro,
-                           Model model) {
+                           RedirectAttributes redirectAttributes) {
             User user = new User();
             boolean is_admin = false;
             if (pro.equals("管理员")) {
@@ -64,10 +65,11 @@ public class UserController {
             user.setAdmin(is_admin);
             boolean isSuccess = userService.register(user);
             if (!isSuccess) {
-                model.addAttribute("message", "注册失败，请检查用户名或邮箱是否已被注册！");
+                redirectAttributes.addFlashAttribute("message", "注册失败，请检查用户名或邮箱是否已被注册！");
                 return "redirect:/registerForm";
             }
-            model.addAttribute("message", "注册成功，请登录！");
+            redirectAttributes.addFlashAttribute("message", "注册成功，请登录！");
+            // 只存在一次message
             return "redirect:/loginForm";
             // 使用重定向，防止表单重复提交
     }
