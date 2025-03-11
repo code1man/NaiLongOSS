@@ -46,6 +46,5 @@ public interface UserDao {
 
     String getFrozenReason(@Param("id") int id);
 
-    ResponseEntity<?> freezeUser(@Param("id") int id, @RequestBody FreezeRequest request);
 
 }
