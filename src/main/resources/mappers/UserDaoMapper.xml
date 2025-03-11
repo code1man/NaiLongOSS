@@ -63,17 +63,27 @@
     </select>
 
     <!-- 查询用户人数 -->
-    <select id="countAllUsers" resultType="long">
+    <select id="countAllUsers" resultType="int">
         SELECT COUNT(*) FROM userinfo;
     </select>
     
     <!-- 查询在线用户人数 -->
-    <select id="countOnlineUsers" resultType="long">
+    <select id="countOnlineUsers" resultType="int">
         SELECT COUNT(*) FROM user_status WHERE is_online = true;
     </select>
-    
+
+    <!-- 冻结用户 -->
+    <update id="freezeUser">
+        UPDATE user SET is_frozen = 1 WHERE id = #{id},freeze_reason = #{reason} WHERE id = #{id}
+    </update>
+
+    <!-- 解冻用户 -->
+    <update id="unfreezeUser" parameterType="int">
+        UPDATE user SET is_frozen = 0 WHERE id = #{id}
+    </update>
+
     <!-- 查询被冻结的用户人数 -->
-    <select id="countFrozenUsers" resultType="long">
+    <select id="countFrozenUsers" resultType="int">
         SELECT COUNT(*) FROM user_status WHERE is_frozen = true;
     </select>
 

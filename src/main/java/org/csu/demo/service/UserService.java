@@ -20,8 +20,8 @@ public class UserService {
         return this.userDao.addUser(user) == 1;
     }
 
-    public boolean updateUser(User user, String username, String password, String email, int age) {
-        return userDao.updateUser(user.getId(), username, password, email, age);
+    public void updateUser(User user, String username, String password, String email, int age) {
+        userDao.updateUser(user.getId(), username, password, email, age);
     }
 
     public boolean checkUsername(String username) {
@@ -52,22 +52,25 @@ public class UserService {
         return userDao.addUser(user);
     }
 
-    List<User> getUserByIsOnlineTrue(){return userDao.getUserByIsOnlineTrue();}
+    public List<User> getUserByIsOnlineTrue(){return userDao.getUserByIsOnlineTrue();}
 
-    List<User> getUserByIsOnlineFalse(){return userDao.getUserByIsOnlineFalse();}
+    public List<User> getUserByIsOnlineFalse(){return userDao.getUserByIsOnlineFalse();}
 
-    List<User> getUserByIsFrozenTrue(){return userDao.getUserByIsFrozenTrue();}
+    public List<User> getUserByIsFrozenTrue(){return userDao.getUserByIsFrozenTrue();}
 
-    List<User> getUserByIsFrozenFalse(){return userDao.getUserByIsFrozenFalse();}
+    public List<User> getUserByIsFrozenFalse(){return userDao.getUserByIsFrozenFalse();}
 
-    long countAllUsers(){return userDao.countAllUsers();}
+    public int countAllUsers(){return userDao.countAllUsers();}
 
-    long countOnlineUsers(){return userDao.countOnlineUsers();}
+    public int countOnlineUsers(){return userDao.countOnlineUsers();}
 
-    long countFrozenUsers(){return userDao.countFrozenUsers();}
+    public int countFrozenUsers(){return userDao.countFrozenUsers();}
 
-    String getFrozenReason(int id){return userDao.getFrozenReason(id);}
+    public String getFrozenReason(int id){return userDao.getFrozenReason(id);}
 
+    public void freezeUser(int id, String frozen_reason){userDao.freezeUser(id, frozen_reason);}
+
+    public void unfreezeUser(int id){userDao.unfreezeUser(id);}
 
 
 }

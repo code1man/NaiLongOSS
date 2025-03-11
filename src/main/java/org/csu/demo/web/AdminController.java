@@ -87,27 +87,15 @@ public class AdminController {
         return "allUser";
     }
 
-//    @GetMapping("/users/{id}")
-//    public String getUserDetail(@PathVariable Long id, Model model) {
-//        User user = userService.getUserById(id);
-//        model.addAttribute("user", user);
-//        return "userDetail";
-//    }
-//
-//    @PostMapping("/users/{id}/reset-password")
-//    public ResponseEntity<?> resetPassword(@PathVariable Long id) {
-//        userService.resetPassword(id);
-//        return ResponseEntity.ok("Password reset successful");
-//    }
 
     @PostMapping("/users/{id}/freeze")
-    public ResponseEntity<?> freezeUser(@PathVariable Long id, @RequestBody FreezeRequest request) {
+    public ResponseEntity<?> freezeUser(@PathVariable int id, @RequestBody FreezeRequest request) {
         userService.freezeUser(id, request.getReason());
         return ResponseEntity.ok("User frozen successfully");
     }
 
     @PostMapping("/users/{id}/unfreeze")
-    public ResponseEntity<?> unfreezeUser(@PathVariable Long id) {
+    public ResponseEntity<?> unfreezeUser(@PathVariable int id) {
         userService.unfreezeUser(id);
         return ResponseEntity.ok("User unfrozen successfully");
     }
