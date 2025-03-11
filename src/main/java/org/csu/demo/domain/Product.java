@@ -1,9 +1,7 @@
 package org.csu.demo.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.annotation.Transient;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,12 +10,12 @@ import java.util.List;
 /*商品大类*/
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Product implements Serializable {
-    private int product_id;
-    private int ProductNumber = 0;
-    private final List<Item> items = new ArrayList<Item>();
+public class Product {
+    private int id;
+    private String description;
+    private int category_id;
 
-    public Product() {
-    }
+    private List<Item> items;
 }

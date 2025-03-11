@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="../css/LoginPage.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>登陆</title>
 </head>
 <body>
     <div class="login-container">
         <div class="cute-dragon">
-            <img src="../images/welcome.gif" alt="奶龙图片" class="naidragon-image">
+            <img src="/images/welcome.gif" alt="奶龙图片" class="naidragon-image">
         </div>
         <h1>奶龙商店 </h1>
         <form id="loginForm" action="login" method="post">
@@ -26,7 +26,8 @@
                     <a href="#">《隐私政策》</a>
                 </label>
             </div>
-            <input id="submitButton" type="submit" value="登录">
+            <input id="submitButton" type="submit" value="登录"><br/>
+            <a class="oauth-btn" href="/oauth2/authorization/github">使用 GitHub 登录</a>
         </form>
         <div class="footer-text">
             <a href="registerForm">还没有账号？立即注册！</a>
@@ -35,20 +36,20 @@
 
     <div class="mouse-follow-icon" id="mouse-follow-icon"
          style="display: inline-flex; align-items: center; justify-content: center;">
-        <img src="../images/cursor.gif" alt="跟随鼠标的GIF"/>
+        <img src="/images/cursor.gif" alt="跟随鼠标的GIF"/>
     </div>
 </body>
-<script>
-    let message = sessionStorage.getItem("message");
+<script th:inline="javascript">
+    let message = /*[[${message}]]*/
+    // alert(message);
     // 检查是否有注册成功的消息
     window.addEventListener('DOMContentLoaded', (event) => {
         if (message === "注册成功，请登录！") {
-            sessionStorage.removeItem("message");                   // 移除消息
             alert(message); // 显示弹出框
         }
     });
 </script>
-<script src="../js/cursorFollow.js"></script>
+<script src="/js/cursorFollow.js"></script>
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
-<script src="../js/checkAgreement.js"></script>
+<script src="/js/checkAgreement.js"></script>
 </html>
