@@ -1,0 +1,43 @@
+package org.csu.demo.web;
+
+import com.google.gson.Gson;
+import org.csu.demo.domain.Item;
+import org.csu.demo.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+import java.util.Map;
+
+@Controller
+@Validated
+public class MainController {
+
+    @Autowired
+    private ItemService itemService;
+
+    @GetMapping("/mainForm")
+    public String loginForm() {
+        return "main";
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<String> searchItemByKey(@RequestBody Map<String, String> requestData) {
+        String key = requestData.get("key");
+
+        if (key != null && !key.isEmpty()) {
+            List<Item> searchResults = itemService.SearchItems(key);  // 调用服务层方法查询数据库
+            String json = new Gson().toJson(searchResults);  // 使用 Gson 将结果转换为 JSON 字符串
+            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(json);
+        }
+
+        return ResponseEntity.badRequest().body("{\"error\": \"搜索关键词不能为空\"}");
+    }
+
+}

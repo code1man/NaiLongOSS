@@ -1,15 +1,18 @@
 package org.csu.demo;
 
-import org.csu.demo.domain.ProductType;
+import org.csu.demo.domain.Category;
+import org.csu.demo.domain.Product;
 import org.csu.demo.domain.User;
-import org.csu.demo.persistence.BusinessDao;
-import org.csu.demo.persistence.ItemDao;
-import org.csu.demo.persistence.UserDao;
+import org.csu.demo.persistence.*;
+import org.csu.demo.service.CatalogService;
+import org.csu.demo.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 @MapperScan("org.csu.demo.persistence")
@@ -23,6 +26,14 @@ class NaiLongApplicationTests {
     @Qualifier("itemDao")
     @Autowired
     private ItemDao itemDao;
+    @Autowired
+    private CategoryDao categoryDao;
+    @Autowired
+    private ProductDao productDao;
+    @Autowired
+    private CatalogService catalogService;
+    @Autowired
+    private ProductService productService;
 
     @Test
     void test1(){
@@ -41,7 +52,7 @@ class NaiLongApplicationTests {
                 .username("张三")
                 .password("123456")
                 .age(12)
-                .email("11")
+                .email("11@qq.com")
                 .responsibility("管理员")
                 .build();
 
@@ -54,5 +65,19 @@ class NaiLongApplicationTests {
         System.out.println(itemDao.getItem(10101));
         System.out.println(businessDao.getAllBusinessItems());
         System.out.println(itemDao.SearchItems("奶龙唐唐表情包"));
+    }
+
+    @Test
+    void test4() {
+        System.out.println(categoryDao.getCategoryList());
+        System.out.println(productDao.getProductListByCategory(1));
+    }
+
+    @Test
+    void test5() {
+        List<Category> categoryList = catalogService.getCategories();
+        List<Product> productList = productService.getProducts();
+        System.out.println(categoryList);
+        System.out.println(productList);
     }
 }

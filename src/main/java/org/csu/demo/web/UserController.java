@@ -39,14 +39,12 @@ public class UserController {
 
         if (loginUser != null) {
             model.addAttribute("loginUser", loginUser);
-            return "redirect:/main";
+            return "redirect:/mainForm";
         } else {
             model.addAttribute("loginMsg", "账号或密码错误");
             return "login";
         }
     }
-
-
 
     // 还要判断验证码是否正确
     @PostMapping("/register")
@@ -67,12 +65,6 @@ public class UserController {
             return "redirect:/loginForm";
             // 使用重定向，防止表单重复提交
     }
-
-    @RequestMapping("/main")
-    public String mainForm() {
-        return "main";
-    }
-
 
     private String errorValidated(String locationForm, BindingResult bindingResult, Model model) {
         StringBuilder validationErrorsMsg = new StringBuilder();

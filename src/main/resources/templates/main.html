@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    <!--<script>
         // 定时请求在线人数
         function updateOnlineCount() {
             $.ajax({
@@ -25,7 +25,7 @@
             // 每隔5秒更新一次在线人数
             setInterval(updateOnlineCount, 5000);
         });
-    </script>
+    </script>-->
 </head>
 <body>
 
@@ -159,9 +159,9 @@
                         </div>
                     </div>
                     <div th:unless="${session.loginUser != null}">
-                        <a th:href="@{/login}" class="link">登录</a>
+                        <a th:href="@{/loginForm}" class="link">登录</a>
                         <span class="sep">|</span>
-                        <a th:href="@{/register}" data-register="true" class="link">注册</a>
+                        <a th:href="@{/registerForm}" data-register="true" class="link">注册</a>
                         <span class="sep">|</span>
                         <span class="message">
                             <a href="#" class="J_needAgreement">消息通知</a>
@@ -189,8 +189,8 @@
                             <div class="site-category" style="display: block">
                                 <ul class="site-category-list clearfix site-category-list-custom">
                                     <li class="category-item" th:each="product : ${productList}">
-                                        <a th:href="'#' + ${product.productName}" class="title itemTitle">
-                                            <span th:text="${product.productName}"></span>
+                                        <a th:href="'#' + ${product.description}" class="title itemTitle">
+                                            <span th:text="${product.description}"></span>
                                             <em class="iconfont-arrow-right-big"></em>
                                         </a>
                                     </li>
@@ -200,7 +200,7 @@
                         <!-- 上边框 -->
                         <li class="nav-item" th:each="category : ${categoryList}">
                             <a href="#" class="link" data-settrack="true">
-                                <span class="text" th:text="${category.categoryName}"></span>
+                                <span class="text" th:text="${category.name}"></span>
                             </a>
                             <div class="item-children">
                                 <div class="container">
@@ -218,7 +218,7 @@
                         <label class="hide">站内搜索</label>
                         <label for="search"></label>
                         <input type="search" id="search" name="keyword" autocomplete="off"
-                               class="search-text" placeholder="奶龙" oninput="SearchItem()">
+                               class="search-text" placeholder="奶龙" oninput="searchItem()">
                         <a class="no-style-msq">
                             <button class="search-btn" id="searchButton">
                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -265,36 +265,33 @@
             <!-- banner图 -->
             <div class="home-banner-box">
                 <a href="https://www.163.com/dy/article/JDO2AG060518VHUU.html">
-                    <img src="/images/leijun.png" alt="借鉴对象金主爸爸的广告"
-                         width="1226" height="120">
+                    <img src="../images/leijun.png" alt="借鉴对象的广告"
+                         width="1226"
+                         height="120">
                 </a>
             </div>
+
             <!-- 商品展示 -->
-            <div th:each="product : ${productList}" th:id="${product.productName}"
-                 class="home-brick-box home-brick-row-2-box xm-plain-box">
+            <div th:each="product : ${productList}" th:id="${product.description}" class="home-brick-box home-brick-row-2-box xm-plain-box">
                 <div class="box-hd">
-                    <h2 class="title" style="font-weight: bolder"
-                        th:text="${product.productName}"></h2>
+                    <h2 class="title" style="font-weight: bolder" th:text="${product.description}"></h2>
                 </div>
                 <div class="box-hd clearfix" style="height: 686px">
                     <div class="row" style="margin-left: -14px">
                         <div class="span4">
                             <ul class="brick-promo-list clearfix">
                                 <li class="brick-item brick-item-l">
-                                    <a href="#">
-                                        <!-- 可放促销图片 -->
-                                    </a>
+                                    <a href=""></a>
                                 </li>
                             </ul>
                         </div>
                         <div class="span16">
                             <ul class="brick-list clearfix">
-                                <li class="brick-item brick-item-m brick-item-m-2"
-                                    th:each="cartItem : ${product.items}">
-                                    <a th:href="@{'ShoppingCart?item=' + ${cartItem.id}}">
+                                <li th:each="cartItem : ${product.items}" class="brick-item brick-item-m brick-item-m-2">
+                                    <a th:href="@{/ShoppingCart(item=${cartItem.id})}">
                                         <div class="figure figure-img">
                                             <img class="thumbImg" width="160" height="160" alt="1"
-                                                 th:src="${cartItem.URL}"
+                                                 th:src="${cartItem.url}"
                                                  th:attr="data-name=${cartItem.name}, data-price=${cartItem.price}, data-description=${cartItem.description}">
                                         </div>
                                         <h3 class="title" th:text="${cartItem.name}"></h3>
@@ -309,7 +306,6 @@
                     </div>
                 </div>
             </div>
-            <!-- end 商品展示 -->
         </div>
     </div>
 </div>
@@ -322,14 +318,14 @@
 
 </body>
 <!-- JS 脚本 -->
-<script src="/js/checkuserinfo.js"></script>
-<script src="/js/showDiscription.js"></script>
-<script src="/js/topBar.js"></script>
-<script src="/js/cursorFollow.js"></script>
-<script src="/js/Search.js"></script>
-<script src="/js/cart.js"></script>
-<script src="/js/scroll.js"></script>
-<script src="/js/carousel.js"></script>
+<script src="../js/checkuserinfo.js"></script>
+<script src="../js/showDiscription.js"></script>
+<script src="../js/topBar.js"></script>
+<script src="../js/cursorFollow.js"></script>
+<script src="../js/Search.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/carousel.js"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
     var updateMsg = /*[[${session.UpdateMsg != null ? session.UpdateMsg : ''}]]*/ '';
