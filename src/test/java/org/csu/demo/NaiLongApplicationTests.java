@@ -4,6 +4,7 @@ import org.csu.demo.domain.Category;
 import org.csu.demo.domain.Product;
 import org.csu.demo.domain.User;
 import org.csu.demo.persistence.*;
+import org.csu.demo.service.CartService;
 import org.csu.demo.service.CatalogService;
 import org.csu.demo.service.ProductService;
 import org.junit.jupiter.api.Test;
@@ -27,13 +28,11 @@ class NaiLongApplicationTests {
     @Autowired
     private ItemDao itemDao;
     @Autowired
-    private CategoryDao categoryDao;
-    @Autowired
-    private ProductDao productDao;
-    @Autowired
     private CatalogService catalogService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CartService cartService;
 
     @Test
     void test1(){
@@ -69,15 +68,14 @@ class NaiLongApplicationTests {
 
     @Test
     void test4() {
-        System.out.println(categoryDao.getCategoryList());
-        System.out.println(productDao.getProductListByCategory(1));
-    }
-
-    @Test
-    void test5() {
         List<Category> categoryList = catalogService.getCategories();
         List<Product> productList = productService.getProducts();
         System.out.println(categoryList);
         System.out.println(productList);
+    }
+
+    @Test
+    void test5() {
+        System.out.println(cartService.getCart(1));
     }
 }

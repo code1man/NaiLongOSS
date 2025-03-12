@@ -1,12 +1,16 @@
 package org.csu.demo.service;
+import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.Category;
 import org.csu.demo.domain.Item;
 import org.csu.demo.domain.Product;
+import org.csu.demo.persistence.CartDao;
 import org.csu.demo.persistence.CategoryDao;
 import org.csu.demo.persistence.ItemDao;
 import org.csu.demo.persistence.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,6 @@ public class CatalogService {
         return categoryDao.getCategoryList();
     }
 
-
     public Category getCategory(int categoryId) {
         return categoryDao.getCategoryById(categoryId);
     }
@@ -42,13 +45,4 @@ public class CatalogService {
     public List<Item> getItemListByProduct(int productId) {
         return itemDao.getItemListByProduct(productId);
     }
-
-
-    private static final String Add_Item = "INSERT INTO cart (userID,ItemID,ItemNum) VALUES(?,?,?)";
-    private static final String Remove_Item = "DELETE FROM cart where ItemID=?";
-    private static final String Search_Item = "SELECT * FROM cart WHERE userID = ? AND isCovered = false AND isDeleted = false";
-    private static final String Update_Item = "UPDATE cart SET isCovered=true WHERE userID=? AND ItemID=?";
-
-
-
 }

@@ -1,6 +1,8 @@
 package org.csu.demo.Controller;
 
+import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.User;
+import org.csu.demo.service.CartService;
 import org.csu.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +14,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@SessionAttributes(value = {"loginUser","message"})
+@SessionAttributes(value = {"loginUser","message","cart"})
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private CartService cartService;
 
     @GetMapping("/loginForm")
     public String loginForm() {
@@ -31,10 +35,9 @@ public class UserController {
     public String login(@ModelAttribute User user,
                            BindingResult bindingResult,
                            Model model) {
-        System.out.println("login----------------");
-        User loginUser=null;
+        User loginUser;
+        Cart cart;
         if (bindingResult.hasErrors()) {
-//            return errorValidated("login", bindingResult, model);
             System.out.println(bindingResult.getAllErrors());
             model.addAttribute("loginMsg", "账号或密码为空");
             return "login";
@@ -43,8 +46,13 @@ public class UserController {
         }
 
         if (loginUser != null) {
+            if(loginUser.is_frozen()){
+                model.addAttribute("loginMsg", "账号已被冻结，原因：" + userService.getFrozenReason(loginUser.getId()));
+                return "login";
+            }
+            cart = cartService.getCart(loginUser.getId());
             model.addAttribute("loginUser", loginUser);
-            System.out.println("loginUser----------------");
+            model.addAttribute("cart", cart);
             return "redirect:/mainForm";
         } else {
             model.addAttribute("loginMsg", "账号或密码错误");
@@ -68,6 +76,12 @@ public class UserController {
             return "redirect:/loginForm";
             // 使用重定向，防止表单重复提交
     }
+
+    @RequestMapping("/main")
+    public String mainForm() {
+        return "main";
+    }
+
 
     private String errorValidated(String locationForm, BindingResult bindingResult, Model model) {
         StringBuilder validationErrorsMsg = new StringBuilder();

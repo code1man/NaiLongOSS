@@ -84,5 +84,7 @@ public class UserService {
 
     public void unfreezeUser(int id){userDao.unfreezeUser(id);}
 
+    public List<User> getAllUserStatus(){return userDao.getAllUserStatus();}
 
+    public List<User> getAllMerchants(){return userDao.getAllMerchants();}
 }

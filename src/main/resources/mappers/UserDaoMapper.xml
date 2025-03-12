@@ -78,7 +78,7 @@
 
     <!-- 冻结用户 -->
     <update id="freezeUser">
-        UPDATE user SET is_frozen = 1 WHERE id = #{id},freeze_reason = #{reason} WHERE id = #{id}
+        UPDATE user SET is_frozen = 1,freeze_reason = #{reason} WHERE id = #{id}
     </update>
 
     <!-- 解冻用户 -->
@@ -96,4 +96,19 @@
         SELECT frozen_reason FROM user_status WHERE id = #{id};
     </select>
 
+    <!-- 查询所有用户状态 -->
+    <select id="getAllUserStatus" resultType="org.csu.demo.domain.User">
+        SELECT user.id, user.username,user.responsibility,user_status.is_online,user_status.is_frozen,user_status.frozen_reason
+            FROM user
+                INNER JOIN user_status ON user.id = user_status.id;
+    </select>
+
+    <!-- 查询所有商家 -->
+    <select id="getAllMerchants" resultType="org.csu.demo.domain.User">
+        SELECT user.id, user.username,user.responsibility,user_status.is_online,user_status.is_frozen,user_status.frozen_reason,merchant.credit
+            FROM user
+                INNER JOIN user_status ON user.id = user_status.id
+                INNER JOIN merchant ON user.id = merchant.id
+            WHERE responsibility = 'merchant';
+    </select>
 </mapper>

@@ -48,4 +48,9 @@ public interface UserDao {
     void freezeUser(@Param("id") int id, @Param("frozen_reason") String frozen_reason);
 
     void unfreezeUser(@Param("id") int id);
+
+    List<User> getAllUserStatus();
+
+    List<User> getAllMerchants();
+
 }

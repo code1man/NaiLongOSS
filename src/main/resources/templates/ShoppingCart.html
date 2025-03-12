@@ -1,41 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>奶龙商店</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!--<script>
-        // 定时请求在线人数
-        function updateOnlineCount() {
-            $.ajax({
-                url: '/getOnlineUserCount',  // Servlet URL
-                type: 'GET',
-                dataType: 'json',
-                success: function (response) {
-                    $('#onlineCount').text(response.onlineUserCount);
-                },
-                error: function () {
-                    console.error('获取在线人数失败');
-                }
-            });
-        }
+<!--
+<script type="text/javascript">
+    // 页面加载时立即执行未登录提示
+    if (confirm("您尚未登录，是否前往登录界面？")) {
+        // 用户点击确认，跳转到登录页面
+        window.location.href = "${pageContext.request.contextPath}/loginForm";
+    } else {
+        window.location.href = "${pageContext.request.contextPath}/ShoppingCart";
+    }
+</script>
+-->
 
-        $(document).ready(function () {
-            // 每隔5秒更新一次在线人数
-            setInterval(updateOnlineCount, 5000);
-        });
-    </script>-->
+<head>
+    <title>购物界面</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/ShoppingCart.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-
-<!-- 悬浮窗 -->
-<div id="product-hover-info">
-    <h4 id="hover-product-name"></h4>
-    <p id="hover-product-description"></p>
-    <p><strong>价格：</strong><span id="hover-product-price"></span>元</p>
-</div>
-<div>
+<!-- topBar -->
+<div style="background-color: rgba(255, 234, 175, 0.8) ">
     <div class="header">
         <!-- topBar -->
         <div class="site-topBar">
@@ -179,39 +164,6 @@
                        style="background: url(/images/Logo.png) no-repeat; background-size: 56px; margin-top: 22px;">
                     </a>
                 </div>
-                <!-- 分类导航 -->
-                <div class="header-nav">
-                    <ul class="nav-list clearfix">
-                        <li class="nav-category">
-                            <a href="#" class="link-category">
-                                <span class="text">全部商品分类</span>
-                            </a>
-                            <div class="site-category" style="display: block">
-                                <ul class="site-category-list clearfix site-category-list-custom">
-                                    <li class="category-item" th:each="product : ${productList}">
-                                        <a th:href="'#' + ${product.description}" class="title itemTitle">
-                                            <span th:text="${product.description}"></span>
-                                            <em class="iconfont-arrow-right-big"></em>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- 上边框 -->
-                        <li class="nav-item" th:each="category : ${categoryList}">
-                            <a href="#" class="link" data-settrack="true">
-                                <span class="text" th:text="${category.name}"></span>
-                            </a>
-                            <div class="item-children">
-                                <div class="container">
-                                    <ul class="children-list clearfix">
-                                        <!-- 可在此循环展示子分类 -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
                 <!-- 搜索按钮 -->
                 <div class="header-search">
                     <form class="search-form clearfix">
@@ -234,106 +186,79 @@
             </div>
         </div>
     </div>
-
-    <!-- 轮播图 -->
-    <div style="background-color: rgba(255, 234, 175, 0.8)">
-        <div class="home-hero-container container">
-            <div class="home-hero box">
-                <ul id="carousel">
-                    <li>
-                        <img src="/images/我.png" alt="轮播图1">
-                    </li>
-                    <li>
-                        <img src="/images/是.png" alt="轮播图2">
-                    </li>
-                    <li>
-                        <img src="/images/奶龙.png" alt="轮播图3">
-                    </li>
-                </ul>
-                <!-- 分页导航 -->
-                <div class="carousel-indicators">
-                    <span data-index="0" class="active"></span>
-                    <span data-index="1"></span>
-                    <span data-index="2"></span>
-                </div>
-            </div>
-        </div>
+    <div id="floatingWindow" class="floating">
+        <div class="content" th:text="${item.name}"></div>
     </div>
 
-    <div class="page-main home-main">
-        <div class="container">
-            <!-- banner图 -->
-            <div class="home-banner-box">
-                <a href="https://www.163.com/dy/article/JDO2AG060518VHUU.html">
-                    <img src="../images/leijun.png" alt="借鉴对象的广告"
-                         width="1226"
-                         height="120">
-                </a>
+    <div style="background-color: rgba(255, 234, 175, 0.8) ">
+        <div class="product-box container">
+            <div class="img-left">
+                <img th:src="${item.url}" alt="商品图片" class="img-box">
             </div>
+            <div class="product-con">
+                <div style="flex: 5;">
+                    <h2 th:text="${item.name}"></h2>
+                    <div class="price-info">
+                        <span th:text="${item.price}"></span>
+                    </div>
+                    <br/>
 
-            <!-- 商品展示 -->
-            <div th:each="product : ${productList}" th:id="${product.description}" class="home-brick-box home-brick-row-2-box xm-plain-box">
-                <div class="box-hd">
-                    <h2 class="title" style="font-weight: bolder" th:text="${product.description}"></h2>
+                    <div class="product-desc" th:text="${item.description}"></div>
+                    <div class="price-line"></div>
                 </div>
-                <div class="box-hd clearfix" style="height: 686px">
-                    <div class="row" style="margin-left: -14px">
-                        <div class="span4">
-                            <ul class="brick-promo-list clearfix">
-                                <li class="brick-item brick-item-l">
-                                    <a href=""></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="span16">
-                            <ul class="brick-list clearfix">
-                                <li th:each="cartItem : ${product.items}" class="brick-item brick-item-m brick-item-m-2">
-                                    <a th:href="@{/ShoppingCart(itemId=${cartItem.id})}">
-                                        <div class="figure figure-img">
-                                            <img class="thumbImg" width="160" height="160" alt="1"
-                                                 th:src="${cartItem.url}"
-                                                 th:attr="data-name=${cartItem.name}, data-price=${cartItem.price}, data-description=${cartItem.description}">
-                                        </div>
-                                        <h3 class="title" th:text="${cartItem.name}"></h3>
-                                        <p class="price">
-                                            <span class="num" th:text="${cartItem.price}"></span>元<span>起</span>
-                                            <del><span class="num">1000</span>元</del>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="price-btn-box">
+                    <div class="sale-btn">
+                        <a th:if="${session.loginUser != null}" th:href="@{/orderForm}"
+                           class="price-btn price-btn-primary">
+                            购买
+                        </a>
+                        <a th:unless="${session.loginUser != null}" href="javascript:void(0)"
+                           class="price-btn price-btn-primary">
+                            购买
+                        </a>
+                    </div>
+
+                    <div class="favorite-btn">
+                        <a th:if="${session.loginUser != null}" href="javascript:void(0)"
+                           class="btn-like btn-gray" th:attr="data-item=${item.id}" onclick="addToCart(this)">
+                            加入购物车
+                        </a>
+                        <a th:unless="${session.loginUser != null}" href="javascript:void(0)"
+                           class="btn-like btn-gray">
+                            购买
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- 鼠标跟随图标 -->
 <div class="mouse-follow-icon" id="mouse-follow-icon"
      style="display: inline-flex; align-items: center; justify-content: center;">
-    <img src="/images/cursor.gif" alt="跟随鼠标的GIF"/>
+    <img src="../images/cursor.gif" alt="跟随鼠标的GIF"/>
 </div>
 
 </body>
-<!-- JS 脚本 -->
-<script src="../js/checkuserinfo.js"></script>
-<script src="../js/showDiscription.js"></script>
-<script src="../js/topBar.js"></script>
-<script src="../js/cursorFollow.js"></script>
-<script src="../js/Search.js"></script>
-<script src="../js/cart.js"></script>
-<script src="../js/scroll.js"></script>
-<script src="../js/carousel.js"></script>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    var updateMsg = /*[[${session.UpdateMsg != null ? session.UpdateMsg : ''}]]*/ '';
-    if(updateMsg){
-        alert(updateMsg);
-        // 移除 UpdateMsg 的逻辑建议在 Controller 中完成
-    }
-    /*]]>*/
+
+<script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
+<script src="/js/cursorFollow.js"></script>
+<script src="/js/topBar.js"></script>
+<script src="/js/Search.js"></script>
+<script src="/js/cart.js"></script>
+<script>
+    window.onscroll = function () {
+        var floatingWindow = document.getElementById("floatingWindow");
+        var windowScrollY = window.scrollY;
+        // 获取元素的初始位置
+        var initialOffset = floatingWindow.offsetTop; // 初始相对于页面顶部的距离
+
+        // 判断是否需要固定
+        if (windowScrollY > initialOffset) {
+            floatingWindow.classList.add("fixed");
+        } else {
+            floatingWindow.classList.remove("fixed");
+        }
+    };
 </script>
 <script src="https://kit.fontawesome.com/c3413aee04.js" crossorigin="anonymous"></script>
 </html>
