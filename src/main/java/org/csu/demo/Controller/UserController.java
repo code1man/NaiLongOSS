@@ -45,11 +45,18 @@ public class UserController {
         if (loginUser != null) {
             model.addAttribute("loginUser", loginUser);
             System.out.println("loginUser----------------");
+            if(loginUser.is_frozen()){
+                model.addAttribute("loginMsg", "账号已被冻结，原因：" + userService.getFrozenReason(loginUser.getId()));
+                return "login";
+            }
             return "redirect:/main";
         } else {
             model.addAttribute("loginMsg", "账号或密码错误");
             return "login";
         }
+
+
+
     }
 
 
