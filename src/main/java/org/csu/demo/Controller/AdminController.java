@@ -88,11 +88,11 @@ public class AdminController {
     }
 
 
-    @PostMapping("/users/{id}/freeze")
-    public ResponseEntity<?> freezeUser(@PathVariable int id, @RequestBody FreezeRequest request) {
-        userService.freezeUser(id, request.getReason());
-        return ResponseEntity.ok("User frozen successfully");
-    }
+//    @PostMapping("/users/{id}/freeze")
+//    public ResponseEntity<?> freezeUser(@PathVariable int id, @RequestBody FreezeRequest request) {
+//        userService.freezeUser(id, request.getReason());
+//        return ResponseEntity.ok("User frozen successfully");
+//    }
 
     @PostMapping("/users/{id}/unfreeze")
     public ResponseEntity<?> unfreezeUser(@PathVariable int id) {

@@ -27,19 +27,24 @@ public class UserController {
         return "register";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/doLogin")
     public String login(@ModelAttribute User user,
                            BindingResult bindingResult,
                            Model model) {
-        User loginUser;
+        System.out.println("login----------------");
+        User loginUser=null;
         if (bindingResult.hasErrors()) {
-            return errorValidated("login", bindingResult, model);
+//            return errorValidated("login", bindingResult, model);
+            System.out.println(bindingResult.getAllErrors());
+            model.addAttribute("loginMsg", "账号或密码为空");
+            return "login";
         } else {
             loginUser = userService.login(user.getUsername(), user.getPassword());
         }
 
         if (loginUser != null) {
             model.addAttribute("loginUser", loginUser);
+            System.out.println("loginUser----------------");
             return "redirect:/main";
         } else {
             model.addAttribute("loginMsg", "账号或密码错误");
