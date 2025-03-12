@@ -1,0 +1,210 @@
+body {
+    font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+    color: #333;
+    min-width: 1226px;
+    cursor: none;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.floating {
+    position: relative;
+    /* 初始位置 */
+    width: 100%;
+    height: 60px;
+    /* 添加边距 */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 0;
+    margin: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fixed {
+    margin: 0;
+    position: fixed;
+    top: 0;
+    /* 置顶 */
+    left: 0;
+    /* 左侧对齐 */
+    width: 100%;
+    /* 宽度为 100% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    /* 确保在其他元素上方 */
+}
+
+.content {
+    margin: 0;
+    padding-left: 144px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 60px;
+    color: #424242;
+    float: left
+}
+
+.product-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-top: 32px;
+    padding-bottom: 12px;
+}
+
+.product-box .img-left {
+    width: 606px;
+    position: relative;
+}
+
+.product-box .img-box {
+    width: 560px;
+    position: absolute;
+    top: 0
+}
+
+.product-box .product-con {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-left: 20px
+}
+
+.product-con h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-weight: 400;
+    color: #212121
+}
+
+.product-con h2 img {
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -3px;
+    margin-right: 2px
+}
+
+.product-con .price-info {
+    display: block;
+    font-size: 18px;
+    line-height: 1;
+    color: #ff6700;
+    padding: 12px 0 10px
+}
+
+.price-line {
+    margin-top: 12px;
+    border-bottom: 1px solid #e0e0e0
+}
+
+.price-btn-box {
+    flex: 1;
+    margin: 10px 0 20px 0;
+}
+
+.sale-btn {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.sale-btn .price-btn {
+    width: 298px;
+    height: 52px;
+    line-height: 52px;
+    font-size: 16px
+}
+
+.price-btn-primary {
+    background: #ff6700;
+    border-color: #ff6700;
+    color: #fff
+}
+
+.price-btn-primary:hover {
+    background-color: #f25807;
+    border-color: #f25807;
+    color: #fff
+}
+
+.price-btn {
+    display: inline-block;
+    width: 158px;
+    height: 38px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #b0b0b0;
+    font-size: 14px;
+    line-height: 38px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition: all .4s;
+    transition: all .4s
+}
+
+.price-btn:hover {
+    text-decoration: none;
+    color: #fff
+}
+
+.price-btn:focus {
+    outline: 0
+}
+
+.price-btn:active {
+    -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, .18);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .18)
+}
+
+.btn-disabled {
+    color: #b0b0b0 !important;
+    cursor: default !important
+}
+
+.btn-disabled {
+    background: #e0e0e0 !important;
+    border-color: #e0e0e0 !important
+}
+
+.favorite-btn {
+    display: inline-block;
+    vertical-align: top
+}
+
+.btn-like {
+    display: block;
+    width: 140px;
+    height: 52px;
+    line-height: 52px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #b0b0b0;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+    font-size: 16px;
+    position: relative
+}
+
+.btn-gray {
+    background: #b0b0b0;
+    border-color: #b0b0b0;
+    color: #fff
+}

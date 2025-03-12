@@ -35,6 +35,7 @@ public class MainController {
     public String addItemToCart(@RequestParam int itemId, Model model) {
         // 通过数据库找到对应商品
         Item item = itemService.getTtemByItemId(itemId);
+        System.out.println(item);
         if (item == null) {
             return "redirect:/mainForm";
         }

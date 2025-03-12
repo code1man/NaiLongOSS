@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +12,13 @@ import java.util.List;
 /*用户*/
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class User {
-
     private int id;
 
     @NotBlank(message = "用户名不能为空")
     private String username;
-
     @NotBlank(message = "密码不能为空")
     private String password;
 
@@ -33,8 +33,5 @@ public class User {
 //信誉
     private int credit;
 
-
-    private final List<Item> hasBeenPutInShoppingCartProducts = new ArrayList<Item>();
-
-    public User(){};
+    private List<Item> cart=new ArrayList<>();
 }

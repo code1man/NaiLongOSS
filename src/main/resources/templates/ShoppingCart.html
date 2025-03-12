@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--
 <script type="text/javascript">
     // 页面加载时立即执行未登录提示
     if (confirm("您尚未登录，是否前往登录界面？")) {
         // 用户点击确认，跳转到登录页面
-        window.location.href = "${pageContext.request.contextPath}/login";
+        window.location.href = "${pageContext.request.contextPath}/loginForm";
     } else {
         window.location.href = "${pageContext.request.contextPath}/ShoppingCart";
     }
 </script>
-<% } %>
+-->
 
 <head>
     <title>购物界面</title>
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/ShoppingCart.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -36,11 +37,11 @@
                     <div th:if="${session.loginUser != null and session.cart != null}">
                         <!-- 购物车 -->
                         <span id="topBarItemCount" class="cart-mini-num J_cartNum"
-                              th:text="'(' + ${session.cart.totalNum} + ')'"></span>
+                              th:text="'(' + ${session.cart.totalCount} + ')'"></span>
                         <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
                             <div class="menu-content">
                                 <!-- 如果购物车中有商品 -->
-                                <div th:if="${session.cart.totalNum > 0}">
+                                <div th:if="${session.cart.totalCount > 0}">
                                     <ul id="J_miniCartList" class="cart-list"
                                         th:each="cartItem : ${session.cart.itemList}">
                                         <li th:attr="data-item-id=${cartItem.itemID}">
@@ -66,14 +67,14 @@
                                     </ul>
                                 </div>
                                 <!-- 否则显示购物车为空 -->
-                                <div th:unless="${session.cart.totalNum > 0}">
+                                <div th:unless="${session.cart.totalCount > 0}">
                                     <div class="msg msg-empty">购物车中还没有商品，赶紧选购吧！</div>
                                 </div>
                                 <div id="J_miniCartListTotal" class="cart-total clearfix">
                                     <span class="total">
-                                        共 <em id="CartListTotalCount" th:text="${session.cart.totalNum}"></em> 件商品
+                                        共 <em id="CartListTotalCount" th:text="${session.cart.totalCount}"></em> 件商品
                                         <span class="price">
-                                            <em id="CartListTotalPrice" th:text="${session.cart.subTotal}"></em>元
+                                            <em id="CartListTotalPrice" th:text="${session.cart.totalPrice}"></em>元
                                         </span>
                                     </span>
                                     <a th:href="@{${#httpServletRequest.contextPath}/CartCount}"
@@ -163,39 +164,6 @@
                        style="background: url(/images/Logo.png) no-repeat; background-size: 56px; margin-top: 22px;">
                     </a>
                 </div>
-                <!-- 分类导航 -->
-                <div class="header-nav">
-                    <ul class="nav-list clearfix">
-                        <li class="nav-category">
-                            <a href="#" class="link-category">
-                                <span class="text">全部商品分类</span>
-                            </a>
-                            <div class="site-category" style="display: block">
-                                <ul class="site-category-list clearfix site-category-list-custom">
-                                    <li class="category-item" th:each="product : ${productList}">
-                                        <a th:href="'#' + ${product.description}" class="title itemTitle">
-                                            <span th:text="${product.description}"></span>
-                                            <em class="iconfont-arrow-right-big"></em>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- 上边框 -->
-                        <li class="nav-item" th:each="category : ${categoryList}">
-                            <a href="#" class="link" data-settrack="true">
-                                <span class="text" th:text="${category.name}"></span>
-                            </a>
-                            <div class="item-children">
-                                <div class="container">
-                                    <ul class="children-list clearfix">
-                                        <!-- 可在此循环展示子分类 -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
                 <!-- 搜索按钮 -->
                 <div class="header-search">
                     <form class="search-form clearfix">
@@ -219,27 +187,23 @@
         </div>
     </div>
     <div id="floatingWindow" class="floating">
-        <div class="content">${requestScope.item.name}</div>
+        <div class="content" th:text="${item.name}"></div>
     </div>
 
     <div style="background-color: rgba(255, 234, 175, 0.8) ">
         <div class="product-box container">
             <div class="img-left">
-                <img src="${requestScope.item.url}" alt="商品图片" class="img-box">
+                <img th:src="${item.url}" alt="商品图片" class="img-box">
             </div>
             <div class="product-con">
                 <div style="flex: 5;">
-                    <h2>
-                        ${requestScope.item.name}
-                    </h2>
+                    <h2 th:text="${item.name}"></h2>
                     <div class="price-info">
-                        <span>${requestScope.item.price}</span>
+                        <span th:text="${item.price}"></span>
                     </div>
                     <br/>
 
-                    <div class="product-desc">
-                        ${requestScope.item.description}
-                    </div>
+                    <div class="product-desc" th:text="${item.description}"></div>
                     <div class="price-line"></div>
                 </div>
                 <div class="price-btn-box">
@@ -277,10 +241,10 @@
 </body>
 
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
-<script src="../js/cursorFollow.js"></script>
-<script src="../js/topBar.js"></script>
-<script src="../js/Search.js"></script>
-<script src="../js/cart.js"></script>
+<script src="/js/cursorFollow.js"></script>
+<script src="/js/topBar.js"></script>
+<script src="/js/Search.js"></script>
+<script src="/js/cart.js"></script>
 <script>
     window.onscroll = function () {
         var floatingWindow = document.getElementById("floatingWindow");

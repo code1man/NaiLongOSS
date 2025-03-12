@@ -28,10 +28,6 @@ class NaiLongApplicationTests {
     @Autowired
     private ItemDao itemDao;
     @Autowired
-    private CategoryDao categoryDao;
-    @Autowired
-    private ProductDao productDao;
-    @Autowired
     private CatalogService catalogService;
     @Autowired
     private ProductService productService;

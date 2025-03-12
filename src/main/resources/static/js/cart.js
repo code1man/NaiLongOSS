@@ -135,26 +135,26 @@ $(function () {
                 console.error("改变数目失败", error);
             });
     };
-
-    function addToCart(button) {
-        let itemId = button.getAttribute("data-item");
-
-        fetch(`/AddItemToCart?item=${itemId}`, {
-            method: "GET",
-            credentials: "include"
-        })
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text); });
-                }
-                return response.text();
-            })
-            .then(data => {
-                alert("商品已成功加入购物车！");  // 弹出成功提示
-                window.location.href = "/mainForm";
-            })
-            .catch(error => {
-                alert(error.message || "添加购物车失败，请稍后再试！");
-            });
-    }
 })
+
+function addToCart(button) {
+    let itemId = button.getAttribute("data-item");
+
+    fetch(`/AddItemToCart?itemId=${itemId}`, {
+        method: "GET",
+        credentials: "include"
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text); });
+            }
+            return response.text();
+        })
+        .then(data => {
+            alert("商品已成功加入购物车！");  // 弹出成功提示
+            window.location.href = "/mainForm";
+        })
+        .catch(error => {
+            alert(error.message || "添加购物车失败，请稍后再试！");
+        });
+}

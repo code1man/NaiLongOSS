@@ -35,8 +35,7 @@ public class UserController {
     public String login(@ModelAttribute User user,
                            BindingResult bindingResult,
                            Model model) {
-        System.out.println("login----------------");
-        User loginUser=null;
+        User loginUser;
         Cart cart;
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());

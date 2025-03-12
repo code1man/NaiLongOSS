@@ -52,11 +52,11 @@
                     <div th:if="${session.loginUser != null and session.cart != null}">
                         <!-- 购物车 -->
                         <span id="topBarItemCount" class="cart-mini-num J_cartNum"
-                              th:text="'(' + ${session.cart.totalNum} + ')'"></span>
+                              th:text="'(' + ${session.cart.totalCount} + ')'"></span>
                         <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
                             <div class="menu-content">
                                 <!-- 如果购物车中有商品 -->
-                                <div th:if="${session.cart.totalNum > 0}">
+                                <div th:if="${session.cart.totalCount > 0}">
                                     <ul id="J_miniCartList" class="cart-list"
                                         th:each="cartItem : ${session.cart.itemList}">
                                         <li th:attr="data-item-id=${cartItem.itemID}">
@@ -82,14 +82,14 @@
                                     </ul>
                                 </div>
                                 <!-- 否则显示购物车为空 -->
-                                <div th:unless="${session.cart.totalNum > 0}">
+                                <div th:unless="${session.cart.totalCount > 0}">
                                     <div class="msg msg-empty">购物车中还没有商品，赶紧选购吧！</div>
                                 </div>
                                 <div id="J_miniCartListTotal" class="cart-total clearfix">
                                     <span class="total">
-                                        共 <em id="CartListTotalCount" th:text="${session.cart.totalNum}"></em> 件商品
+                                        共 <em id="CartListTotalCount" th:text="${session.cart.totalCount}"></em> 件商品
                                         <span class="price">
-                                            <em id="CartListTotalPrice" th:text="${session.cart.subTotal}"></em>元
+                                            <em id="CartListTotalPrice" th:text="${session.cart.totalPrice}"></em>元
                                         </span>
                                     </span>
                                     <a th:href="@{${#httpServletRequest.contextPath}/CartCount}"
@@ -288,7 +288,7 @@
                         <div class="span16">
                             <ul class="brick-list clearfix">
                                 <li th:each="cartItem : ${product.items}" class="brick-item brick-item-m brick-item-m-2">
-                                    <a th:href="@{/ShoppingCart(item=${cartItem.id})}">
+                                    <a th:href="@{/ShoppingCart(itemId=${cartItem.id})}">
                                         <div class="figure figure-img">
                                             <img class="thumbImg" width="160" height="160" alt="1"
                                                  th:src="${cartItem.url}"
