@@ -90,6 +90,11 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>8.0.21</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @Builder
-public class Item implements Serializable {
+public class Item{
     private int id;
     private String name;
     private int product_id;

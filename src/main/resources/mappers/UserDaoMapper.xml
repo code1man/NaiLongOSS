@@ -40,4 +40,60 @@
     <select id="getUserByUsername" parameterType="string" resultType="org.csu.demo.domain.User">
         SELECT * FROM userinfo WHERE username = #{username};
     </select>
+
+    <!-- 通过id删除用户 -->
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <!-- 查询所有在线用户 -->
+    <select id="getUserByIsOnlineTrue" resultType="org.csu.demo.domain.User">
+        SELECT * FROM userinfo WHERE isOnline = true;
+    </select>
+
+    <!-- 查询所有未在线用户 -->
+    <select id="getUserByIsOnlineFalse" resultType="org.csu.demo.domain.User">
+        SELECT * FROM userinfo WHERE is_online = false;
+    </select>
+
+    <!-- 查询所有被冻结的用户 -->
+    <select id="getUserByIsFrozenTrue" resultType="org.csu.demo.domain.User">
+        SELECT * FROM userinfo WHERE is_frozen = true;
+    </select>
+
+    <!-- 查询所有未冻结的用户 -->
+    <select id="getUserByIsFrozenFalse" resultType="org.csu.demo.domain.User">
+        SELECT * FROM userinfo WHERE is_frozen = false;
+    </select>
+
+    <!-- 查询用户人数 -->
+    <select id="countAllUsers" resultType="int">
+        SELECT COUNT(*) FROM userinfo;
+    </select>
+    
+    <!-- 查询在线用户人数 -->
+    <select id="countOnlineUsers" resultType="int">
+        SELECT COUNT(*) FROM user_status WHERE is_online = true;
+    </select>
+
+    <!-- 冻结用户 -->
+    <update id="freezeUser">
+        UPDATE user SET is_frozen = 1 WHERE id = #{id},freeze_reason = #{reason} WHERE id = #{id}
+    </update>
+
+    <!-- 解冻用户 -->
+    <update id="unfreezeUser" parameterType="int">
+        UPDATE user SET is_frozen = 0 WHERE id = #{id}
+    </update>
+
+    <!-- 查询被冻结的用户人数 -->
+    <select id="countFrozenUsers" resultType="int">
+        SELECT COUNT(*) FROM user_status WHERE is_frozen = true;
+    </select>
+
+    <!-- 查询被冻结的用户原因 -->
+    <select id="getFrozenReason" parameterType="int" resultType="string">
+        SELECT frozen_reason FROM user_status WHERE id = #{id};
+    </select>
+
 </mapper>

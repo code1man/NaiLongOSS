@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.demo.persistence.ProductDao">
+    <!-- 查询指定类别的产品列表 -->
+    <select id="getProductListByCategory" resultType="org.csu.demo.domain.Product">
+        SELECT producttype.id, producttype.description, producttype.category_id FROM producttype WHERE category_id = #{categoryId};
+    </select>
+
+    <select id="getAllProducts" resultType="org.csu.demo.domain.Product">
+        SELECT producttype.id, producttype.description, producttype.category_id FROM producttype;
+    </select>
+
+    <!-- 查询指定ID的产品 -->
+    <select id="getProductById" resultType="org.csu.demo.domain.Product">
+        SELECT producttype.id, producttype.description, producttype.category_id FROM producttype WHERE id = #{productId};
+    </select>
+
+    <select id="getProductByName" resultType="org.csu.demo.domain.Product">
+        SELECT producttype.id, producttype.description, producttype.category_id FROM producttype WHERE description = #{productName};
+    </select>
+</mapper>
