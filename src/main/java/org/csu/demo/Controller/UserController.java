@@ -1,6 +1,8 @@
 package org.csu.demo.Controller;
 
+import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.User;
+import org.csu.demo.service.CartService;
 import org.csu.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +14,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@SessionAttributes(value = {"loginUser","message"})
+@SessionAttributes(value = {"loginUser","message","cart"})
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private CartService cartService;
 
     @GetMapping("/loginForm")
     public String loginForm() {
@@ -32,6 +36,7 @@ public class UserController {
                            BindingResult bindingResult,
                            Model model) {
         User loginUser;
+        Cart cart;
         if (bindingResult.hasErrors()) {
             return errorValidated("login", bindingResult, model);
         } else {
@@ -39,7 +44,9 @@ public class UserController {
         }
 
         if (loginUser != null) {
+            cart = cartService.getCart(loginUser.getId());
             model.addAttribute("loginUser", loginUser);
+            model.addAttribute("cart", cart);
             return "redirect:/mainForm";
         } else {
             model.addAttribute("loginMsg", "账号或密码错误");

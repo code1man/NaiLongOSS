@@ -19,4 +19,12 @@ public class ItemService {
     public List<Item> SearchItems(String keyword) {
         return itemDao.SearchItems(keyword);
     }
+
+    public int getItemPrice(int itemId) {
+        return itemDao.getItem(itemId).getPrice();
+    }
+
+    public Item getTtemByItemId(int itemId) {
+        return itemDao.getItem(itemId);
+    }
 }

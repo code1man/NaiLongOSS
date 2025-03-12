@@ -1,16 +1,20 @@
-package org.csu.demo.web;
+package org.csu.demo.Controller;
 
 import com.google.gson.Gson;
 import org.csu.demo.domain.Item;
+import org.csu.demo.domain.User;
 import org.csu.demo.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -25,6 +29,18 @@ public class MainController {
     @GetMapping("/mainForm")
     public String loginForm() {
         return "main";
+    }
+
+    @GetMapping("/ShoppingCart")
+    public String addItemToCart(@RequestParam int itemId, Model model) {
+        // 通过数据库找到对应商品
+        Item item = itemService.getTtemByItemId(itemId);
+        if (item == null) {
+            return "redirect:/mainForm";
+        }
+        model.addAttribute("item", item);
+
+        return "ShoppingCart";
     }
 
     @PostMapping("/search")

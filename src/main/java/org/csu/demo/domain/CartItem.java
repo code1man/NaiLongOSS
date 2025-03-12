@@ -7,18 +7,17 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-/*商品*/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Item{
-    private int id;
+public class CartItem {
+    private int itemID;
+    private int itemNum;
     private String name;
-    private int product_id;
     private String url;
     private int price;
-    private String description;
-    private int businessId;
-    private int remainingNumb;
+    private int userID;
 }
+
+
