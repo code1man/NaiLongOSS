@@ -31,19 +31,26 @@ public class UserController {
         return "register";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/doLogin")
     public String login(@ModelAttribute User user,
                            BindingResult bindingResult,
                            Model model) {
-        User loginUser;
+        System.out.println("login----------------");
+        User loginUser=null;
         Cart cart;
         if (bindingResult.hasErrors()) {
-            return errorValidated("login", bindingResult, model);
+            System.out.println(bindingResult.getAllErrors());
+            model.addAttribute("loginMsg", "账号或密码为空");
+            return "login";
         } else {
             loginUser = userService.login(user.getUsername(), user.getPassword());
         }
 
         if (loginUser != null) {
+            if(loginUser.is_frozen()){
+                model.addAttribute("loginMsg", "账号已被冻结，原因：" + userService.getFrozenReason(loginUser.getId()));
+                return "login";
+            }
             cart = cartService.getCart(loginUser.getId());
             model.addAttribute("loginUser", loginUser);
             model.addAttribute("cart", cart);
@@ -54,16 +61,12 @@ public class UserController {
         }
     }
 
+
+
     // 还要判断验证码是否正确
     @PostMapping("/register")
-    public String register(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email, @RequestParam("age") int age, @RequestParam("is_admin") String pro,
+    public String register(@ModelAttribute User user,
                            RedirectAttributes redirectAttributes) {
-            User user = new User();
-            user.setUsername(username);
-            user.setPassword(password);
-            user.setEmail(email);
-            user.setAge(age);
-            user.setResponsibility(pro);
             boolean isSuccess = userService.register(user);
             if (!isSuccess) {
                 redirectAttributes.addFlashAttribute("message", "注册失败，请检查用户名或邮箱是否已被注册！");
@@ -74,6 +77,12 @@ public class UserController {
             return "redirect:/loginForm";
             // 使用重定向，防止表单重复提交
     }
+
+    @RequestMapping("/main")
+    public String mainForm() {
+        return "main";
+    }
+
 
     private String errorValidated(String locationForm, BindingResult bindingResult, Model model) {
         StringBuilder validationErrorsMsg = new StringBuilder();
