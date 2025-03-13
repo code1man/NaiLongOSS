@@ -1,6 +1,7 @@
 package org.csu.demo.service;
 
 import org.csu.demo.domain.User;
+import org.csu.demo.persistence.AdminDao;
 import org.csu.demo.persistence.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,7 +12,8 @@ import java.util.List;
 @Service("UserService")
 public class UserService {
     @Autowired
-    private UserDao userDao;             //提供了对数据库操作的方法
+    private UserDao userDao;
+    private AdminDao adminDao;//提供了对数据库操作的方法
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -64,27 +66,27 @@ public class UserService {
         return userDao.addUser(user);
     }
 
-    public List<User> getUserByIsOnlineTrue(){return userDao.getUserByIsOnlineTrue();}
+    public List<User> getUserByIsOnlineTrue(){return adminDao.getUserByIsOnlineTrue();}
 
-    public List<User> getUserByIsOnlineFalse(){return userDao.getUserByIsOnlineFalse();}
+    public List<User> getUserByIsOnlineFalse(){return adminDao.getUserByIsOnlineFalse();}
 
-    public List<User> getUserByIsFrozenTrue(){return userDao.getUserByIsFrozenTrue();}
+    public List<User> getUserByIsFrozenTrue(){return adminDao.getUserByIsFrozenTrue();}
 
-    public List<User> getUserByIsFrozenFalse(){return userDao.getUserByIsFrozenFalse();}
+    public List<User> getUserByIsFrozenFalse(){return adminDao.getUserByIsFrozenFalse();}
 
-    public int countAllUsers(){return userDao.countAllUsers();}
+    public int countAllUsers(){return adminDao.countAllUsers();}
 
-    public int countOnlineUsers(){return userDao.countOnlineUsers();}
+    public int countOnlineUsers(){return adminDao.countOnlineUsers();}
 
-    public int countFrozenUsers(){return userDao.countFrozenUsers();}
+    public int countFrozenUsers(){return adminDao.countFrozenUsers();}
 
-    public String getFrozenReason(int id){return userDao.getFrozenReason(id);}
+    public String getFrozenReason(int id){return adminDao.getFrozenReason(id);}
 
-    public void freezeUser(int id, String frozen_reason){userDao.freezeUser(id, frozen_reason);}
+    public void freezeUser(int id, String frozen_reason){adminDao.freezeUser(id, frozen_reason);}
 
-    public void unfreezeUser(int id){userDao.unfreezeUser(id);}
+    public void unfreezeUser(int id){adminDao.unfreezeUser(id);}
 
-    public List<User> getAllUserStatus(){return userDao.getAllUserStatus();}
+    public List<User> getAllUserStatus(){return adminDao.getAllUserStatus();}
 
-    public List<User> getAllMerchants(){return userDao.getAllMerchants();}
+    public List<User> getAllMerchants(){return adminDao.getAllMerchants();}
 }
