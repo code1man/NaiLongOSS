@@ -80,3 +80,4 @@ INNER JOIN user_status ON user.id = user_status.id
 INNER JOIN merchant ON user.id = merchant.id
 WHERE responsibility = 'merchant';
 </select>
+</mapper>
