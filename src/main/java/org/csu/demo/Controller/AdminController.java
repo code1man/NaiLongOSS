@@ -63,7 +63,6 @@ public class AdminController {
     @RequestMapping("updateUser")
     public String updateUser(User user) {
 
-        System.out.println(user.toString());
         userService.updateUser(user, user.getUsername(), user.getPassword(), user.getEmail(), user.getAge());
         System.out.println(user.getId());
         return "redirect:/admin/allUser";

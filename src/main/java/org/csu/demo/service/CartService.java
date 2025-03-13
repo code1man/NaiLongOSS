@@ -63,6 +63,15 @@ public class CartService {
         return false;
     }
 
+    public CartItem getCartItemById(Cart cart, int itemid) {
+        for (CartItem cartItem : cart.getItemList()) {
+            if (cartItem.getItemID() == itemid) {
+                return cartItem;
+            }
+        }
+        return null;
+    }
+
     public Cart incrementQuantityByItemId(Cart cart, int itemId) {
         for (CartItem cartItem : cart.getItemList()) {
             if (cartItem.getItemID() == itemId) {
@@ -85,6 +94,12 @@ public class CartService {
                 .url(item.getUrl())
                 .build());
         cartDao.executeAddCart(cart.getUserId(), item.getId(), 1);
+        return cart;
+    }
+
+    public Cart removeItemFromCart(Cart cart, int item) {
+        cart.getItemList().remove(getCartItemById(cart, item));
+        cartDao.coverCartItem(cart.getUserId(), item);
         return cart;
     }
 }
