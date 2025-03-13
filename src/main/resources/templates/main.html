@@ -92,7 +92,7 @@
                                             <em id="CartListTotalPrice" th:text="${session.cart.totalPrice}"></em>元
                                         </span>
                                     </span>
-                                    <a th:href="@{${#httpServletRequest.contextPath}/CartCount}"
+                                    <a th:href="@{/CartCount}"
                                        class="btn btn-primary btn-cart">结算</a>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                         <!-- 编辑个人信息 -->
                         <a href="javascript:void(0)" class="link" onclick="openModal()"
                            th:text="'欢迎回来！' + ${session.loginUser.username}"></a>
-                        <a th:href="@{${#httpServletRequest.contextPath}/mainForm(action='logout')}" class="link"
+                        <a th:href="@{/mainForm(action='logout')}" class="link"
                            style="margin-left: 20px;">退出登录</a>
                         <div id="modal" class="modal register-container">
                             <div style="opacity: 1">
@@ -265,7 +265,7 @@
             <!-- banner图 -->
             <div class="home-banner-box">
                 <a href="https://www.163.com/dy/article/JDO2AG060518VHUU.html">
-                    <img src="../images/leijun.png" alt="借鉴对象的广告"
+                    <img src="/images/leijun.png" alt="借鉴对象的广告"
                          width="1226"
                          height="120">
                 </a>
@@ -318,14 +318,14 @@
 
 </body>
 <!-- JS 脚本 -->
-<script src="../js/checkuserinfo.js"></script>
-<script src="../js/showDiscription.js"></script>
-<script src="../js/topBar.js"></script>
-<script src="../js/cursorFollow.js"></script>
-<script src="../js/Search.js"></script>
-<script src="../js/cart.js"></script>
-<script src="../js/scroll.js"></script>
-<script src="../js/carousel.js"></script>
+<script src="/js/checkuserinfo.js"></script>
+<script src="/js/showDiscription.js"></script>
+<script src="/js/topBar.js"></script>
+<script src="/js/cursorFollow.js"></script>
+<script src="/js/Search.js"></script>
+<script src="/js/cart.js"></script>
+<script src="/js/scroll.js"></script>
+<script src="/js/carousel.js"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
     var updateMsg = /*[[${session.UpdateMsg != null ? session.UpdateMsg : ''}]]*/ '';

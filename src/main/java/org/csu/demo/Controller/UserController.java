@@ -31,7 +31,7 @@ public class UserController {
         return "register";
     }
 
-    @PostMapping("/doLogin")
+    @PostMapping("/doLogin")//@ModelAttribute User user用来获取表单数据，绑定到User对象上，BindingResult用来获取验证结果
     public String login(@ModelAttribute User user,
                            BindingResult bindingResult,
                            Model model) {
