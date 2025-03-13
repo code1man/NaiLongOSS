@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单确认</title>
+    <link rel="stylesheet" href="/css/Order.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
+    <!-- 如果未登录，立即提示跳转 -->
+    <script th:if="${notLoggedIn}" th:inline="javascript">
+        if (confirm("您尚未登录，是否前往登录界面？")) {
+            window.location.href = /*[[@{/login}]]*/ '';
+        } else {
+            window.location.href = /*[[@{/ShoppingCart}]]*/ '';
+        }
+    </script>
+
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <h1>NaiLong Store</h1>
+        <label>
+            <input type="text" placeholder="请输入商品名称">
+        </label>
+        <button>搜索</button>
+    </div>
+</header>
+
+<main>
+    <div class="breadcrumb">
+        <p>NaiLongStore &gt; 订单确认</p>
+    </div>
+
+    <section class="address-section">
+        <h2>收货地址</h2>
+        <div class="address-grid">
+            <!-- 遍历地址列表 -->
+            <div th:each="address : ${addressList}"
+                 th:class="${address.isDefault} ? 'address active' : 'address'"
+                 onclick="selectAddress(this)">
+                <div class="address-info">
+                    <span th:text="${address.province}"></span>省
+                    <span th:text="${address.city}"></span>市
+                    <span th:text="${address.district}"></span>区 (收)<br>
+                    详细地址：<span th:text="${address.detailAddress}"></span><br>
+                    收件人：<span th:text="${address.receiverName}"></span><br>
+                    电话：<span th:text="${address.phoneNumber}"></span>
+                </div>
+                <div class="address-actions">
+                    <button class="delete-btn"
+                            th:onclick="|deleteAddress(${address.id}, event)|">
+                        删除
+                    </button>
+                </div>
+            </div>
+            <div class="address add-new" id="addNewAddressBtn">+ 使用新地址</div>
+        </div>
+        <!-- 模态框 -->
+        <div id="addAddressModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>添加新地址</h2>
+                <form id="addAddressForm">
+                    <label for="province">省：</label>
+                    <input type="text" id="province" name="province" required><br>
+                    <label for="city">市：</label>
+                    <input type="text" id="city" name="city" required><br>
+                    <label for="district">区：</label>
+                    <input type="text" id="district" name="district" required><br>
+                    <label for="detailAddress">详细地址：</label>
+                    <input type="text" id="detailAddress" name="detailAddress" required><br>
+                    <label for="phoneNumber">电话：</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" required><br>
+                    <label for="receiverName">收件人姓名：</label>
+                    <input type="text" id="receiverName" name="receiverName" required><br>
+                    <label>
+                        <input type="checkbox" id="isDefault" name="isDefault">
+                        设为默认地址
+                    </label><br>
+                    <button type="submit">确认</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="order-summary">
+        <h2>商品详情</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>商品描述</th>
+                <th>价格</th>
+                <th>数量</th>
+                <th>小计</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <img th:src="${item.url}" th:alt="${item.name}" style="width: 100px; height: auto;">
+                    <br>
+                    <span th:text="${item.name}"></span>
+                </td>
+                <td>¥<span th:text="${item.price}"></span></td>
+                <td>1</td>
+                <td>¥<span th:text="${item.price}"></span></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="total-container">
+            <span class="total-text">订单总价：</span>
+            <span class="price">¥<span th:text="${item.price}"></span></span>
+            <button class="submit-order">提交订单</button>
+        </div>
+    </section>
+</main>
+
+<div class="mouse-follow-icon" id="mouse-follow-icon"
+     style="display: inline-flex; align-items: center; justify-content: center;">
+    <img src="/images/cursor.gif" alt="跟随鼠标的GIF"/>
+</div>
+
+<script src="/js/cursorFollow.js"></script>
+
+<!-- 公用的 JavaScript 函数 -->
+<script th:inline="javascript">
+    function selectAddress(addressElement) {
+        const allAddresses = document.querySelectorAll('.address');
+        allAddresses.forEach(function (address) {
+            address.classList.remove('active');
+        });
+        addressElement.classList.add('active');
+    }
+
+    function deleteAddress(addressId, event) {
+        let url = /*[[@{/order/}]]*/ '' + addressId;
+        console.log(addressId);
+        console.log(url);
+        event.stopPropagation();
+        if (confirm("确认删除此地址吗？")) {
+            fetch('/order/' + addressId, {
+                method: 'DELETE'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        alert("删除成功！");
+                        location.reload();
+                    } else {
+                        alert("删除失败：" + data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    }
+</script>
+
+<!-- 模态框及表单处理 -->
+<script th:inline="javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("addAddressModal");
+        const btn = document.getElementById("addNewAddressBtn");
+        const span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            console.log("被点击了");
+            modal.style.display = "block";
+        };
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+
+        const form = document.getElementById("addAddressForm");
+        form.onsubmit = function (e) {
+            e.preventDefault();
+
+            const province = document.getElementById("province").value;
+            const city = document.getElementById("city").value;
+            const district = document.getElementById("district").value;
+            const detailAddress = document.getElementById("detailAddress").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const receiverName = document.getElementById("receiverName").value;
+            const isDefault = document.getElementById("isDefault").checked ? 1 : 0;
+            // boolean 转tinyint
+
+            $.ajax({
+                url: /*[[@{/order}]]*/ '',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    province: province,
+                    city: city,
+                    district: district,
+                    detailAddress: detailAddress,
+                    phoneNumber: phoneNumber,
+                    receiverName: receiverName,
+                    isDefault: isDefault
+                }),
+                success: function(data) {
+                    modal.style.display = "none";
+                    location.reload();
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        };
+    });
+</script>
+</body>
+</html>

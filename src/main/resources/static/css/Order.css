@@ -1,0 +1,275 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    cursor: none;
+!important;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #fff7e6;
+    /* 淡黄色背景 */
+}
+
+
+/* 模态框样式 */
+.modal {
+    display: none;
+!important; /* 默认隐藏模态框 */
+    position: fixed; /* 固定定位 */
+    z-index: 9999; /* 确保在最上层 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* 滚动 */
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 在页面中居中 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 宽度可自定义 */
+    max-width: 600px; /* 最大宽度限制 */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+header {
+    background-color: #fff3cc;
+    /* 浅黄色背景 */
+    border-bottom: 1px solid #e0c085;
+    padding: 15px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #d89e00;
+    /* 深黄色标题 */
+}
+
+input[type="text"] { /* 搜索框样式*/
+    flex: 0.3;
+    padding: 10px;
+    border: 1px solid #d2a679;
+    /* 浅棕色边框 */
+    border-radius: 4px;
+    background-color: #fff;
+    /* 白色输入框背景 */
+    margin-left: auto;
+}
+
+button {
+    padding: 8px 15px;
+    background-color: #d89e00;
+    /* 深黄色按钮 */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b88400;
+    /* 更深的黄色 */
+}
+
+.breadcrumb {
+    padding: 15px;
+    background-color: #fff3cc;
+    /* 浅黄色背景 */
+    font-size: 14px;
+}
+
+.address-section {
+    padding: 20px;
+    background-color: #fff7e6;
+    /* 更浅的淡黄色背景 */
+    margin-bottom: 15px;
+}
+
+.address-section h2 {
+    margin-bottom: 10px;
+    color: #d89e00;
+    /* 深黄色标题 */
+}
+
+.address-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.address {
+    padding: 15px;
+    border: 1px dashed #d2a679;
+    /* 浅棕色虚线边框 */
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #fffdf4;
+    /* 非选中地址背景 */
+}
+
+.address.active {
+    border-color: #d89e00;
+    /* 深黄色边框 */
+    background-color: #fff3cc;
+    /* 浅黄色背景 */
+}
+
+.address.add-new {
+    font-size: 18px;
+    color: #d89e00;
+    /* 深黄色文字 */
+}
+
+.order-summary {
+    background-color: #fff7e6;
+    /* 浅淡黄色背景 */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.order-summary h2 {
+    margin-bottom: 10px;
+    color: #d89e00;
+    /* 深黄色标题 */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #e0c085;
+    /* 浅棕色边框 */
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-top: 10px;
+    color: #d89e00;
+    /* 深黄色文字 */
+}
+
+.submit-order {
+    width: 100%;
+    padding: 15px;
+    background-color: #d89e00;
+    /* 深黄色按钮 */
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-order:hover {
+    background-color: #b88400;
+    /* 更深的黄色 */
+}
+
+.total-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px;
+    background-color: #fff7e6;
+    background-color: #fff3cc;
+}
+
+.total-text {
+    color: #d89e00;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.price {
+    color: #e60012;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.Item-price {
+    color: #e60012;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.Item-count {
+    color: #e60012;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.submit-order {
+    padding: 10px 20px;
+    background-color: #d89e00;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: auto;
+    /* 控制按钮宽度自动适应内容 */
+}
+
+.submit-order:hover {
+    background-color: #b88400;
+}
+
+.mouse-follow-icon {
+    position: absolute;
+    pointer-events: none; /* 防止干扰鼠标事件 */
+    transition: transform 0.1s ease; /* 动画效果 */
+    z-index: 10; /* 确保图标在最上层 */
+}
+
+.mouse-follow-icon img {
+    width: 25px !important; /* 根据需要调整图片的宽度 */
+    height: auto !important; /* 自动适应高度 */
+    border-radius: 50%; /* 设置为圆形 */
+}
+
+.custom-cursor {
+    width: 5px; /* 圆点的宽度 */
+    height: 5px; /* 圆点的高度 */
+    background-color: yellow; /* 圆点颜色 */
+    border-radius: 50%; /* 使其为圆形 */
+    position: absolute; /* 绝对定位 */
+    pointer-events: none; /* 使其不捕获鼠标事件 */
+    z-index: 1000; /* 确保在其他元素上方 */
+}
