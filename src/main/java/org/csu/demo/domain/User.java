@@ -26,12 +26,12 @@ public class User {
     private String email;
     private String responsibility;
 
-//user_status
+    //user_status
     private boolean is_online=false;
     private boolean is_frozen=false;
     @NotBlank()//校验不能为空，会送到@validated进行校验
     private String frozen_reason="不喜欢奶龙的小朋友，你好呀，你的账号已经被我风风光光了";
-//信誉
+    //信誉
     private int credit;
 
     private List<Item> cart=new ArrayList<>();
