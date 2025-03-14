@@ -1,0 +1,36 @@
+package org.csu.demo.persistence;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.csu.demo.domain.User;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+@Mapper
+public interface AdminDao {
+    List<User> getUserByIsOnlineTrue();
+
+    List<User> getUserByIsOnlineFalse();
+
+    List<User> getUserByIsFrozenTrue();
+
+    List<User> getUserByIsFrozenFalse();
+
+    int countAllUsers();
+
+    int countFrozenUsers();
+
+    int countOnlineUsers();
+
+    String getFrozenReason(@Param("id") int id);
+
+    void freezeUser(@Param("id") int id, @Param("frozen_reason") String frozen_reason);
+
+    void unfreezeUser(@Param("id") int id);
+
+    List<User> getAllUserStatus();
+
+    List<User> getAllMerchants();
+}
