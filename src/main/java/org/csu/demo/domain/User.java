@@ -1,5 +1,7 @@
 package org.csu.demo.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@TableName("userInfo")
 public class User {
     private int id;
 
@@ -27,11 +30,17 @@ public class User {
     private String responsibility;
 
 //user_status
+    @TableField(exist = false)
     private boolean is_online=false;
+    @TableField(exist = false)
     private boolean is_frozen=false;
+    @TableField(exist = false)
     private String frozen_reason="";
 //信誉
+    @TableField(exist = false)
     private int credit;
 
+    @TableField(exist = false)
     private List<Item> cart=new ArrayList<>();
+
 }
