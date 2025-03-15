@@ -46,8 +46,6 @@ public class UserCartController {
             if (cart == null) {
                 return ResponseEntity.status(500).body("{\"error\": \"购物车更新失败\"}");
             }
-            // 更新 session
-            cart = cartService.updateCart(userId, itemId, count, cart);
             model.addAttribute("cart", cart);
 
             return ResponseEntity.ok("商品已更新");
@@ -91,17 +89,12 @@ public class UserCartController {
         if (cart == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("购物车未初始化");
         }
+        int itemId = map.get("itemId");
 
-        int itemId = map.get("itemId"); // 解析 JSON 数据
-
-        if (cartService.containsItemId(cart, itemId)) {
-            cart = cartService.incrementQuantityByItemId(cart, itemId);
-        } else {
-            if (user == null) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("请先登录");
-            }
-            cart = cartService.removeItemFromCart(cart, itemId);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("请先登录");
         }
+        cart = cartService.removeItemFromCart(cart, itemId);
 
         model.addAttribute("cart", cart);
         return ResponseEntity.ok("商品已从购物车移除");
