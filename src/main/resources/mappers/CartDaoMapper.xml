@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.demo.persistence.CartDao">
+
+    <insert id="executeAddCart">
+        INSERT INTO cart (userID, ItemID, ItemNum)
+        VALUES (#{userID}, #{itemID}, #{itemNum})
+    </insert>
+
+    <delete id="executeRemoveCart">
+        DELETE
+        FROM cart
+        WHERE ItemID = #{itemID}
+    </delete>
+
+    <select id="searchUserCartItems" resultType="org.csu.demo.domain.CartItem">
+        SELECT cart.*, item.name, item.price, item.url
+        FROM cart
+        JOIN item ON item.id = cart.ItemID
+        WHERE userID = #{userID}
+          AND isCovered = false
+          AND isDeleted = false
+    </select>
+
+    <update id="coverCartItem">
+        UPDATE cart
+        SET isCovered = true
+        WHERE userID = #{userID}
+          AND ItemID = #{itemID}
+    </update>
+
+</mapper>

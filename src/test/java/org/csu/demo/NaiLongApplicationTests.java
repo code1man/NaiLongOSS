@@ -1,15 +1,19 @@
 package org.csu.demo;
 
-import org.csu.demo.domain.ProductType;
+import org.csu.demo.domain.Category;
+import org.csu.demo.domain.Product;
 import org.csu.demo.domain.User;
-import org.csu.demo.persistence.BusinessDao;
-import org.csu.demo.persistence.ItemDao;
-import org.csu.demo.persistence.UserDao;
+import org.csu.demo.persistence.*;
+import org.csu.demo.service.CartService;
+import org.csu.demo.service.CatalogService;
+import org.csu.demo.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 @MapperScan("org.csu.demo.persistence")
@@ -23,6 +27,12 @@ class NaiLongApplicationTests {
     @Qualifier("itemDao")
     @Autowired
     private ItemDao itemDao;
+    @Autowired
+    private CatalogService catalogService;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private CartService cartService;
 
     @Test
     void test1(){
@@ -39,17 +49,33 @@ class NaiLongApplicationTests {
 
         User student = User.builder()
                 .username("张三")
+                .password("123456")
                 .age(12)
+                .email("11@qq.com")
+                .responsibility("管理员")
                 .build();
 
-        System.out.println(user.toString());
+        userDao.addUser(student);
         System.out.println(student.toString());
     }
 
     @Test
     void test3() {
-/*        System.out.println(ProductType.fromIndex(9));*/
         System.out.println(itemDao.getItem(10101));
+        System.out.println(businessDao.getAllBusinessItems());
+        System.out.println(itemDao.SearchItems("奶龙唐唐表情包"));
     }
 
+    @Test
+    void test4() {
+        List<Category> categoryList = catalogService.getCategories();
+        List<Product> productList = productService.getProducts();
+        System.out.println(categoryList);
+        System.out.println(productList);
+    }
+
+    @Test
+    void test5() {
+        System.out.println(cartService.getCart(1));
+    }
 }

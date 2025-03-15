@@ -3,13 +3,52 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.demo.persistence.ItemDao">
 
+    <resultMap id="itemResultMap" type="org.csu.demo.domain.Item">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="product_id" property="product_id"/>
+        <result column="url" property="url"/>
+        <result column="price" property="price"/>
+        <result column="description" property="description"/>
+        <result column="businessId" property="businessId" />
+        <result column="RemainingNumb" property="RemainingNumb"/>
+    </resultMap>
+
     <!-- 根据 productId 获取 Item 列表 -->
-    <select id="getItemListByProduct" parameterType="int" resultType="org.csu.demo.domain.Item">
-        SELECT * FROM item WHERE product_id = #{product_Id}
+    <select id="getItemListByProduct" parameterType="int" resultMap="itemResultMap">
+        SELECT i.*, b.businessId AS businessId, b.RemaingNumb AS remain_numb
+        FROM item i
+                 LEFT JOIN businessItemRemaining b ON i.id = b.itemId
+        WHERE i.product_id = #{product_Id};
     </select>
 
+
     <!-- 根据 itemId 获取单个 Item -->
-    <select id="getItem" parameterType="int" resultType="org.csu.demo.domain.Item">
-        SELECT * FROM item WHERE id = #{itemId}
+    <select id="getItem" parameterType="int" resultMap="itemResultMap">
+        SELECT i.*, b.businessId AS businessId, b.RemaingNumb AS remain_numb
+        FROM item i
+                 LEFT JOIN businessItemRemaining b ON i.id = b.itemId
+        WHERE i.id = #{itemId};
+    </select>
+
+    <!-- 插入新的商品信息 -->
+    <insert id="insertItem" parameterType="org.csu.demo.domain.Item">
+        INSERT INTO item (id, name, product_id, url, price)
+        VALUES (#{id}, #{name}, #{productId}, #{url}, #{price});
+    </insert>
+
+    <!-- 根据 itemId 删除商品 -->
+    <delete id="deleteItem" parameterType="int">
+        DELETE FROM item WHERE id = #{itemId};
+    </delete>
+
+    <!--根据关键词搜索商品-->
+    <select id="SearchItems" parameterType="String">
+        SELECT i.*, b.businessId AS businessId, b.RemaingNumb AS remain_numb
+            FROM Item i
+            LEFT JOIN producttype p ON i.product_id = p.id
+            LEFT JOIN category c ON p.category_id = c.id
+            LEFT JOIN businessItemRemaining b ON i.id = b.itemId
+            WHERE (c.name LIKE #{keyword} OR p.description LIKE #{keyword} OR i.name LIKE #{keyword})
     </select>
 </mapper>

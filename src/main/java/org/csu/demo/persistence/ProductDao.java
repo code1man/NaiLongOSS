@@ -1,15 +1,20 @@
 package org.csu.demo.persistence;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.csu.demo.domain.Product;
-import org.csu.demo.domain.ProductType;
+import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.List;
 
+@Repository
+@Mapper
 public interface ProductDao {
-    List<ProductType> getProductListByCategory(String categoryId) throws SQLException;
+    List<Product> getProductListByCategory(@Param("categoryId") int categoryId);
 
-    ProductType getProduct(int  productId) throws SQLException;
+    List<Product> getAllProducts();
 
-    List<Product> searchProductList(String keywords);
+    Product getProductById(@Param("productId") int productId);
+
+    Product getProductByName(@Param("productName") String productName);
 }

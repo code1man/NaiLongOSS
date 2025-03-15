@@ -16,10 +16,10 @@ public interface BusinessDao {
     Item getBusinessItemById(int itemId);
 
     // 插入新的商品库存信息
-    int insertBusinessItem(Item business);
+    int insertBusinessItem(Item item);
 
     // 更新商品库存
-    int updateBusinessItem(Item business);
+    int updateBusinessItem(Item item);
 
     // 删除库存记录
     int deleteBusinessItem(int itemId);
