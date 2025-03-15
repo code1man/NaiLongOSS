@@ -2,6 +2,7 @@ package org.csu.demo.Controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.csu.demo.domain.Address;
+import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.Item;
 import org.csu.demo.domain.User;
 import org.csu.demo.persistence.AddressDao;
@@ -12,12 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@SessionAttributes({"loginUser","addressList","item","AddressMsg"})
+@SessionAttributes({"loginUser","addressList","item","AddressMsg","cart","totalAmount"})
 public class OrderController {
 
 
@@ -33,6 +35,16 @@ public class OrderController {
     @ModelAttribute("item")
     public Item getItem(HttpSession session) {
         return (Item) session.getAttribute("item");
+    }
+
+    @ModelAttribute("cart")
+    public Cart getCart(HttpSession session) {
+        return (Cart) session.getAttribute("cart");
+    }
+
+    @ModelAttribute("totalAmount")
+    public BigDecimal getTotalAmount(HttpSession session) {
+        return (BigDecimal) session.getAttribute("totalAmount");
     }
 
     //进入订单结算界面
@@ -65,8 +77,6 @@ public class OrderController {
             List<Address> addressList = addressDao.getAllAddressById(userId);
             // 将地址列表保存到session中
             model.addAttribute("addressList", addressList);
-            // model中还需要有cart，totalAmount，userID
-
         }
         return "CartToOrder";
     }
@@ -75,7 +85,8 @@ public class OrderController {
     @PostMapping("/CartHandler")
     public String CartHandler(@ModelAttribute("loginUser")User user, Model model) {
        //
-        return "";
+         // 清空购物车逻辑
+        return "redirect:/mainForm";
 
     }
 

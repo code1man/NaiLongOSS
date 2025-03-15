@@ -35,7 +35,7 @@
         <div class="address-grid">
             <!-- 遍历地址列表 -->
             <div th:each="address : ${addressList}"
-                 th:class="|address ${address.isDefault ? 'active' : ''}|"
+                 th:class="${address.isDefault} ? 'address active' : 'address'"
                  onclick="selectAddress(this)">
                 <div class="address-info">
                     <span th:text="${address.province}"></span>省
@@ -94,15 +94,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="cartItem : ${cart.cartItemList}">
+            <tr th:each="cartItem : ${cart.itemList}">
                 <td>
-                    <img th:src="${cartItem.item.URL}" style="width: 100px; height: auto;" alt="商品图片">
+                    <img th:src="${cartItem.url}" style="width: 100px; height: auto;" alt="商品图片">
                     <br>
-                    <span th:text="${cartItem.item.name}"></span>
+                    <span th:text="${cartItem.name}"></span>
                 </td>
-                <td>¥<span th:text="${cartItem.item.price}"></span></td>
-                <td><span th:text="${cartItem.quantity}"></span></td>
-                <td>¥<span th:text="${cartItem.total}"></span></td>
+                <td>¥<span th:text="${cartItem.price}"></span></td>
+                <td><span th:text="${cartItem.itemNum}"></span></td>
+                <td>¥<span th:text="${cartItem.price}"></span></td>
             </tr>
             </tbody>
         </table>
