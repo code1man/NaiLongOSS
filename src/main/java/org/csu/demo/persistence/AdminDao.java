@@ -33,4 +33,19 @@ public interface AdminDao {
     List<User> getAllUserStatus();
 
     List<User> getAllMerchants();
+
+    void creditDecrease(@Param("merchantId") int merchantId);
+
+    void creditIncrease(@Param("merchantId") int merchantId);
+
+    void creditSetUnqualified(@Param("merchantId") int merchantId);
+
+    void creditSetQualified(@Param("merchantId") int merchantId);
+
+    void setIsOnlineFalse(@Param("id") int id);
+
+    void setIsOnlineTrue(@Param("id") int id);
+
+
+
 }

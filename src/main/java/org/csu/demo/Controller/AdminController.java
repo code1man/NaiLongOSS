@@ -193,5 +193,36 @@ public class AdminController {
         return ResponseEntity.ok(merchants);
     }
 
+    @GetMapping("/users/credit/increase/{merchantId}")
+    public ResponseEntity<?> creditIncrease(@PathVariable int merchantId) {
+        userService.creditIncrease(merchantId);
+        return ResponseEntity.ok("已成功将商家积分增加");
+    }
+    @GetMapping("/users/credit/decrease/{merchantId}")
+    public ResponseEntity<?> creditDecrease(@PathVariable int merchantId) {
+        userService.creditDecrease(merchantId);
+        return ResponseEntity.ok("已成功将商家积分减少");
+    }
+    @GetMapping("/users/credit/setQualified/{merchantId}")
+    public ResponseEntity<?> creditSetQualified(@PathVariable int merchantId) {
+        userService.creditSetQualified(merchantId);
+        return ResponseEntity.ok("已成功将商家积分设置为合格");
+    }
+    @GetMapping("/users/credit/setUnqualified/{merchantId}")
+    public ResponseEntity<?> creditSetUnqualified(@PathVariable int merchantId) {
+        userService.creditSetUnqualified(merchantId);
+        return ResponseEntity.ok("已成功将商家积分设置为不合格");
+    }
+    @GetMapping("/users/setIsOnlineFalse/{id}")
+    public ResponseEntity<?> setIsOnlineFalse(@PathVariable int id) {
+        userService.setIsOnlineFalse(id);
+        return ResponseEntity.ok("已成功将用户设置为离线");
+    }
+
+    @GetMapping("/users/setIsOnlineTrue/{id}")
+    public ResponseEntity<?> setIsOnlineTrue(@PathVariable int id) {
+        userService.setIsOnlineTrue(id);
+        return ResponseEntity.ok("已成功将用户设置为在线");
+    }
 
 }
