@@ -7,21 +7,53 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 @Controller
+@Validated
+@SessionAttributes("adminUser")
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/loginForm")
+    public String adminLoginForm() {
+        return "adminLogin";
+    }
+    @PostMapping("/doAdminLogin")
+    public String adminLogin(@ModelAttribute User user,
+                             BindingResult bindingResult,
+                             Model model) {
+        User adminUser;
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
+            model.addAttribute("loginMsg", "账号或密码为空");
+            return "adminLogin";
+        } else {
+            adminUser = userService.login(user.getUsername(), user.getPassword());
+        }
+        if (adminUser != null) {
+            if(adminUser.getResponsibility().equals("admin"))
+            {
+                model.addAttribute("loginMsg", "登录成功");
+                return "admin";
+            }
+            else
+            {
+                model.addAttribute("loginMsg", "权限不足");
+                return "adminLogin";
+            }
+        } else {
+            model.addAttribute("loginMsg", "账号或密码错误");
+            return "adminLogin";
+        }
+    }
     @RequestMapping("/allUser")
     public String getAllUsers(Model model) {
 
