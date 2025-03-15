@@ -40,6 +40,4 @@ public class Address {
     private String phoneNumber;
     private String receiverName;
     private Integer isDefault;
-
-
 }
