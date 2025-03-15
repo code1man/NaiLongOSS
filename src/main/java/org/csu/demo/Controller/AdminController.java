@@ -7,21 +7,53 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 @Controller
+@Validated
+@SessionAttributes("adminUser")
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/loginForm")
+    public String adminLoginForm() {
+        return "adminLogin";
+    }
+    @PostMapping("/doAdminLogin")
+    public String adminLogin(@ModelAttribute User user,
+                             BindingResult bindingResult,
+                             Model model) {
+        User adminUser;
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
+            model.addAttribute("loginMsg", "账号或密码为空");
+            return "adminLogin";
+        } else {
+            adminUser = userService.login(user.getUsername(), user.getPassword());
+        }
+        if (adminUser != null) {
+            if(adminUser.getResponsibility().equals("admin"))
+            {
+                model.addAttribute("loginMsg", "登录成功");
+                return "admin";
+            }
+            else
+            {
+                model.addAttribute("loginMsg", "权限不足");
+                return "adminLogin";
+            }
+        } else {
+            model.addAttribute("loginMsg", "账号或密码错误");
+            return "adminLogin";
+        }
+    }
     @RequestMapping("/allUser")
     public String getAllUsers(Model model) {
 
@@ -63,7 +95,6 @@ public class AdminController {
     @RequestMapping("updateUser")
     public String updateUser(User user) {
 
-        System.out.println(user.toString());
         userService.updateUser(user, user.getUsername(), user.getPassword(), user.getEmail(), user.getAge());
         System.out.println(user.getId());
         return "redirect:/admin/allUser";
@@ -162,5 +193,36 @@ public class AdminController {
         return ResponseEntity.ok(merchants);
     }
 
+    @GetMapping("/users/credit/increase/{merchantId}")
+    public ResponseEntity<?> creditIncrease(@PathVariable int merchantId) {
+        userService.creditIncrease(merchantId);
+        return ResponseEntity.ok("已成功将商家积分增加");
+    }
+    @GetMapping("/users/credit/decrease/{merchantId}")
+    public ResponseEntity<?> creditDecrease(@PathVariable int merchantId) {
+        userService.creditDecrease(merchantId);
+        return ResponseEntity.ok("已成功将商家积分减少");
+    }
+    @GetMapping("/users/credit/setQualified/{merchantId}")
+    public ResponseEntity<?> creditSetQualified(@PathVariable int merchantId) {
+        userService.creditSetQualified(merchantId);
+        return ResponseEntity.ok("已成功将商家积分设置为合格");
+    }
+    @GetMapping("/users/credit/setUnqualified/{merchantId}")
+    public ResponseEntity<?> creditSetUnqualified(@PathVariable int merchantId) {
+        userService.creditSetUnqualified(merchantId);
+        return ResponseEntity.ok("已成功将商家积分设置为不合格");
+    }
+    @GetMapping("/users/setIsOnlineFalse/{id}")
+    public ResponseEntity<?> setIsOnlineFalse(@PathVariable int id) {
+        userService.setIsOnlineFalse(id);
+        return ResponseEntity.ok("已成功将用户设置为离线");
+    }
+
+    @GetMapping("/users/setIsOnlineTrue/{id}")
+    public ResponseEntity<?> setIsOnlineTrue(@PathVariable int id) {
+        userService.setIsOnlineTrue(id);
+        return ResponseEntity.ok("已成功将用户设置为在线");
+    }
 
 }

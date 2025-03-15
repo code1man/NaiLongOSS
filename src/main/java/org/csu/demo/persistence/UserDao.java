@@ -29,28 +29,5 @@ public interface UserDao {
 
     boolean deleteUser(@Param("id") int id);
 
-    List<User> getUserByIsOnlineTrue();
-
-    List<User> getUserByIsOnlineFalse();
-
-    List<User> getUserByIsFrozenTrue();
-
-    List<User> getUserByIsFrozenFalse();
-
-    int countAllUsers();
-
-    int countFrozenUsers();
-
-    int countOnlineUsers();
-
-    String getFrozenReason(@Param("id") int id);
-
-    void freezeUser(@Param("id") int id, @Param("frozen_reason") String frozen_reason);
-
-    void unfreezeUser(@Param("id") int id);
-
-    List<User> getAllUserStatus();
-
-    List<User> getAllMerchants();
 
 }

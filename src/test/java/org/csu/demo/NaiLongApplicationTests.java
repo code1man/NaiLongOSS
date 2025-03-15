@@ -1,5 +1,6 @@
 package org.csu.demo;
 
+import org.csu.demo.domain.Address;
 import org.csu.demo.domain.Category;
 import org.csu.demo.domain.Product;
 import org.csu.demo.domain.User;
@@ -33,6 +34,16 @@ class NaiLongApplicationTests {
     private ProductService productService;
     @Autowired
     private CartService cartService;
+    @Autowired
+    private AddressDao addressDao;
+
+    @Test
+    void testAddressDao() {
+        List<Address> addressList = addressDao.getAllAddressById(48);
+        for(Address address : addressList) {
+            System.out.println(address);
+        }
+    }
 
     @Test
     void test1(){
@@ -76,6 +87,6 @@ class NaiLongApplicationTests {
 
     @Test
     void test5() {
-        System.out.println(cartService.getCart(1));
+        System.out.println(cartService.getCart(12));
     }
 }
