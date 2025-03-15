@@ -80,4 +80,28 @@ INNER JOIN user_status ON user.id = user_status.id
 INNER JOIN merchant ON user.id = merchant.id
 WHERE responsibility = 'merchant';
 </select>
+
+    <update id="creditIncrease">
+        UPDATE merchant SET credit = credit + 5 WHERE id = #{merchantId}
+    </update>
+
+    <update id="creditDecrease">
+        UPDATE merchant SET credit = credit - 5 WHERE id = #{merchantId}
+    </update>
+
+    <update id="creditSetQualified">
+        UPDATE merchant SET credit = 80 WHERE id = #{merchantId}
+    </update>
+
+    <update id="creditSetUnqualified">
+        UPDATE merchant SET credit = 40 WHERE id = #{merchantId}
+    </update>
+
+    <update id="setIsOnlineTrue">
+        UPDATE user_status SET is_online = true WHERE id = #{id}
+    </update>
+
+    <update id="setIsOnlineFalse">
+        UPDATE user_status SET is_online = false WHERE id = #{id}
+    </update>
 </mapper>

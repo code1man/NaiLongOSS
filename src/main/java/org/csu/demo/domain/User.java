@@ -1,5 +1,7 @@
 package org.csu.demo.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@TableName("userInfo")
 public class User {
     private int id;
 
@@ -27,12 +30,19 @@ public class User {
     private String responsibility;
 
     //user_status
+    @TableField(exist = false)
     private boolean is_online=false;
+    @TableField(exist = false)
     private boolean is_frozen=false;
-    @NotBlank()//校验不能为空，会送到@validated进行校验
-    private String frozen_reason="不喜欢奶龙的小朋友，你好呀，你的账号已经被我风风光光了";
+
     //信誉
+    @TableField(exist = false)
+    @NotBlank(message = "冻结原因不能为空")//校验不能为空，会送到@validated进行校验
+    private String frozen_reason="不喜欢奶龙的小朋友，你好呀，你的账号已经被奶龙风风光光了";
+    //信誉
+    @TableField(exist = false)
     private int credit;
 
+    @TableField(exist = false)
     private List<Item> cart=new ArrayList<>();
 }
