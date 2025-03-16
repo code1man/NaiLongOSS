@@ -13,11 +13,13 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
 @SpringBootTest
 @MapperScan("org.csu.demo.persistence")
+@ActiveProfiles("test")  // 启用 test 这个 Profile
 class NaiLongApplicationTests {
 
     @Autowired
