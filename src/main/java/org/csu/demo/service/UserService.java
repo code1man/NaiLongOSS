@@ -101,4 +101,5 @@ public class UserService {
     public void setIsOnlineFalse(int id){adminDao.setIsOnlineFalse(id);}
 
     public void setIsOnlineTrue(int id){adminDao.setIsOnlineTrue(id);}
+
 }

@@ -24,6 +24,7 @@
     <insert id="addUser" parameterType="org.csu.demo.domain.User">
         INSERT INTO userinfo (username, password, email, age, responsibility)
         VALUES (#{username}, #{password}, #{email}, #{age}, #{responsibility});
+        INSERT INTO user_status (id);
     </insert>
 
     <!-- 更新用户信息 -->

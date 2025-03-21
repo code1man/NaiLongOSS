@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository//@Repository表示这个类是一个持久层类，用于持久化操作
 @Mapper
 public interface AdminDao {
     List<User> getUserByIsOnlineTrue();
@@ -45,7 +45,6 @@ public interface AdminDao {
     void setIsOnlineFalse(@Param("id") int id);
 
     void setIsOnlineTrue(@Param("id") int id);
-
 
 
 }
