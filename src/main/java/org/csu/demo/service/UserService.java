@@ -63,7 +63,11 @@ public class UserService {
     }
 
     public int addUser(User user) {
-        return userDao.addUser(user);
+        int result = userDao.addUser(user);
+        userDao.addStatus(user);
+        if(user.getResponsibility().equals("商家"))
+            return userDao.addMerchant(user);
+        return result;
     }
 
     public List<User> getUserByIsOnlineTrue(){return adminDao.getUserByIsOnlineTrue();}

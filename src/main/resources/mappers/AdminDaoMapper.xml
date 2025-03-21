@@ -76,9 +76,9 @@ INNER JOIN user_status ON userinfo.id = user_status.id;
 <select id="getAllMerchants" resultType="org.csu.demo.domain.User">
 SELECT userinfo.id, userinfo.username,userinfo.responsibility,user_status.is_online,user_status.is_frozen,user_status.frozen_reason,merchant.credit
 FROM userinfo
-INNER JOIN user_status ON userinfo.id = user_status.id
-INNER JOIN merchant ON userinfo.id = merchant.id
-WHERE responsibility = 'merchant';
+LEFT JOIN user_status ON userinfo.id = user_status.id
+LEFT JOIN merchant ON userinfo.id = merchant.id
+WHERE responsibility = '商家';
 </select>
     <update id="creditIncrease">
         UPDATE merchant SET credit = credit + 5 WHERE id = #{merchantId}

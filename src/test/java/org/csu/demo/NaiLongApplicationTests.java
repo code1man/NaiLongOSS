@@ -8,6 +8,7 @@ import org.csu.demo.persistence.*;
 import org.csu.demo.service.CartService;
 import org.csu.demo.service.CatalogService;
 import org.csu.demo.service.ProductService;
+import org.csu.demo.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,8 @@ class NaiLongApplicationTests {
     private AddressDao addressDao;
     @Autowired
     private AdminDao adminDao;
+    @Autowired
+    private UserService userService;
 
     @Test
     void testAddressDao() {
@@ -108,6 +111,11 @@ class NaiLongApplicationTests {
         System.out.println(adminDao.countAllUsers());
         System.out.println(adminDao.countFrozenUsers());
         System.out.println(adminDao.getFrozenReason(1));
-        System.out.println(adminDao.statuscount());
+    }
+    @Test
+    void test7(){
+
+        adminDao.creditDecrease(2);
+        System.out.println(adminDao.getAllMerchants());
     }
 }
