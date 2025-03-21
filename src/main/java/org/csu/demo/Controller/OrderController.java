@@ -22,9 +22,7 @@ import java.util.Map;
 @SessionAttributes({"loginUser","addressList","item","AddressMsg","cart","totalAmount"})
 public class OrderController {
 
-
     private final AddressDao addressDao;
-
 
     @Autowired
     public OrderController(AddressDao addressDao, UserService userService, UserDao userDao) {
