@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@SessionAttributes(value = {"loginUser","message","cart"})
+@SessionAttributes(value = {"loginUser","message","cart"})//登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
 public class UserController {
     @Autowired
     private UserService userService;
@@ -48,6 +48,11 @@ public class UserController {
         if (loginUser != null) {
             if(loginUser.is_frozen()){
                 model.addAttribute("loginMsg", "账号已被冻结，原因：" + userService.getFrozenReason(loginUser.getId()));
+                return "login";
+            }
+            if(loginUser.getCredit()<60&&loginUser.getResponsibility().equals("merchant"))
+            {
+                model.addAttribute("loginMsg", "您的信誉过低，无法登录，请规范行为");
                 return "login";
             }
             cart = cartService.getCart(loginUser.getId());

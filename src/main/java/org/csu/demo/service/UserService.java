@@ -89,4 +89,17 @@ public class UserService {
     public List<User> getAllUserStatus(){return adminDao.getAllUserStatus();}
 
     public List<User> getAllMerchants(){return adminDao.getAllMerchants();}
+
+    public void creditDecrease(int merchantId){adminDao.creditDecrease(merchantId);}
+
+    public void creditIncrease(int merchantId){adminDao.creditIncrease(merchantId);}
+
+    public void creditSetUnqualified(int merchantId){adminDao.creditSetUnqualified(merchantId);}
+
+    public void creditSetQualified(int merchantId){adminDao.creditSetQualified(merchantId);}
+
+    public void setIsOnlineFalse(int id){adminDao.setIsOnlineFalse(id);}
+
+    public void setIsOnlineTrue(int id){adminDao.setIsOnlineTrue(id);}
+
 }

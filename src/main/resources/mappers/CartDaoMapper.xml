@@ -30,4 +30,11 @@
           AND ItemID = #{itemID}
     </update>
 
+    <update id="executeRemoveCart">
+        UPDATE  cart
+        SET isDeleted = true
+        WHERE  userID = #{userID}
+          AND  ItemID = #{itemID}
+    </update>
+
 </mapper>

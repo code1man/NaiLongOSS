@@ -30,5 +30,4 @@ public interface UserDao {
     boolean deleteUser(@Param("id") int id);
 
 
-
 }

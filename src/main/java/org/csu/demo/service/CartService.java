@@ -92,14 +92,19 @@ public class CartService {
                 .userID(cart.getUserId())
                 .name(item.getName())
                 .url(item.getUrl())
+                .price(item.getPrice())
                 .build());
         cartDao.executeAddCart(cart.getUserId(), item.getId(), 1);
+        cart.setTotalPrice(getTotalPrice(cart.getItemList()));
+        cart.setTotalCount(getTotalCount(cart.getItemList()));
         return cart;
     }
 
     public Cart removeItemFromCart(Cart cart, int item) {
         cart.getItemList().remove(getCartItemById(cart, item));
-        cartDao.coverCartItem(cart.getUserId(), item);
+        cart.setTotalPrice(getTotalPrice(cart.getItemList()));
+        cart.setTotalCount(getTotalCount(cart.getItemList()));
+        cartDao.executeRemoveCart(cart.getUserId(), item);
         return cart;
     }
 }

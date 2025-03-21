@@ -24,6 +24,7 @@
     <insert id="addUser" parameterType="org.csu.demo.domain.User">
         INSERT INTO userinfo (username, password, email, age, responsibility)
         VALUES (#{username}, #{password}, #{email}, #{age}, #{responsibility});
+        INSERT INTO user_status (id);
     </insert>
 
     <!-- 更新用户信息 -->
@@ -43,7 +44,7 @@
 
     <!-- 通过id删除用户 -->
     <delete id="deleteUser" parameterType="int">
-        DELETE FROM user WHERE id = #{id}
+        DELETE FROM userinfo WHERE id = #{id}
     </delete>
 
 
