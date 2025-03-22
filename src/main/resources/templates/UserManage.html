@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>奶龙商店 - 用户管理</title>
+    <link rel="stylesheet" type="text/css" href="/css/UserManage.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div class="admin-container">
+    <!-- 左侧导航 -->
+    <div class="admin-sidebar">
+        <ul class="nav-tabs">
+            <li class="nav-item active" onclick="switchTab('users')">🐉 普通用户</li>
+            <li class="nav-item" onclick="switchTab('merchants')">🏪 商家管理</li>
+        </ul>
+    </div>
+
+    <!-- 右侧内容 -->
+    <div class="admin-content">
+        <!-- 普通用户管理 -->
+        <div id="users-section">
+            <h2>🥛 普通用户管理</h2>
+            <table class="user-table">
+                <thead>
+                <tr>
+                    <th>状态</th>
+                    <th>用户名</th>
+                    <th>手机号</th>
+                    <th>邮箱</th>
+                    <th>注册时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span class="status online">🐾 在线</span></td>
+                    <td>奶龙小粉丝</td>
+                    <td class="phone-number">138****8888</td>
+                    <td>nailong@love.com</td>
+                    <td>2024-02-30</td>
+                    <td>
+                        <button class="btn btn-freeze" onclick="freezeAccount('user123')">❄️ 冻结</button>
+                        <button class="btn btn-reset" onclick="resetPassword('user123')">🔑 重置</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 商家管理 -->
+        <div id="merchants-section" style="display: none;">
+            <h2>🛍️ 商家管理</h2>
+            <table class="user-table">
+                <thead>
+                <tr>
+                    <th>诚信度</th>
+                    <th>商家名称</th>
+                    <th>商品数量</th>
+                    <th>具体商品</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><div class="rating-stars">★★★★☆</div></td>
+                    <td>奶龙宇宙旗舰店</td>
+                    <td>99+</td>
+                    <td>奶龙表情包</td>
+                    <td>
+                        <button class="btn btn-freeze" onclick="freezeAccount('merchant1')">❄️ 冻结</button>
+                        <button class="btn btn-reset" onclick="resetPassword('merchant1')">🔑 重置</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="mouse-follow-icon" id="mouse-follow-icon"
+     style="display: inline-flex; align-items: center; justify-content: center;">
+    <img src="/images/cursor.gif" alt="跟随鼠标的GIF"/>
+</div>
+
+</body>
+<script src="/js/cursorFollow.js"></script>
+<script>
+    // 切换选项卡
+    function switchTab(tab) {
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        document.getElementById('users-section').style.display = 'none';
+        document.getElementById('merchants-section').style.display = 'none';
+
+        if(tab === 'users') {
+            document.querySelector('.nav-item:nth-child(1)').classList.add('active');
+            document.getElementById('users-section').style.display = 'block';
+        } else {
+            document.querySelector('.nav-item:nth-child(2)').classList.add('active');
+            document.getElementById('merchants-section').style.display = 'block';
+        }
+    }
+
+    // 冻结账户
+    function freezeAccount(account) {
+        if(confirm(`确定要冻结 ${account} 吗？`)) {
+            // AJAX请求示例
+            $.ajax({
+                url: '/api/freezeAccount',
+                method: 'POST',
+                data: { account: account },
+                success: function(response) {
+                    alert('操作成功！');
+                    location.reload();
+                }
+            });
+        }
+    }
+
+    // 重置密码
+function resetPassword(account) {
+    if(confirm(`确定要重置 ${account} 的密码吗？`)) {
+        // AJAX请求示例
+        $.ajax({
+            url: '/api/resetPassword',
+            method: 'POST',
+            data: { account: account },
+            success: function(response) {
+                alert('密码已重置为：123456');
+            }
+        });
+    }
+}
+</script>
+</html>

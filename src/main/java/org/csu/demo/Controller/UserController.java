@@ -1,5 +1,6 @@
 package org.csu.demo.Controller;
 
+import org.csu.demo.common.CommonResponse;
 import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.User;
 import org.csu.demo.service.CartService;
@@ -82,10 +83,24 @@ public class UserController {
             // 使用重定向，防止表单重复提交
     }
 
+
+
+    @GetMapping("/usernameIsExist")
+    @ResponseBody
+    public CommonResponse<Object> usernameIsExist(@RequestParam String username) {
+        boolean isExist = userService.checkUsername(username);
+        if(isExist) {
+            return CommonResponse.createForError("用户名存在");
+        }
+        return CommonResponse.createForSuccess();
+    }
+
+
     @RequestMapping("/main")
     public String mainForm() {
         return "main";
     }
+
 
 
     private String errorValidated(String locationForm, BindingResult bindingResult, Model model) {

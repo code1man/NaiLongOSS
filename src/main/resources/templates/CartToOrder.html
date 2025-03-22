@@ -109,7 +109,7 @@
 
         <div class="total-container">
             <span class="total-text">订单总价：</span>
-            <span class="price">¥<span th:text="${totalAmount}"></span></span>
+            <span class="price">¥<span th:text="${session.cart.totalPrice}"></span></span>
             <button class="submit-order" th:onclick="|submitOrder(${userId})|">提交订单</button>
         </div>
     </section>

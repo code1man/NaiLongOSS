@@ -18,14 +18,17 @@ $(function () {
         // 异步检查用户名是否存在
         $.ajax({
             type: 'GET',
-            url: '/usernameIsExist?username=' + username,
-            success: function (data) {
-                if (data === "用户名存在") {
-                    $("#feedback").text(data);
+            url: '/usernameIsExist',
+            data:{username: username},
+            success: function (response) {
+                if (response.status === 1) {        // 假设 ResponseCode.ERROR.getCode() == 1
+                    $("#feedback").text(response.message);
+                } else {
+                    $("#feedback").text(""); // 成功状态默认返回的是 success，无 message
                 }
             },
-            error: function (errorMsg) {
-                console.log("请求错误:\n" + errorMsg);
+            error: function () {
+                console.log("请求错误");
             }
         });
     }

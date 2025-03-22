@@ -20,7 +20,7 @@
                 <input type="text" placeholder="用户名" name="username" id="username" required>
             </span>
         <br>
-        <div id="feedback"></div>
+        <div id="feedback" th:text="${feedback}"></div>
         <span>
                 <i class="fa-solid fa-lock"></i>
                 <input type="password" placeholder="密码" name="password" required>
@@ -77,7 +77,7 @@
 </div>
 
 <script src="/js/cursorFollow.js"></script>
-<script src="/js/checkuserinfo.js"></script>
+<script src="/js/checkUserInfo.js"></script>
 
 <script type="text/javascript">
     // 当用户点击“换一换”链接时，调用此函数以刷新验证码图像
@@ -88,7 +88,6 @@
     }
 
 </script>
-
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
 </body>
 </html>

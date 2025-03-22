@@ -13,13 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@SessionAttributes({"loginUser","addressList","item","AddressMsg","cart","totalAmount"})
+@SessionAttributes({"loginUser","addressList","item","AddressMsg","cart"})
 public class OrderController {
 
 
@@ -42,10 +41,10 @@ public class OrderController {
         return (Cart) session.getAttribute("cart");
     }
 
-    @ModelAttribute("totalAmount")
-    public BigDecimal getTotalAmount(HttpSession session) {
-        return (BigDecimal) session.getAttribute("totalAmount");
-    }
+//    @ModelAttribute("totalAmount")                                // 改为直接到session中取了
+//    public BigDecimal getTotalAmount(HttpSession session) {
+//        return (BigDecimal) session.getAttribute("totalAmount");
+//    }
 
     //进入订单结算界面
     @GetMapping("/orderForm")
@@ -59,7 +58,6 @@ public class OrderController {
             List<Address> addressList = addressDao.getAllAddressById(userId);
             // 将地址列表保存到session中
             model.addAttribute("addressList", addressList);
-//            System.out.println("返回给前端的 addressList："+addressList);
         }
         return "Order";
     }
@@ -77,17 +75,15 @@ public class OrderController {
             List<Address> addressList = addressDao.getAllAddressById(userId);
             // 将地址列表保存到session中
             model.addAttribute("addressList", addressList);
+            model.addAttribute("totalAmount", 1);
         }
         return "CartToOrder";
     }
 
     // 处理提交购物车订单，清楚购物车数据
     @PostMapping("/CartHandler")
-    public String CartHandler(@ModelAttribute("loginUser")User user, Model model) {
-       //
-         // 清空购物车逻辑
+    public String CartHandler(Model model) {
         return "redirect:/mainForm";
-
     }
 
     //处理新增地址需求

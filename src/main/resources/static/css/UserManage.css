@@ -1,0 +1,161 @@
+
+    /* 基础样式 */
+body {
+    cursor: none !important;
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #fffde7;
+    min-height: 100vh;
+}
+
+/* 布局容器 */
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 左侧导航 */
+.admin-sidebar {
+    width: 240px;
+    background: rgba(255, 235, 175, 0.95);
+    padding: 30px 0;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    border-right: 3px solid #fdd835;
+}
+
+.nav-tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    padding: 18px 40px;
+    margin: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 15px;
+    background: rgba(255, 248, 196, 0.8);
+    color: #6d4c41;
+    font-size: 18px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: #fdd835;
+    transform: translateX(10px);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 右侧内容区 */
+.admin-content {
+    flex: 1;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* 表格样式 */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background: rgba(255, 249, 196, 0.3);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #fdd83533;
+}
+
+.user-table th,
+.user-table td {
+    padding: 16px 25px;
+    border-bottom: 1px dashed #fdd83555;
+    color: #6d4c41;
+}
+
+.user-table th {
+    background: #fdd83544;
+    font-size: 16px;
+}
+
+/* 状态标签 */
+.status {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.online { background: #8bc34a; color: white; }
+.offline { background: #b0b0b0; color: white; }
+.frozen { background: #e53935; color: white; }
+
+/* 操作按钮 */
+.btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    margin: 0 8px;
+}
+
+.btn-freeze {
+    background: linear-gradient(145deg, #fff3e0, #ffecb3);
+    border: 2px solid #fbc02d;
+    color: #6d4c41;
+}
+
+.btn-reset {
+    background: linear-gradient(145deg, #fdd835, #fbc02d);
+    color: white;
+}
+
+
+    .mouse-follow-icon {
+        position: absolute;
+        pointer-events: none; /* 防止干扰鼠标事件 */
+        transition: transform 0.1s ease; /* 动画效果 */
+        z-index: 10; /* 确保图标在最上层 */
+    }
+
+    .mouse-follow-icon img {
+        width: 25px !important; /* 根据需要调整图片的宽度 */
+        height: auto !important; /* 自动适应高度 */
+        border-radius: 50%; /* 设置为圆形 */
+    }
+
+    .custom-cursor {
+        width: 5px; /* 圆点的宽度 */
+        height: 5px; /* 圆点的高度 */
+        background-color: yellow; /* 圆点颜色 */
+        border-radius: 50%; /* 使其为圆形 */
+        position: absolute; /* 绝对定位 */
+        pointer-events: none; /* 使其不捕获鼠标事件 */
+        z-index: 1000; /* 确保在其他元素上方 */
+    }
+
+/* 手机号模糊效果 */
+.phone-number {
+    filter: blur(3px);
+    transition: filter 0.3s;
+    position: relative;
+}
+
+.phone-number:hover {
+    filter: none;
+}
+
+.phone-number:hover::after {
+    content: "点击查看完整号码";
+    position: absolute;
+    right: -120px;
+    background: #fdd835;
+    color: #6d4c41;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+}
