@@ -1,5 +1,7 @@
 package org.csu.demo.Controller;
 
+import jakarta.servlet.http.HttpSession;
+import org.csu.demo.common.CommonResponse;
 import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.User;
 import org.csu.demo.service.CartService;
@@ -15,7 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Validated
-@SessionAttributes(value = {"loginUser","message","cart","orderList"})//登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
+@SessionAttributes(value = {"loginUser","message","cart","captcha","orderList"})//登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
+
 public class UserController {
     @Autowired
     private UserService userService;
@@ -23,6 +26,12 @@ public class UserController {
     private CartService cartService;
     @Autowired
     private OrderService orderService;
+
+
+    @ModelAttribute("captcha")
+    public String getCaptcha(HttpSession session) {
+        return (String) session.getAttribute("captcha");
+    }
 
     @GetMapping("/loginForm")
     public String loginForm() {
@@ -36,8 +45,8 @@ public class UserController {
 
     @PostMapping("/doLogin")//@ModelAttribute User user用来获取表单数据，绑定到User对象上，BindingResult用来获取验证结果
     public String login(@ModelAttribute User user,
-                           BindingResult bindingResult,
-                           Model model) {
+                        BindingResult bindingResult,
+                        Model model) {
         User loginUser;
         Cart cart;
         if (bindingResult.hasErrors()) {
@@ -63,7 +72,11 @@ public class UserController {
             model.addAttribute("cart", cart);
             //把买家相关订单放到session
             model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(),0));
-            return "redirect:/mainForm";
+            //System.out.println(loginUser.getResponsibility());
+            if(loginUser.getResponsibility().equals("user")) return "redirect:/mainForm";
+            if(loginUser.getResponsibility().equals("merchant")) return "redirect:/merchantForm";
+            if(loginUser.getResponsibility().equals("admin")) return "redirect:/ManagerForm";
+            return "redirect:/loginForm";
         } else {
             model.addAttribute("loginMsg", "账号或密码错误");
             return "login";
@@ -72,27 +85,54 @@ public class UserController {
 
 
 
-    // 还要判断验证码是否正确
     @PostMapping("/register")
-    public String register(@ModelAttribute User user,
-                           RedirectAttributes redirectAttributes) {
-            boolean isSuccess = userService.register(user);
-            if (!isSuccess) {
-                redirectAttributes.addFlashAttribute("message", "注册失败，请检查用户名或邮箱是否已被注册！");
-                return "redirect:/registerForm";
-            }
-            redirectAttributes.addFlashAttribute("message", "注册成功，请登录！");
-            // 只存在一次message
-            return "redirect:/loginForm";
-            // 使用重定向，防止表单重复提交
+    public String register(@ModelAttribute User user,@RequestParam String captcha,
+                           RedirectAttributes redirectAttributes,
+                           Model model) {
+        if(model.getAttribute("captcha") == null || !captcha.equals(model.getAttribute("captcha")))
+        {
+            redirectAttributes.addFlashAttribute("message", "验证码错误");
+            return "redirect:/registerForm";
+        }
+
+        boolean isSuccess = userService.register(user);
+        if (!isSuccess) {
+            return "redirect:/registerForm";
+        }
+        redirectAttributes.addFlashAttribute("message", "注册成功，请登录！");
+        // 只存在一次message
+        return "redirect:/loginForm";
+        // 使用重定向，防止表单重复提交
     }
+
+
+
+    @GetMapping("/usernameIsExist")
+    @ResponseBody
+    public CommonResponse<Object> usernameIsExist(@RequestParam String username) {
+        boolean isExist = userService.checkUsername(username);
+        if(isExist) {
+            return CommonResponse.createForError("用户名存在");
+        }
+        return CommonResponse.createForSuccess();
+    }
+
 
     @RequestMapping("/main")
     public String mainForm() {
         return "main";
     }
 
+    @RequestMapping("/merchantForm")
+    public String merchantForm() {
+        // 记得改
+        return "main";
+    }
 
+    @RequestMapping("/ManagerForm")
+    public String ManagerForm() {
+       return "UserManage";
+    }
     private String errorValidated(String locationForm, BindingResult bindingResult, Model model) {
         StringBuilder validationErrorsMsg = new StringBuilder();
         bindingResult.getAllErrors().forEach(error -> validationErrorsMsg.append(error.getDefaultMessage()).append(','));

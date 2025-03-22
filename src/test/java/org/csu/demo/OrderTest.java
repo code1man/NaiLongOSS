@@ -15,8 +15,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Date;
 
-@ActiveProfiles
 @SpringBootTest
+@ActiveProfiles("test")  // 启用 test 这个 Profile
 @MapperScan("org.csu.demo.persistence")
 public class OrderTest {
     @Autowired

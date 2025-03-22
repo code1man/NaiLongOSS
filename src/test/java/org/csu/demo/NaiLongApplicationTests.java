@@ -8,6 +8,7 @@ import org.csu.demo.persistence.*;
 import org.csu.demo.service.CartService;
 import org.csu.demo.service.CatalogService;
 import org.csu.demo.service.ProductService;
+import org.csu.demo.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 
 @SpringBootTest
-@ActiveProfiles
 @MapperScan("org.csu.demo.persistence")
+@ActiveProfiles("test")  // 启用 test 这个 Profile
 class NaiLongApplicationTests {
 
     @Autowired
@@ -38,6 +39,10 @@ class NaiLongApplicationTests {
     private CartService cartService;
     @Autowired
     private AddressDao addressDao;
+    @Autowired
+    private AdminDao adminDao;
+    @Autowired
+    private UserService userService;
 
     @Test
     void testAddressDao() {
@@ -90,5 +95,27 @@ class NaiLongApplicationTests {
     @Test
     void test5() {
         System.out.println(cartService.getCart(12));
+    }
+
+    @Test
+    void test6(){System.out.println(adminDao.countAllUsers());
+        User student = User.builder()
+                .id(1)
+                .username("张三")
+                .password("123456")
+                .age(12)
+                .email("11@qq.com")
+                .build();
+        userDao.addUser(student);
+    adminDao.freezeUser(1,"297327349237");
+        System.out.println(adminDao.countAllUsers());
+        System.out.println(adminDao.countFrozenUsers());
+        System.out.println(adminDao.getFrozenReason(1));
+    }
+    @Test
+    void test7(){
+
+        adminDao.creditDecrease(2);
+        System.out.println(adminDao.getAllMerchants());
     }
 }

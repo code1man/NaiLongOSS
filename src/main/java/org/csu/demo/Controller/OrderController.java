@@ -48,11 +48,10 @@ public class OrderController {
         return (Cart) session.getAttribute("cart");
     }
 
-    //这个是获取不到的
-    @ModelAttribute("totalAmount")
-    public BigDecimal getTotalAmount(HttpSession session) {
-        return (BigDecimal) session.getAttribute("totalAmount");
-    }
+//    @ModelAttribute("totalAmount")                                // 改为直接到session中取了
+//    public BigDecimal getTotalAmount(HttpSession session) {
+//        return (BigDecimal) session.getAttribute("totalAmount");
+//    }
 
     //进入订单结算界面
     @GetMapping("/orderForm")
@@ -66,7 +65,6 @@ public class OrderController {
             List<Address> addressList = addressDao.getAllAddressById(userId);
             // 将地址列表保存到session中
             model.addAttribute("addressList", addressList);
-//            System.out.println("返回给前端的 addressList："+addressList);
         }
         return "Order";
     }
@@ -84,6 +82,7 @@ public class OrderController {
             List<Address> addressList = addressDao.getAllAddressById(userId);
             // 将地址列表保存到session中
             model.addAttribute("addressList", addressList);
+            model.addAttribute("totalAmount", 1);
         }
         return "CartToOrder";
     }

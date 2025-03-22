@@ -21,6 +21,8 @@ public class UserService {
     public User login(String username, String password) {
         User user = userDao.findByUsername(username);
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            user.setPassword(null);                 // 密码不返回给前端
+            //System.out.println(user);
             return user;
         }
         return null;
@@ -34,13 +36,21 @@ public class UserService {
         return this.userDao.addUser(user) == 1;
     }
 
+    public boolean checkUsername(String username) {
+        return userDao.getUserByUsername(username) != null;
+    }
+
+
+
+
+
+
+    // ？？？？？？ 什么时候service里写增删查改了？？？？？
+    // ？？？？？？ 把Dao方法在service又写一遍？？？？？？
     public void updateUser(User user, String username, String password, String email, int age) {
         userDao.updateUser(user.getId(), username, password, email, age);
     }
 
-    public boolean checkUsername(String username) {
-        return userDao.getUserByUsername(username) != null;
-    }
 
     public User getUser(int id) {
         return userDao.getUser(id);
@@ -63,8 +73,14 @@ public class UserService {
     }
 
     public int addUser(User user) {
-        return userDao.addUser(user);
+        int result = userDao.addUser(user);
+        userDao.addStatus(user);
+        if(user.getResponsibility().equals("商家"))
+            return userDao.addMerchant(user);
+        return result;
     }
+
+
 
     public List<User> getUserByIsOnlineTrue(){return adminDao.getUserByIsOnlineTrue();}
 
@@ -97,8 +113,9 @@ public class UserService {
     public void creditSetUnqualified(int merchantId){adminDao.creditSetUnqualified(merchantId);}
 
     public void creditSetQualified(int merchantId){adminDao.creditSetQualified(merchantId);}
-
+//  ?????？？？？  看不懂
     public void setIsOnlineFalse(int id){adminDao.setIsOnlineFalse(id);}
-
+//  ?????？？？？  看不懂
     public void setIsOnlineTrue(int id){adminDao.setIsOnlineTrue(id);}
+
 }

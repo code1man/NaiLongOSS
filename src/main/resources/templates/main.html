@@ -49,18 +49,20 @@
                         购物车
                     </a>
                     <a href="myOrder">我的订单</a>
+                    <span th:if="${session.loginUser != null and session.cart != null}" id="topBarItemCount" class="cart-mini-num J_cartNum"
+                          th:text="'(' + ${session.cart.totalCount} + ')'"></span>
+                    <!-- 否则显示0 -->
+                    <span th:unless="${session.loginUser != null and session.cart != null}" class="cart-mini-num">（0）</span>
                     <!-- 如果登录且购物车存在 -->
                     <div th:if="${session.loginUser != null and session.cart != null}">
                         <!-- 购物车 -->
-                        <span id="topBarItemCount" class="cart-mini-num J_cartNum"
-                              th:text="'(' + ${session.cart.totalCount} + ')'"></span>
                         <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
                             <div class="menu-content">
                                 <!-- 如果购物车中有商品 -->
                                 <div th:if="${session.cart.totalCount > 0}">
-                                    <ul id="J_miniCartList" class="cart-list"
-                                        th:each="cartItem : ${session.cart.itemList}">
-                                        <li th:attr="data-item-id=${cartItem.itemID}">
+                                    <ul id="J_miniCartList" class="cart-list">
+                                        <li th:each="cartItem : ${session.cart.itemList}"
+                                            th:attr="data-item-id=${cartItem.itemID}">
                                             <div class="cart-item clearfix first">
                                                 <a class="thumb" href="//www.mi.com/shop/buy?product_id=1230801081">
                                                     <img alt="" th:src="${cartItem.url}">
@@ -98,10 +100,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- 否则显示0 -->
-                    <div th:unless="${session.loginUser != null and session.cart != null}">
-                        <span class="cart-mini-num">（0）</span>
                     </div>
                 </div>
 
@@ -167,7 +165,6 @@
                         <span class="message">
                             <a href="#" class="J_needAgreement">消息通知</a>
                         </span>
-
                     </div>
                 </div>
             </div>
@@ -320,7 +317,7 @@
 
 </body>
 <!-- JS 脚本 -->
-<script src="/js/checkuserinfo.js"></script>
+<script src="/js/checkUserInfo.js"></script>
 <script src="/js/showDiscription.js"></script>
 <script src="/js/topBar.js"></script>
 <script src="/js/cursorFollow.js"></script>

@@ -16,31 +16,58 @@ $(function (){
 
     function updateOrderStatus() {
         // 发送 AJAX 请求到服务器，获取最新的订单项数据
-        $.ajax({
-            url: '/updateMyOrder',
-            type: 'GET',
-            success: function(response) {
-                // 解析 JSON 响应
-                const orderItems = JSON.parse(response);
+        if (!isBusiness){
+            $.ajax({
+                url: '/updateMyOrder',
+                type: 'GET',
+                success: function(response) {
+                    // 解析 JSON 响应
+                    const orderItems = JSON.parse(response);
 
-                // 遍历返回的 orderItems
-                orderItems.forEach(function(orderItem) {
-                    // 找到对应的订单项并更新 HTML
-                    const orderElement = document.querySelector(`[data-id='${orderItem.order_id}']`).closest('tr');
-                    const statusDiv = orderElement.querySelector('.order-status');
-                    console.log("hh:"+orderItem.order_id);
-                    console.log('orderElement'+orderElement);
-                    console.log('statusDiv'+statusDiv);
-                    // 根据状态更新按钮
-                    if(isBusiness)
+                    // 遍历返回的 orderItems
+                    orderItems.forEach(function(orderItem) {
+                        // 找到对应的订单项并更新 HTML
+                        const orderElement = document.querySelector(`[data-id='${orderItem.order_id}']`).closest('tr');
+                        const statusDiv = orderElement.querySelector('.order-status');
+                        console.log("hh:"+orderItem.order_id);
+                        console.log('orderElement'+orderElement);
+                        console.log('statusDiv'+statusDiv);
+                        // 根据状态更新按钮
+                        updateButtons1(orderItem, statusDiv);
+                    });
+                },
+                error: function() {
+                    console.error("更新订单状态失败！");
+                }
+            });
+        }else{
+
+            $.ajax({
+                url: '/business/updateMyOrder',
+                type: 'GET',
+                success: function(response) {
+                    // 解析 JSON 响应
+                    const orderItems = JSON.parse(response);
+
+                    // 遍历返回的 orderItems
+                    orderItems.forEach(function(orderItem) {
+                        // 找到对应的订单项并更新 HTML
+                        const orderElement = document.querySelector(`[data-id='${orderItem.order_id}']`).closest('tr');
+                        const statusDiv = orderElement.querySelector('.order-status');
+                        console.log("hh:"+orderItem.order_id);
+                        console.log('orderElement'+orderElement);
+                        console.log('statusDiv'+statusDiv);
+                        // 根据状态更新按钮
                         updateButtons2(orderItem, statusDiv);
-                    updateButtons1(orderItem, statusDiv);
-                });
-            },
-            error: function() {
-                console.error("更新订单状态失败！");
-            }
-        });
+                    });
+                },
+                error: function() {
+                    console.error("更新订单状态失败！");
+                }
+            });
+
+        }
+
     }
 
     function updateButtons1(orderItem, statusDiv) {
