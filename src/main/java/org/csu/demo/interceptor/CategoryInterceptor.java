@@ -31,7 +31,6 @@ public class CategoryInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
                            ModelAndView modelAndView) {
-        System.out.println("被调用了。。。。。。。。。");
         if (modelAndView != null) {
             List<Category> categoryList = catalogService.getCategories();
             List<Product> productList = productService.getProducts();
