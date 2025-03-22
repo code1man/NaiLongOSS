@@ -8,6 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class GlobalException {
 
+
+
     @ExceptionHandler(value = ConstraintViolationException.class)
     public ModelAndView validationException(ConstraintViolationException e){
         ModelAndView modelAndView = new ModelAndView();
