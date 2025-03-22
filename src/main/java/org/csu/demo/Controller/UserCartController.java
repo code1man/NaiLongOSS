@@ -61,7 +61,7 @@ public class UserCartController {
                                                 @SessionAttribute("cart") Cart cart,
                                                 @SessionAttribute(name = "loginUser", required = false) User user, Model model) {
         // 获取商品
-        Item item = itemService.getTtemByItemId(itemId);  // 假设你有一个服务方法来根据商品ID获取商品
+        Item item = itemService.getItemByItemId(itemId);  // 假设你有一个服务方法来根据商品ID获取商品
         if (item == null) {
             return ResponseEntity.badRequest().body("商品信息错误或缺失");
         }

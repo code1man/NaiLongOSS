@@ -24,7 +24,7 @@ public class ItemService {
         return itemDao.getItem(itemId).getPrice();
     }
 
-    public Item getTtemByItemId(int itemId) {
+    public Item getItemByItemId(int itemId) {
         return itemDao.getItem(itemId);
     }
 }

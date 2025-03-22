@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品管理</title>
+        <link rel="stylesheet" href="/css/ProductManage.css">
+
+</head>
+<body>
+<h1 >商品管理</h1>
+<!-- 静态分类结构 -->
+<div class="category-panel">
+    <div class="main-category" onclick="toggleMainCategory('expression', this)">表情包</div>
+    <div class="main-category" onclick="toggleMainCategory('toy', this)">玩具</div>
+    <div class="main-category" onclick="toggleMainCategory('daily', this)">日常用品</div>
+</div>
+<!-- 主分类：表情包 -->
+<div class="subcategory-panel" data-parent="expression">
+    <div class="subcategory" data-id="1" onclick="loadProducts(1, this)">奶龙唐唐表情包</div>
+    <div class="subcategory" data-id="2" onclick="loadProducts(2, this)">奶龙其他表情包</div>
+    <div class="subcategory" data-id="3" onclick="loadProducts(3, this)">奶龙情绪表情包</div>
+    <div class="subcategory" data-id="4" onclick="loadProducts(4, this)">奶龙壁纸</div>
+</div>
+
+<!-- 主分类：玩具 -->
+<div class="subcategory-panel" data-parent="toy">
+    <div class="subcategory" data-id="5" onclick="loadProducts(5, this)">奶龙玩偶</div>
+    <div class="subcategory" data-id="6" onclick="loadProducts(6, this)">奶龙儿童早教玩具</div>
+    <div class="subcategory" data-id="7" onclick="loadProducts(7, this)">奶龙盲盒</div>
+</div>
+
+<!-- 主分类：日用品 -->
+<div class="subcategory-panel" data-parent="daily">
+    <div class="subcategory" data-id="8" onclick="loadProducts(8, this)">奶龙水杯/保温杯/咖啡杯</div>
+    <div class="subcategory" data-id="9" onclick="loadProducts(9, this)">奶龙钥匙扣</div>
+    <div class="subcategory" data-id="10" onclick="loadProducts(10, this)">奶龙手办/摆件</div>
+</div>
+<div id="messageContainer"></div>
+
+<!-- 动态商品表格 -->
+<table id="productTable">
+    <thead>
+    <tr>
+        <th>商品ID</th>
+        <th>名称</th>
+        <th>图片</th>
+        <th>库存</th>
+        <th>价格</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="productList">
+    <!-- 初始空状态 -->
+    <tr class="empty-row">
+        <td colspan="5" class="empty-message">请先选择商品分类</td>
+    </tr>
+    </tbody>
+    <script src="/js/ProductManage.js"></script>
+
+</table>
+
+<!-- 在HTML中添加编辑模态框 -->
+<div id="editProductModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditModal()">&times;</span>
+        <h2>编辑商品</h2>
+        <form id="editProductForm" onsubmit="submitEditForm(event)">
+            <input type="hidden" id="editProductId">
+            <div class="form-group">
+                <label>主分类：</label>
+                <select id="editMainCategory" required onchange="handleEditMainCategoryChange(this)">
+                    <option value="">请选择主分类</option>
+                    <option value="expression">表情包</option>
+                    <option value="toy">玩具</option>
+                    <option value="daily">日常用品</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>子分类：</label>
+                <select id="editSubcategory" required disabled>
+                    <option value="">请先选择主分类</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>商品名称：</label>
+                <input type="text" id="editProductName" required>
+            </div>
+            <div class="form-group">
+                <label>当前图片：</label>
+                <div id="currentImagePreview"></div>
+                <label>上传新图片：</label>
+                <input type="file"
+                       id="editProductImage"
+                       accept="image/*"
+                       onchange="previewEditImage(event)">
+                <div id="editImagePreview"></div>
+            </div>
+            <div class="form-group">
+                <label>库存：</label>
+                <input type="number" id="editProductStock" required min="0">
+            </div>
+            <div class="form-group">
+                <label>价格：</label>
+                <input type="number" id="editProductPrice" required min="0" step="0.01">
+            </div>
+            <div class="form-actions">
+                <button type="button" onclick="closeEditModal()">取消</button>
+                <button type="submit">保存修改</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- 在表格下方添加按钮 -->
+<button id="addProductBtn" onclick="openAddProductModal()">+ 添加商品</button>
+
+<!-- 新增商品模态框 -->
+<div id="addProductModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>新增商品</h2>
+        <form id="addProductForm" onsubmit="submitProductForm(event)">
+            <div class="form-group">
+                <label>主分类：</label>
+                <select id="mainCategorySelect" required onchange="handleMainCategoryChange(this)">
+                    <option value="">请选择主分类</option>
+                    <option value="expression">表情包</option>
+                    <option value="toy">玩具</option>
+                    <option value="daily">日常用品</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>子分类：</label>
+                <select id="subcategorySelect" required disabled>
+                    <option value="">请先选择主分类</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>商品名称：</label>
+                <input type="text" id="productName" required>
+            </div>
+            <!-- 修改表单中的图片输入部分 -->
+            <div class="form-group">
+                <label>商品图片：</label>
+                <input type="file"
+                       id="productImage"
+                       accept="image/*"
+                       required
+                       onchange="previewImage(event)">
+                <div id="imagePreview"></div>
+            </div>
+            <div class="form-group">
+                <label>库存：</label>
+                <input type="number" id="productStock" required min="0">
+            </div>
+            <div class="form-group">
+                <label>价格：</label>
+                <input type="number" id="productPrice" required min="0" step="0.01">
+            </div>
+            <div class="form-actions">
+                <button type="button" onclick="closeModal()">取消</button>
+                <button type="submit">保存商品</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

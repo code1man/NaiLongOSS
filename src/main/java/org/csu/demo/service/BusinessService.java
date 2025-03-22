@@ -20,6 +20,9 @@ public class BusinessService {
         return businessDao.getAllBusinessItems();
     }
 
+    public List<Item> getBusinessItemById(int itemId){
+        return  itemDao.getItemListByProduct(itemId);
+    }
     /*插入新的商品*/
     public int insertItem(Item item) {
         int tmp1 = businessDao.insertBusinessItem(item);
