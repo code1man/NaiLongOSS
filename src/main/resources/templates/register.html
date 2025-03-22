@@ -88,6 +88,17 @@
     }
 
 </script>
+
+<script th:inline="javascript">
+    let message = /*[[${message}]]*/'';
+        // alert(message);
+        // 检查是否有注册成功的消息
+    if (message === "验证码错误") {
+        alert(message); // 显示弹出框
+        message = ""; // 清空消息
+    }
+
+</script>
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
 </body>
 </html>

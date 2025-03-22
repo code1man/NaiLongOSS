@@ -22,6 +22,7 @@ public class UserService {
         User user = userDao.findByUsername(username);
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             user.setPassword(null);                 // 密码不返回给前端
+            //System.out.println(user);
             return user;
         }
         return null;

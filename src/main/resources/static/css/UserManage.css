@@ -1,5 +1,5 @@
 
-    /* 基础样式 */
+/* 基础样式 */
 body {
     cursor: none !important;
     margin: 0;
@@ -22,6 +22,20 @@ body {
     padding: 30px 0;
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
     border-right: 3px solid #fdd835;
+}
+
+.sidebar-logo {
+    padding-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-logo:hover {
+    transform: scale(1.5);
+}
+
+.admin-sidebar {
+    position: relative;
+    padding-top: 10px;
 }
 
 .nav-tabs {
@@ -50,18 +64,22 @@ body {
 
 /* 右侧内容区 */
 .admin-content {
+    background: url(/images/IndexBackground.png) no-repeat center center fixed;
     flex: 1;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
+    background-size: cover;
+    min-height: 100vh;
+    padding: 40px;
+    position: relative;
 }
+
 
 /* 表格样式 */
 .user-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 30px;
-    background: rgba(255, 249, 196, 0.3);
+    background: rgba(255, 249, 196, 0.5);
     border-radius: 15px;
     overflow: hidden;
     border: 2px solid #fdd83533;
@@ -115,47 +133,105 @@ body {
 }
 
 
-    .mouse-follow-icon {
-        position: absolute;
-        pointer-events: none; /* 防止干扰鼠标事件 */
-        transition: transform 0.1s ease; /* 动画效果 */
-        z-index: 10; /* 确保图标在最上层 */
-    }
+.mouse-follow-icon {
+    position: absolute;
+    pointer-events: none; /* 防止干扰鼠标事件 */
+    transition: transform 0.1s ease; /* 动画效果 */
+    z-index: 10; /* 确保图标在最上层 */
+}
 
-    .mouse-follow-icon img {
-        width: 25px !important; /* 根据需要调整图片的宽度 */
-        height: auto !important; /* 自动适应高度 */
-        border-radius: 50%; /* 设置为圆形 */
-    }
+.mouse-follow-icon img {
+    width: 25px !important; /* 根据需要调整图片的宽度 */
+    height: auto !important; /* 自动适应高度 */
+    border-radius: 50%; /* 设置为圆形 */
+}
 
-    .custom-cursor {
-        width: 5px; /* 圆点的宽度 */
-        height: 5px; /* 圆点的高度 */
-        background-color: yellow; /* 圆点颜色 */
-        border-radius: 50%; /* 使其为圆形 */
-        position: absolute; /* 绝对定位 */
-        pointer-events: none; /* 使其不捕获鼠标事件 */
-        z-index: 1000; /* 确保在其他元素上方 */
-    }
+.custom-cursor {
+    width: 5px; /* 圆点的宽度 */
+    height: 5px; /* 圆点的高度 */
+    background-color: yellow; /* 圆点颜色 */
+    border-radius: 50%; /* 使其为圆形 */
+    position: absolute; /* 绝对定位 */
+    pointer-events: none; /* 使其不捕获鼠标事件 */
+    z-index: 1000; /* 确保在其他元素上方 */
+}
 
-/* 手机号模糊效果 */
-.phone-number {
+/* 邮箱模糊效果 */
+.mail-number {
     filter: blur(3px);
     transition: filter 0.3s;
     position: relative;
 }
 
-.phone-number:hover {
+.mail-number:hover {
     filter: none;
 }
 
-.phone-number:hover::after {
-    content: "点击查看完整号码";
-    position: absolute;
-    right: -120px;
-    background: #fdd835;
-    color: #6d4c41;
-    padding: 4px 12px;
+.back-to-main {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.btn-main {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    color: white !important;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(255, 170, 0, 0.3);
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 16px;
+    border: 2px solid transparent;
+}
+
+.btn-main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 170, 0, 0.5);
+    border-color: #fff;
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fffde7;
+    margin: 15% auto;
+    padding: 25px;
+    width: 400px;
     border-radius: 15px;
-    font-size: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    border: 3px solid #fdd835;
+}
+
+.reason-select, .reason-textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #fdd835;
+    border-radius: 10px;
+    font-family: 'Comic Sans MS';
+}
+
+.reason-textarea {
+    height: 80px;
+    resize: vertical;
 }
