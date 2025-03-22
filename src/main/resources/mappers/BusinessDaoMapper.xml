@@ -51,4 +51,9 @@
     <select id="queryBusinessItemCount" parameterType="int" resultType="int">
         SELECT RemaingNumb FROM businessItemRemaining WHERE itemId = #{itemId};
     </select>
+
+    <!-- 通过商品id查商家id -->
+    <select id="getSupplierByItemId" parameterType="int" resultType="int">
+        SELECT businessId FROM businessItemRemaining WHERE itemId = #{itemId};
+    </select>
 </mapper>

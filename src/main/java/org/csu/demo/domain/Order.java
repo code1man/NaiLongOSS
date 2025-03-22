@@ -1,19 +1,24 @@
 package org.csu.demo.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-@TableName("order")
+@AllArgsConstructor
+@TableName("`order`")
 public class Order {
     //订单号
+    @TableId(value = "order_id", type = IdType.INPUT)
     private String order_id;
     //下单用户ID
     private int client;
-    //收货地址
-    private String address;
+    //收货地址ID
+    private int address_id;
     //商品id
     private int item_id;
     //商品数量

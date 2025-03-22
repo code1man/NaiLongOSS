@@ -39,7 +39,7 @@ public class AdminController {
             adminUser = userService.login(user.getUsername(), user.getPassword());
         }
         if (adminUser != null) {
-            if(adminUser.getResponsibility().equals("admin"))
+            if(adminUser.getResponsibility().equals("管理员"))
             {
                 model.addAttribute("loginMsg", "登录成功");
                 return "admin";
@@ -224,5 +224,7 @@ public class AdminController {
         userService.setIsOnlineTrue(id);
         return ResponseEntity.ok("已成功将用户设置为在线");
     }
+
+
 
 }

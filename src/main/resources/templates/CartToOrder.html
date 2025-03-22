@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>购物车</title>
     <link rel="stylesheet" href="/css/Order.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- 未登录时提示 -->
     <script th:if="${notLoggedIn}" th:inline="javascript">
         if (confirm("您尚未登录，是否前往登录界面？")) {
@@ -36,7 +37,7 @@
             <!-- 遍历地址列表 -->
             <div th:each="address : ${addressList}"
                  th:class="${address.isDefault} ? 'address active' : 'address'"
-                 onclick="selectAddress(this)">
+                 onclick="selectAddress(this)" th:data="${address.id}">
                 <div class="address-info">
                     <span th:text="${address.province}"></span>省
                     <span th:text="${address.city}"></span>市
@@ -109,8 +110,8 @@
 
         <div class="total-container">
             <span class="total-text">订单总价：</span>
-            <span class="price">¥<span th:text="${totalAmount}"></span></span>
-            <button class="submit-order" th:onclick="|submitOrder(${userId})|">提交订单</button>
+            <span class="price">¥<span th:text="${cart.totalPrice}"></span></span>
+            <span class="changed"><button class="submit-order" id = "submitCartItems">提交订单</button></span>
         </div>
     </section>
 </main>
@@ -119,13 +120,13 @@
     <img src="/images/cursor.gif" alt="跟随鼠标的GIF" />
 </div>
 
-<script>
+<!--<script>
     function submitOrder(userId) {
         if (userId === -1) {
             alert("用户未登录！");
             return;
         }
-        fetch(/*[[@{/CartHandler}]]*/'', {
+        fetch(/**/'[[@{/CartHandler}]]', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -143,7 +144,7 @@
                 })
             .catch(error => console.error("提交订单请求失败:", error));
             }
-</script>
+</script>-->
 
 <script src="/js/cursorFollow.js"></script>
 
@@ -240,5 +241,6 @@
         };
     });
 </script>
+<script src="/js/order.js"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <body>
     <div class="login-container">
         <div class="cute-dragon">
-            <img src="/images/welcome.gif" alt="奶龙图片" class="naidragon-image">
+            <img src="/images/welcome.gif" alt="奶龙图片" class="welcomeImage">
         </div>
         <h1>奶龙商店 </h1>
         <form id="loginForm" action="doLogin" method="post">
@@ -40,14 +40,13 @@
     </div>
 </body>
 <script th:inline="javascript">
-    let message = /*[[${message}]]*/
+    let message = /*[[${message}]]*/'';
     // alert(message);
     // 检查是否有注册成功的消息
-    window.addEventListener('DOMContentLoaded', (event) => {
-        if (message === "注册成功，请登录！") {
-            alert(message); // 显示弹出框
-        }
-    });
+    if (message === "注册成功，请登录！") {
+        alert(message); // 显示弹出框
+        message = ""; // 清空消息
+    }
 </script>
 <script src="/js/cursorFollow.js"></script>
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>

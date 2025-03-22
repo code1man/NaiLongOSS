@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>奶龙商店 - 用户管理</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/UserManage.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div class="admin-container">
+    <!-- 左侧导航 -->
+    <div class="admin-sidebar">
+        <div class="sidebar-logo">
+            <a href="https://www.bilibili.com/bangumi/play/ep453031"
+               title="奶龙动画"
+               class="logo ir"
+               style="display: block;
+                          background: url(/images/Logo.png) no-repeat center;
+                          background-size: 56px;
+                          height: 80px;
+                          margin: 20px auto;
+                          width: 80px"></a>
+        </div>
+        <ul class="nav-tabs">
+            <li class="nav-item active" onclick="switchTab('users')">🐉 普通用户</li>
+            <li class="nav-item" onclick="switchTab('merchants')">🏪 商家管理</li>
+        </ul>
+    </div>
+
+    <!-- 右侧内容 -->
+    <div class="admin-content">
+        <!-- 普通用户管理 -->
+        <div id="users-section">
+            <h2>🥛 普通用户管理</h2>
+            <table class="user-table">
+                <thead>
+                <tr>
+                    <th>状态</th>
+                    <th>用户名</th>
+                    <th>年龄</th>
+                    <th>邮箱</th>
+                    <th>注册时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="text-align: center;">
+                        <span class="status online">🐾 在线</span>
+                    </td>
+                    <td style="text-align: center;">奶龙小粉丝</td>
+                    <td style="text-align: center;">19</td>
+                    <td class="mail-number" style="text-align: center;">nailong@love.com</td>
+                    <td style="text-align: center;">2024-02-30</td>
+                    <td style="text-align: center;">
+                        <div class="btn-group">
+                            <button class="btn btn-freeze" onclick="freezeAccount('user123')">❄️ 冻结</button>
+                            <button class="btn btn-reset" onclick="resetPassword('user123')">🔑 重置</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 商家管理 -->
+        <div id="merchants-section" style="display: none;">
+            <h2>🛍️ 商家管理</h2>
+            <table class="user-table">
+                <thead>
+                <tr>
+                    <th>积分</th>
+                    <th>商家名称</th>
+                    <th>商品数量</th>
+                    <th>具体商品</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><div class="rating-stars">★★★★☆</div></td>
+                    <td style="text-align: center;">奶龙宇宙旗舰店</td>
+                    <td style="text-align: center;">99+</td>
+                    <td style="text-align: center;">奶龙表情包</td>
+                    <td style="text-align: center;">
+                        <button  class="btn btn-freeze" onclick="freezeAccount('merchant1')">❄️ 冻结</button>
+                        <button class="btn btn-reset" onclick="resetPassword('merchant1')">🔑 重置</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="mouse-follow-icon" id="mouse-follow-icon"
+     style="display: inline-flex; align-items: center; justify-content: center;">
+    <img src="/images/cursor.gif" alt="跟随鼠标的GIF"/>
+</div>
+
+<div class="back-to-main">
+    <a th:href="@{/main}" class="btn-main">
+        🏠 返回主页
+    </a>
+</div>
+<!-- 冻结原因模态框 -->
+<div id="freezeModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>❄️ 冻结账户</h3>
+        <select id="freezeReason" class="reason-select">
+            <option value="违规操作">违规操作</option>
+            <option value="异常登录">异常登录</option>
+            <option value="虚假信息">虚假信息</option>
+            <option value="其他原因">其他原因</option>
+        </select>
+        <textarea id="customReason" placeholder="自定义原因（可选）" class="reason-textarea"></textarea>
+        <button onclick="confirmFreeze()" class="btn btn-freeze">确认冻结</button>
+    </div>
+</div>
+</body>
+<script src="/js/cursorFollow.js"></script>
+<script src="/js/switchTab.js"></script>
+<script src="/js/freezeAccount.js"></script>
+<script src="/js/resetPassword.js"></script>
+
+</html>
