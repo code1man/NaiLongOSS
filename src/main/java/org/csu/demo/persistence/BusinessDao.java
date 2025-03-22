@@ -26,4 +26,7 @@ public interface BusinessDao {
 
     // 获取库存数量
     int queryBusinessItemCount(int itemId);
+
+    // 通过商品id查商家id
+    int getSupplierByItemId(int itemId);
 }

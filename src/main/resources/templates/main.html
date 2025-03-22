@@ -48,6 +48,7 @@
                         <i class="fa-solid fa-cart-shopping"></i>
                         购物车
                     </a>
+                    <a href="myOrder">我的订单</a>
                     <!-- 如果登录且购物车存在 -->
                     <div th:if="${session.loginUser != null and session.cart != null}">
                         <!-- 购物车 -->
@@ -166,6 +167,7 @@
                         <span class="message">
                             <a href="#" class="J_needAgreement">消息通知</a>
                         </span>
+
                     </div>
                 </div>
             </div>

@@ -40,7 +40,7 @@
             <!-- 遍历地址列表 -->
             <div th:each="address : ${addressList}"
                  th:class="${address.isDefault} ? 'address active' : 'address'"
-                 onclick="selectAddress(this)">
+                 onclick="selectAddress(this)" th:data="${address.id}">
                 <div class="address-info">
                     <span th:text="${address.province}"></span>省
                     <span th:text="${address.city}"></span>市
@@ -114,7 +114,7 @@
         <div class="total-container">
             <span class="total-text">订单总价：</span>
             <span class="price">¥<span th:text="${item.price}"></span></span>
-            <button class="submit-order">提交订单</button>
+            <span class="changed"><button class="submit-order"  id="submitItem">提交订单</button></span>
         </div>
     </section>
 </main>
@@ -218,5 +218,6 @@
         };
     });
 </script>
+<script src="/js/order.js"></script>
 </body>
 </html>
