@@ -16,7 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@TableName("userInfo")
 public class User {
     private int id;
 
