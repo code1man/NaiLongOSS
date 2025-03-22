@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*用户*/
-@Data//通过lombok自动生成getter和setter还有toString方法还有equals和hashCode
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
