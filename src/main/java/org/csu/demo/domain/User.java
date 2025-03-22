@@ -12,11 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*用户*/
-@Data//通过lombok自动生成getter和setter还有toString方法还有equals和hashCode
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@TableName("userInfo")
 public class User {
     private int id;
 
@@ -30,19 +29,14 @@ public class User {
     private String responsibility;
 
     //user_status
-    @TableField(exist = false)
     private boolean is_online=false;
-    @TableField(exist = false)
     private boolean is_frozen=false;
 
     //信誉
-    @TableField(exist = false)
     @NotBlank(message = "冻结原因不能为空")//校验不能为空，会送到@validated进行校验
     private String frozen_reason="不喜欢奶龙的小朋友，你好呀，你的账号已经被奶龙风风光光了";
     //信誉
-    @TableField(exist = false)
     private int credit;
 
-    @TableField(exist = false)
     private List<Item> cart=new ArrayList<>();
 }

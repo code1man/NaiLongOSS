@@ -1,5 +1,6 @@
 package org.csu.demo.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.csu.demo.domain.Item;
 import org.csu.demo.persistence.BusinessDao;
 import org.csu.demo.persistence.ItemDao;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("BusinessService")
+@Log4j2
 public class BusinessService {
     @Autowired
     private BusinessDao businessDao;

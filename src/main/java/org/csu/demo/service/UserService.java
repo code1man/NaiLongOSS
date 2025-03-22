@@ -1,5 +1,6 @@
 package org.csu.demo.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.csu.demo.domain.User;
 import org.csu.demo.persistence.AdminDao;
 import org.csu.demo.persistence.UserDao;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("UserService")
+@Log4j2
 public class UserService {
     @Autowired
     private UserDao userDao;

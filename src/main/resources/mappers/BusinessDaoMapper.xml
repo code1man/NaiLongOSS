@@ -11,13 +11,13 @@
         <result column="price" property="price"/>
         <result column="description" property="description"/>
         <result column="businessId" property="businessId" />
-        <result column="RemainingNumb" property="RemainingNumb"/>
+        <result column="RemaingNumb" property="remainingNumb"/>
     </resultMap>
 
     <!-- 查询所有商品库存信息 -->
     <select id="getAllBusinessItems" resultMap="itemResultMap">
         SELECT i.*, b.businessId ,b.RemaingNumb
-        FROM item i LEFT JOIN businessItemRemaining b ON i.id = b.itemId;
+        FROM item i JOIN businessItemRemaining b ON i.id = b.itemId;
     </select>
 
 
@@ -25,7 +25,7 @@
     <select id="getBusinessItemById" parameterType="int" resultMap="itemResultMap">
         SELECT i.*, b.businessId, b.RemaingNumb
         FROM item i
-                 LEFT JOIN businessItemRemaining b ON i.id = b.itemId
+        JOIN businessItemRemaining b ON i.id = b.itemId
         WHERE i.id = #{itemId};
     </select>
 
@@ -50,5 +50,10 @@
     <!-- 查询库存数量 -->
     <select id="queryBusinessItemCount" parameterType="int" resultType="int">
         SELECT RemaingNumb FROM businessItemRemaining WHERE itemId = #{itemId};
+    </select>
+
+    <!-- 通过商品id查商家id -->
+    <select id="getSupplierByItemId" parameterType="int" resultType="int">
+        SELECT businessId FROM businessItemRemaining WHERE itemId = #{itemId};
     </select>
 </mapper>

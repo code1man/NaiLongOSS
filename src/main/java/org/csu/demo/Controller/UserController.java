@@ -5,6 +5,7 @@ import org.csu.demo.common.CommonResponse;
 import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.User;
 import org.csu.demo.service.CartService;
+import org.csu.demo.service.OrderService;
 import org.csu.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,14 +15,17 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@Controller
+@RestController
 @Validated
-@SessionAttributes(value = {"loginUser","message","cart","captcha"})//登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
+@SessionAttributes(value = {"loginUser","message","cart","captcha","orderList"})//登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
+
 public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
     private CartService cartService;
+    @Autowired
+    private OrderService orderService;
 
 
     @ModelAttribute("captcha")
@@ -66,6 +70,8 @@ public class UserController {
             cart = cartService.getCart(loginUser.getId());
             model.addAttribute("loginUser", loginUser);
             model.addAttribute("cart", cart);
+            //把买家相关订单放到session
+            model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(),0));
             //System.out.println(loginUser.getResponsibility());
             if(loginUser.getResponsibility().equals("user")) return "redirect:/mainForm";
             if(loginUser.getResponsibility().equals("merchant")) return "redirect:/merchantForm";

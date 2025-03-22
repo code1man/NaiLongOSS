@@ -8,12 +8,6 @@
         VALUES (#{userID}, #{itemID}, #{itemNum})
     </insert>
 
-    <delete id="executeRemoveCart">
-        DELETE
-        FROM cart
-        WHERE ItemID = #{itemID}
-    </delete>
-
     <select id="searchUserCartItems" resultType="org.csu.demo.domain.CartItem">
         SELECT cart.*, item.name, item.price, item.url
         FROM cart

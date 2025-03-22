@@ -1,0 +1,1 @@
+2025-03-21 13:22:50,912 ERROR com.baomidou.mybatisplus.core.MybatisConfiguration [main] mapper[org.csu.demo.persistence.CartDao.executeRemoveCart] is ignored, because it exists, maybe from xml file

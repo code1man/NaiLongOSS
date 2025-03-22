@@ -1,7 +1,6 @@
 package org.csu.demo.persistence;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.CartItem;
 import org.springframework.stereotype.Repository;
 
