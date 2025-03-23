@@ -59,7 +59,7 @@ public class UserController {
         }
 
         if (loginUser != null) {
-            if (loginUser.is_frozen()) {
+            if (loginUser.getIsFrozen() == 1) {
                 model.addAttribute("loginMsg", "账号已被冻结，原因：" + userService.getFrozenReason(loginUser.getId()));
                 return "login";
             }
@@ -128,9 +128,11 @@ public class UserController {
         return "main";
     }
 
+
     @RequestMapping("/ManagerForm")
     public String ManagerForm(Model model) {
         List<User> userList = userService.getAllUsersWithDetails();
+        System.out.println(userList);
         // 为每个商家计算星级
         for (User user : userList) {
             if ("merchant".equals(user.getResponsibility())) {
@@ -140,6 +142,8 @@ public class UserController {
         model.addAttribute("userList", userList);
         return "UserManage";
     }
+
+
 
     private String errorValidated(String locationForm, BindingResult bindingResult, Model model) {
         StringBuilder validationErrorsMsg = new StringBuilder();

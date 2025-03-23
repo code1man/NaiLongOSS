@@ -26,9 +26,6 @@ public interface AdminDao {
 
     String getFrozenReason(@Param("id") int id);
 
-    void freezeUser(@Param("id") int id, @Param("frozen_reason") String frozen_reason);
-
-    void unfreezeUser(@Param("id") int id);
 
     List<User> getAllUserStatus();
 
@@ -47,4 +44,7 @@ public interface AdminDao {
     void setIsOnlineTrue(@Param("id") int id);
 
 
+    void freezeUser(@Param("id") int id, @Param("frozen_reason") String frozen_reason);
+
+    void unfreezeUser(@Param("id") int id);
 }
