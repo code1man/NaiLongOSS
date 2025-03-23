@@ -58,10 +58,10 @@
                     <td class="mail-number" style="text-align: center;" th:text="${user.email}"></td>
                     <td style="text-align: center;">
                         <div class="btn-group">
-                            <button th:if="${user.isFrozen==0}"
+                            <button th:if="${user.is_frozen==0}"
                                     class="btn btn-freeze" 
                                     th:onclick="'freezeAccount(' + ${user.id} + ')'">❄️ 冻结</button>
-                            <button th:if="${user.isFrozen==1}"
+                            <button th:if="${user.is_frozen==1}"
                                     class="btn btn-success" 
                                     th:onclick="'unfreezeAccount(' + ${user.id} + ')'">🌞 解冻</button>
                             <button class="btn btn-reset" 
@@ -100,10 +100,10 @@
                     <td class="mail-number" style="text-align: center;" th:text="${user.email}"></td>
                     <td style="text-align: center;">
                         <div class="btn-group">
-                            <button th:if="${user.isFrozen==0}"
+                            <button th:if="${user.is_frozen==0}"
                                     class="btn btn-freeze" 
                                     th:onclick="'freezeAccount(' + ${user.id} + ')'">❄️ 冻结</button>
-                            <button th:if="${user.isFrozen==1}"
+                            <button th:if="${user.is_frozen==1}"
                                     class="btn btn-success" 
                                     th:onclick="'unfreezeAccount(' + ${user.id} + ')'">🌞 解冻</button>
                             <button class="btn btn-reset" 
@@ -124,6 +124,20 @@
      style="display: inline-flex; align-items: center; justify-content: center;">
     <img src="/images/cursor.gif" alt="跟随鼠标的GIF"/>
 </div>
+
+<div class="back-to-main">
+    <a th:href="@{/main}" class="btn-main">
+        🏠 返回主页
+    </a>
+</div>
+
+
+<div class="back-to-main">
+    <a th:href="@{/admin/Control}" class="btn-main">
+        🏠 订单管理
+    </a>
+</div>
+
 
 <!-- 冻结原因模态框 -->
 <div id="freezeModal" class="modal">

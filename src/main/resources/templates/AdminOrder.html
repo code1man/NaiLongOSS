@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的订单</title>
+    <!-- 引入外部CSS文件 -->
+    <link rel="stylesheet" href="/css/Order.css">
+    <!-- 引入外部jQuery库 -->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+
+
+<header>
+    <div class="header-container">
+        <h1>NaiLong Store</h1>
+        <label for="orderIdInput">
+            <input type="text" id="orderIdInput" placeholder="请输入要查询的订单">
+        </label>
+        <button id="searchBtn">搜索</button>
+        <button id="afterSaleBtn">未售后</button>
+    </div>
+</header>
+
+<main>
+    <div class="breadcrumb">
+        <p>NaiLongStore >> 订单管理</p>
+    </div>
+
+    <section class="order-summary">
+        <h2>订单详情</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>产品</th>
+                <th>用户ID</th>
+                <th>数量</th>
+                <th>交易金额</th>
+                <th>状态</th>
+a
+            </tr>
+            </thead>
+            <tbody id="orderItemsTableBody">
+            <!-- 使用Thymeleaf遍历订单项 -->
+            <tr th:each="orderItem : ${orderItems}">
+                <td>
+                    <img th:src="${orderItem.url}" alt="商品图片" style="width: 100px; height: auto;"class="order-item-image">
+                    <br>
+                    <span th:text="${orderItem.name}"></span>
+                </td>
+                <td><span th:text="${orderItem.userID}"></span></td>
+                <td><span th:text="${orderItem.itemNum}"></span></td>
+                <td>¥<span th:with="total=${orderItem.price * orderItem.itemNum}" th:text="${total}"></span></td>
+                <td>
+                        <span th:switch="${orderItem.status}">
+                            <span th:case="0">待客户支付</span>
+                            <span th:case="1">客户已支付</span>
+                            <span th:case="2">已发货</span>
+                            <span th:case="3">待取件</span>
+                            <span th:case="4">客户已签收</span>
+                            <span th:case="5">已处理售后</span>
+                            <span th:case="10">客户已取消订单</span>
+                            <span th:case="11">客户已申请售后</span>
+                        </span>
+                </td>
+                <td>
+                    <div class="order-actions" th:switch="${orderItem.status}">
+                        <div th:case="0">
+                            <button>查看订单信息</button>
+                        </div>
+                        <div th:case="4">
+                            <button>查看订单信息</button>
+                        </div>
+                        <div th:case="11">
+                            <button>处理售后</button>
+                            <button>查看订单信息</button>
+                        </div>
+                        <div th:case="10">
+                            <button>查看订单信息</button>
+                        </div>
+                        <div th:case="5">
+                            <button>查看订单信息</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- 弹窗的 HTML 结构 -->
+        <div id="orderDetailsModal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <h3>订单详情</h3>
+                <p><strong>商品名称:</strong> <span id="itemName">xxxxx</span></p>
+                <p><strong>商品价格:</strong> ¥<span id="itemPrice">xxxxx</span></p>
+                <p><strong>数量:</strong> <span id="itemQuantity">xxxxx</span></p>
+                <p><strong>总金额:</strong> ¥<span id="totalAmount">xxxxx</span></p>
+                <p><strong>订单状态:</strong> <span id="orderStatus">xxxxx</span></p>
+                <p><strong>申请售后时间:</strong> <span id="afterSaleTime">xxxxx</span></p>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<div class="mouse-follow-icon" id="mouse-follow-icon">
+    <img src="/images/cursor.gif" alt="跟随鼠标的GIF" />
+</div>
+
+<!-- 外部JavaScript文件 -->
+<script src="/js/cursorFollow.js"></script>
+<script src="/js/order.js"></script>
+<script src="/js/adminMethod.js"></script>
+
+<!-- 查询订单并向后端发送请求 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchBtn = document.getElementById("searchBtn");
+
+        searchBtn.addEventListener("click", function() {
+            const orderId = document.getElementById("orderIdInput").value.trim();
+            console.log('orderId'+orderId);
+            if (orderId) {
+                fetch(`/admin/searchOrder?orderId=${orderId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);  // 打印返回的订单数据
+                        if (data.length > 0) {
+                            renderOrderItems(data);
+                        } else {
+                            alert("没有找到相关订单");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("查询失败:", error);
+                    });
+            } else {
+                alert("请输入订单ID");
+            }
+        });
+
+
+
+        document.getElementById("afterSaleBtn").addEventListener("click", function() {
+            // 使用 AJAX 请求获取超时的订单
+            fetch('/admin/getTimeoutOrders')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);  // 打印返回的订单数据
+                    // 在这里可以将返回的数据展示到页面上，例如填充表格
+                })
+                .catch(error => {
+                    console.error('查询失败:', error);
+                });
+        });
+
+
+        // 渲染订单项时，给按钮添加 data-order-id 属性
+        function renderOrderItems(orderItems) {
+            const tableBody = document.getElementById("orderItemsTableBody");
+            tableBody.innerHTML = "";  // 清空现有的订单项
+            orderItems.forEach(orderItem => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+            <td>
+                <img src="${orderItem.url}" alt="商品图片" style="width: 100px; height: auto;" class="order-item-image">
+                <br>
+                ${orderItem.name}
+            </td>
+            <td>${orderItem.userID}</td>
+            <td>${orderItem.itemNum}</td>
+            <td>¥${orderItem.price * orderItem.itemNum}</td>
+            <td>
+                <span>${getStatusText(orderItem.status)}</span>
+            </td>
+            <td>
+                <div class="order-actions">
+                    <button data-order-id="${orderItem.order_id}">查看订单信息</button> <!-- 添加 data-order-id -->
+                </div>
+            </td>
+        `;
+                tableBody.appendChild(row);
+            });
+        }
+
+
+
+        // 获取订单状态文本
+        function getStatusText(status) {
+            switch (status) {
+                case 0: return "待客户支付";
+                case 1: return "客户已支付";
+                case 2: return "已发货";
+                case 3: return "待取件";
+                case 4: return "客户已签收";
+                case 5: return "已处理售后";
+                case 10: return "客户已取消订单";
+                case 11: return "客户已申请售后";
+                default: return "未知状态";
+            }
+        }
+    });
+
+</script>
+<!--弹窗-->
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const modal = document.getElementById("orderDetailsModal");
+        const closeModal = document.getElementById("closeModal");
+
+        // 保存所有订单项的数据
+        let allOrderItems = [];
+
+        // 通过点击搜索按钮加载所有订单数据
+        const searchBtn = document.getElementById("searchBtn");
+        searchBtn.addEventListener("click", function() {
+            const orderId = document.getElementById("orderIdInput").value.trim();
+            if (orderId) {
+                fetch(`/admin/searchOrder?orderId=${orderId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        allOrderItems = data; // 保存所有订单数据
+                        renderOrderItems(allOrderItems); // 渲染所有订单项
+                    })
+                    .catch(error => {
+                        console.error("查询失败:", error);
+                    });
+            } else {
+                alert("请输入订单ID");
+            }
+        });
+
+        // 渲染所有订单项
+        function renderOrderItems(orderItems) {
+            const tableBody = document.getElementById("orderItemsTableBody");
+            tableBody.innerHTML = ""; // 清空现有的订单项
+
+            orderItems.forEach(orderItem => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `   <td>
+                <img src="${orderItem.url}" alt="商品图片" style="width: 100px; height: auto;" class="order-item-image">
+                <br>
+                ${orderItem.name}
+            </td>
+
+                    <td>${orderItem.userID}</td>
+                    <td>${orderItem.itemNum}</td>
+                    <td>¥${orderItem.price * orderItem.itemNum}</td>
+                    <td>
+                        <span>${getStatusText(orderItem.status)}</span>
+                    </td>
+                    <td>
+                        <div class="order-actions">
+                            <button data-order-id="${orderItem.order_id}">查看订单信息</button> <!-- 添加 data-order-id -->
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // 获取订单状态文本的函数
+        function getStatusText(status) {
+            switch (status) {
+                case 0: return "待客户支付";
+                case 1: return "客户已支付";
+                case 2: return "已发货";
+                case 3: return "待取件";
+                case 4: return "客户已签收";
+                case 5: return "已处理售后";
+                case 10: return "客户已取消订单";
+                case 11: return "客户已申请售后";
+                default: return "未知状态";
+            }
+        }
+
+        // 为“查看订单信息”按钮绑定点击事件
+        document.getElementById("orderItemsTableBody").addEventListener("click", function(event) {
+            if (event.target && event.target.tagName === "BUTTON" && event.target.textContent === "查看订单信息") {
+                const orderId = event.target.getAttribute("data-order-id");
+
+                // 在已加载的所有订单数据中找到对应的订单信息
+                const orderDetails = allOrderItems.find(item => item.order_id === orderId);
+
+                if (orderDetails) {
+                    // 填充弹窗数据
+                    document.getElementById("itemName").textContent = orderDetails.name || "暂无";
+                    document.getElementById("itemPrice").textContent = orderDetails.price || "暂无";
+                    document.getElementById("itemQuantity").textContent = orderDetails.itemNum || "暂无";
+                    document.getElementById("totalAmount").textContent = orderDetails.price * orderDetails.itemNum || "暂无";
+                    document.getElementById("orderStatus").textContent = getStatusText(orderDetails.status) || "暂无";
+                    document.getElementById("afterSaleTime").textContent = orderDetails.afterSaleTime || "暂无";
+
+                    // 显示弹窗
+                    modal.style.display = "block";
+                }
+            }
+        });
+
+        // 关闭弹窗
+        closeModal.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        // 当点击弹窗外部时关闭弹窗
+        window.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>

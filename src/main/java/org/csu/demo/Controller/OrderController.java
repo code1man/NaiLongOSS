@@ -148,7 +148,7 @@ public class OrderController {
     //点击查看我的订单
     @GetMapping("/myOrder")
     public String myOrder(@ModelAttribute("orderList")List<Order> orderList, @ModelAttribute("loginUser")User user, Model model){
-
+        System.out.println("orderList"+orderList);
         List<OrderItem> orderItems = orderService.getOrderItems(user.getId(),orderList,0);
         model.addAttribute("orderItems",orderItems);
         System.out.println(orderItems);

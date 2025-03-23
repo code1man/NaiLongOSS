@@ -282,3 +282,36 @@ table td {
 .countdown span {
     color: red; /* 设置时间文本为红色 */
 }
+/* 弹窗样式 */
+.modal {
+    display: none;  /* 默认隐藏 */
+    position: fixed;  /* 固定位置 */
+    z-index: 1;  /* 层级 */
+    left: 0;
+    top: 0;
+    width: 100%;  /* 全屏 */
+    height: 100%;  /* 全屏 */
+    background-color: rgba(0, 0, 0, 0.4);  /* 半透明背景 */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;  /* 弹窗宽度 */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
