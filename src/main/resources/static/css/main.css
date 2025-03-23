@@ -267,9 +267,9 @@ th {
 .site-topBar .topBar-cart {
     position: relative;
     float: right;
-    width: 120px;
+    width: 200px;
     height: 40px;
-    margin-left: 15px;
+    margin-left: 5px;
     -webkit-transition: all .2s;
     transition: all .2s;
     font-size: 12px

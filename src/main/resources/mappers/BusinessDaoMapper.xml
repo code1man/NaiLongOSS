@@ -10,22 +10,38 @@
         <result column="url" property="url"/>
         <result column="price" property="price"/>
         <result column="description" property="description"/>
+        <result column="isListing" property="isListing"/>
+        <result column="isDelete" property="isDelete" />
         <result column="businessId" property="businessId" />
-        <result column="RemainingNumb" property="RemainingNumb"/>
+        <result column="RemaingNumb" property="remainingNumb"/>
     </resultMap>
 
     <!-- 查询所有商品库存信息 -->
     <select id="getAllBusinessItems" resultMap="itemResultMap">
         SELECT i.*, b.businessId ,b.RemaingNumb
-        FROM item i LEFT JOIN businessItemRemaining b ON i.id = b.itemId;
+        FROM item i JOIN businessItemRemaining b ON i.id = b.itemId;
     </select>
+
+    <!-- 修改商品信息     这里写的可能有问题 -->
+    <update id="updateBusinessItemById">
+            UPDATE item i
+            INNER JOIN businessItemRemaining b ON i.id=b.itemId
+            SET
+                 i.name = #{item.name},
+                 i.price = #{item.price},
+                 i.url=#{item.url},
+                 i.product_id=#{item.product_id},
+                 i.description=#{item.description},
+                 b.RemaingNumb = #{item.remainingNumb}
+            WHERE i.id = #{item.id}
+    </update>
 
 
     <!-- 根据 itemId 查询库存信息 -->
     <select id="getBusinessItemById" parameterType="int" resultMap="itemResultMap">
         SELECT i.*, b.businessId, b.RemaingNumb
         FROM item i
-                 LEFT JOIN businessItemRemaining b ON i.id = b.itemId
+        JOIN businessItemRemaining b ON i.id = b.itemId
         WHERE i.id = #{itemId};
     </select>
 
@@ -56,4 +72,17 @@
     <select id="getSupplierByItemId" parameterType="int" resultType="int">
         SELECT businessId FROM businessItemRemaining WHERE itemId = #{itemId};
     </select>
+
+    <select id="getBusinessItemByIdAndMerchantId" resultMap="itemResultMap">
+        SELECT i.*, b.RemaingNumb
+        FROM item i
+        JOIN businessitemremaining b on i.id = b.itemId
+        WHERE i.product_id = #{product_id} AND b.businessId=#{businessId}
+    </select>
+
+    <update id="updateProductAvailability">
+        UPDATE item
+        SET isListing = #{isListing}
+        WHERE id = #{id}
+    </update>
 </mapper>

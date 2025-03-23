@@ -3,7 +3,6 @@ package org.csu.demo.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.csu.demo.domain.*;
 import org.csu.demo.persistence.BusinessDao;
-import org.csu.demo.persistence.ProductDao;
 import org.csu.demo.persistence.UserDao;
 import org.csu.demo.persistence.mappers.OrderMapper;
 import org.mybatis.spring.annotation.MapperScan;
@@ -25,9 +24,9 @@ public class OrderService {
     @Autowired
     private OrderMapper orderMapper;
     @Autowired
-    private UserDao userDao;
-    @Autowired
     private BusinessDao businessDao;
+    @Autowired
+    private UserDao userDao;
     @Autowired
     private ItemService itemService;
     @Autowired
@@ -100,7 +99,7 @@ public class OrderService {
     //要改成按照时间
     //根据买家id查询订单
     //identify(0买家  1商家)
-       public List<Order> getOrderListByClient(int id,int identify){
+    public List<Order> getOrderListByClient(int id,int identify){
         QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
         if(identify == 0)
             queryWrapper.eq("client",id).orderByDesc("create_time");
@@ -128,45 +127,12 @@ public class OrderService {
         orderList = getOrderListByClient(userid,identify);
         List<OrderItem> orderItems = new ArrayList<>();
         for(Order order : orderList){
-            Item item = itemService.getTtemByItemId(order.getItem_id());
-            OrderItem orderItem = new OrderItem(order.getOrder_id(),item.getId(), order.getAmount(), item.getName(), item.getUrl(), item.getPrice(),order.getClient(), order.getStatus());
-            orderItems.add(orderItem);
+            Item item = itemService.getItemByItemId(order.getItem_id());
+            OrderItem orderItem = new OrderItem(order.getOrder_id(),item.getId(), order.getAmount(), item.getName(), item.getUrl(), item.getPrice(), order.getClient(), order.getStatus());
+
         }
         return orderItems;
     }
-
-/////////admin订单管理的方法从这里开始!!!!!!!!!
-/// 查到所有的
-public List<OrderItem> getAllOrders() {
-    // 查询所有订单
-    QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
-    List<Order> allOrders = orderMapper.selectList(queryWrapper);
-
-    // 存储所有的订单项
-    List<OrderItem> orderItems = new ArrayList<>();
-
-    // 遍历所有的订单
-    for (Order order : allOrders) {
-        // 根据订单中的商品 ID 获取该商品的详细信息
-        Item item = itemService.getTtemByItemId(order.getItem_id());
-
-        // 创建 OrderItem 对象，将订单与商品信息封装
-        OrderItem orderItem = new OrderItem(
-                order.getOrder_id(), item.getId(), order.getAmount(),
-                item.getName(), item.getUrl(), item.getPrice(),
-                order.getClient(), order.getStatus()
-        );
-
-        // 将订单项添加到 orderItems 列表中
-        orderItems.add(orderItem);
-    }
-
-    // 返回所有订单项
-    return orderItems;
-}
-
-
-
     public List<OrderItem> getOrderItemsByClient(String username, int identify) {
 
         // 通过用户名查询用户ID
@@ -188,10 +154,10 @@ public List<OrderItem> getAllOrders() {
         // 遍历所有的订单
         for (Order order : orderList) {
             // 根据订单中的商品 ID 获取该商品的详细信息
-            Item item = itemService.getTtemByItemId(order.getItem_id());
+            Item item = itemService.getItemByItemId(order.getItem_id());
 
             // 创建 OrderItem 对象，将订单与商品信息封装
-            OrderItem orderItem = new OrderItem(order.getOrder_id(), item.getId(), order.getAmount(), item.getName(), item.getUrl(),item.getPrice(), order.getClient(), order.getStatus());
+            OrderItem orderItem = new OrderItem(order.getOrder_id(), item.getId(), order.getAmount(), item.getName(), item.getUrl(), item.getPrice(), order.getClient(), order.getStatus());
 
             // 将订单项添加到 orderItems 列表中
             orderItems.add(orderItem);
@@ -200,7 +166,6 @@ public List<OrderItem> getAllOrders() {
         // 返回所有订单项
         return orderItems;
     }
-
     // 获取超时没有售后的订单并转换为订单项 (OrderItem)
     public List<OrderItem> getTimeoutOrderItems() {
         // 获取当前时间
@@ -221,7 +186,7 @@ public List<OrderItem> getAllOrders() {
                 long diff = currentTime.getTime() - afterSaleTime.getTime();
                 if (diff > 5 * 60 * 1000) { // 超过5分钟，说明是超时订单
                     // 根据订单中的商品 ID 获取该商品的详细信息
-                    Item item = itemService.getTtemByItemId(order.getItem_id());
+                    Item item = itemService.getItemByItemId(order.getItem_id());
 
                     // 创建 OrderItem 对象，将订单与商品信息封装
                     OrderItem orderItem = new OrderItem(
@@ -239,6 +204,31 @@ public List<OrderItem> getAllOrders() {
         // 返回所有超时订单项
         return timeoutOrderItems;
     }
+    public List<OrderItem> getAllOrders() {
+        // 查询所有订单
+        QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
+        List<Order> allOrders = orderMapper.selectList(queryWrapper);
 
+        // 存储所有的订单项
+        List<OrderItem> orderItems = new ArrayList<>();
 
+        // 遍历所有的订单
+        for (Order order : allOrders) {
+            // 根据订单中的商品 ID 获取该商品的详细信息
+            Item item = itemService.getItemByItemId(order.getItem_id());
+
+            // 创建 OrderItem 对象，将订单与商品信息封装
+            OrderItem orderItem = new OrderItem(
+                    order.getOrder_id(), item.getId(), order.getAmount(),
+                    item.getName(), item.getUrl(), item.getPrice(),
+                    order.getClient(), order.getStatus()
+            );
+
+            // 将订单项添加到 orderItems 列表中
+            orderItems.add(orderItem);
+        }
+
+        // 返回所有订单项
+        return orderItems;
+    }
 }

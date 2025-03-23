@@ -1,5 +1,6 @@
 package org.csu.demo.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.csu.demo.domain.Item;
 import org.csu.demo.persistence.ItemDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("ItemService")
+@Log4j2
 public class ItemService {
     @Autowired
     private ItemDao itemDao;
@@ -24,7 +26,11 @@ public class ItemService {
         return itemDao.getItem(itemId).getPrice();
     }
 
-    public Item getTtemByItemId(int itemId) {
+    public Item getItemByItemId(int itemId) {
         return itemDao.getItem(itemId);
     }
+
+    public int getItemIdByName(String itemName) {return itemDao.getItemId(itemName);}
+
+
 }

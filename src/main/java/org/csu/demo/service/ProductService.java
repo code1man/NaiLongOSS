@@ -1,5 +1,6 @@
 package org.csu.demo.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.csu.demo.domain.Category;
 import org.csu.demo.domain.Product;
 import org.csu.demo.persistence.ProductDao;
@@ -11,6 +12,7 @@ import java.util.List;
 
 /*初始化商品信息*/
 @Service("ProductService")
+@Log4j2
 public class ProductService {
 
     @Autowired
@@ -24,5 +26,9 @@ public class ProductService {
             product.setItems(itemService.getItemsByProductId(product.getId()));
         }
         return products;
+    }
+
+    public int getProductIdByName(String name) {
+        return productDao.getProductByName(name).getId();
     }
 }

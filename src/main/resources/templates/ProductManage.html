@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品管理</title>
+  <link rel="stylesheet" href="/css/ProductManage.css">
+
+</head>
+<body>
+
+
+<div th:fragment="content">
+  <h1 >商品管理</h1>
+  <!-- 静态分类结构 -->
+  <div class="category-panel">
+    <div class="main-category" onclick="toggleMainCategory('expression', this)">表情包</div>
+    <div class="main-category" onclick="toggleMainCategory('toy', this)">玩具</div>
+    <div class="main-category" onclick="toggleMainCategory('daily', this)">日常用品</div>
+  </div>
+  <!-- 主分类：表情包 -->
+  <div class="subcategory-panel" data-parent="expression">
+    <div class="subcategory" data-id="1" onclick="loadProducts(1, this, 'admin')">奶龙唐唐表情包</div>
+    <div class="subcategory" data-id="2" onclick="loadProducts(2, this, 'admin')">奶龙其他表情包</div>
+    <div class="subcategory" data-id="3" onclick="loadProducts(3, this, 'admin')">奶龙情绪表情包</div>
+    <div class="subcategory" data-id="4" onclick="loadProducts(4, this, 'admin')">奶龙壁纸</div>
+  </div>
+
+  <!-- 主分类：玩具 -->
+  <div class="subcategory-panel" data-parent="toy">
+    <div class="subcategory" data-id="5" onclick="loadProducts(5, this, 'admin')">奶龙玩偶</div>
+    <div class="subcategory" data-id="6" onclick="loadProducts(6, this, 'admin')">奶龙儿童早教玩具</div>
+    <div class="subcategory" data-id="7" onclick="loadProducts(7, this, 'admin')">奶龙盲盒</div>
+  </div>
+
+  <!-- 主分类：日用品 -->
+  <div class="subcategory-panel" data-parent="daily">
+    <div class="subcategory" data-id="8" onclick="loadProducts(8, this, 'admin')">奶龙水杯/保温杯/咖啡杯</div>
+    <div class="subcategory" data-id="9" onclick="loadProducts(9, this, 'admin')">奶龙钥匙扣</div>
+    <div class="subcategory" data-id="10" onclick="loadProducts(10, this, 'admin')">奶龙手办/摆件</div>
+  </div>
+  <div id="messageContainer"></div>
+
+  <!-- 动态商品表格 -->
+  <table id="productTable">
+    <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>名称</th>
+      <th>图片</th>
+      <th>库存</th>
+      <th>价格</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="productList">
+    <!-- 初始空状态 -->
+    <tr class="empty-row">
+      <td colspan="5" class="empty-message">请先选择商品分类</td>
+    </tr>
+    </tbody>
+    <script src="/js/ProductManage.js"></script>
+
+  </table>
+
+
+</div>
+</body>
+</html>

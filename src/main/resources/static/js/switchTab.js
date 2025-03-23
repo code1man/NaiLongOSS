@@ -1,57 +1,52 @@
-// 切换选项卡
-function switchTab(tab) {
+// 扩展switchTab函数
+async function switchTab(tab) {
+    // 移除所有active状态
     document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
     });
-    document.getElementById('users-section').style.display = 'none';
-    document.getElementById('merchants-section').style.display = 'none';
 
-    if(tab === 'users') {
-        document.querySelector('.nav-item:nth-child(1)').classList.add('active');
-        document.getElementById('users-section').style.display = 'block';
-    } else {
-        document.querySelector('.nav-item:nth-child(2)').classList.add('active');
-        document.getElementById('merchants-section').style.display = 'block';
-    }
-}
-// 动态加载用户数据
-function loadUserData() {
-    $.get('/api/users', function(users) {
-        renderUsers(users);
+    // 隐藏所有静态模块
+    ['users-section', 'merchants-section', 'dynamic-module-container'].forEach(id => {
+        const section = document.getElementById(id);
+        if (section) section.style.display = 'none';
     });
-}
 
-function renderUsers(users) {
-    const tbody = document.querySelector('#users-section tbody');
-    tbody.innerHTML = users.map(user => `
-        <tr>
-            <td style="text-align: center;">
-                <span class="status ${getStatusClass(user)}">${getStatusText(user)}</span>
-            </td>
-            <td>${user.username}</td>
-            <td>${user.age}</td>
-            <td class="mail-number">${user.email}</td>
-            <td>${user.registerDate}</td>
-            <td>
-                <div class="btn-group">
-                    ${user.isFrozen ?
-        `<button class="btn btn-unfreeze" onclick="unfreezeAccount('${user.id}')">🆓 解封</button>
-                         <div class="freeze-reason">原因：${user.freezeReason}</div>` :
-        `<button class="btn btn-freeze" onclick="freezeAccount('${user.id}')">❄️ 冻结</button>`
+    // 处理动态模块
+    const container = document.getElementById('dynamic-module-container');
+    if (tab === 'product') {
+        container.style.display = 'block'; // 确保显示动态容器
+        await loadProductModule(container);
+        document.querySelector(`.nav-item[onclick*="product"]`).classList.add('active');
+    } else {
+        // 显示相应静态模块
+        document.getElementById(`${tab}-section`).style.display = 'block';
+        document.querySelector(`.nav-item[onclick*="${tab}"]`).classList.add('active');
     }
-                    <button class="btn btn-reset" onclick="resetPassword('${user.id}')">🔑 重置密码</button>
-                </div>
-            </td>
-        </tr>
-    `).join('');
 }
 
-function getStatusClass(user) {
-    if (user.isFrozen) return 'frozen';
-    return user.isOnline ? 'online' : 'offline';
+
+// 动态加载商品管理模块
+async function loadProductModule(container) {
+    if (!container.dataset.loaded) {
+        try {
+            // const response = await fetch('/product_manage.html');
+            const response = await fetch('/ProductManage');
+            const html = await response.text();
+            container.innerHTML = html;
+            container.dataset.loaded = true;
+
+            // 动态加载配套脚本
+            loadModuleScript('/js/ProductManage.js');
+        } catch (error) {
+            console.error('模块加载失败:', error);
+            container.innerHTML = '<div class="error">🐉 商品数据走丢了...</div>';
+        }
+    }
+    container.style.display = 'block';
 }
 
-function getStatusText(user) {
-    if (user.isFrozen) return '⛄️ 已冻结';
-    return user.isOnline ? '🐾 在线' : '🌙 离线';
+function loadModuleScript(src) {
+    const script = document.createElement('script');
+    script.src = src;
+    document.body.appendChild(script);
 }

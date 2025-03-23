@@ -21,14 +21,15 @@ public class AdminOrderController {
     @Autowired
     private OrderService orderService;
     @GetMapping("/Control")
-    public String myOrder( Model model) {
-        List<OrderItem> orderItems= orderService.getAllOrders();
-        model.addAttribute("orderItems",orderItems );
+    public String myOrder(Model model) {
+        // 获取所有订单项
+        List<OrderItem> orderItems = orderService.getAllOrders();
 
         // 将订单项添加到模型中
         model.addAttribute("orderItems", orderItems);
-        // 获取所有订单
-        return "AdminOrder";
+
+        // 返回页面
+        return "AdminOrder";  // 返回 AdminOrder.html 页面
     }
 
 
@@ -46,15 +47,16 @@ public class AdminOrderController {
         return orderItemsJson;  // 返回 JSON 字符串
     }
 
-// 查询超时未处理售后的订单
+
+    // 查询超时未处理售后的订单
     @GetMapping("/getTimeoutOrders")
     @ResponseBody
     public String getTimeoutOrders(Model model) {
-        // 调用 Service 层的方法，获取超时未处理售后的订单
-        List<OrderItem> timeoutOrders = orderService.getTimeoutOrderItems();
+        // 调用 Service 层的方法，获取超时未处理售后的订单项（OrderItem）
+        List<OrderItem> timeoutOrderItems = orderService.getTimeoutOrderItems();
 
-        // 将订单列表转换为 JSON 字符串
-        String timeoutOrdersJson = JSON.toJSONString(timeoutOrders);
+        // 将订单项列表转换为 JSON 字符串
+        String timeoutOrdersJson = JSON.toJSONString(timeoutOrderItems);
         return timeoutOrdersJson;  // 返回 JSON 字符串
     }
 

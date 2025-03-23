@@ -1,31 +1,58 @@
 package org.csu.demo.exception;
 
 import jakarta.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
+import org.csu.demo.common.CommonResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
+@Slf4j
 public class GlobalException {
 
-    @ExceptionHandler(value = ConstraintViolationException.class)
-    public ModelAndView validationException(ConstraintViolationException e){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
+    Logger logger = LoggerFactory.getLogger(GlobalException.class);
 
-        modelAndView.addObject("loginMsg", processExceptionMessage(e.getMessage()));
-
-        return modelAndView;
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    @ResponseStatus(code= HttpStatus.BAD_REQUEST)    //400
+//   若不设置，在异常被正常处理的情况下，状态码为200
+    @ResponseBody
+//   封装为Json对象返回
+    public CommonResponse<Object> handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
+        logger.error(e.getMessage());
+        return CommonResponse.createForError("缺少参数");
     }
 
-    private String processExceptionMessage(String e){
-        String [] msgArray = e.split(",");
-        StringBuilder resultMsg = new StringBuilder();
-        for(String msg : msgArray){
-            String [] tempArray = msg.split(":");
-            resultMsg.append(tempArray[1]).append(',');
-        }
 
-        return resultMsg.substring(0, resultMsg.length() - 1);
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(code= HttpStatus.BAD_REQUEST)     //400
+    @ResponseBody
+    public CommonResponse<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        logger.error(e.getMessage());
+        return CommonResponse.createForError(e.getMessage());
+    }
+
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(code= HttpStatus.INTERNAL_SERVER_ERROR)      //500
+    @ResponseBody
+    public CommonResponse<Object> handleConstraintViolationException(ConstraintViolationException e) {
+        logger.error(e.getMessage());
+        return CommonResponse.createForError(e.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(code= HttpStatus.INTERNAL_SERVER_ERROR)      //500
+    @ResponseBody
+    public CommonResponse<Object> handleException(Exception e) {
+        logger.error(e.getMessage());
+        return CommonResponse.createForError("系统异常");
     }
 }
