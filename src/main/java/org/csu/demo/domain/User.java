@@ -1,7 +1,5 @@
 package org.csu.demo.domain;
 
-//import com.baomidou.mybatisplus.annotation.TableField;
-//import com.baomidou.mybatisplus.annotation.TableName;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class  User {
     private int id;
 
     @NotBlank(message = "用户名不能为空")

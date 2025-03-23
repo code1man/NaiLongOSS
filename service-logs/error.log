@@ -1144,3 +1144,44 @@ Caused by: java.lang.ClassNotFoundException: Cannot find class:
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552) ~[spring-beans-6.2.3.jar:6.2.3]
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.3.jar:6.2.3]
 	... 29 more
+2025-03-23 10:41:48,150 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-6] No static resource favicon.ico.
+2025-03-23 10:42:02,219 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-6] Method parameter 'subcategoryId': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "奶龙其他表情包"
+2025-03-23 10:48:09,581 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-8] No static resource static/images/Products/shuibei/shuibei2.jpg.
+2025-03-23 10:48:09,581 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-7] No static resource static/images/Products/shuibei/shuibei3.jpg.
+2025-03-23 10:48:09,582 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-3] No static resource static/images/Products/shuibei/shuibei5.jpg.
+2025-03-23 10:48:09,583 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-9] No static resource static/images/Products/shuibei/shuibei6.jpg.
+2025-03-23 10:48:09,583 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-6] No static resource static/images/Products/shuibei/shuibei1.jpg.
+2025-03-23 10:48:09,583 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-4] No static resource static/images/Products/shuibei/shuibei4.jpg.
+2025-03-23 10:48:11,531 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-9] No static resource static/images/Products/shuibei/shuibei6.jpg.
+2025-03-23 10:48:11,531 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-8] No static resource static/images/Products/shuibei/shuibei3.jpg.
+2025-03-23 10:48:11,531 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-4] No static resource static/images/Products/shuibei/shuibei5.jpg.
+2025-03-23 10:48:11,531 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-1] No static resource static/images/Products/shuibei/shuibei1.jpg.
+2025-03-23 10:48:11,531 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-2] No static resource static/images/Products/shuibei/shuibei2.jpg.
+2025-03-23 10:48:11,532 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-7] No static resource static/images/Products/shuibei/shuibei4.jpg.
+2025-03-23 10:48:13,519 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-1] No static resource static/images/Products/shuibei/shuibei4.jpg.
+2025-03-23 10:48:13,519 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-2] No static resource static/images/Products/shuibei/shuibei3.jpg.
+2025-03-23 10:48:13,519 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-4] No static resource static/images/Products/shuibei/shuibei2.jpg.
+2025-03-23 10:48:13,520 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-10] No static resource static/images/Products/shuibei/shuibei5.jpg.
+2025-03-23 10:48:13,520 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-8] No static resource static/images/Products/shuibei/shuibei6.jpg.
+2025-03-23 10:48:13,520 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-9] No static resource static/images/Products/shuibei/shuibei1.jpg.
+2025-03-23 10:49:39,439 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-2] No static resource favicon.ico.
+2025-03-23 10:49:43,066 ERROR org.csu.demo.persistence.Util.GlobalExceptionHandler [http-nio-8080-exec-10] No static resource favicon.ico.
+2025-03-23 10:59:33,142 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] No static resource favicon.ico.
+2025-03-23 10:59:42,629 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] No static resource static/images/Products/shuibei/shuibei2.jpg.
+2025-03-23 10:59:42,629 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-7] No static resource static/images/Products/shuibei/shuibei1.jpg.
+2025-03-23 10:59:42,629 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-2] No static resource static/images/Products/shuibei/shuibei6.jpg.
+2025-03-23 10:59:42,629 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-1] No static resource static/images/Products/shuibei/shuibei4.jpg.
+2025-03-23 10:59:42,630 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-10] No static resource static/images/Products/shuibei/shuibei5.jpg.
+2025-03-23 10:59:42,631 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource static/images/Products/shuibei/shuibei3.jpg.
+2025-03-23 10:59:50,171 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-10] No static resource static/images/Products/shuibei/shuibei1.jpg.
+2025-03-23 10:59:50,176 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-2] No static resource static/images/Products/shuibei/shuibei5.jpg.
+2025-03-23 10:59:50,177 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-8] No static resource static/images/Products/shuibei/shuibei6.jpg.
+2025-03-23 10:59:50,179 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-9] No static resource static/images/Products/shuibei/shuibei4.jpg.
+2025-03-23 10:59:50,179 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-7] No static resource static/images/Products/shuibei/shuibei3.jpg.
+2025-03-23 10:59:50,179 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource static/images/Products/shuibei/shuibei2.jpg.
+2025-03-23 10:59:51,824 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource static/images/Products/shuibei/shuibei4.jpg.
+2025-03-23 10:59:51,825 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-1] No static resource static/images/Products/shuibei/shuibei5.jpg.
+2025-03-23 10:59:51,825 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-4] No static resource static/images/Products/shuibei/shuibei6.jpg.
+2025-03-23 10:59:51,825 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-9] No static resource static/images/Products/shuibei/shuibei3.jpg.
+2025-03-23 10:59:51,825 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-7] No static resource static/images/Products/shuibei/shuibei1.jpg.
+2025-03-23 10:59:51,825 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-8] No static resource static/images/Products/shuibei/shuibei2.jpg.

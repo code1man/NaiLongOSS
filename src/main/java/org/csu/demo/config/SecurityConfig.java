@@ -1,5 +1,6 @@
 package org.csu.demo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,28 +16,25 @@ public class SecurityConfig {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable);
-
-        http.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/**","/", "/images/**", "/login/oauth2/**", "/oauth2/**", "/css/**", "/js/**").permitAll()
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/**", "/", "/images/**", "/login/oauth2/**", "/oauth2/**", "/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
-//                .formLogin(form -> form
-//                        .loginPage("/loginForm")
-//                        .loginProcessingUrl("/login")     // 修改 Spring Security 默认的登录处理 URL(login)
-//                        .defaultSuccessUrl("/main", true)
-//                        .permitAll()
-//                )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/loginForm")
-                        .defaultSuccessUrl("/mainForm", true)  // 认证成功后跳转到 /main
+                        .defaultSuccessUrl("/mainForm", true)
+                        .successHandler(customAuthenticationSuccessHandler)  // 注册自定义成功处理器
                 )
-                .logout(LogoutConfigurer::permitAll
-                );
+                .logout(LogoutConfigurer::permitAll);
         return http.build();
     }
+
+    @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
 
 }
