@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class  User {
     private int id;
 
     @NotBlank(message = "用户名不能为空")

@@ -15,6 +15,9 @@ public interface BusinessDao {
     // 根据 itemId 查询库存信息
     Item getBusinessItemById(int itemId);
 
+    // 根据 itemId 修改信息
+    Item updateBusinessItemById(int itemId, Item item);
+
     // 插入新的商品库存信息
     int insertBusinessItem(Item item);
 
