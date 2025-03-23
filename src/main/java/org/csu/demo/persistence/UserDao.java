@@ -16,10 +16,6 @@ public interface UserDao {
 
     int addUser(User user);
 
-    int addMerchant(User user);
-
-    int addStatus(User user);
-
     User findByUsername(@Param("username") String username);
 
     User getUserByUsernameAndPassword(@Param("username") String username, @Param("password") String password);

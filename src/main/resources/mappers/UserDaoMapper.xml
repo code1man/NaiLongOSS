@@ -35,12 +35,7 @@
         VALUES (#{username}, #{password}, #{email}, #{age}, #{responsibility});
     </insert>
 
-    <insert id="addStatus" parameterType="org.csu.demo.domain.User">
-        INSERT INTO user_status(ID) VALUES (#{id});
-    </insert>
-    <insert id="addMerchant" parameterType="org.csu.demo.domain.User">
-        INSERT INTO merchant(ID) VALUES (#{id});
-    </insert>
+
     <!-- 更新用户信息 -->
     <update id="updateUser" parameterType="org.csu.demo.domain.User">
         UPDATE userinfo
