@@ -72,7 +72,9 @@ public class UserController {
             model.addAttribute("cart", cart);
             // 把买家相关订单放到session
             model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(), 0));
-            // System.out.println(loginUser.getResponsibility());
+
+            System.out.println(loginUser.getResponsibility());
+
             if ("user".equals(loginUser.getResponsibility())) {
                 return "redirect:/mainForm";
             } else if ("merchant".equals(loginUser.getResponsibility())) {
@@ -80,6 +82,7 @@ public class UserController {
             } else if ("admin".equals(loginUser.getResponsibility())) {
                 return "redirect:/ManagerForm";
             } else {
+                model.addAttribute("loginMsg", loginUser.getResponsibility());
                 return "redirect:/loginForm";
             }
         } else {
@@ -124,7 +127,7 @@ public class UserController {
 
     @RequestMapping("/merchantForm")
     public String merchantForm() {
-        return "merchant";
+        return "ProductMerchantManage";
     }
 
     @RequestMapping("/ManagerForm")
