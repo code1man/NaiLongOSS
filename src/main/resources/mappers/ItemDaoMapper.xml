@@ -20,7 +20,7 @@
     <select id="getItemListByProduct" parameterType="int" resultMap="itemResultMap">
         SELECT i.*, b.businessId, b.RemaingNumb
         FROM item i
-        JOIN businessItemRemaining b ON i.id = b.itemId
+        LEFT JOIN businessItemRemaining b ON i.id = b.itemId
         WHERE i.product_id = #{product_Id} AND i.isDelete = 0 AND i.isListing = 1;
     </select>
 
