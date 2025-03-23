@@ -51,4 +51,9 @@
             LEFT JOIN businessItemRemaining b ON i.id = b.itemId
             WHERE (c.name LIKE #{keyword} OR p.description LIKE #{keyword} OR i.name LIKE #{keyword})
     </select>
+
+    <!--获取item id-->
+    <select id="getItemId" parameterType="String">
+        SELECT id FROM item WHERE name=#{itemName}
+    </select>
 </mapper>

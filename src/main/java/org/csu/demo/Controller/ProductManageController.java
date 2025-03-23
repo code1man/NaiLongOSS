@@ -3,6 +3,7 @@ package org.csu.demo.Controller;
 import org.csu.demo.domain.Item;
 import org.csu.demo.service.BusinessService;
 import org.csu.demo.service.ItemService;
+import org.csu.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ public class ProductManageController {
     private ItemService itemService;
     @Autowired
     private BusinessService businessService;
+    @Autowired
+    private ProductService productService;
+
     @GetMapping("/ProductManage")
     public String productsPage() {
         return "ProductManage";
@@ -31,7 +35,7 @@ public class ProductManageController {
     // 数据接口（处理前端表格请求）
     @GetMapping("/api/products")
     @ResponseBody
-     public List<Item> getAllProducts( @RequestParam(name = "categoryId", required = false) Integer categoryId) {
+    public List<Item> getAllProducts(@RequestParam(name = "categoryId", required = false) Integer categoryId) {
         // 添加调试日志
         System.out.println("getAllProducts");
         System.out.println("[DEBUG] 请求到达 /api/products，categoryId=" + categoryId);
@@ -47,51 +51,48 @@ public class ProductManageController {
         System.out.println("✅ 收到商品详情请求，ID: " + productId);
         System.out.println(itemService.getItemByItemId(productId));
 
-        return itemService.getItemByItemId(productId) ;
+        return itemService.getItemByItemId(productId);
     }
+
     @PutMapping("/api/products/{productId}")
     @ResponseBody
     public ResponseEntity<?> updateProductById(
-            @PathVariable("productId") int productId,
+            @PathVariable("productId") int itemId,
             @RequestParam("name") String name,
-            @RequestParam("subcategoryId") int subcategoryId,
+            @RequestParam("subcategoryName") String subcategoryName,
             @RequestParam("stock") int stock,
             @RequestParam("price") int price,
             @RequestParam(value = "image", required = false) MultipartFile imageFile) {
 
         System.out.println("✅ 收到编辑商品详情请求，:0 ");
-
+        System.out.println("商品id: " + itemId);
 
         try {
             // 1. 创建 Item 对象并设置字段
-            Item item = new Item();
+            Item item = itemService.getItemByItemId(itemId);
             item.setName(name);
-            item.setProduct_id(subcategoryId);
-            item.setRemainingNumb(stock);
+            item.setProduct_id(productService.getProductIdByName(subcategoryName));
             item.setPrice(price);
-            System.out.println("✅ 收到编辑商品详情请求，:1 ");
-
+            item.setRemainingNumb(stock);
+            System.out.println("✅ 收到编辑商品详情请求，商品为，: " + item);
 
             // 2. 处理文件上传
             if (imageFile != null && !imageFile.isEmpty()) {
                 String imagePath = saveUploadedFile(imageFile);
                 item.setUrl(imagePath);
                 System.out.println("✅ 收到编辑商品详情请求，:2 ");
-
             }
             System.out.println("✅ 收到编辑商品详情请求，:2.1 ");
             // 3. 调用 Service 层更新数据
-            Item updatedItem = businessService.updateItem(productId, item);
-            System.out.println("✅ 收到编辑商品详情请求，:3 ");
+            int isOK = businessService.updateItem(item);
+            System.out.println("✅ 是否成功编辑商品 : " + isOK);
 
-            return ResponseEntity.ok(updatedItem);
+            return ResponseEntity.ok(item);
 
         } catch (IOException e) {
             return ResponseEntity.internalServerError()
                     .body(Map.of("error", "文件上传失败: " + e.getMessage()));
         } catch (Exception e) {
-            System.out.println("✅ 收到编辑商品详情请求，:4 ");
-
             return ResponseEntity.badRequest()
                     .body(Map.of("error", "更新失败: " + e.getMessage()));
         }

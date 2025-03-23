@@ -40,18 +40,13 @@ public class BusinessService {
         return (tmp1 + tmp2) - 1;
     }
 
-    /*更新商品库存信息*/
-    public int updateItem(Item item) {
-        return businessDao.updateBusinessItem(item);
-    }
-
     /*查询剩余商品数量*/
     public int getItemCount(int itemId) {
         return businessDao.queryBusinessItemCount(itemId);
     }
 
     /*更新商品各种信息*/
-    public Item updateItem(int itemid, @RequestBody Item item) {
-        return businessDao.updateBusinessItemById(itemid,item);
+    public int updateItem( @RequestBody Item item) {
+        return businessDao.updateBusinessItemById(item);
     }
 }

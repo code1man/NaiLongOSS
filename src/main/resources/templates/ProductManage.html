@@ -69,7 +69,7 @@
         <form id="editProductForm" onsubmit="submitEditForm(event)">
             <input type="hidden" id="editProductId">
             <div class="form-group">
-                <label>主分类：</label>
+                <label for="editMainCategory">主分类：</label>
                 <select id="editMainCategory" required onchange="handleEditMainCategoryChange(this)">
                     <option value="">请选择主分类</option>
                     <option value="expression">表情包</option>
@@ -78,13 +78,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>子分类：</label>
+                <label for="editSubcategory">子分类：</label>
                 <select id="editSubcategory" required disabled>
                     <option value="">请先选择主分类</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>商品名称：</label>
+                <label for="editProductName">商品名称：</label>
                 <input type="text" id="editProductName" required>
             </div>
             <div class="form-group">
@@ -98,11 +98,11 @@
                 <div id="editImagePreview"></div>
             </div>
             <div class="form-group">
-                <label>库存：</label>
+                <label for="editProductStock">库存：</label>
                 <input type="number" id="editProductStock" required min="0">
             </div>
             <div class="form-group">
-                <label>价格：</label>
+                <label for="editProductPrice">价格：</label>
                 <input type="number" id="editProductPrice" required min="0" step="1">
             </div>
             <div class="form-actions">

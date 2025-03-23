@@ -27,4 +27,8 @@ public class ProductService {
         }
         return products;
     }
+
+    public int getProductIdByName(String name) {
+        return productDao.getProductByName(name).getId();
+    }
 }

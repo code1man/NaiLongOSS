@@ -35,22 +35,13 @@ async function loadProducts(categoryId, element) {
 
         const response = await fetch(`/api/products?categoryId=${categoryId}`);
         const products = await response.json();
-        // // 模拟数据
-        // await new Promise(resolve => setTimeout(resolve, 500));
-        // const products = subcategory ? [{
-        //     id: 1,
-        //     name: "示例商品",
-        //     url: "https://via.placeholder.com/60",
-        //     stock: 10,
-        //     price: 99.99
-        // }] : [];
 
         if (products.length > 0) {
             tbody.innerHTML = products.map(product => `
                 <tr>
                     <td>${product.id}</td>
                     <td>${product.name}</td>
-                    <td><img src="${product.url}" class="product-thumbnail"></td>
+                    <td><img src="${product.url}" class="product-thumbnail" alt=""></td>
                     <td>${product.remainingNumb}</td>
                     <td>¥${product.price}</td>
                     <td>
@@ -78,7 +69,6 @@ async function loadProducts(categoryId, element) {
             </div>`;
     }
 }
-
 
 
 
@@ -313,7 +303,7 @@ async function submitEditForm(event) {
     // 表单验证
     if (!validateEditForm()) return;
     // ✅ 获取子分类ID（关键修复）
-    const subcategoryId = document.getElementById('editSubcategory').value;
+    const subcategoryName = document.getElementById('editSubcategory').value;
 
     // 准备表单数据
     const formData = new FormData();
@@ -326,7 +316,7 @@ async function submitEditForm(event) {
     formData.append('name', document.getElementById('editProductName').value);
     formData.append('mainCategory', document.getElementById('editMainCategory').value);
     // formData.append('subcategory', document.getElementById('editSubcategory').value);
-    formData.append('subcategoryId', subcategoryId); // ✅ 传递 ID
+    formData.append('subcategoryName', subcategoryName); // ✅ 传递 ID
     formData.append('stock', document.getElementById('editProductStock').value);
     // 获取并转换价格
     const priceInput = document.getElementById('editProductPrice').value;

@@ -21,17 +21,16 @@
     </select>
 
     <!-- 修改商品信息     这里写的可能有问题 -->
-    <update id="updateBusinessItemById"  parameterType="map">
+    <update id="updateBusinessItemById">
             UPDATE item i
-            INNER JOIN   businessItemRemaining b ON i.id=b.itemId
+            INNER JOIN businessItemRemaining b ON i.id=b.itemId
             SET
                  i.name = #{item.name},
                  i.price = #{item.price},
-                i.url=#{item.url},
-                 b. RemaingNumb = #{item. remainingNumb}
-            WHERE i.id = #{productId}
+                 i.url=#{item.url},
+                 b.RemaingNumb = #{item.remainingNumb}
+            WHERE i.id = #{item.id}
     </update>
-
 
 
     <!-- 根据 itemId 查询库存信息 -->

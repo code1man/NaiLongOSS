@@ -1,6 +1,7 @@
 package org.csu.demo.persistence;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.csu.demo.domain.Item;
 import org.springframework.stereotype.Repository;
 
@@ -16,13 +17,10 @@ public interface BusinessDao {
     Item getBusinessItemById(int itemId);
 
     // 根据 itemId 修改信息
-    Item updateBusinessItemById(int itemId, Item item);
+    int updateBusinessItemById(@Param("item")Item item);
 
     // 插入新的商品库存信息
     int insertBusinessItem(Item item);
-
-    // 更新商品库存
-    int updateBusinessItem(Item item);
 
     // 删除库存记录
     int deleteBusinessItem(int itemId);

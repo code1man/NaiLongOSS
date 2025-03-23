@@ -73,10 +73,12 @@ public class UserController {
             //把买家相关订单放到session
             model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(),0));
             //System.out.println(loginUser.getResponsibility());
-            if(loginUser.getResponsibility().equals("user")) return "redirect:/mainForm";
-            if(loginUser.getResponsibility().equals("merchant")) return "redirect:/merchantForm";
-            if(loginUser.getResponsibility().equals("admin")) return "redirect:/ManagerForm";
-            return "redirect:/loginForm";
+            return switch (loginUser.getResponsibility()) {
+                case "user" -> "redirect:/mainForm";
+                case "merchant" -> "redirect:/merchantForm";
+                case "admin" -> "redirect:/ManagerForm";
+                default -> "redirect:/loginForm";
+            };
         } else {
             model.addAttribute("loginMsg", "账号或密码错误");
             return "login";
