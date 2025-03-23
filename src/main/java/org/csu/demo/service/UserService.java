@@ -15,6 +15,7 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
     private AdminDao adminDao;// 提供了对数据库操作的方法
 
     @Autowired
@@ -47,8 +48,29 @@ public class UserService {
         return userDao.getAllUsersWithDetails();
     }
 
+    // 计算商家信誉度对应的星级
+    public String calculateStars(int credit) {
+        int starCount = credit / 20;
+        StringBuilder stars = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            if (i < starCount) {
+                stars.append("★");
+            } else {
+                stars.append("☆");
+            }
+        }
+        return stars.toString();
+    }
+
+    public void resetPassword(int userId) {
+        String defaultPassword = "123456";
+        String encodedPassword = passwordEncoder.encode(defaultPassword);
+        userDao.updateUserPassword(userId, encodedPassword);
+    }
+
     // ？？？？？？ 什么时候service里写增删查改了？？？？？
     // ？？？？？？ 把Dao方法在service又写一遍？？？？？？
+    // 以下都非yy写的
     public void updateUser(User user, String username, String password, String email, int age) {
         userDao.updateUser(user.getId(), username, password, email, age);
     }
@@ -80,21 +102,6 @@ public class UserService {
             return userDao.addMerchant(user);
         return result;
     }
-
-    // 计算商家信誉度对应的星级
-    public String calculateStars(int credit) {
-        int starCount = credit / 20;
-        StringBuilder stars = new StringBuilder();
-        for (int i = 0; i < 5; i++) {
-            if (i < starCount) {
-                stars.append("★");
-            } else {
-                stars.append("☆");
-            }
-        }
-        return stars.toString();
-    }
-
 
     public List<User> getUserByIsOnlineTrue() {
         return adminDao.getUserByIsOnlineTrue();
@@ -169,6 +176,5 @@ public class UserService {
     public void setIsOnlineTrue(int id) {
         adminDao.setIsOnlineTrue(id);
     }
-
 
 }

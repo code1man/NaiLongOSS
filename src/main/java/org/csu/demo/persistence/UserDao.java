@@ -34,6 +34,8 @@ public interface UserDao {
 
     boolean deleteUser(@Param("id") int id);
 
+    void updateUserPassword(@Param("id") int id, @Param("password") String password);
+
     // 获取完整的用户信息，包括状态和商家信息
     List<User> getAllUsersWithDetails();
 }

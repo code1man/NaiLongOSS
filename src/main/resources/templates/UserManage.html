@@ -49,8 +49,8 @@
                 <tbody>
                 <tr th:each="user : ${userList}" th:if="${user.responsibility == 'user'}">
                     <td style="text-align: center;">
-                        <span th:class="${user.is_online ? 'status online' : 'status offline'}"
-                              th:text="${user.is_online ? '🐾 在线' : '💤 离线'}">
+                        <span th:class="${user.isOnline==1 ? 'status online' : 'status offline'}"
+                              th:text="${user.isOnline==1 ? '🐾 在线' : '💤 离线'}">
                         </span>
                     </td>
                     <td style="text-align: center;" th:text="${user.username}"></td>
@@ -58,13 +58,13 @@
                     <td class="mail-number" style="text-align: center;" th:text="${user.email}"></td>
                     <td style="text-align: center;">
                         <div class="btn-group">
-                            <button th:if="${!user.is_frozen}"
-                                    class="btn btn-freeze"
+                            <button th:if="${user.isFrozen==0}"
+                                    class="btn btn-freeze" 
                                     th:onclick="'freezeAccount(' + ${user.id} + ')'">❄️ 冻结</button>
-                            <button th:if="${user.is_frozen}"
-                                    class="btn btn-success"
+                            <button th:if="${user.isFrozen==1}"
+                                    class="btn btn-success" 
                                     th:onclick="'unfreezeAccount(' + ${user.id} + ')'">🌞 解冻</button>
-                            <button class="btn btn-reset"
+                            <button class="btn btn-reset" 
                                     th:onclick="'resetPassword(' + ${user.id} + ')'">🔑 重置</button>
                         </div>
                     </td>
@@ -89,8 +89,8 @@
                 <tbody>
                 <tr th:each="user : ${userList}" th:if="${user.responsibility == 'merchant'}">
                     <td style="text-align: center;">
-                        <span th:class="${user.is_online ? 'status online' : 'status offline'}"
-                              th:text="${user.is_online ? '🐾 在线' : '💤 离线'}">
+                        <span th:class="${user.isOnline==1 ? 'status online' : 'status offline'}"
+                              th:text="${user.isOnline==1 ? '🐾 在线' : '💤 离线'}">
                         </span>
                     </td>
                     <td style="text-align: center;" th:text="${user.username}"></td>
@@ -100,13 +100,13 @@
                     <td class="mail-number" style="text-align: center;" th:text="${user.email}"></td>
                     <td style="text-align: center;">
                         <div class="btn-group">
-                            <button th:if="${!user.is_frozen}"
-                                    class="btn btn-freeze"
+                            <button th:if="${user.isFrozen==0}"
+                                    class="btn btn-freeze" 
                                     th:onclick="'freezeAccount(' + ${user.id} + ')'">❄️ 冻结</button>
-                            <button th:if="${user.is_frozen}"
-                                    class="btn btn-success"
+                            <button th:if="${user.isFrozen==1}"
+                                    class="btn btn-success" 
                                     th:onclick="'unfreezeAccount(' + ${user.id} + ')'">🌞 解冻</button>
-                            <button class="btn btn-reset"
+                            <button class="btn btn-reset" 
                                     th:onclick="'resetPassword(' + ${user.id} + ')'">🔑 重置</button>
                         </div>
                     </td>

@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.demo.persistence.UserDao">
+
+
+  <update id="updateUserPassword">
+        UPDATE userinfo
+        SET password = #{password}
+        WHERE id = #{id};
+    </update>
+
+    
     <select id="findByUsername" resultType="org.csu.demo.domain.User">
             SELECT * FROM userinfo WHERE username = #{username}
     </select>
@@ -42,6 +51,8 @@
         WHERE id = #{id};
     </update>
 
+
+
     <!-- 通过用户名查询用户 -->
     <select id="getUserByUsername" parameterType="string" resultType="org.csu.demo.domain.User">
         SELECT * FROM userinfo WHERE username = #{username};
@@ -52,7 +63,7 @@
         DELETE FROM userinfo WHERE id = #{id}
     </delete>
 
-    <!-- 获取所有用户的完整信息，包括状态和商家信息 -->
+      <!-- 获取所有用户的完整信息，包括状态和商家信息 -->
     <select id="getAllUsersWithDetails" resultType="org.csu.demo.domain.User">
         SELECT 
             u.*,
@@ -65,5 +76,4 @@
         LEFT JOIN merchant m ON u.id = m.id
         ORDER BY u.id;
     </select>
-
 </mapper>
