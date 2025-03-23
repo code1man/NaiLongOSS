@@ -43,7 +43,7 @@
     <!-- 插入新的商品信息 -->
     <insert id="insertItem" parameterType="org.csu.demo.domain.Item">
         INSERT INTO item (id, name, product_id, url, price, isDelete, isListing)
-        VALUES (#{id}, #{name}, #{productId}, #{url}, #{price}, 0, 0);
+        VALUES (#{id}, #{name}, #{product_id}, #{url}, #{price}, 0, 0);
     </insert>
 
     <update id="deleteItem" parameterType="int">

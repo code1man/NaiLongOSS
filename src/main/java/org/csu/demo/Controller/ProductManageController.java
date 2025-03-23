@@ -50,9 +50,17 @@ public class ProductManageController {
         return businessService.getBusinessItemByIdAndMerchantId(categoryId, merchantId);
     }
 
+    @DeleteMapping("/api/products/{productId}")
+    @ResponseBody
+    public ResponseEntity<?> deleteEntity(@PathVariable("productId") int productId) {
+        businessService.deleteItem(productId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PostMapping("/api/products")
     @ResponseBody
     public ResponseEntity<?> newItemCreate(
+            @SessionAttribute("loginUser") User user,
             @RequestParam("name") String name,
             @RequestParam("subcategoryName") int subcategoryId,
             @RequestParam("description") String description,
@@ -71,6 +79,7 @@ public class ProductManageController {
             Item newItem = Item.builder()
                     .id(subcategoryId + (int)(Math.random() * 10086))
                     .name(name)
+                    .businessId(user.getId())
                     .description(description)
                     .price(price)
                     .product_id(subcategoryId)
