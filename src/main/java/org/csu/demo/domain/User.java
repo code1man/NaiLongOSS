@@ -1,10 +1,7 @@
 package org.csu.demo.domain;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +23,20 @@ public class User {
     private String email;
     private String responsibility;
 
-    //user_status
-    private boolean is_online=false;
-    private boolean is_frozen=false;
+    // user_status
+    private boolean is_online = false;
+    private boolean is_frozen = false;
 
-    //信誉
-    @NotBlank(message = "冻结原因不能为空")//校验不能为空，会送到@validated进行校验
-    private String frozen_reason="不喜欢奶龙的小朋友，你好呀，你的账号已经被奶龙风风光光了";
-    //信誉
+    // 信誉
+    @NotBlank(message = "冻结原因不能为空") // 校验不能为空，会送到@validated进行校验
+    private String frozen_reason = "不喜欢奶龙的小朋友，你好呀，你的账号已经被奶龙风风光光了";
+    // 信誉
     private int credit;
 
-    private List<Item> cart=new ArrayList<>();
+    private int merchantCredit;
+    @Setter
+    private String stars;
+
+    private List<Item> cart = new ArrayList<>();
+
 }

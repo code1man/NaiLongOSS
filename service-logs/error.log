@@ -1,1 +1,4 @@
-2025-03-21 13:22:50,912 ERROR com.baomidou.mybatisplus.core.MybatisConfiguration [main] mapper[org.csu.demo.persistence.CartDao.executeRemoveCart] is ignored, because it exists, maybe from xml file
+2025-03-23 00:08:01,740 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-8] No static resource favicon.ico.
+2025-03-23 00:08:02,315 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource favicon.ico.
+2025-03-23 00:08:04,133 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-7] No static resource favicon.ico.
+2025-03-23 00:08:06,383 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-1] No static resource favicon.ico.

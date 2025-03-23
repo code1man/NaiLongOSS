@@ -41,23 +41,29 @@
                     <th>用户名</th>
                     <th>年龄</th>
                     <th>邮箱</th>
-                    <th>注册时间</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="user : ${userList}" th:if="${user.responsibility == 'user'}">
                     <td style="text-align: center;">
-                        <span class="status online">🐾 在线</span>
+                        <span th:class="${user.is_online ? 'status online' : 'status offline'}" 
+                              th:text="${user.is_online ? '🐾 在线' : '💤 离线'}">
+                        </span>
                     </td>
-                    <td style="text-align: center;">奶龙小粉丝</td>
-                    <td style="text-align: center;">19</td>
-                    <td class="mail-number" style="text-align: center;">nailong@love.com</td>
-                    <td style="text-align: center;">2024-02-30</td>
+                    <td style="text-align: center;" th:text="${user.username}"></td>
+                    <td style="text-align: center;" th:text="${user.age}"></td>
+                    <td class="mail-number" style="text-align: center;" th:text="${user.email}"></td>
                     <td style="text-align: center;">
                         <div class="btn-group">
-                            <button class="btn btn-freeze" onclick="freezeAccount('user123')">❄️ 冻结</button>
-                            <button class="btn btn-reset" onclick="resetPassword('user123')">🔑 重置</button>
+                            <button th:if="${!user.is_frozen}" 
+                                    class="btn btn-freeze" 
+                                    th:onclick="'freezeAccount(' + ${user.id} + ')'">❄️ 冻结</button>
+                            <button th:if="${user.is_frozen}" 
+                                    class="btn btn-success" 
+                                    th:onclick="'unfreezeAccount(' + ${user.id} + ')'">🌞 解冻</button>
+                            <button class="btn btn-reset" 
+                                    th:onclick="'resetPassword(' + ${user.id} + ')'">🔑 重置</button>
                         </div>
                     </td>
                 </tr>
@@ -71,22 +77,36 @@
             <table class="user-table">
                 <thead>
                 <tr>
-                    <th>积分</th>
+                    <th>状态</th>
                     <th>商家名称</th>
-                    <th>商品数量</th>
-                    <th>具体商品</th>
+                    <th>信誉度</th>
+                    <th>邮箱</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><div class="rating-stars">★★★★☆</div></td>
-                    <td style="text-align: center;">奶龙宇宙旗舰店</td>
-                    <td style="text-align: center;">99+</td>
-                    <td style="text-align: center;">奶龙表情包</td>
+                <tr th:each="user : ${userList}" th:if="${user.responsibility == 'merchant'}">
                     <td style="text-align: center;">
-                        <button  class="btn btn-freeze" onclick="freezeAccount('merchant1')">❄️ 冻结</button>
-                        <button class="btn btn-reset" onclick="resetPassword('merchant1')">🔑 重置</button>
+                        <span th:class="${user.is_online ? 'status online' : 'status offline'}" 
+                              th:text="${user.is_online ? '🐾 在线' : '💤 离线'}">
+                        </span>
+                    </td>
+                    <td style="text-align: center;" th:text="${user.username}"></td>
+                    <td style="text-align: center;">
+                        <div class="rating-stars" th:text="${user.stars}"></div>
+                    </td>
+                    <td class="mail-number" style="text-align: center;" th:text="${user.email}"></td>
+                    <td style="text-align: center;">
+                        <div class="btn-group">
+                            <button th:if="${!user.is_frozen}" 
+                                    class="btn btn-freeze" 
+                                    th:onclick="'freezeAccount(' + ${user.id} + ')'">❄️ 冻结</button>
+                            <button th:if="${user.is_frozen}" 
+                                    class="btn btn-success" 
+                                    th:onclick="'unfreezeAccount(' + ${user.id} + ')'">🌞 解冻</button>
+                            <button class="btn btn-reset" 
+                                    th:onclick="'resetPassword(' + ${user.id} + ')'">🔑 重置</button>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
