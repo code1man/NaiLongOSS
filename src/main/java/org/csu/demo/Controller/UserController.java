@@ -15,9 +15,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @Validated
-@SessionAttributes(value = {"loginUser","message","cart","captcha","orderList"})//登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
+@SessionAttributes(value = { "loginUser", "message", "cart", "captcha", "orderList" }) // 登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
 
 public class UserController {
     @Autowired
@@ -26,7 +28,6 @@ public class UserController {
     private CartService cartService;
     @Autowired
     private OrderService orderService;
-
 
     @ModelAttribute("captcha")
     public String getCaptcha(HttpSession session) {
@@ -43,10 +44,10 @@ public class UserController {
         return "register";
     }
 
-    @PostMapping("/doLogin")//@ModelAttribute User user用来获取表单数据，绑定到User对象上，BindingResult用来获取验证结果
+    @PostMapping("/doLogin") // @ModelAttribute User user用来获取表单数据，绑定到User对象上，BindingResult用来获取验证结果
     public String login(@ModelAttribute User user,
-                        BindingResult bindingResult,
-                        Model model) {
+            BindingResult bindingResult,
+            Model model) {
         User loginUser;
         Cart cart;
         if (bindingResult.hasErrors()) {
@@ -58,39 +59,40 @@ public class UserController {
         }
 
         if (loginUser != null) {
-            if(loginUser.is_frozen()){
+            if (loginUser.is_frozen()) {
                 model.addAttribute("loginMsg", "账号已被冻结，原因：" + userService.getFrozenReason(loginUser.getId()));
                 return "login";
             }
-            if(loginUser.getCredit()<60&&loginUser.getResponsibility().equals("merchant"))
-            {
+            if (loginUser.getCredit() < 60 && loginUser.getResponsibility().equals("merchant")) {
                 model.addAttribute("loginMsg", "您的信誉过低，无法登录，请规范行为");
                 return "login";
             }
             cart = cartService.getCart(loginUser.getId());
             model.addAttribute("loginUser", loginUser);
             model.addAttribute("cart", cart);
-            //把买家相关订单放到session
-            model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(),0));
-            //System.out.println(loginUser.getResponsibility());
-            if(loginUser.getResponsibility().equals("user")) return "redirect:/mainForm";
-            if(loginUser.getResponsibility().equals("merchant")) return "redirect:/merchantForm";
-            if(loginUser.getResponsibility().equals("admin")) return "redirect:/ManagerForm";
-            return "redirect:/loginForm";
+            // 把买家相关订单放到session
+            model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(), 0));
+            // System.out.println(loginUser.getResponsibility());
+            if ("user".equals(loginUser.getResponsibility())) {
+                return "redirect:/mainForm";
+            } else if ("merchant".equals(loginUser.getResponsibility())) {
+                return "redirect:/merchantForm";
+            } else if ("admin".equals(loginUser.getResponsibility())) {
+                return "redirect:/ManagerForm";
+            } else {
+                return "redirect:/loginForm";
+            }
         } else {
             model.addAttribute("loginMsg", "账号或密码错误");
             return "login";
         }
     }
 
-
-
     @PostMapping("/register")
-    public String register(@ModelAttribute User user,@RequestParam String captcha,
-                           RedirectAttributes redirectAttributes,
-                           Model model) {
-        if(model.getAttribute("captcha") == null || !captcha.equals(model.getAttribute("captcha")))
-        {
+    public String register(@ModelAttribute User user, @RequestParam String captcha,
+            RedirectAttributes redirectAttributes,
+            Model model) {
+        if (model.getAttribute("captcha") == null || !captcha.equals(model.getAttribute("captcha"))) {
             redirectAttributes.addFlashAttribute("message", "验证码错误");
             return "redirect:/registerForm";
         }
@@ -105,18 +107,15 @@ public class UserController {
         // 使用重定向，防止表单重复提交
     }
 
-
-
     @GetMapping("/usernameIsExist")
     @ResponseBody
     public CommonResponse<Object> usernameIsExist(@RequestParam String username) {
         boolean isExist = userService.checkUsername(username);
-        if(isExist) {
+        if (isExist) {
             return CommonResponse.createForError("用户名存在");
         }
         return CommonResponse.createForSuccess();
     }
-
 
     @RequestMapping("/main")
     public String mainForm() {
@@ -130,13 +129,23 @@ public class UserController {
     }
 
     @RequestMapping("/ManagerForm")
-    public String ManagerForm() {
-       return "UserManage";
+    public String ManagerForm(Model model) {
+        List<User> userList = userService.getAllUsersWithDetails();
+        // 为每个商家计算星级
+        for (User user : userList) {
+            if ("merchant".equals(user.getResponsibility())) {
+                user.setStars(userService.calculateStars(user.getMerchantCredit()));
+            }
+        }
+        model.addAttribute("userList", userList);
+        return "UserManage";
     }
+
     private String errorValidated(String locationForm, BindingResult bindingResult, Model model) {
         StringBuilder validationErrorsMsg = new StringBuilder();
-        bindingResult.getAllErrors().forEach(error -> validationErrorsMsg.append(error.getDefaultMessage()).append(','));
-        model.addAttribute( locationForm + "Msg", validationErrorsMsg.substring(0, validationErrorsMsg.length() - 1));
+        bindingResult.getAllErrors()
+                .forEach(error -> validationErrorsMsg.append(error.getDefaultMessage()).append(','));
+        model.addAttribute(locationForm + "Msg", validationErrorsMsg.substring(0, validationErrorsMsg.length() - 1));
         return locationForm;
     }
 }

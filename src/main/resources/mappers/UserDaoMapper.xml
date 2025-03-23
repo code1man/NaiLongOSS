@@ -52,5 +52,18 @@
         DELETE FROM userinfo WHERE id = #{id}
     </delete>
 
+    <!-- 获取所有用户的完整信息，包括状态和商家信息 -->
+    <select id="getAllUsersWithDetails" resultType="org.csu.demo.domain.User">
+        SELECT 
+            u.*,
+            us.is_frozen,
+            us.is_online,
+            us.frozen_reason,
+            m.credit as merchant_credit
+        FROM userinfo u
+        LEFT JOIN user_status us ON u.id = us.id
+        LEFT JOIN merchant m ON u.id = m.id
+        ORDER BY u.id;
+    </select>
 
 </mapper>
