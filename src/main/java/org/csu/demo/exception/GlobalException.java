@@ -36,7 +36,6 @@ public class GlobalException {
     @ResponseBody
     public CommonResponse<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         logger.error(e.getMessage());
-//        return CommonResponse.createForError("对象校验失败");
         return CommonResponse.createForError(e.getMessage());
     }
 
@@ -46,7 +45,6 @@ public class GlobalException {
     @ResponseBody
     public CommonResponse<Object> handleConstraintViolationException(ConstraintViolationException e) {
         logger.error(e.getMessage());
-//        return CommonResponse.createForError("参数校验失败");
         return CommonResponse.createForError(e.getMessage());
     }
 
