@@ -1,1 +1,27 @@
-2025-03-21 13:22:50,912 ERROR com.baomidou.mybatisplus.core.MybatisConfiguration [main] mapper[org.csu.demo.persistence.CartDao.executeRemoveCart] is ignored, because it exists, maybe from xml file
+2025-03-23 00:00:27,479 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-9] No static resource favicon.ico.
+2025-03-23 00:00:33,126 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] No static resource favicon.ico.
+2025-03-23 00:00:39,234 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-8] No static resource favicon.ico.
+2025-03-23 00:00:42,501 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource favicon.ico.
+2025-03-23 00:00:44,524 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource static/images/delete.png.
+2025-03-23 00:00:44,700 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-10] No static resource favicon.ico.
+2025-03-23 00:00:50,098 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-7] 
+### Error updating database.  Cause: org.apache.ibatis.binding.BindingException: Parameter 'userID' not found. Available parameters are [itemID, useID, param1, param2]
+### The error may exist in file [D:\软件开发架构\NaiLong\target\classes\mappers\CartDaoMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: UPDATE  cart         SET isDeleted = true         WHERE  userID = ?           AND  ItemID = ?
+### Cause: org.apache.ibatis.binding.BindingException: Parameter 'userID' not found. Available parameters are [itemID, useID, param1, param2]
+2025-03-23 00:08:48,971 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] No static resource favicon.ico.
+2025-03-23 00:08:56,969 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-10] No static resource static/images/delete.png.
+2025-03-23 00:08:57,688 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-2] No static resource favicon.ico.
+2025-03-23 00:09:10,413 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-4] No static resource favicon.ico.
+2025-03-23 00:09:13,325 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource static/images/delete.png.
+2025-03-23 00:09:14,011 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-3] No static resource favicon.ico.
+2025-03-23 00:09:18,913 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-9] No static resource static/images/delete.png.
+2025-03-23 00:09:19,557 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-8] No static resource favicon.ico.
+2025-03-23 00:09:22,138 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] No static resource static/images/delete.png.
+2025-03-23 00:09:22,825 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-10] No static resource favicon.ico.
+2025-03-23 00:09:27,414 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-1] No static resource static/images/delete.png.
+2025-03-23 00:09:28,055 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-2] No static resource favicon.ico.
+2025-03-23 00:09:30,149 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-3] No static resource static/images/delete.png.
+2025-03-23 00:09:30,825 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource favicon.ico.
