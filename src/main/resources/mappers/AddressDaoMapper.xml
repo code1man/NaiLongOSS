@@ -63,5 +63,19 @@
         WHERE id = #{id}
     </update>
 
+    <select id="getAddressById" parameterType="int" resultType="org.csu.demo.domain.Address">
+        SELECT
+            id,
+            user_id,
+            province,
+            city,
+            district,
+            detail_address,
+            phone_number,
+            receiver_name,
+            is_default
+        FROM address
+        WHERE id = #{id}
+    </select>
 
 </mapper>
