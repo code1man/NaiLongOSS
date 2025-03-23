@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.csu.demo.domain.*;
 import org.csu.demo.persistence.BusinessDao;
 import org.csu.demo.persistence.mappers.AfterSaleMapper;
+import lombok.extern.log4j.Log4j2;
 import org.csu.demo.persistence.mappers.OrderMapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ import java.util.List;
 import java.util.Random;
 
 @Service("orderService")
+@Log4j2
+@MapperScan("org.csu.demo.persistence.mappers")
 @MapperScan("org.csu.demo.persistence")
 @SessionAttributes({"currentOrderList","currentOrder"})
 public class OrderService extends ServiceImpl<OrderMapper, Order> {
@@ -77,7 +80,7 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
             int remain = BusinessService.getItemCount(cartItem.getItemID());
             if(remain >= cartItem.getItemNum()){
                 //减少库存
-                 Item item = itemService.getTtemByItemId(cartItem.getItemID());
+                 Item item = itemService.getItemByItemId(cartItem.getItemID());
                 item.setRemainingNumb(remain-cartItem.getItemNum());
                 BusinessService.updateItem(item);
 
@@ -86,8 +89,6 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
                 int supplier = businessDao.getSupplierByItemId(cartItem.getItemID());
                 Order order = new Order(orderID, user.getId(), Integer.parseInt(address), cartItem.getItemID(), cartItem.getItemNum(), cartItem.getPrice()*cartItem.getItemNum(), supplier,
                         0, date, null, null, null, null, null, "",1);
-                AfterSale afterSale = new AfterSale(orderID, 0);
-                afterSaleMapper.insert(afterSale);
                 orderMapper.insert(order);
                 orderList.add(order);
             }
@@ -166,7 +167,7 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
             if(order.getStatus() == 0 && isOverTime(order.getCreate_time(),15)){
                 continue;
             }
-            Item item = itemService.getTtemByItemId(order.getItem_id());
+            Item item = itemService.getItemByItemId(order.getItem_id());
             OrderItem orderItem = new OrderItem(order.getOrder_id(),item.getId(), order.getAmount(), item.getName(), item.getUrl(), item.getPrice(), order.getClient(), order.getStatus());
             orderItems.add(orderItem);
         }
@@ -218,7 +219,7 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
             orderMapper.updateById(order);
 
             //更新库存
-            Item item = itemService.getTtemByItemId(order.getItem_id());
+            Item item = itemService.getItemByItemId(order.getItem_id());
             int remain = BusinessService.getItemCount(order.getItem_id());
             item.setRemainingNumb(remain+order.getAmount());
             BusinessService.updateItem(item);

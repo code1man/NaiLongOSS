@@ -113,6 +113,9 @@ $(function () {
                         } catch (error) {
                             console.error("删除失败", error);
                             alert("删除失败");
+                            currentCount++;
+                            currentCartListTotalCount++;
+                            currentCartListTotalPrice += ItemPrice;
                         }
                     } else {
                         itemCount.textContent = String(currentCount);

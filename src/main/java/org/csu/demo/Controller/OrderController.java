@@ -184,7 +184,7 @@ public class OrderController {
         Order order = orderService.getOrderByOrderId(orderId);
         //如果是主动取消订单，也需要返回库存
         if(nextStatus.equals("10")){
-            Item item = itemService.getTtemByItemId(order.getItem_id());
+            Item item = itemService.getItemByItemId(order.getItem_id());
 
             int remain = BusinessService.getItemCount(item.getId());
             item.setRemainingNumb(remain+order.getAmount());
