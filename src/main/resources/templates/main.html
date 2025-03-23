@@ -48,11 +48,11 @@
                         <i class="fa-solid fa-cart-shopping"></i>
                         购物车
                     </a>
-                    <a href="myOrder">我的订单</a>
                     <span th:if="${session.loginUser != null and session.cart != null}" id="topBarItemCount" class="cart-mini-num J_cartNum"
                           th:text="'(' + ${session.cart.totalCount} + ')'"></span>
                     <!-- 否则显示0 -->
                     <span th:unless="${session.loginUser != null and session.cart != null}" class="cart-mini-num">（0）</span>
+                    <span class="cart-mini-num J_cartNum"><a href="myOrder">我的订单</a></span>
                     <!-- 如果登录且购物车存在 -->
                     <div th:if="${session.loginUser != null and session.cart != null}">
                         <!-- 购物车 -->

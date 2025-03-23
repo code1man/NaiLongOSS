@@ -127,7 +127,7 @@ public class OrderService {
         orderList = getOrderListByClient(userid,identify);
         List<OrderItem> orderItems = new ArrayList<>();
         for(Order order : orderList){
-            Item item = itemService.getTtemByItemId(order.getItem_id());
+            Item item = itemService.getItemByItemId(order.getItem_id());
             OrderItem orderItem = new OrderItem(order.getOrder_id(),item.getId(), order.getAmount(), item.getName(), item.getUrl(), item.getPrice(), order.getClient(), order.getStatus());
             orderItems.add(orderItem);
         }

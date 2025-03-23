@@ -235,3 +235,15 @@ body {
     height: 80px;
     resize: vertical;
 }
+
+/* 限制动态模块样式作用域 */
+#dynamic-module-container {
+    isolation: isolate; /* 新建层叠上下文 */
+}
+
+/* 商品管理模块专属样式 */
+#dynamic-module-container .product-table {
+    --primary-color: #ff6b6b; /* 奶龙主题色 */
+    border-collapse: separate;
+    margin: 20px 0;
+}

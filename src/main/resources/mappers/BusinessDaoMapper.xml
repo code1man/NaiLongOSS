@@ -20,6 +20,19 @@
         FROM item i JOIN businessItemRemaining b ON i.id = b.itemId;
     </select>
 
+    <!-- 修改商品信息     这里写的可能有问题 -->
+    <update id="updateBusinessItemById"  parameterType="map">
+            UPDATE item i
+            INNER JOIN   businessItemRemaining b ON i.id=b.itemId
+            SET
+                 i.name = #{item.name},
+                 i.price = #{item.price},
+                i.url=#{item.url},
+                 b. RemaingNumb = #{item. remainingNumb}
+            WHERE i.id = #{productId}
+    </update>
+
+
 
     <!-- 根据 itemId 查询库存信息 -->
     <select id="getBusinessItemById" parameterType="int" resultMap="itemResultMap">

@@ -2,10 +2,8 @@ package org.csu.demo.Controller;
 
 import com.google.gson.Gson;
 import org.csu.demo.domain.Item;
-import org.csu.demo.domain.User;
 import org.csu.demo.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,7 +30,7 @@ public class MainController {
     @GetMapping("/ShoppingCart")
     public String addItemToCart(@RequestParam int itemId, Model model) {
         // 通过数据库找到对应商品
-        Item item = itemService.getTtemByItemId(itemId);
+        Item item = itemService.getItemByItemId(itemId);
         System.out.println(item);
         if (item == null) {
             return "redirect:/mainForm";

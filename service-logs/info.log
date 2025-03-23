@@ -1,30 +1,1246 @@
-2025-03-23 00:07:14,689 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 12924 (E:\IdeaProjects\NaiLongOSS\target\classes started by adolbook in E:\IdeaProjects\NaiLongOSS)
-2025-03-23 00:07:14,713 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2025-03-23 00:07:16,186 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
-2025-03-23 00:07:16,188 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2025-03-23 00:07:16,239 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 19 ms. Found 0 JDBC repository interfaces.
-2025-03-23 00:07:16,258 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
-2025-03-23 00:07:16,259 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-03-23 00:07:16,276 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces.
-2025-03-23 00:07:18,185 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2025-03-23 00:07:18,215 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2025-03-23 00:07:18,223 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
-2025-03-23 00:07:18,227 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-23 00:07:18,353 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2025-03-23 00:07:18,354 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3546 ms
-2025-03-23 00:07:18,573 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2025-03-23 00:07:19,311 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@654b899f
-2025-03-23 00:07:19,314 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2025-03-23 00:07:20,205 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-03-23 00:07:21,112 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-03-23 00:07:23,250 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2025-03-23 00:07:23,283 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
-2025-03-23 00:07:23,314 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 9.67 seconds (process running for 11.167)
-2025-03-23 00:07:59,807 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-23 00:07:59,807 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
-2025-03-23 00:07:59,811 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 3 ms
-2025-03-23 00:08:24,507 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-23 00:08:24,522 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
-2025-03-23 00:08:24,532 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-03-23 00:08:24,541 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-03-23 00:08:24,557 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:13:04,210 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 37800 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:13:04,227 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:13:04,946 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:13:04,948 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:13:04,969 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 9 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:13:04,978 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:13:04,980 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:13:04,990 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:13:05,864 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:13:05,877 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:13:05,879 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:13:05,879 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:13:05,963 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:13:05,964 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1693 ms
+2025-03-23 00:13:06,053 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:13:06,438 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@25e95af1
+2025-03-23 00:13:06,439 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:13:06,877 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:13:07,281 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:13:08,171 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:13:08,186 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:13:08,199 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 4.573 seconds (process running for 5.623)
+2025-03-23 00:13:15,000 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:13:15,001 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:13:15,002 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:17:37,879 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:17:37,883 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:17:37,887 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:17:37,889 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:17:37,893 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:17:40,359 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 33984 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:17:40,365 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:17:40,932 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:17:40,934 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:17:40,958 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 10 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:17:40,965 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:17:40,966 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:17:40,974 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:17:41,878 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:17:41,890 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:17:41,891 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:17:41,892 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:17:41,982 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:17:41,983 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1587 ms
+2025-03-23 00:17:42,045 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:17:42,286 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d2cb2d0
+2025-03-23 00:17:42,287 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:17:42,596 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:17:42,946 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:17:43,707 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:17:43,718 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:17:43,727 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.804 seconds (process running for 4.585)
+2025-03-23 00:17:47,068 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:17:47,068 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:17:47,069 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:22:33,896 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:22:33,900 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:22:33,903 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:22:33,910 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:22:33,914 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:22:37,820 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 38108 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:22:37,826 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:22:38,407 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:22:38,408 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:22:38,430 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 9 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:22:38,437 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:22:38,438 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:22:38,447 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:22:39,182 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:22:39,193 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:22:39,194 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:22:39,194 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:22:39,271 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:22:39,271 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1413 ms
+2025-03-23 00:22:39,338 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:22:39,573 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f122cdc
+2025-03-23 00:22:39,574 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:22:39,893 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:22:40,228 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:22:40,883 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:22:40,895 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:22:40,905 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.524 seconds (process running for 4.312)
+2025-03-23 00:22:40,993 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:22:40,993 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:22:40,994 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:24:56,542 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:24:56,546 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:24:56,550 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:24:56,552 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:24:56,556 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:25:00,623 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 35212 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:25:00,631 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:25:01,178 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:25:01,179 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:25:01,197 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:25:01,204 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:25:01,204 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:25:01,213 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:25:01,874 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:25:01,892 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:25:01,894 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:25:01,894 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:25:01,963 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:25:01,964 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1296 ms
+2025-03-23 00:25:02,026 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:25:02,295 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5876bed9
+2025-03-23 00:25:02,296 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:25:02,628 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:25:02,942 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:25:03,568 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:25:03,579 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:25:03,587 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.461 seconds (process running for 4.218)
+2025-03-23 00:25:03,622 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:25:03,622 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:25:03,623 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:26:39,755 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:26:39,759 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:26:39,763 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:26:39,765 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:26:39,768 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:26:43,547 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 25708 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:26:43,553 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:26:44,037 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:26:44,038 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:26:44,055 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:26:44,064 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:26:44,064 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:26:44,074 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:26:44,728 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:26:44,739 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:26:44,740 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:26:44,740 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:26:44,815 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:26:44,815 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1234 ms
+2025-03-23 00:26:44,874 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:26:45,131 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2e1ba142
+2025-03-23 00:26:45,132 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:26:45,446 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:26:45,794 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:26:46,434 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:26:46,445 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:26:46,454 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.317 seconds (process running for 4.074)
+2025-03-23 00:26:46,515 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:26:46,515 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:26:46,516 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:37:27,585 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:37:27,589 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:37:27,592 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:37:27,594 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:37:27,598 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:37:29,704 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 37576 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:37:29,710 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:37:30,178 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:37:30,180 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:37:30,198 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:37:30,206 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:37:30,207 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:37:30,215 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:37:30,838 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:37:30,848 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:37:30,849 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:37:30,849 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:37:30,913 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:37:30,913 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1178 ms
+2025-03-23 00:37:30,977 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:37:31,203 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@204b0f07
+2025-03-23 00:37:31,204 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:37:31,504 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:37:31,825 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:37:32,463 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:37:32,474 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:37:32,484 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.186 seconds (process running for 3.981)
+2025-03-23 00:37:37,000 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:37:37,000 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:37:37,001 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:38:04,119 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:38:04,123 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:38:04,126 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:38:04,129 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:38:04,131 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:38:06,793 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 15468 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:38:06,800 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:38:07,324 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:38:07,326 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:38:07,345 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:38:07,356 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:38:07,357 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:38:07,365 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:38:08,074 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:38:08,086 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:38:08,087 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:38:08,087 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:38:08,159 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:38:08,159 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1328 ms
+2025-03-23 00:38:08,218 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:38:08,458 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5876bed9
+2025-03-23 00:38:08,459 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:38:08,808 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:38:09,151 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:38:09,932 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:38:09,953 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:38:09,961 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.623 seconds (process running for 4.365)
+2025-03-23 00:38:11,979 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:38:11,980 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:38:11,981 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:39:47,439 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:39:47,443 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:39:47,447 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:39:47,449 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:39:47,452 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:40:03,163 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 21100 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:40:03,170 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:40:03,642 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:40:03,644 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:40:03,662 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:40:03,668 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:40:03,669 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:40:03,677 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:40:04,341 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:40:04,351 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:40:04,352 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:40:04,352 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:40:04,418 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:40:04,418 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1218 ms
+2025-03-23 00:40:04,467 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:40:04,685 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d2cb2d0
+2025-03-23 00:40:04,686 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:40:04,993 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:40:05,291 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:40:05,991 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:40:06,016 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:40:06,025 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.27 seconds (process running for 3.972)
+2025-03-23 00:40:07,962 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:40:07,962 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:40:07,964 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:41:31,215 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:41:31,219 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:41:31,223 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:41:31,224 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:41:31,228 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:41:33,551 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 16664 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:41:33,558 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:41:34,117 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:41:34,118 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:41:34,143 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 11 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:41:34,153 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:41:34,154 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:41:34,165 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:41:34,837 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:41:34,846 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:41:34,847 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:41:34,847 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:41:34,914 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:41:34,914 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1327 ms
+2025-03-23 00:41:34,983 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:41:35,186 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@563263a
+2025-03-23 00:41:35,187 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:41:35,484 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:41:35,816 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:41:36,487 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:41:36,498 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:41:36,506 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.381 seconds (process running for 4.245)
+2025-03-23 00:41:36,534 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:41:36,534 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:41:36,535 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:42:52,673 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:42:52,677 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:42:52,681 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:42:52,683 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:42:52,686 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:42:55,203 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 35888 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:42:55,209 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:42:55,694 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:42:55,694 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:42:55,712 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:42:55,720 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:42:55,721 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:42:55,729 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:42:56,398 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:42:56,412 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:42:56,413 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:42:56,414 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:42:56,481 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:42:56,482 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1247 ms
+2025-03-23 00:42:56,536 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:42:56,763 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7878bbdb
+2025-03-23 00:42:56,764 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:42:57,071 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:42:57,415 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:42:58,091 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:42:58,113 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:42:58,122 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.332 seconds (process running for 4.249)
+2025-03-23 00:42:58,231 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:42:58,231 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:42:58,232 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:44:02,705 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:44:02,709 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:44:02,713 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:44:02,715 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:44:02,718 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:44:05,044 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 4208 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:44:05,051 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:44:05,584 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:44:05,586 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:44:05,608 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 9 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:44:05,618 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:44:05,619 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:44:05,629 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:44:06,334 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:44:06,346 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:44:06,347 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:44:06,347 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:44:06,406 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:44:06,406 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1324 ms
+2025-03-23 00:44:06,472 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:44:06,720 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@25f7cc38
+2025-03-23 00:44:06,721 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:44:07,046 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:44:07,425 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:44:08,148 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:44:08,159 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:44:08,169 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.633 seconds (process running for 4.506)
+2025-03-23 00:44:08,197 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-6] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:44:08,197 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-6] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:44:08,198 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-6] Completed initialization in 1 ms
+2025-03-23 00:48:58,956 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:48:58,960 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:48:58,963 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:48:58,964 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:48:58,968 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:49:01,418 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 31060 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:49:01,425 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:49:01,883 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:49:01,884 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:49:01,902 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:49:01,909 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:49:01,910 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:49:01,917 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:49:02,538 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:49:02,547 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:49:02,548 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:49:02,548 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:49:02,611 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:49:02,611 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1156 ms
+2025-03-23 00:49:02,668 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:49:02,880 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@204b0f07
+2025-03-23 00:49:02,881 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:49:03,157 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:49:03,448 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:49:04,105 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:49:04,118 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:49:04,132 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.118 seconds (process running for 3.804)
+2025-03-23 00:49:09,669 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:49:09,669 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:49:09,670 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 00:58:22,066 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 00:58:22,070 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 00:58:22,074 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:58:22,076 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 00:58:22,081 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 00:58:24,621 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 19448 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 00:58:24,631 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 00:58:25,164 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:58:25,165 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 00:58:25,184 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 00:58:25,192 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 00:58:25,192 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 00:58:25,201 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 00:58:25,956 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 00:58:25,967 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:58:25,968 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 00:58:25,968 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 00:58:26,030 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 00:58:26,030 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1358 ms
+2025-03-23 00:58:26,094 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 00:58:26,394 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5876bed9
+2025-03-23 00:58:26,395 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 00:58:26,771 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 00:58:27,170 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 00:58:27,831 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 00:58:27,841 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 00:58:27,851 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.752 seconds (process running for 4.74)
+2025-03-23 00:58:28,082 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 00:58:28,082 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 00:58:28,083 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 01:01:07,205 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 01:01:07,213 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 01:01:07,220 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:01:07,224 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 01:01:07,231 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 01:02:26,534 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 26416 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:02:26,542 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:02:27,055 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:02:27,057 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:02:27,077 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:02:27,084 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:02:27,085 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:02:27,093 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:02:27,790 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 01:02:27,800 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:02:27,801 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 01:02:27,801 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 01:02:27,880 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 01:02:27,880 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1312 ms
+2025-03-23 01:02:27,942 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 01:02:28,180 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d2cb2d0
+2025-03-23 01:02:28,182 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 01:02:28,538 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 01:02:28,883 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:02:29,621 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:02:29,643 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 01:02:29,652 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.545 seconds (process running for 4.403)
+2025-03-23 01:02:31,539 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 01:02:31,539 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 01:02:31,540 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 01:07:52,676 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 01:07:52,679 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 01:07:52,682 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:07:52,684 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 01:07:52,688 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 01:07:54,842 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 15916 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:07:54,847 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:07:55,344 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:07:55,345 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:07:55,365 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 9 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:07:55,372 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:07:55,373 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:07:55,381 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:07:56,046 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 01:07:56,058 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:07:56,059 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 01:07:56,059 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 01:07:56,138 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 01:07:56,139 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1264 ms
+2025-03-23 01:07:56,203 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 01:07:56,443 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5e95b0ab
+2025-03-23 01:07:56,445 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 01:07:56,763 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 01:07:57,167 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:07:57,908 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:07:57,919 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 01:07:57,928 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.526 seconds (process running for 4.378)
+2025-03-23 01:07:58,969 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 01:07:58,969 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 01:07:58,970 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 01:09:30,080 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 01:09:30,083 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 01:09:30,087 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:09:30,089 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 01:09:30,093 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 01:09:33,352 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 18692 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:09:33,361 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:09:33,910 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:09:33,913 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:09:33,932 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 9 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:09:33,940 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:09:33,941 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:09:33,950 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:09:34,741 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 01:09:34,753 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:09:34,756 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 01:09:34,756 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 01:09:34,822 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 01:09:34,823 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1430 ms
+2025-03-23 01:09:34,894 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 01:09:35,187 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@25f14e93
+2025-03-23 01:09:35,188 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 01:09:35,573 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 01:09:35,994 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:09:36,769 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:09:36,780 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 01:09:36,791 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.891 seconds (process running for 5.28)
+2025-03-23 01:09:39,536 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 01:09:39,536 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 01:09:39,537 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 01:15:26,122 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 01:15:26,126 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 01:15:26,130 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:15:26,132 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 01:15:26,136 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 01:15:28,588 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 26204 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:15:28,595 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:15:29,259 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:15:29,261 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:15:29,283 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 10 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:15:29,290 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:15:29,291 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:15:29,300 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:15:30,090 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 01:15:30,102 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:15:30,103 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 01:15:30,103 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 01:15:30,174 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 01:15:30,174 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1540 ms
+2025-03-23 01:15:30,255 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 01:15:30,521 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@545f0b6
+2025-03-23 01:15:30,522 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 01:15:30,896 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 01:15:31,229 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:15:32,040 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:15:32,053 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 01:15:32,062 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.965 seconds (process running for 4.973)
+2025-03-23 01:15:32,115 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 01:15:32,115 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 01:15:32,116 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 01:21:17,642 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 01:21:17,645 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 01:21:17,649 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:21:17,651 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 01:21:17,655 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 01:45:57,351 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 25028 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:45:57,357 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:45:57,903 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:45:57,904 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:45:57,923 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 9 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:45:57,932 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:45:57,934 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:45:57,942 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:46:24,669 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 18064 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:46:24,675 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:46:25,141 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:46:25,142 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:46:25,158 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:46:25,165 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:46:25,166 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:46:25,174 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:49:15,196 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 28668 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:49:15,203 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:49:15,660 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:49:15,661 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:49:15,678 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:49:15,684 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:49:15,685 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:49:15,692 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:49:16,287 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 01:49:16,298 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:49:16,299 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 01:49:16,299 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 01:49:16,361 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 01:49:16,362 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1134 ms
+2025-03-23 01:49:16,421 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 01:49:16,687 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@23d0944b
+2025-03-23 01:49:16,688 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 01:49:17,031 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 01:49:17,379 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:49:18,028 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:49:18,046 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 01:49:18,056 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.254 seconds (process running for 3.9)
+2025-03-23 01:49:20,037 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 01:49:20,037 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 01:49:20,038 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 01:50:18,010 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 01:50:18,016 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 01:50:18,022 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:50:18,026 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 01:50:18,031 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 01:50:25,911 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 4012 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:50:25,918 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:50:26,495 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:50:26,496 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:50:26,515 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:50:26,531 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:50:26,533 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:50:26,543 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:50:27,282 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 01:50:27,297 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:50:27,298 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 01:50:27,298 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 01:50:27,372 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 01:50:27,372 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1424 ms
+2025-03-23 01:50:27,446 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 01:50:27,736 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7747cc1b
+2025-03-23 01:50:27,738 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 01:50:28,103 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 01:50:28,453 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:50:29,227 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:50:29,239 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 01:50:29,248 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.765 seconds (process running for 4.744)
+2025-03-23 01:50:29,285 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 01:50:29,286 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 01:50:29,287 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2025-03-23 01:51:39,047 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 01:51:39,051 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 01:51:39,055 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:51:39,057 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 01:51:39,061 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 01:51:42,191 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 26516 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:51:42,197 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:51:42,732 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:51:42,734 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:51:42,751 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:51:42,760 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:51:42,761 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:51:42,769 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:51:43,381 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 01:51:43,392 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:51:43,393 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 01:51:43,393 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 01:51:43,458 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 01:51:43,458 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1231 ms
+2025-03-23 01:51:43,525 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 01:51:43,780 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5b7ee56c
+2025-03-23 01:51:43,781 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 01:51:44,073 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 01:51:44,411 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:51:45,195 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:51:45,205 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 01:51:45,215 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.425 seconds (process running for 4.21)
+2025-03-23 01:51:45,365 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 01:51:45,365 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 01:51:45,366 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 01:52:18,718 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 01:52:18,721 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 01:52:18,725 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:52:18,727 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 01:52:18,729 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 01:52:25,813 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 536 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:52:25,820 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:52:26,388 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:52:26,389 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:52:26,407 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:52:26,415 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:52:26,415 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:52:26,424 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:52:27,086 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 01:52:27,102 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:52:27,104 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 01:52:27,104 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 01:52:27,175 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 01:52:27,176 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1321 ms
+2025-03-23 01:52:27,234 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 01:52:27,488 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b4fd7d
+2025-03-23 01:52:27,490 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 01:52:27,846 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 01:52:28,204 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:52:28,960 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:52:28,972 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 01:52:28,980 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.592 seconds (process running for 4.402)
+2025-03-23 01:52:30,578 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 01:52:30,578 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 01:52:30,579 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 01:54:57,331 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 01:54:57,334 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 01:54:57,338 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:54:57,340 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 01:54:57,343 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 01:54:59,656 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 22352 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 01:54:59,663 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 01:55:00,233 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:55:00,235 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 01:55:00,253 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 01:55:00,261 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 01:55:00,262 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 01:55:00,271 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 01:55:00,935 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 01:55:00,946 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:55:00,947 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 01:55:00,947 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 01:55:01,009 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 01:55:01,009 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1312 ms
+2025-03-23 01:55:01,076 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 01:55:01,372 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7404aff2
+2025-03-23 01:55:01,373 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 01:55:01,730 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 01:55:02,142 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 01:55:02,940 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 01:55:02,952 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 01:55:02,963 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.764 seconds (process running for 4.673)
+2025-03-23 01:55:03,114 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 01:55:03,114 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 01:55:03,116 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2025-03-23 02:00:52,327 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:00:52,331 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:00:52,345 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:00:52,347 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:00:52,350 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:00:54,736 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 17084 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:00:54,743 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:00:55,267 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:00:55,268 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:00:55,287 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:00:55,294 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:00:55,295 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:00:55,304 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:00:55,965 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:00:55,979 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:00:55,980 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:00:55,980 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:00:56,056 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:00:56,056 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1283 ms
+2025-03-23 02:00:56,119 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:00:56,380 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e8afc2d
+2025-03-23 02:00:56,381 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:00:56,711 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:00:57,035 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:00:57,763 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:00:57,776 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:00:57,785 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.495 seconds (process running for 4.529)
+2025-03-23 02:00:59,031 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:00:59,031 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:00:59,032 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:03:31,763 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:03:31,767 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:03:31,770 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:03:31,772 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:03:31,776 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:03:34,270 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 12612 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:03:34,279 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:03:34,792 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:03:34,794 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:03:34,812 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:03:34,820 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:03:34,820 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:03:34,829 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:03:35,479 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:03:35,491 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:03:35,493 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:03:35,493 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:03:35,562 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:03:35,562 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1253 ms
+2025-03-23 02:03:35,624 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:03:35,887 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d7f7962
+2025-03-23 02:03:35,888 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:03:36,219 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:03:36,542 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:03:37,277 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:03:37,290 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:03:37,300 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.497 seconds (process running for 4.543)
+2025-03-23 02:03:37,336 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:03:37,336 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:03:37,337 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:05:01,726 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:05:01,733 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:05:01,740 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:05:01,743 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:05:01,750 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:05:04,565 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 25624 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:05:04,571 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:05:05,055 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:05:05,056 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:05:05,073 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:05:05,080 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:05:05,081 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:05:05,089 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:05:05,685 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:05:05,700 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:05:05,702 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:05:05,702 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:05:05,774 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:05:05,774 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1175 ms
+2025-03-23 02:05:05,844 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:05:06,096 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b4fd7d
+2025-03-23 02:05:06,097 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:05:06,464 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:05:06,788 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:05:07,491 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:05:07,501 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:05:07,510 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.342 seconds (process running for 4.334)
+2025-03-23 02:05:07,594 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:05:07,595 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:05:07,596 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:05:24,918 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:05:24,921 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:05:24,925 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:05:24,927 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:05:24,929 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:05:27,255 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 24304 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:05:27,261 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:05:27,793 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:05:27,794 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:05:27,812 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:05:27,819 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:05:27,820 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:05:27,836 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:05:28,490 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:05:28,503 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:05:28,504 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:05:28,504 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:05:28,573 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:05:28,573 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1283 ms
+2025-03-23 02:05:28,632 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:05:28,916 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@12723c5d
+2025-03-23 02:05:28,917 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:05:29,237 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:05:29,554 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:05:30,313 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:05:30,324 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:05:30,334 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.498 seconds (process running for 4.405)
+2025-03-23 02:05:30,449 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:05:30,449 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:05:30,450 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:12:18,497 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:12:18,501 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:12:18,505 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:12:18,507 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:12:18,511 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:12:21,052 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 17932 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:12:21,059 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:12:21,754 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:12:21,755 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:12:21,779 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 9 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:12:21,788 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:12:21,789 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:12:21,798 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:12:22,533 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:12:22,546 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:12:22,548 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:12:22,548 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:12:22,614 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:12:22,615 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1524 ms
+2025-03-23 02:12:22,683 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:12:22,935 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b4fd7d
+2025-03-23 02:12:22,936 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:12:23,257 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:12:23,604 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:12:24,346 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:12:24,358 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:12:24,366 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.772 seconds (process running for 4.742)
+2025-03-23 02:12:24,481 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:12:24,481 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:12:24,482 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:12:52,126 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:12:52,130 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:12:52,135 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:12:52,136 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:12:52,140 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:12:55,059 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 36160 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:12:55,065 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:12:55,644 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:12:55,646 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:12:55,666 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:12:55,673 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:12:55,674 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:12:55,682 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:12:56,463 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:12:56,477 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:12:56,479 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:12:56,479 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:12:56,557 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:12:56,559 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1461 ms
+2025-03-23 02:12:56,634 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:12:56,901 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@77476fcf
+2025-03-23 02:12:56,902 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:12:57,233 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:12:57,588 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:12:58,345 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:12:58,358 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:12:58,368 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.774 seconds (process running for 4.711)
+2025-03-23 02:12:58,497 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:12:58,498 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:12:58,499 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:16:23,897 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:16:23,901 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:16:23,905 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:16:23,908 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:16:23,912 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:16:26,235 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 27592 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:16:26,242 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:16:26,747 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:16:26,748 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:16:26,766 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:16:26,773 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:16:26,774 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:16:26,782 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:16:27,478 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:16:27,492 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:16:27,493 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:16:27,493 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:16:27,589 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:16:27,589 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1319 ms
+2025-03-23 02:16:27,675 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:16:27,957 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@70805849
+2025-03-23 02:16:27,958 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:16:28,298 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:16:28,641 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:16:29,408 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:16:29,421 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:16:29,430 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.608 seconds (process running for 4.543)
+2025-03-23 02:16:29,511 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:16:29,511 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:16:29,512 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:20:10,393 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:20:10,397 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:20:10,401 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:20:10,402 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:20:10,407 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:20:12,893 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 33628 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:20:12,900 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:20:13,482 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:20:13,484 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:20:13,502 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:20:13,515 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:20:13,517 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:20:13,528 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:20:14,269 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:20:14,285 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:20:14,286 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:20:14,286 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:20:14,362 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:20:14,363 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1432 ms
+2025-03-23 02:20:14,424 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:20:14,695 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@77476fcf
+2025-03-23 02:20:14,696 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:20:15,075 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:20:15,449 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:20:16,255 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:20:16,277 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:20:16,286 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.823 seconds (process running for 4.796)
+2025-03-23 02:20:16,359 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:20:16,360 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:20:16,361 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:21:20,974 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:21:20,976 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:21:20,980 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:21:20,982 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:21:20,985 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:21:24,031 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 8492 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:21:24,038 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:21:24,516 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:21:24,517 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:21:24,535 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:21:24,544 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:21:24,544 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:21:24,552 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:21:25,163 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:21:25,176 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:21:25,177 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:21:25,177 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:21:25,243 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:21:25,243 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1175 ms
+2025-03-23 02:21:25,311 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:21:25,544 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2f99d8c
+2025-03-23 02:21:25,545 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:21:25,904 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:21:26,277 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:21:26,991 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:21:27,002 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:21:27,012 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.391 seconds (process running for 4.093)
+2025-03-23 02:21:27,230 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:21:27,231 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:21:27,232 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:25:32,122 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:25:32,125 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:25:32,129 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:25:32,131 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:25:32,134 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:25:34,254 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 3548 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:25:34,260 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:25:34,740 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:25:34,741 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:25:34,759 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:25:34,765 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:25:34,766 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:25:34,773 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:25:35,426 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:25:35,437 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:25:35,439 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:25:35,439 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:25:35,495 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:25:35,495 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1208 ms
+2025-03-23 02:25:35,551 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:25:35,773 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e5c5e6
+2025-03-23 02:25:35,774 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:25:36,057 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:25:36,400 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:25:37,141 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:25:37,151 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:25:37,160 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.339 seconds (process running for 4.075)
+2025-03-23 02:25:38,009 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:25:38,009 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:25:38,010 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:27:38,874 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:27:38,878 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:27:38,882 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:27:38,883 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:27:38,887 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 02:27:40,996 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 11460 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 02:27:41,002 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 02:27:41,520 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:27:41,521 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 02:27:41,540 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 02:27:41,549 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 02:27:41,550 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 02:27:41,559 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 02:27:42,155 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 02:27:42,164 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:27:42,165 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 02:27:42,165 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 02:27:42,228 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 02:27:42,229 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1198 ms
+2025-03-23 02:27:42,285 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 02:27:42,522 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@21abda60
+2025-03-23 02:27:42,523 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 02:27:42,814 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 02:27:43,153 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:27:43,827 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 02:27:43,838 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 02:27:43,846 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.294 seconds (process running for 4.085)
+2025-03-23 02:27:44,034 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 02:27:44,034 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 02:27:44,035 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 02:32:23,667 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 02:32:23,673 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 02:32:23,680 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 02:32:23,685 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 02:32:23,692 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 10:41:30,251 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 9612 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 10:41:30,258 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 10:41:30,872 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 10:41:30,873 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 10:41:30,893 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 10:41:30,900 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 10:41:30,901 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 10:41:30,911 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 10:41:31,617 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 10:41:31,632 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 10:41:31,634 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 10:41:31,634 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 10:41:31,707 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 10:41:31,707 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1418 ms
+2025-03-23 10:41:31,772 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 10:41:32,067 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1fb71788
+2025-03-23 10:41:32,068 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 10:41:32,436 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 10:41:32,830 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 10:41:33,596 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 10:41:33,608 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 10:41:33,618 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.848 seconds (process running for 4.741)
+2025-03-23 10:41:47,181 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 10:41:47,181 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 10:41:47,185 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 4 ms
+2025-03-23 10:54:02,149 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 10:54:02,153 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 10:54:02,157 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 10:54:02,159 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 10:54:02,163 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 10:59:24,037 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 18548 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 10:59:24,043 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 10:59:24,547 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 10:59:24,548 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 10:59:24,567 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 10:59:24,575 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 10:59:24,576 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 10:59:24,583 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 10:59:25,265 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 10:59:25,277 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 10:59:25,279 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 10:59:25,279 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 10:59:25,344 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 10:59:25,344 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1274 ms
+2025-03-23 10:59:25,406 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 10:59:25,687 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@79295932
+2025-03-23 10:59:25,688 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 10:59:26,038 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 10:59:26,409 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 10:59:27,085 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 10:59:27,097 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 10:59:27,106 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.504 seconds (process running for 4.245)
+2025-03-23 10:59:32,464 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 10:59:32,464 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 10:59:32,465 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 11:00:32,060 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 11:00:32,063 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 11:00:32,067 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 11:00:32,068 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 11:00:32,071 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 11:45:25,389 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 30512 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 11:45:25,395 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 11:45:25,960 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 11:45:25,961 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 11:45:25,981 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 11:45:25,990 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 11:45:25,991 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 11:45:25,999 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 11:45:26,690 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 11:45:26,702 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 11:45:26,704 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 11:45:26,704 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 11:45:26,777 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 11:45:26,777 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1353 ms
+2025-03-23 11:45:26,842 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 11:45:27,139 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@79295932
+2025-03-23 11:45:27,140 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 11:45:27,527 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 11:45:27,891 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 11:45:28,636 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 11:45:28,648 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 11:45:28,657 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.731 seconds (process running for 4.58)
+2025-03-23 11:47:20,135 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 11:47:20,135 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 11:47:20,138 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2025-03-23 11:52:24,338 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 11:52:24,348 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 11:52:24,356 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 11:52:24,360 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 11:52:24,367 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 11:52:30,131 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 37792 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 11:52:30,136 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 11:52:30,615 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 11:52:30,616 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 11:52:30,635 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 11:52:30,641 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 11:52:30,642 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 11:52:30,650 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2025-03-23 11:52:31,294 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 11:52:31,305 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 11:52:31,306 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 11:52:31,306 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 11:52:31,371 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 11:52:31,372 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1208 ms
+2025-03-23 11:52:31,442 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 11:52:31,658 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2cadcff6
+2025-03-23 11:52:31,659 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 11:52:31,935 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 11:52:32,238 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 11:52:32,948 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 11:52:32,960 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 11:52:32,969 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.245 seconds (process running for 3.914)
+2025-03-23 11:52:33,502 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 11:52:33,502 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 11:52:33,503 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 11:54:24,695 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 11:54:24,699 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 11:54:24,702 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 11:54:24,704 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 11:54:24,708 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 11:54:26,743 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 3152 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 11:54:26,748 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 11:54:27,285 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 11:54:27,286 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 11:54:27,304 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 11:54:27,311 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 11:54:27,311 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 11:54:27,319 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 11:54:27,990 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 11:54:28,002 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 11:54:28,004 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 11:54:28,004 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 11:54:28,064 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 11:54:28,065 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1283 ms
+2025-03-23 11:54:28,118 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 11:54:28,333 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@45e639ee
+2025-03-23 11:54:28,334 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 11:54:28,617 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 11:54:28,905 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 11:54:29,504 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 11:54:29,514 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 11:54:29,527 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.213 seconds (process running for 3.96)
+2025-03-23 11:54:29,731 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 11:54:29,732 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 11:54:29,733 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2025-03-23 11:56:45,892 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 11:56:45,898 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 11:56:45,904 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 11:56:45,907 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 11:56:45,914 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 11:56:50,148 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 21304 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 11:56:50,154 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 11:56:50,653 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 11:56:50,654 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 11:56:50,675 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2025-03-23 11:56:50,683 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 11:56:50,684 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 11:56:50,693 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 11:56:51,310 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 11:56:51,320 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 11:56:51,322 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 11:56:51,322 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 11:56:51,382 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 11:56:51,382 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1200 ms
+2025-03-23 11:56:51,448 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 11:56:51,674 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5f20b6fe
+2025-03-23 11:56:51,676 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 11:56:51,983 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 11:56:52,301 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 11:56:52,996 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 11:56:53,008 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 11:56:53,017 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.279 seconds (process running for 3.961)
+2025-03-23 11:56:55,903 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 11:56:55,903 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 11:56:55,904 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 12:01:01,981 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 12:01:01,985 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 12:01:01,988 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 12:01:01,990 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 12:01:01,993 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 12:01:04,143 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 34072 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 12:01:04,149 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 12:01:04,637 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 12:01:04,638 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 12:01:04,656 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 12:01:04,663 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 12:01:04,664 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 12:01:04,674 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 12:01:05,290 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 12:01:05,302 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 12:01:05,303 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 12:01:05,303 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 12:01:05,368 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 12:01:05,368 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1191 ms
+2025-03-23 12:01:05,427 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 12:01:05,656 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@65d7eea4
+2025-03-23 12:01:05,657 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 12:01:05,951 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 12:01:06,276 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 12:01:06,963 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 12:01:06,974 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 12:01:06,983 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.262 seconds (process running for 3.981)
+2025-03-23 12:01:11,340 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 12:01:11,341 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 12:01:11,342 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 12:02:59,913 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 12:02:59,915 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 12:02:59,922 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 12:02:59,925 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 12:02:59,928 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-03-23 12:03:01,986 INFO org.springframework.boot.StartupInfoLogger [main] Starting NaiLongApplication using Java 21.0.3 with PID 7576 (C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS\target\classes started by 28926 in C:\Users\28926\IdeaProjects\NaiLong\NaiLongOSS)
+2025-03-23 12:03:01,990 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-03-23 12:03:02,479 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 12:03:02,481 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-23 12:03:02,499 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2025-03-23 12:03:02,506 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-23 12:03:02,506 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-23 12:03:02,514 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-03-23 12:03:03,207 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-03-23 12:03:03,222 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2025-03-23 12:03:03,223 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2025-03-23 12:03:03,223 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-23 12:03:03,303 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2025-03-23 12:03:03,303 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1284 ms
+2025-03-23 12:03:03,374 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-03-23 12:03:03,669 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@49d543a9
+2025-03-23 12:03:03,670 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-03-23 12:03:04,062 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-23 12:03:04,431 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 12:03:05,089 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2025-03-23 12:03:05,100 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-03-23 12:03:05,113 INFO org.springframework.boot.StartupInfoLogger [main] Started NaiLongApplication in 3.584 seconds (process running for 4.336)
+2025-03-23 12:03:05,304 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-23 12:03:05,304 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2025-03-23 12:03:05,305 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2025-03-23 12:07:48,386 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-23 12:07:48,392 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-03-23 12:07:48,398 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-23 12:07:48,401 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-03-23 12:07:48,406 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

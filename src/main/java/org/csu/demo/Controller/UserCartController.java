@@ -59,7 +59,7 @@ public class UserCartController {
                                                 @SessionAttribute("cart") Cart cart,
                                                 @SessionAttribute(name = "loginUser", required = false) User user, Model model) {
         // 获取商品
-        Item item = itemService.getTtemByItemId(itemId);
+        Item item = itemService.getItemByItemId(itemId);
         if (item == null) {
             return ResponseEntity.badRequest().body("商品信息错误或缺失");
         }
