@@ -20,5 +20,8 @@ public interface ItemDao {
     // 删除库存记录
     int deleteItem(int itemId);
 
+    // 获取item id
+    int getItemId(String itemName);
+
     List<Item> SearchItems(String keyword);
 }
