@@ -24,12 +24,13 @@ public class ProductManageController {
     private ItemService itemService;
     @Autowired
     private BusinessService businessService;
+
     @Autowired
     private ProductService productService;
 
     @GetMapping("/ProductManage")
     public String productsPage() {
-        return "ProductManage";
+        return "ProductManage :: content";
     }
 
     // 数据接口（处理前端表格请求）
@@ -81,6 +82,7 @@ public class ProductManageController {
                 String imagePath = saveUploadedFile(imageFile);
                 item.setUrl(imagePath);
                 System.out.println("✅ 收到编辑商品详情请求，:2 ");
+
             }
             System.out.println("✅ 收到编辑商品详情请求，:2.1 ");
             // 3. 调用 Service 层更新数据
