@@ -118,7 +118,7 @@ WHERE responsibility = '商家';
     <update id="unfreezeUser" parameterType="int">
         UPDATE user_status 
         SET is_frozen = 0,
-            frozen_reason = NULL
+            frozen_reason = ' '
         WHERE id = #{id}
     </update>
 
