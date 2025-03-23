@@ -54,7 +54,6 @@ class NaiLongApplicationTests {
     @Test
     void test1(){
         System.out.println(productService.getProductIdByName("奶龙唐唐表情包"));
-
     }
 
     @Test

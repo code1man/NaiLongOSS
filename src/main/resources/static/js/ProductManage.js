@@ -445,11 +445,10 @@ async function submitProductForm() {
     formData.append('subcategoryName', subcategoryName); // 确保名称匹配后端
     formData.append('description', document.getElementById('productDescription').value);
     formData.append('stock', document.getElementById('productStock').value);
+    console.log(formData)
     // 获取并转换价格
     const priceInput = document.getElementById('productPrice').value;
     formData.append('price', parseInt(priceInput, 10));  // 添加整数到表单数据
-
-    console.log(formData);
 
     try {
         // 提交更新
