@@ -23,9 +23,11 @@ public class ProductManageController {
     private ItemService itemService;
     @Autowired
     private BusinessService businessService;
+
+    
     @GetMapping("/ProductManage")
     public String productsPage() {
-        return "ProductManage";
+        return "ProductManage :: content";
     }
 
     // 数据接口（处理前端表格请求）

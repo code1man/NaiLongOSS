@@ -5,6 +5,7 @@
     <title>奶龙商店 - 用户管理</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/UserManage.css">
+    <link rel="stylesheet" href="/css/ProductManage.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -26,6 +27,7 @@
         <ul class="nav-tabs">
             <li class="nav-item active" onclick="switchTab('users')">🐉 普通用户</li>
             <li class="nav-item" onclick="switchTab('merchants')">🏪 商家管理</li>
+            <li class="nav-item" onclick="switchTab('product')">🏪 商品管理</li>
         </ul>
     </div>
 
@@ -92,8 +94,11 @@
                 </tbody>
             </table>
         </div>
+        <div id="dynamic-module-container"></div>
     </div>
 </div>
+
+
 
 <div class="mouse-follow-icon" id="mouse-follow-icon"
      style="display: inline-flex; align-items: center; justify-content: center;">
