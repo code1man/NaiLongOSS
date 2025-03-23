@@ -1,134 +1,212 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>奶龙商店 - 用户管理</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/UserManage.css">
-    <link rel="stylesheet" href="/css/ProductManage.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>用户管理 - 奶龙商店</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/UserManage.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
-<div class="admin-container">
-    <!-- 左侧导航 -->
-    <div class="admin-sidebar">
-        <div class="sidebar-logo">
-            <a href="https://www.bilibili.com/bangumi/play/ep453031"
-               title="奶龙动画"
-               class="logo ir"
-               style="display: block;
-                          background: url(/images/Logo.png) no-repeat center;
-                          background-size: 56px;
-                          height: 80px;
-                          margin: 20px auto;
-                          width: 80px"></a>
+    <div class="admin-container">
+        <!-- 左侧导航栏 -->
+        <div class="admin-sidebar">
+            <div class="sidebar-logo">
+                <img th:src="@{/images/logo.png}" alt="Logo" style="width: 80px;">
+            </div>
+            <ul class="nav-tabs">
+                <li class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i> 仪表盘
+                </li>
+                <li class="nav-item" data-section="users">
+                    <i class="fas fa-users"></i> 用户管理
+                </li>
+                <li class="nav-item" data-section="merchants">
+                    <i class="fas fa-store"></i> 商家管理
+                </li>
+                <li class="nav-item" data-section="status">
+                    <i class="fas fa-user-clock"></i> 状态管理
+                </li>
+            </ul>
         </div>
-        <ul class="nav-tabs">
-            <li class="nav-item active" onclick="switchTab('users')">🐉 普通用户</li>
-            <li class="nav-item" onclick="switchTab('merchants')">🏪 商家管理</li>
-            <li class="nav-item" onclick="switchTab('product')">🏪 商品管理</li>
-        </ul>
-    </div>
 
-    <!-- 右侧内容 -->
-    <div class="admin-content">
-        <!-- 普通用户管理 -->
-        <div id="users-section">
-            <h2>🥛 普通用户管理</h2>
-            <table class="user-table">
-                <thead>
-                <tr>
-                    <th>状态</th>
-                    <th>用户名</th>
-                    <th>年龄</th>
-                    <th>邮箱</th>
-                    <th>注册时间</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td style="text-align: center;">
-                        <span class="status online">🐾 在线</span>
-                    </td>
-                    <td style="text-align: center;">奶龙小粉丝</td>
-                    <td style="text-align: center;">19</td>
-                    <td class="mail-number" style="text-align: center;">nailong@love.com</td>
-                    <td style="text-align: center;">2024-02-30</td>
-                    <td style="text-align: center;">
-                        <div class="btn-group">
-                            <button class="btn btn-freeze" onclick="freezeAccount('user123')">❄️ 冻结</button>
-                            <button class="btn btn-reset" onclick="resetPassword('user123')">🔑 重置</button>
+        <!-- 右侧内容区 -->
+        <div class="admin-content">
+            <!-- 仪表盘部分 -->
+            <div id="dashboard-section" class="section">
+                <h2>系统概览</h2>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3>总用户数</h3>
+                            <p id="totalUsers">加载中...</p>
                         </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user-clock"></i>
+                        <div class="stat-info">
+                            <h3>在线用户</h3>
+                            <p id="onlineUsers">加载中...</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user-slash"></i>
+                        <div class="stat-info">
+                            <h3>冻结用户</h3>
+                            <p id="frozenUsers">加载中...</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-store"></i>
+                        <div class="stat-info">
+                            <h3>商家数量</h3>
+                            <p id="totalMerchants">加载中...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 用户管理部分 -->
+            <div id="users-section" class="section" style="display: none;">
+                <div class="section-header">
+                    <h2>用户管理</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchUser" placeholder="搜索用户...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>状态</th>
+                                <th>用户名</th>
+                                <th>年龄</th>
+                                <th>邮箱</th>
+                                <th>注册时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <!-- 用户数据将通过JavaScript动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 商家管理部分 -->
+            <div id="merchants-section" class="section" style="display: none;">
+                <h2>商家管理</h2>
+                <div class="table-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>商家ID</th>
+                                <th>商家名称</th>
+                                <th>信用分</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="merchantTableBody">
+                            <!-- 商家数据将通过JavaScript动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 状态管理部分 -->
+            <div id="status-section" class="section" style="display: none;">
+                <h2>状态管理</h2>
+                <div class="status-tabs">
+                    <button class="status-tab active" data-status="online">在线用户</button>
+                    <button class="status-tab" data-status="offline">离线用户</button>
+                    <button class="status-tab" data-status="frozen">冻结用户</button>
+                </div>
+                <div class="table-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>用户名</th>
+                                <th>状态</th>
+                                <th>最后活跃时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="statusTableBody">
+                            <!-- 状态数据将通过JavaScript动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- 商家管理 -->
-        <div id="merchants-section" style="display: none;">
-            <h2>🛍️ 商家管理</h2>
-            <table class="user-table">
-                <thead>
-                <tr>
-                    <th>积分</th>
-                    <th>商家名称</th>
-                    <th>商品数量</th>
-                    <th>具体商品</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><div class="rating-stars">★★★★☆</div></td>
-                    <td style="text-align: center;">奶龙宇宙旗舰店</td>
-                    <td style="text-align: center;">99+</td>
-                    <td style="text-align: center;">奶龙表情包</td>
-                    <td style="text-align: center;">
-                        <button  class="btn btn-freeze" onclick="freezeAccount('merchant1')">❄️ 冻结</button>
-                        <button class="btn btn-reset" onclick="resetPassword('merchant1')">🔑 重置</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <!-- 冻结账户模态框 -->
+    <div id="freezeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>冻结账户</h3>
+            <p>请选择冻结原因：</p>
+            <select id="freezeReason" class="reason-select">
+                <option value="违规行为">违规行为</option>
+                <option value="恶意操作">恶意操作</option>
+                <option value="其他原因">其他原因</option>
+            </select>
+            <p>或输入自定义原因：</p>
+            <textarea id="customReason" class="reason-textarea" placeholder="请输入自定义原因..."></textarea>
+            <button class="btn btn-freeze" onclick="confirmFreeze()">确认冻结</button>
         </div>
-        <div id="dynamic-module-container"></div>
     </div>
-</div>
 
-
-
-<div class="mouse-follow-icon" id="mouse-follow-icon"
-     style="display: inline-flex; align-items: center; justify-content: center;">
-    <img src="/images/cursor.gif" alt="跟随鼠标的GIF"/>
-</div>
-
-<div class="back-to-main">
-    <a th:href="@{/main}" class="btn-main">
-        🏠 返回主页
-    </a>
-</div>
-<!-- 冻结原因模态框 -->
-<div id="freezeModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h3>❄️ 冻结账户</h3>
-        <select id="freezeReason" class="reason-select">
-            <option value="违规操作">违规操作</option>
-            <option value="异常登录">异常登录</option>
-            <option value="虚假信息">虚假信息</option>
-            <option value="其他原因">其他原因</option>
-        </select>
-        <textarea id="customReason" placeholder="自定义原因（可选）" class="reason-textarea"></textarea>
-        <button onclick="confirmFreeze()" class="btn btn-freeze">确认冻结</button>
+    <!-- 信用分调整模态框 -->
+    <div id="creditModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>调整信用分</h3>
+            <div class="credit-form">
+                <div class="merchant-info">
+                    <p>商家ID: <span id="merchantId"></span></p>
+                    <p>当前信用分: <span id="currentCredit"></span></p>
+                </div>
+                <div class="credit-actions">
+                    <div class="credit-action">
+                        <label>增加信用分</label>
+                        <input type="number" id="increaseAmount" min="1" placeholder="请输入增加的信用分">
+                        <button class="btn btn-increase" onclick="confirmIncrease()">
+                            <i class="fas fa-plus"></i> 增加
+                        </button>
+                    </div>
+                    <div class="credit-action">
+                        <label>减少信用分</label>
+                        <input type="number" id="decreaseAmount" min="1" placeholder="请输入减少的信用分">
+                        <button class="btn btn-decrease" onclick="confirmDecrease()">
+                            <i class="fas fa-minus"></i> 减少
+                        </button>
+                    </div>
+                </div>
+                <div class="reason-section">
+                    <label>调整原因</label>
+                    <textarea id="creditReason" class="reason-textarea" placeholder="请输入调整原因..."></textarea>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+    <!-- 返回主页按钮 -->
+    <div class="back-to-main">
+        <a href="/" class="btn-main">
+            <i class="fas fa-home"></i> 返回主页
+        </a>
+    </div>
+
+    <!-- 鼠标跟随图标 -->
+    <div class="mouse-follow-icon">
+        <img th:src="@{/images/cursor.png}" alt="Cursor">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/userManage.js}"></script>
 </body>
-<script src="/js/cursorFollow.js"></script>
-<script src="/js/switchTab.js"></script>
-<script src="/js/freezeAccount.js"></script>
-<script src="/js/resetPassword.js"></script>
-
 </html>
