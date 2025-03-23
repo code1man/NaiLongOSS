@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpSession;
 import org.csu.demo.domain.*;
 import org.csu.demo.persistence.AddressDao;
 import org.csu.demo.persistence.UserDao;
+import org.csu.demo.service.BusinessService;
 import org.csu.demo.service.ItemService;
 import org.csu.demo.service.OrderService;
 import org.csu.demo.service.UserService;
@@ -23,7 +24,6 @@ import java.util.Map;
 @SessionAttributes({"loginUser","addressList","item","AddressMsg","cart","totalAmount","orderList","currentOrderList","currentOrder"})
 public class OrderController {
 
-
     private final AddressDao addressDao;
 
     @Autowired
@@ -31,6 +31,9 @@ public class OrderController {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private BusinessService BusinessService;
 
     @Autowired
     public OrderController(AddressDao addressDao, UserService userService, UserDao userDao) {
@@ -90,10 +93,10 @@ public class OrderController {
     // 处理提交购物车订单，清楚购物车数据
     @PostMapping("/CartHandler")
     @ResponseBody
-    public String CartHandler(@RequestParam("address") String addressID, @ModelAttribute("loginUser")User user,@ModelAttribute("cart")Cart cart, Model model) {
+    public String CartHandler(HttpSession session,@RequestParam("address") String addressID, @ModelAttribute("loginUser")User user,@ModelAttribute("cart")Cart cart, Model model) {
        //
          // 清空购物车逻辑
-
+        session.removeAttribute("cart");
         //增加新订单
         List<CartItem> cartItems = cart.getItemList();
         if(orderService.addNewOrder(user, addressID, cartItems,model)){
@@ -152,10 +155,12 @@ public class OrderController {
         return "MyOrder";
     }
 
+
+    //以下是状态转换，感觉可以统一起来
     //处理整个购物车订单状态转换
-    @PostMapping("/statusChange")
+    @PostMapping("/statusChangeTo1")
     @ResponseBody
-    public String statusChange(@RequestParam("behavior") String behavior, @RequestParam("nextStatus") String nextStatus, Model model){
+    public String statusChangeTo1(@RequestParam("behavior") String behavior, @RequestParam("nextStatus") String nextStatus, Model model){
         //整个购物车订单一起购买
         if(behavior.equals("payCartOrder")){
             List<Order> currentOrderList = (List<Order>) model.getAttribute("currentOrderList");
@@ -172,6 +177,25 @@ public class OrderController {
         return "success";
     }
 
+    @PostMapping("/statusChange")
+    @ResponseBody
+    public String statusChange(@RequestParam("orderId") String orderId, @RequestParam("nextStatus") String nextStatus, Model model){
+
+        Order order = orderService.getOrderByOrderId(orderId);
+        //如果是主动取消订单，也需要返回库存
+        if(nextStatus.equals("10")){
+            Item item = itemService.getTtemByItemId(order.getItem_id());
+
+            int remain = BusinessService.getItemCount(item.getId());
+            item.setRemainingNumb(remain+order.getAmount());
+            order.setIs_occupy(0);
+            BusinessService.updateItem(item);
+        }
+        //这里连同是否占用库存一起更新
+        orderService.updateOrder(order,nextStatus);
+        return "success";
+    }
+
     //买家个人订单刷新
     @GetMapping("/updateMyOrder")
     @ResponseBody
@@ -184,5 +208,31 @@ public class OrderController {
         String orderItemsJson = JSON.toJSONString(orderItems);
         return orderItemsJson;  // 返回 JSON 字符串
     }
+
+    @GetMapping("/getAddress")
+    @ResponseBody
+    public String getAddress( @RequestParam("orderId") String orderId){
+        int addressId = orderService.getOrderByOrderId(orderId).getAddress_id();
+        Address address = addressDao.getAddressById(addressId);
+        String json = JSON.toJSONString(address);
+        return json;  // 返回 JSON 字符串
+    }
+
+    @GetMapping("/getOrder")
+    @ResponseBody
+    public String getOrder(@RequestParam("orderId") String orderId){
+        Order order = orderService.getOrderByOrderId(orderId);
+        return JSON.toJSONString(order);
+    }
+
+    //从个人订单列表中点击支付按钮
+//    @GetMapping("/orderForm1")
+//    public String orderForm1(@RequestParam("flag") String flag, @RequestParam("orderId") String orderId, Model model){
+//        if(flag.equals("fromMyOrder")){
+//            Order order = orderService.getOrderByOrderId(orderId);
+//            Item item = itemService.getTtemByItemId(order.getItem_id());
+//            model.addAttribute("item",item);
+//        }
+//    }
 }
 

@@ -43,5 +43,7 @@ public class Order {
     private Date after_sale_time;
     //备注
     private String remark;
+    //是否占用库存
+    private int is_occupy;
 
 }

@@ -1,6 +1,7 @@
 package org.csu.demo.Controller;
 
 import com.alibaba.fastjson2.JSON;
+import org.csu.demo.domain.AfterSale;
 import org.csu.demo.domain.Order;
 import org.csu.demo.domain.OrderItem;
 import org.csu.demo.domain.User;
@@ -40,5 +41,20 @@ public class businessOrderController {
         // 使用 FastJSON 将 orderItems 转换为 JSON 字符串
         String orderItemsJson = JSON.toJSONString(orderItems);
         return orderItemsJson;  // 返回 JSON 字符串
+    }
+
+    @PostMapping("/statusChange")
+    @ResponseBody
+    public String statusChange(@RequestParam("orderId") String orderId, @RequestParam("nextStatus") String nextStatus, Model model){
+        Order order = orderService.getOrderByOrderId(orderId);
+        orderService.updateOrder(order,nextStatus);
+        return "success";
+    }
+
+    @GetMapping("/getAfterSaleInfo")
+    @ResponseBody
+    public String statusChange(@RequestParam("orderId") String orderId){
+        AfterSale afterSale = orderService.getAfterSale(orderId);
+        return String.valueOf(afterSale.getAfter_sale_status());
     }
 }

@@ -26,7 +26,7 @@
 
     <section class="order-summary">
         <h2>商品详情</h2>
-        <table>
+        <table class="orderTable">
             <thead>
             <tr>
                 <th>商品描述</th>
@@ -48,7 +48,7 @@
 
                 <!-- 状态显示 -->
                 <td>
-                    <span th:switch="${orderItem.status}">
+                    <span class = "status" th:switch="${orderItem.status}">
                         <span th:case="0">待支付</span>
                         <span th:case="1">已支付</span>
                         <span th:case="2">已发货</span>
@@ -65,44 +65,43 @@
                     <div class="order-status" th:switch="${orderItem.status}" th:data-id="${orderItem.order_id}">
                         <!-- 待支付 -->
                         <div th:case="0">
-                            <button>取消订单</button>
-                            <button>支付</button>
-                            <button>查看订单信息</button>
+                            <button class = "cancel">取消订单</button>
+                            <button class="pay">支付</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 已支付 -->
                         <div th:case="1">
-                            <button>申请售后</button>
-                            <button>催发货</button>
-                            <button>查看订单信息</button>
+                            <button class="after_sale">申请售后</button>
+<!--                            <button class="hasten">催发货</button>-->
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 已发货 -->
                         <div th:case="2">
-                            <button>申请售后</button>
-                            <button>确认收货</button>
-                            <button>查看订单信息</button>
+                            <button class="after_sale">申请售后</button>
+                            <button class="confirm">确认收货</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 待取件 -->
                         <div th:case="3">
-                            <button>申请售后</button>
-                            <button>确认收货</button>
-                            <button>查看订单信息</button>
+                            <button class="after_sale">申请售后</button>
+                            <button class="confirm">确认收货</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 已签收 -->
                         <div th:case="4">
-                            <button>申请售后</button>
-                            <button>确认收货</button>
-                            <button>查看订单信息</button>
+                            <button class="after_sale">申请售后</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 已申请售后 -->
                         <div th:case="11">
-                            <button>申请售后</button>
-                            <button>确认收货</button>
-                            <button>查看订单信息</button>
+                            <button class="after_sale">申请售后</button>
+                            <button class="confirm">确认收货</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 已取消订单（无按钮）-->
@@ -112,9 +111,9 @@
 
                         <!-- 商家已处理售后 -->
                         <div th:case="5">
-                            <button>申请售后</button>
-                            <button>确认收货</button>
-                            <button>查看订单信息</button>
+                            <button class="after_sale">申请售后</button>
+                            <button class="confirm">确认收货</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
                     </div>
                 </td>
@@ -161,10 +160,25 @@
             }
 </script>-->
 
+<!-- 模态框 -->
+<div id="myModal" class="modal" style="background-color: #FFF8E1;">
+    <div class="modal-content" style="background-color: #FFECB3; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);">
+        <h2>请选择一个操作</h2>
+        <div class="button-group">
+            <button class="action-btn" data-id="1" style="background-color: #FF9800; color: white; margin: 5px;">换货</button>
+            <button class="action-btn" data-id="2" style="background-color: #FF9800; color: white; margin: 5px;">退货退款</button>
+            <button class="action-btn" data-id="3" style="background-color: #FF9800; color: white; margin: 5px;">仅退款</button>
+        </div>
+        <button id="closeModal" style="background-color: #FF9800; color: white; margin-top: 10px;">关闭</button>
+    </div>
+</div>
+
+
+
 <script src="/js/cursorFollow.js"></script>
 
+<script src="/js/myOrder.js"></script>
 
-<script src="/js/order.js"></script>
 <script src="/js/autoUpdateMyOrder.js"></script>
 </body>
 </html>
