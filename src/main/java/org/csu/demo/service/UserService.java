@@ -3,7 +3,9 @@ package org.csu.demo.service;
 import lombok.extern.log4j.Log4j2;
 import org.csu.demo.domain.User;
 import org.csu.demo.persistence.AdminDao;
+import org.csu.demo.persistence.MerchantDao;
 import org.csu.demo.persistence.UserDao;
+import org.csu.demo.persistence.UserStatusDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,10 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserStatusDao userStatusDao;
+    @Autowired
+    private MerchantDao merchantDao;
     @Autowired
     private AdminDao adminDao;// 提供了对数据库操作的方法
 
@@ -35,6 +41,13 @@ public class UserService {
         // 加密密码
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
+
+        // 添加状态
+        userStatusDao.addStatus(user);
+        // 添加商户
+        if (user.getResponsibility().equals("merchant")) {
+            merchantDao.addMerchant(user.getId());
+        }
         // 调用 MyBatis Mapper 保存用户信息
         return this.userDao.addUser(user) == 1;
     }
@@ -93,14 +106,6 @@ public class UserService {
 
     public boolean deleteUser(int id) {
         return userDao.deleteUser(id);
-    }
-
-    public int addUser(User user) {
-        int result = userDao.addUser(user);
-        userDao.addStatus(user);
-        if (user.getResponsibility().equals("商家"))
-            return userDao.addMerchant(user);
-        return result;
     }
 
     public List<User> getUserByIsOnlineTrue() {
