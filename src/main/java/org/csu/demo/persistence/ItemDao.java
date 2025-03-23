@@ -11,6 +11,7 @@ import java.util.List;
 public interface ItemDao {
 
     List<Item> getItemListByProduct(int product_Id);
+    List<Item> getItemListByProductAndIgnoreListing(int product_Id);
 
     Item getItem(int itemId);
 

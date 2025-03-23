@@ -58,13 +58,13 @@
                     <td class="mail-number" style="text-align: center;" th:text="${user.email}"></td>
                     <td style="text-align: center;">
                         <div class="btn-group">
-                            <button th:if="${user.isFrozen==0}"
-                                    class="btn btn-freeze"
+                            <button th:if="${user.is_frozen==0}"
+                                    class="btn btn-freeze" 
                                     th:onclick="'freezeAccount(' + ${user.id} + ')'">❄️ 冻结</button>
-                            <button th:if="${user.isFrozen==1}"
-                                    class="btn btn-success"
+                            <button th:if="${user.is_frozen==1}"
+                                    class="btn btn-success" 
                                     th:onclick="'unfreezeAccount(' + ${user.id} + ')'">🌞 解冻</button>
-                            <button class="btn btn-reset"
+                            <button class="btn btn-reset" 
                                     th:onclick="'resetPassword(' + ${user.id} + ')'">🔑 重置</button>
                         </div>
                     </td>
@@ -100,13 +100,13 @@
                     <td class="mail-number" style="text-align: center;" th:text="${user.email}"></td>
                     <td style="text-align: center;">
                         <div class="btn-group">
-                            <button th:if="${user.isFrozen==0}"
-                                    class="btn btn-freeze"
+                            <button th:if="${user.is_frozen==0}"
+                                    class="btn btn-freeze" 
                                     th:onclick="'freezeAccount(' + ${user.id} + ')'">❄️ 冻结</button>
-                            <button th:if="${user.isFrozen==1}"
-                                    class="btn btn-success"
+                            <button th:if="${user.is_frozen==1}"
+                                    class="btn btn-success" 
                                     th:onclick="'unfreezeAccount(' + ${user.id} + ')'">🌞 解冻</button>
-                            <button class="btn btn-reset"
+                            <button class="btn btn-reset" 
                                     th:onclick="'resetPassword(' + ${user.id} + ')'">🔑 重置</button>
                         </div>
                     </td>

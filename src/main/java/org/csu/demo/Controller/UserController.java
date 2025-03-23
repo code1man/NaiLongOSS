@@ -49,7 +49,7 @@ public class UserController {
             BindingResult bindingResult,
             Model model) {
         User loginUser;
-        Cart cart;
+        Cart cart = new Cart();
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
             model.addAttribute("loginMsg", "账号或密码为空");
@@ -57,23 +57,26 @@ public class UserController {
         } else {
             loginUser = userService.login(user.getUsername(), user.getPassword());
         }
-
         if (loginUser != null) {
-            if (loginUser.getIsFrozen() == 1) {
+
+/*            if (!loginUser.is_frozen()) {
                 model.addAttribute("loginMsg", "账号已被冻结，原因：" + userService.getFrozenReason(loginUser.getId()));
                 return "login";
+            }*/
+            if (loginUser.getResponsibility().equals("merchant")) {
+                loginUser.setCredit(userService.getMerchantCredit(loginUser.getId()));
+                if (loginUser.getCredit() < 60) {
+                    model.addAttribute("loginMsg", "您的信誉过低，无法登录，请规范行为");
+                    return "login";
+                }
             }
-            if (loginUser.getCredit() < 60 && loginUser.getResponsibility().equals("merchant")) {
-                model.addAttribute("loginMsg", "您的信誉过低，无法登录，请规范行为");
-                return "login";
+            if (loginUser.getResponsibility().equals("user")) {
+                cart = cartService.getCart(loginUser.getId());
             }
-            cart = cartService.getCart(loginUser.getId());
             model.addAttribute("loginUser", loginUser);
             model.addAttribute("cart", cart);
             // 把买家相关订单放到session
             model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(), 0));
-
-            System.out.println(loginUser.getResponsibility());
 
             if ("user".equals(loginUser.getResponsibility())) {
                 return "redirect:/mainForm";
@@ -127,6 +130,7 @@ public class UserController {
 
     @RequestMapping("/merchantForm")
     public String merchantForm() {
+        System.out.println("我被调用了");
         return "ProductMerchantManage";
     }
 
