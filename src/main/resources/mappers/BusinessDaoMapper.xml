@@ -10,6 +10,8 @@
         <result column="url" property="url"/>
         <result column="price" property="price"/>
         <result column="description" property="description"/>
+        <result column="isListing" property="isListing"/>
+        <result column="isDelete" property="isDelete" />
         <result column="businessId" property="businessId" />
         <result column="RemaingNumb" property="remainingNumb"/>
     </resultMap>
@@ -28,6 +30,8 @@
                  i.name = #{item.name},
                  i.price = #{item.price},
                  i.url=#{item.url},
+                 i.product_id=#{item.product_id},
+                 i.description=#{item.description},
                  b.RemaingNumb = #{item.remainingNumb}
             WHERE i.id = #{item.id}
     </update>
@@ -68,4 +72,17 @@
     <select id="getSupplierByItemId" parameterType="int" resultType="int">
         SELECT businessId FROM businessItemRemaining WHERE itemId = #{itemId};
     </select>
+
+    <select id="getBusinessItemByIdAndMerchantId" resultMap="itemResultMap">
+        SELECT i.*, b.RemaingNumb
+        FROM item i
+        JOIN businessitemremaining b on i.id = b.itemId
+        WHERE i.product_id = #{product_id} AND b.businessId=#{businessId}
+    </select>
+
+    <update id="updateProductAvailability">
+        UPDATE item
+        SET isListing = #{isListing}
+        WHERE id = #{id}
+    </update>
 </mapper>

@@ -1,10 +1,12 @@
 package org.csu.demo.Controller;
 
 import org.csu.demo.domain.Item;
+import org.csu.demo.domain.User;
 import org.csu.demo.service.BusinessService;
 import org.csu.demo.service.ItemService;
 import org.csu.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +36,63 @@ public class ProductManageController {
     }
 
     // 数据接口（处理前端表格请求）
-    @GetMapping("/api/products")
+    @GetMapping("/admin/products")
     @ResponseBody
     public List<Item> getAllProducts(@RequestParam(name = "categoryId", required = false) Integer categoryId) {
-        // 添加调试日志
-        System.out.println("getAllProducts");
-        System.out.println("[DEBUG] 请求到达 /api/products，categoryId=" + categoryId);
-
         return businessService.getBusinessItemById(categoryId);
+    }
+
+    @GetMapping("/merchant/products")
+    @ResponseBody
+    public List<Item> getMerchantProducts(@SessionAttribute("user") User user,  // 从 session 获取 user
+                                          @RequestParam(name = "categoryId", required = false) Integer categoryId) {
+        int merchantId = user.getId();
+        return businessService.getBusinessItemByIdAndMerchantId(categoryId, merchantId);
+    }
+
+    @PostMapping("/api/products")
+    @ResponseBody
+    public ResponseEntity<?> newItemCreate(
+            @RequestParam("name") String name,
+            @RequestParam("subcategoryName") String subcategoryName,  // 🚨 如果应该传ID，建议改为 subcategoryId
+            @RequestParam("description") String description,
+            @RequestParam("stock") int stock,
+            @RequestParam("price") int price,
+            @RequestParam(value = "image", required = false) MultipartFile imageFile) {
+
+        try {
+            // 1️⃣ 处理图片上传（如果有图片）
+            String imageUrl = null;
+            if (imageFile != null && !imageFile.isEmpty()) {
+                imageUrl = saveUploadedFile(imageFile);  // ⬅️ 你需要实现这个方法存储图片
+            }
+
+            // 2️⃣ 创建 `Item` 对象
+            Item newItem = Item.builder()
+                    .name(name)
+                    .description(description)
+                    .price(price)
+                    .product_id(productService.getProductIdByName(subcategoryName))
+                    .remainingNumb(stock)  // `stock` 对应 `remainingNumb`
+                    .url(imageUrl)  // 存储图片路径
+                    .build();
+
+            // 3️⃣ 存入数据库
+            int isOK = businessService.insertItem(newItem);
+            if (isOK == 1) {
+                System.out.println("成功创建");
+            }
+
+            // 4️⃣ 返回成功响应
+            return ResponseEntity.ok(Map.of(
+                    "message", "商品创建成功",
+                    "item", newItem
+            ));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "创建商品失败: " + e.getMessage()));
+        }
     }
 
 
@@ -82,7 +133,6 @@ public class ProductManageController {
                 String imagePath = saveUploadedFile(imageFile);
                 item.setUrl(imagePath);
                 System.out.println("✅ 收到编辑商品详情请求，:2 ");
-
             }
             System.out.println("✅ 收到编辑商品详情请求，:2.1 ");
             // 3. 调用 Service 层更新数据
@@ -100,19 +150,47 @@ public class ProductManageController {
         }
     }
 
-    private String saveUploadedFile(MultipartFile file) throws IOException {
-        Path uploadDir = Paths.get("uploads");
-        if (!Files.exists(uploadDir)) {
-            Files.createDirectories(uploadDir);
+    @PutMapping("/admin/products/{productId}/toggle")
+    @ResponseBody
+    public ResponseEntity<?> toggleProductAvailability(@PathVariable("productId") int productId) {
+        try {
+            // 根据 productId 查找商品
+            Item product = itemService.getItemByItemId(productId);
+            if (product == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("商品不存在");
+            }
+
+            // 切换商品的上下架状态
+            boolean newStatus = !product.isListing();
+            businessService.updateProductAvailability(productId, newStatus);
+
+            return ResponseEntity.ok(Map.of(
+                    "message", "操作成功",
+                    "newStatus", newStatus
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("操作失败: " + e.getMessage());
         }
-        System.out.println("✅ 收到编辑商品详情请求，:5 ");
+    }
 
 
+    private String saveUploadedFile(MultipartFile file) throws IOException {
+        String uploadDir = System.getProperty("user.dir") + "/src/main/resources/static/images/Products";
+        Path uploadPath = Paths.get(uploadDir);
+
+        // 确保目录存在
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+
+        // 生成唯一文件名
         String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-        Path filePath = uploadDir.resolve(filename);
+        Path filePath = uploadPath.resolve(filename);
+
+        // 保存文件
         Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-        return "/uploads/" + filename;
+        return "../images/Products/" + filename;
     }
 }
 

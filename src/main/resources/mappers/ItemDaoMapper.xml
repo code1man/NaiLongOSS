@@ -10,16 +10,18 @@
         <result column="url" property="url"/>
         <result column="price" property="price"/>
         <result column="description" property="description"/>
+        <result column="isListing" property="isListing"/>
+        <result column="isDelete" property="isDelete" />
         <result column="businessId" property="businessId" />
-        <result column="RemainingNumb" property="RemainingNumb"/>
+        <result column="RemaingNumb" property="remainingNumb"/>
     </resultMap>
 
     <!-- 根据 productId 获取 Item 列表 -->
     <select id="getItemListByProduct" parameterType="int" resultMap="itemResultMap">
-        SELECT i.*, b.businessId AS businessId, b.RemaingNumb AS remain_numb
+        SELECT i.*, b.businessId, b.RemaingNumb
         FROM item i
-                 LEFT JOIN businessItemRemaining b ON i.id = b.itemId
-        WHERE i.product_id = #{product_Id};
+        JOIN businessItemRemaining b ON i.id = b.itemId
+        WHERE i.product_id = #{product_Id} AND i.isDelete = 0;
     </select>
 
 
@@ -33,23 +35,24 @@
 
     <!-- 插入新的商品信息 -->
     <insert id="insertItem" parameterType="org.csu.demo.domain.Item">
-        INSERT INTO item (id, name, product_id, url, price)
-        VALUES (#{id}, #{name}, #{productId}, #{url}, #{price});
+        INSERT INTO item (id, name, product_id, url, price, isDelete, isListing)
+        VALUES (#{id}, #{name}, #{productId}, #{url}, #{price}, 0, 0);
     </insert>
 
-    <!-- 根据 itemId 删除商品 -->
-    <delete id="deleteItem" parameterType="int">
-        DELETE FROM item WHERE id = #{itemId};
-    </delete>
+    <update id="deleteItem" parameterType="int">
+        UPDATE item i
+        SET i.isDelete = 1
+        WHERE i.id = #{itemId};
+    </update>
 
     <!--根据关键词搜索商品-->
     <select id="SearchItems" parameterType="String">
         SELECT i.*, b.businessId AS businessId, b.RemaingNumb AS remain_numb
             FROM Item i
-            LEFT JOIN producttype p ON i.product_id = p.id
-            LEFT JOIN category c ON p.category_id = c.id
-            LEFT JOIN businessItemRemaining b ON i.id = b.itemId
-            WHERE (c.name LIKE #{keyword} OR p.description LIKE #{keyword} OR i.name LIKE #{keyword})
+            JOIN producttype p ON i.product_id = p.id
+            JOIN category c ON p.category_id = c.id
+            JOIN businessItemRemaining b ON i.id = b.itemId
+            WHERE (c.name LIKE #{keyword} OR p.description LIKE #{keyword} OR i.name LIKE #{keyword}) AND (i.isListing = 1) AND (i.isDelete = 0)
     </select>
 
     <!--获取item id-->

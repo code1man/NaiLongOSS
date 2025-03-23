@@ -16,25 +16,29 @@ function toggleMainCategory(category, element) {
 }
 
 // 商品加载逻辑
-async function loadProducts(categoryId, element) {
+async function loadProducts(categoryId, element, role) {
     const tbody = document.getElementById('productList');
     const table = document.getElementById('productTable');
     const messageContainer = document.getElementById('messageContainer');
 
     // 清除旧状态
     table.classList.remove('active');
-    tbody.innerHTML = '<tr class="loading-row"><td colspan="6">加载中...</td></tr>';
+    tbody.innerHTML = '<tr class="loading-row"><td colspan="7">加载中...</td></tr>';
     messageContainer.innerHTML = '';
 
     // 更新分类状态
     document.querySelectorAll('.subcategory').forEach(el => el.classList.remove('active'));
-    if(element) element.classList.add('active');
+    if (element) element.classList.add('active');
     currentSubcategory = categoryId; // ✅ 使用正确参数名
 
     try {
-
-        const response = await fetch(`/api/products?categoryId=${categoryId}`);
+        // 根据 role 选择不同的 API
+        const apiUrl = role === 'merchant'
+            ? `/merchant/products?categoryId=${categoryId}`
+            : `/admin/products?categoryId=${categoryId}`;
+        const response = await fetch(apiUrl);
         const products = await response.json();
+        console.log(products)
 
         if (products.length > 0) {
             tbody.innerHTML = products.map(product => `
@@ -44,17 +48,23 @@ async function loadProducts(categoryId, element) {
                     <td><img src="${product.url}" class="product-thumbnail" alt=""></td>
                     <td>${product.remainingNumb}</td>
                     <td>¥${product.price}</td>
+                    ${role === 'merchant' ? `<td>${product.listing ? '✅ 已上架' : '❌ 未上架'}</td>` : ''}
                     <td>
-                        <button onclick="editProduct('${product.id}')">编辑</button>
-                        <button onclick="deleteProduct('${product.id}')">删除</button>
+                        ${role === 'merchant' 
+                ? `<button onclick="editProduct('${product.id}')">编辑</button>
+                               <button onclick="deleteProduct('${product.id}')">删除</button>`
+                : `<button onclick="toggleAvailability('${product.id}', ${product.listing})">
+                                    ${product.listing ? '下架' : '上架'}
+                               </button>`}
                     </td>
                 </tr>
+         
             `).join('');
             table.classList.add('active');
         } else {
             tbody.innerHTML = `
                 <tr class="empty-row">
-                    <td colspan="6" class="empty-message">
+                    <td colspan="7" class="empty-message">
                         🛒 当前分类下没有商品
                     </td>
                 </tr>`;
@@ -65,12 +75,10 @@ async function loadProducts(categoryId, element) {
         messageContainer.innerHTML = `
             <div class="error-message">
                 ❌ 数据加载失败：${error.message}
-               <button onclick="loadProducts(${categoryId}, this)">重试</button> 
+               <button onclick="loadProducts(${categoryId}, this, '${role}')">重试</button> 
             </div>`;
     }
 }
-
-
 
 function handleEditMainCategoryChange(select, presetSubcategoryId = null) {
     const mainCategory = select.value;
@@ -138,7 +146,7 @@ async function editProduct(productId) {
         document.getElementById('editProductName').value = product.name;
         document.getElementById('editProductStock').value = product.remainingNumb;
         document.getElementById('editProductPrice').value = product.price;
-     
+
 
         // 处理分类选择
         const mainCategorySelect = document.getElementById('editMainCategory');
@@ -162,11 +170,10 @@ async function editProduct(productId) {
 async function deleteProduct(productId) {
     if (confirm('确认删除该商品？')) {
         try {
-            // 实际删除操作
-            // await fetch(`/api/products/${productId}`, { method: 'DELETE' });
+            await fetch(`/api/products/${productId}`, {method: 'DELETE'});
             await new Promise(resolve => setTimeout(resolve, 500));
             showMessage('✅ 商品删除成功', 'success');
-            loadProducts(currentSubcategory, document.querySelector('.subcategory.active'));
+            loadProducts(currentSubcategory, document.querySelector('.subcategory.active'), "merchant");
         } catch (error) {
             showMessage(`❌ 删除失败: ${error.message}`, 'error');
         }
@@ -192,7 +199,6 @@ function showMessage(message, type) {
 }
 
 
-
 // 辅助函数
 function validateFile(file) {
     const maxSize = 5 * 1024 * 1024;
@@ -214,9 +220,6 @@ function validateFile(file) {
 }
 
 
-
-
-
 function simulateUploadWithProgress(container) {
     return new Promise(resolve => {
         let percent = 0;
@@ -232,7 +235,6 @@ function simulateUploadWithProgress(container) {
 }
 
 
-
 function closeModal() {
     document.getElementById('addProductModal').style.display = 'none';
 }
@@ -242,37 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('productTable').classList.remove('active');
 });// 编辑功能相关函数
 let editingProduct = null;
-
-
-//这里没用到，
-function handleEditMainCategoryChange(select, presetSubcategory = null) {
-    const mainCategory = select.value;
-    const subcategorySelect = document.getElementById('editSubcategory');
-
-    if (mainCategory) {
-        // 获取对应的子分类
-        const subcategories = document.querySelectorAll(
-            `.subcategory-panel[data-parent="${mainCategory}"] .subcategory`
-        );
-
-        subcategorySelect.innerHTML = '';
-        subcategories.forEach(sub => {
-            const option = document.createElement('option');
-            option.value = sub.textContent.trim();
-            option.textContent = sub.textContent.trim();
-            subcategorySelect.appendChild(option);
-        });
-
-        // 设置预选子分类
-        if (presetSubcategory) {
-            subcategorySelect.value = presetSubcategory;
-        }
-        subcategorySelect.disabled = false;
-    } else {
-        subcategorySelect.innerHTML = '<option value="">请先选择主分类</option>';
-        subcategorySelect.disabled = true;
-    }
-}
 
 function previewEditImage(event) {
     const preview = document.getElementById('editImagePreview');
@@ -338,7 +309,7 @@ async function submitEditForm(event) {
         closeEditModal();
 
         // 刷新当前列表
-        await loadProducts(currentSubcategory, document.querySelector('.subcategory.active'));
+        await loadProducts(currentSubcategory, document.querySelector('.subcategory.active'), "merchant");
     } catch (error) {
         showMessage(`❌ 更新失败: ${error.message}`, 'error');
     }
@@ -377,6 +348,50 @@ function validateEditForm() {
     return true;
 }
 
+function validateForm() {
+    const requiredFields = [
+        'mainCategorySelect',
+        'subcategorySelect',
+        'productName',
+        'productStock',
+        'productPrice'
+    ];
+
+    for (const fieldId of requiredFields) {
+        const field = document.getElementById(fieldId);
+        if (!field.value.trim()) {
+            showMessage('请填写所有必填字段', 'error');
+            field.focus();
+            return false;
+        }
+    }
+
+    // 检查是否上传了图片
+    const fileInput = document.getElementById('productImage');
+    if (!fileInput.files || fileInput.files.length === 0) {
+        showMessage('请上传商品图片', 'error');
+        fileInput.focus();
+        return false;
+    }
+
+    // 检查价格是否合法
+    const price = parseFloat(document.getElementById('productPrice').value);
+    if (isNaN(price) || price <= 0) {
+        showMessage('请输入有效的价格', 'error');
+        return false;
+    }
+
+    // 检查库存是否合法
+    const stock = parseInt(document.getElementById('productStock').value);
+    if (isNaN(stock) || stock < 0) {
+        showMessage('库存不能为负数', 'error');
+        return false;
+    }
+
+    return true;
+}
+
+
 function closeEditModal() {
     document.getElementById('editProductModal').style.display = 'none';
     document.getElementById('editProductImage').value = '';
@@ -384,98 +399,61 @@ function closeEditModal() {
     editingProduct = null;
 }
 
+async function submitProductForm() {
+    // 表单验证
+    if (!validateForm()) return;
+    // ✅ 获取子分类ID（关键修复）
+    const subcategoryName = document.getElementById('subcategorySelect').value;
 
+    // 准备表单数据
+    const formData = new FormData();
+    const imageFile = document.getElementById('productImage').files[0];
 
-// //编辑表单上传函数
-// async function submitEditForm(event) {
-//     event.preventDefault();
-//     const form = event.target;
-//
-//     // 表单验证
-//     // if (!validateEditForm()) return;
-//
-//     // 准备表单数据
-//     const formData = new FormData();
-//
-//     // 1. 获取并添加分类ID
-//     const subcategoryId = document.getElementById('editSubcategory').value;
-//     console.log(subcategoryId);
-//     formData.append('subcategoryId', subcategoryId);
-//
-//     // 2. 添加其他字段（与表单项一一对应）
-//     const editname=document.getElementById('editProductName').value ;
-//     console.log(editname);
-//     formData.append('name', document.getElementById('editProductName').value);
-//
-//     const editstock=document.getElementById('editProductStock').value;
-//     console.log(editstock);
-//     formData.append('stock', document.getElementById('editProductStock').value);
-//     formData.append('price', document.getElementById('editProductPrice').value);
-//
-//
-//     // 3. 处理文件上传
-//     const imageFile = document.getElementById('editProductImage').files[0];
-//     if (imageFile) {
-//         formData.append('image', imageFile);
-//     }
-//
-//
-//
-//     try {
-//         // 提交更新
-//         const response = await fetch(`/api/products/${editingProduct.id}`, {
-//             method: 'PUT',
-//             body: formData
-//         });
-//
-//         if (!response.ok) throw new Error('更新失败');
-//
-//         showMessage('✅ 商品更新成功', 'success');
-//         closeEditModal();
-//
-//         // 刷新当前列表
-//         loadProducts(currentSubcategory, document.querySelector('.subcategory.active'));
-//     } catch (error) {
-//         showMessage(`❌ 更新失败: ${error.message}`, 'error');
-//     }
-// }
+    formData.append('image', imageFile);
+    formData.append('name', document.getElementById('productName').value);
+    formData.append('mainCategory', document.getElementById('mainCategorySelect').value);
+    formData.append('subcategorySelect', subcategoryName); // ✅ 传递 ID
+    formData.append('description', document.getElementById('productDescription').value);
+    formData.append('productStock', document.getElementById('editProductStock').value);
+    // 获取并转换价格
+    const priceInput = document.getElementById('productPrice').value;
+    formData.append('price', parseInt(priceInput, 10));  // 添加整数到表单数据
 
+    console.log(formData);
 
+    try {
+        // 提交更新
+        const response = await fetch(`/api/products`, {
+            method: 'PUT',
+            body: formData
+        });
 
+        if (!response.ok) throw new Error('更新失败');
 
-// async function submitProductForm(event) {
-//     event.preventDefault();
-//     const form = event.target;
-//
-//     // 表单验证
-//     if (!validateForm()) return;
-//
-//     // 显示上传状态
-//     const progressContainer = document.createElement('div');
-//     progressContainer.innerHTML = `
-//         <div class="upload-progress">
-//             <div class="progress-bar" style="width: 0%"></div>
-//         </div>`;
-//     document.getElementById('imagePreview').appendChild(progressContainer);
-//
-//     try {
-//         // 模拟上传过程
-//         await simulateUploadWithProgress(progressContainer);
-//
-//         // 实际提交应替换此部分
-//         // const formData = new FormData(form);
-//         // const response = await fetch('/api/products', {
-//         //     method: 'POST',
-//         //     body: formData
-//         // });
-//
-//         showMessage('✅ 商品添加成功', 'success');
-//         closeModal();
-//         if(currentSubcategory === form.subcategory.value) {
-//             loadProducts(currentSubcategory, document.querySelector('.subcategory.active'));
-//         }
-//     } catch (error) {
-//         showMessage(`❌ 保存失败: ${error.message}`, 'error');
-//     }
-// }
-//
+        showMessage('✅ 商品更新成功', 'success');
+        closeEditModal();
+
+        // 刷新当前列表
+        await loadProducts(currentSubcategory, document.querySelector('.subcategory.active'), "merchant");
+    } catch (error) {
+        showMessage(`❌ 添加失败: ${error.message}`, 'error');
+    }
+}
+
+async function toggleAvailability(productId, currentStatus) {
+    try {
+        const response = await fetch(`/admin/products/${productId}/toggle`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({isAvailable: !currentStatus})
+        });
+
+        if (!response.ok) throw new Error('更新失败');
+
+        showMessage(`✅ 商品 ${!currentStatus ? '已下架' : '已上架'}`, 'success');
+        // 重新加载数据
+        await loadProducts(currentSubcategory, document.querySelector('.subcategory.active'), 'admin');
+    } catch (error) {
+        showMessage(`❌ 操作失败: ${error.message}`, 'error');
+    }
+}

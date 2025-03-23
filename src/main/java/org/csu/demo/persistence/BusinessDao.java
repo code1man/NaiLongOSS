@@ -30,4 +30,8 @@ public interface BusinessDao {
 
     // 通过商品id查商家id
     int getSupplierByItemId(int itemId);
+
+    List<Item> getBusinessItemByIdAndMerchantId(int product_id, int businessId);
+
+    void updateProductAvailability(int id, boolean isListing);
 }

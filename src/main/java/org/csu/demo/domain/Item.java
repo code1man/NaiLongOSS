@@ -24,6 +24,8 @@ public class Item{
     private int price;
     private String description;
     private int businessId;
+    private boolean isListing;
+    private boolean isDelete;
 
     private int remainingNumb;
 }

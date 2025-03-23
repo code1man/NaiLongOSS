@@ -33,6 +33,11 @@ public class BusinessService {
         return (tmp1 + tmp2) - 1;
     }
 
+    /*上下架商品*/
+    public void updateProductAvailability(int itemId, boolean availability) {
+        businessDao.updateProductAvailability(itemId, availability);
+    }
+
     /*删除商品*/
     public int deleteItem(int itemId) {
         int tmp1 = businessDao.deleteBusinessItem(itemId);
@@ -48,5 +53,9 @@ public class BusinessService {
     /*更新商品各种信息*/
     public int updateItem( @RequestBody Item item) {
         return businessDao.updateBusinessItemById(item);
+    }
+
+    public List<Item> getBusinessItemByIdAndMerchantId(int product_Id, int merchantId) {
+        return businessDao.getBusinessItemByIdAndMerchantId(product_Id, merchantId);
     }
 }
