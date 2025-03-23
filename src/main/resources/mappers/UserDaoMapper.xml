@@ -51,6 +51,10 @@
     <delete id="deleteUser" parameterType="int">
         DELETE FROM userinfo WHERE id = #{id}
     </delete>
+    <!-- 通过用户名查询用户ID -->
+    <select id="getUserIdByUsername" parameterType="String" resultType="int">
+        SELECT id FROM userinfo WHERE username = #{username};
+    </select>
 
 
 </mapper>

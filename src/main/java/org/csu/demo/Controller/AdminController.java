@@ -26,6 +26,7 @@ public class AdminController {
     public String adminLoginForm() {
         return "adminLogin";
     }
+
     @PostMapping("/doAdminLogin")
     public String adminLogin(@ModelAttribute User user,
                              BindingResult bindingResult,

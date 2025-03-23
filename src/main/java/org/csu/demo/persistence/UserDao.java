@@ -2,6 +2,7 @@ package org.csu.demo.persistence;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.csu.demo.domain.User;
 import org.springframework.stereotype.Repository;
 
@@ -32,4 +33,5 @@ public interface UserDao {
     boolean deleteUser(@Param("id") int id);
 
 
+     int getUserIdByUsername(@Param("username") String username) ;
 }
