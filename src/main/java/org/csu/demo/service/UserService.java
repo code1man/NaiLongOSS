@@ -31,7 +31,6 @@ public class UserService {
         User user = userDao.findByUsername(username);
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             user.setPassword(null); // 密码不返回给前端
-            // System.out.println(user);
             return user;
         }
         return null;
@@ -42,14 +41,23 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
-        // 添加状态
+        // **先插入用户，确保 userinfo 里有 id**
+        int check = userDao.addUser(user);
+        if (check != 1) {
+            return false; // 插入失败，直接返回
+        }
+        user = userDao.getUserByUsername(user.getUsername());
+
+        // **再插入 user_status**
         userStatusDao.addStatus(user);
-        // 添加商户
-        if (user.getResponsibility().equals("merchant")) {
+
+        // **如果是商户，插入 merchant**
+        if ("merchant".equals(user.getResponsibility())) {
             merchantDao.addMerchant(user.getId());
         }
-        // 调用 MyBatis Mapper 保存用户信息
-        return this.userDao.addUser(user) == 1;
+
+        // **成功返回**
+        return true;
     }
 
     public boolean checkUsername(String username) {
@@ -170,6 +178,10 @@ public class UserService {
 
     public void creditSetQualified(int merchantId) {
         adminDao.creditSetQualified(merchantId);
+    }
+
+    public int getMerchantCredit(int merchantId) {
+        return merchantDao.gerCreditByMerchantId(merchantId);
     }
 
     // ?????？？？？ 看不懂

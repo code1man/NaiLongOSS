@@ -53,9 +53,8 @@ class NaiLongApplicationTests {
 
     @Test
     void test1(){
-        System.out.println(userDao);
-        User user = userDao.getUserByUsernameAndPassword("zkd", "123456");
-        System.out.println(user);
+        System.out.println(productService.getProductIdByName("奶龙唐唐表情包"));
+
     }
 
     @Test
@@ -94,6 +93,7 @@ class NaiLongApplicationTests {
 
     @Test
     void test5() {
+        System.out.println(userService.login("奶龙", "nailong"));
         System.out.println(cartService.getCart(12));
     }
 

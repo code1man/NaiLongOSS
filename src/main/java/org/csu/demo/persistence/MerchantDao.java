@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface MerchantDao {
-    int addMerchant(int id);
+    void addMerchant(int id);
+
+    int gerCreditByMerchantId(int id);
 }
