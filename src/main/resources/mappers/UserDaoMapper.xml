@@ -12,7 +12,9 @@
 
     
     <select id="findByUsername" resultType="org.csu.demo.domain.User">
-            SELECT * FROM userinfo WHERE username = #{username}
+            SELECT userinfo.*, user_status.frozen_reason, user_status.is_frozen FROM userinfo
+            JOIN user_status on userinfo.id = user_status.id
+            WHERE username = #{username}
     </select>
 
     <select id="getUserByUsernameAndPassword" resultType="org.csu.demo.domain.User">

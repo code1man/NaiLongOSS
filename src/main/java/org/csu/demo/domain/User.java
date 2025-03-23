@@ -27,12 +27,12 @@ public class User {
 
     // user_status
     private int isOnline;
-    private int isFrozen;
+    private int is_frozen;
     // 数据库中用tinyint表示，这里应该用int的
 
     // 信誉
     @NotBlank(message = "冻结原因不能为空") // 校验不能为空，会送到@validated进行校验
-    private String frozenReason;
+    private String frozen_reason;
     // 信誉
     private int credit;
 
