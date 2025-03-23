@@ -31,7 +31,7 @@ public class SecurityConfig {
 //                )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/loginForm")
-                        .defaultSuccessUrl("/main", true)  // 认证成功后跳转到 /main
+                        .defaultSuccessUrl("/mainForm", true)  // 认证成功后跳转到 /main
                 )
                 .logout(LogoutConfigurer::permitAll
                 );

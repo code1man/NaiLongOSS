@@ -46,11 +46,9 @@ public class UserCartController {
             if (cart == null) {
                 return ResponseEntity.status(500).body("{\"error\": \"购物车更新失败\"}");
             }
-            // 更新 session
             model.addAttribute("cart", cart);
-            // 返回 JSON 数据
-            String json = new Gson().toJson(cart);
-            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(json);
+
+            return ResponseEntity.ok("商品已更新");
         } catch (NumberFormatException e) {
             return ResponseEntity.badRequest().body("{\"error\": \"请求参数错误\"}");
         }
@@ -61,9 +59,12 @@ public class UserCartController {
                                                 @SessionAttribute("cart") Cart cart,
                                                 @SessionAttribute(name = "loginUser", required = false) User user, Model model) {
         // 获取商品
-        Item item = itemService.getItemByItemId(itemId);  // 假设你有一个服务方法来根据商品ID获取商品
+        Item item = itemService.getItemByItemId(itemId);
         if (item == null) {
             return ResponseEntity.badRequest().body("商品信息错误或缺失");
+        }
+        if (cart == null) {
+            cart = Cart.builder().userId(user.getId()).build();
         }
 
         // 检查商品是否已在购物车中
@@ -73,11 +74,30 @@ public class UserCartController {
             if (user == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("请先登录");
             }
-            // 将商品添加到购物车
             cart = cartService.addItemToCart(cart, item);
         }
         model.addAttribute("cart", cart);
 
         return ResponseEntity.ok("商品已添加到购物车");
     }
+
+    @PostMapping("removeItem")
+    public ResponseEntity<String> removeItem(@RequestBody Map<String, Integer> map,
+                                             @SessionAttribute(name = "cart", required = false) Cart cart,
+                                             @SessionAttribute(name = "loginUser", required = false) User user,
+                                             Model model) {
+        if (cart == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("购物车未初始化");
+        }
+        int itemId = map.get("itemId");
+
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("请先登录");
+        }
+        cart = cartService.removeItemFromCart(cart, itemId);
+
+        model.addAttribute("cart", cart);
+        return ResponseEntity.ok("商品已从购物车移除");
+    }
+
 }

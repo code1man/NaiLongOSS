@@ -1,4 +1,5 @@
 package org.csu.demo.service;
+import lombok.extern.log4j.Log4j2;
 import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.Category;
 import org.csu.demo.domain.Item;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("CatalogService")
+@Log4j2
 public class CatalogService {
     @Autowired
     private CategoryDao categoryDao;

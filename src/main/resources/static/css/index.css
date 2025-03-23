@@ -406,7 +406,7 @@ th {
 }
 
 .site-topBar .cart-item .btn-del {
-    background: url("/static/images/delete.png") no-repeat center 100%;
+    background: url("../images/delete.png") no-repeat center 100%;
     background-size: cover;
     position: absolute;
     top: 35px;

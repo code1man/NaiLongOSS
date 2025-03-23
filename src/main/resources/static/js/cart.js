@@ -1,14 +1,15 @@
 $(function () {
     let cartList = document.getElementById("J_miniCartList");
-    console.log(cartList);
 
     if (cartList) {
         let cartItems = cartList.children;
+        console.log(cartItems);
         let currentCartListTotalCount = parseInt($('#CartListTotalCount').text());
         let currentCartListTotalPrice = parseInt($('#CartListTotalPrice').text());
 
         if (cartItems && cartItems.length > 0) {
             for (let cartItem of cartItems) {
+                console.log(cartItem);
                 let i_btn = cartItem.querySelector(".count_i");
                 let d_btn = cartItem.querySelector(".count_d");
                 let itemCount = cartItem.querySelector(".Item-count");
@@ -25,15 +26,17 @@ $(function () {
                     if (!result) return;
 
                     try {
-                        let response = await fetch('/cart/remove', {
-                            method: 'DELETE',
-                            headers: {'Content-Type': 'application/json'},
-                            body: JSON.stringify({itemId})
+                        let response = await fetch('/removeItem', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ itemId }),
+                            credentials: 'include'
                         });
 
                         if (!response.ok) throw new Error('删除失败');
 
                         console.log("删除成功");
+                        alert("删除成功");
                         currentCartListTotalCount -= currentCount;
                         currentCartListTotalPrice -= ItemPrice * currentCount;
 
@@ -55,6 +58,7 @@ $(function () {
 
                 // **增加商品数量**
                 i_btn.addEventListener("click", () => {
+                    console.log("+1")
                     currentCount++;
                     currentCartListTotalCount++;
                     currentCartListTotalPrice += ItemPrice;
@@ -69,21 +73,29 @@ $(function () {
 
                 // **减少商品数量**
                 d_btn.addEventListener("click", async (event) => {
+                    console.log("-1")
+
                     currentCount--;
                     currentCartListTotalCount--;
                     currentCartListTotalPrice -= ItemPrice;
 
                     if (currentCount === 0) {
                         let result = confirm("本次操作将从购物车移除此商品，确定删除吗?");
-                        if (!result) return;
+                        if (!result) {
+                            currentCount++;
+                            currentCartListTotalCount++;
+                            currentCartListTotalPrice += ItemPrice;
+                            return;
+                        }
 
                         $('#topBarItemCount').text(`(${currentCartListTotalCount})`);
 
                         try {
-                            let response = await fetch('/cart/remove', {
-                                method: 'DELETE',
-                                headers: {'Content-Type': 'application/json'},
-                                body: JSON.stringify({itemId})
+                            let response = await fetch('/removeItem', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ itemId }),
+                                credentials: 'include'
                             });
 
                             if (!response.ok) throw new Error('删除失败');
@@ -97,6 +109,7 @@ $(function () {
                                 $('#J_miniCartList').html('');
                                 $('#J_miniCartListTotal').html('<div class="msg msg-empty">购物车中还没有商品，赶紧选购吧！</div>');
                             }
+
                         } catch (error) {
                             console.error("删除失败", error);
                             alert("删除失败");
@@ -126,7 +139,6 @@ $(function () {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                return response.json();
             })
             .then(data => {
                 console.log("改变数目成功", data);

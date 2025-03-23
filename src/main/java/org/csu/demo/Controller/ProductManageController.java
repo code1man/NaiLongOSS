@@ -7,7 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Map;
 
@@ -43,8 +49,68 @@ public class ProductManageController {
 
         return itemService.getItemByItemId(productId) ;
     }
+    @PutMapping("/api/products/{productId}")
+    @ResponseBody
+    public ResponseEntity<?> updateProductById(
+            @PathVariable("productId") int productId,
+            @RequestParam("name") String name,
+            @RequestParam("subcategoryId") int subcategoryId,
+            @RequestParam("stock") int stock,
+            @RequestParam("price") int price,
+            @RequestParam(value = "image", required = false) MultipartFile imageFile) {
+
+        System.out.println("✅ 收到编辑商品详情请求，:0 ");
 
 
+        try {
+            // 1. 创建 Item 对象并设置字段
+            Item item = new Item();
+            item.setName(name);
+            item.setProduct_id(subcategoryId);
+            item.setRemainingNumb(stock);
+            item.setPrice(price);
+            System.out.println("✅ 收到编辑商品详情请求，:1 ");
+
+
+            // 2. 处理文件上传
+            if (imageFile != null && !imageFile.isEmpty()) {
+                String imagePath = saveUploadedFile(imageFile);
+                item.setUrl(imagePath);
+                System.out.println("✅ 收到编辑商品详情请求，:2 ");
+
+            }
+            System.out.println("✅ 收到编辑商品详情请求，:2.1 ");
+            // 3. 调用 Service 层更新数据
+            Item updatedItem = businessService.updateItem(productId, item);
+            System.out.println("✅ 收到编辑商品详情请求，:3 ");
+
+            return ResponseEntity.ok(updatedItem);
+
+        } catch (IOException e) {
+            return ResponseEntity.internalServerError()
+                    .body(Map.of("error", "文件上传失败: " + e.getMessage()));
+        } catch (Exception e) {
+            System.out.println("✅ 收到编辑商品详情请求，:4 ");
+
+            return ResponseEntity.badRequest()
+                    .body(Map.of("error", "更新失败: " + e.getMessage()));
+        }
+    }
+
+    private String saveUploadedFile(MultipartFile file) throws IOException {
+        Path uploadDir = Paths.get("uploads");
+        if (!Files.exists(uploadDir)) {
+            Files.createDirectories(uploadDir);
+        }
+        System.out.println("✅ 收到编辑商品详情请求，:5 ");
+
+
+        String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        Path filePath = uploadDir.resolve(filename);
+        Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+        return "/uploads/" + filename;
+    }
 }
 
 

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.demo.persistence.AdminDao">
+
+    <!-- 查询所有在线用户 -->
+<select id="getUserByIsOnlineTrue" resultType="org.csu.demo.domain.User">
+    SELECT userinfo.id,userinfo.username,userinfo.responsibility, user_status.is_online, user_status.is_frozen, user_status.frozen_reason
+    FROM userinfo
+             INNER JOIN user_status ON userinfo.id = user_status.id
+    WHERE is_online = true;
+</select>
+
+        <!-- 查询所有未在线用户 -->
+<select id="getUserByIsOnlineFalse" resultType="org.csu.demo.domain.User">
+    SELECT userinfo.id,userinfo.username,userinfo.responsibility, user_status.is_online, user_status.is_frozen, user_status.frozen_reason
+    FROM userinfo
+             INNER JOIN user_status ON userinfo.id = user_status.id
+    WHERE is_online = false;
+</select>
+
+        <!-- 查询所有被冻结的用户 -->
+<select id="getUserByIsFrozenTrue" resultType="org.csu.demo.domain.User">
+    SELECT userinfo.id,userinfo.username,userinfo.responsibility, user_status.is_online, user_status.is_frozen, user_status.frozen_reason
+    FROM userinfo
+             INNER JOIN user_status ON userinfo.id = user_status.id
+    WHERE is_frozen = true;
+</select>
+
+        <!-- 查询所有未冻结的用户 -->
+<select id="getUserByIsFrozenFalse" resultType="org.csu.demo.domain.User">
+    SELECT userinfo.id,userinfo.username,userinfo.responsibility, user_status.is_online, user_status.is_frozen, user_status.frozen_reason
+    FROM userinfo
+             INNER JOIN user_status ON userinfo.id = user_status.id
+    WHERE is_frozen = false;
+</select>
+
+        <!-- 查询用户人数 -->
+<select id="countAllUsers" resultType="int">
+SELECT COUNT(*) FROM userinfo;
+</select>
+
+        <!-- 查询在线用户人数 -->
+<select id="countOnlineUsers" resultType="int">
+SELECT COUNT(*) FROM user_status WHERE is_online = true;
+</select>
+
+        <!-- 冻结用户 -->
+<update id="freezeUser">
+UPDATE user_status SET is_frozen = 1,frozen_reason = #{frozen_reason} WHERE id = #{id}
+</update>
+
+        <!-- 解冻用户 -->
+<update id="unfreezeUser" parameterType="int">
+UPDATE user_status SET is_frozen = 0 WHERE id = #{id}
+</update>
+
+        <!-- 查询被冻结的用户人数 -->
+<select id="countFrozenUsers" resultType="int">
+SELECT COUNT(*) FROM user_status WHERE is_frozen = true;
+</select>
+
+        <!-- 查询被冻结的用户原因 -->
+<select id="getFrozenReason" parameterType="int" resultType="string">
+SELECT frozen_reason FROM user_status WHERE id = #{id};
+</select>
+
+        <!-- 查询所有用户状态 -->
+<select id="getAllUserStatus" resultType="org.csu.demo.domain.User">
+SELECT userinfo.id, userinfo.username,userinfo.responsibility,user_status.is_online,user_status.is_frozen,user_status.frozen_reason
+FROM userinfo
+INNER JOIN user_status ON userinfo.id = user_status.id;
+</select>
+
+        <!-- 查询所有商家 -->
+<select id="getAllMerchants" resultType="org.csu.demo.domain.User">
+SELECT userinfo.id, userinfo.username,userinfo.responsibility,user_status.is_online,user_status.is_frozen,user_status.frozen_reason,merchant.credit
+FROM userinfo
+LEFT JOIN user_status ON userinfo.id = user_status.id
+LEFT JOIN merchant ON userinfo.id = merchant.id
+WHERE responsibility = '商家';
+</select>
+    <update id="creditIncrease">
+        UPDATE merchant SET credit = credit + 5 WHERE id = #{merchantId}
+    </update>
+
+    <update id="creditDecrease">
+        UPDATE merchant SET credit = credit - 5 WHERE id = #{merchantId}
+    </update>
+
+    <update id="creditSetQualified">
+        UPDATE merchant SET credit = 80 WHERE id = #{merchantId}
+    </update>
+
+    <update id="creditSetUnqualified">
+        UPDATE merchant SET credit = 40 WHERE id = #{merchantId}
+    </update>
+
+    <update id="setIsOnlineTrue">
+        UPDATE user_status SET is_online = true WHERE id = #{id}
+    </update>
+
+    <update id="setIsOnlineFalse">
+        UPDATE user_status SET is_online = false WHERE id = #{id}
+    </update>
+
+
+</mapper>

@@ -11,5 +11,4 @@ public class NaiLongApplication {
     public static void main(String[] args) {
         SpringApplication.run(NaiLongApplication.class, args);
     }
-
 }

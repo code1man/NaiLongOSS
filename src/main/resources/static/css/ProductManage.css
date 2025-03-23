@@ -196,11 +196,15 @@ h1 {
 
 .modal-content {
     background-color: #fff;
-    margin: 15% auto;
+    position: fixed; /* 改为固定定位 */
+    left: 50%;       /* 水平居中 */
+    top: 10%;        /* 初始位置调整为顶部 20% */
+    transform: translateX(-50%); /* 微调水平居中 */
     padding: 20px;
     width: 80%;
     max-width: 500px;
     border-radius: 5px;
+    /* 移除原 margin: 15% auto */
 }
 
 .close {

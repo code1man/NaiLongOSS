@@ -1,6 +1,8 @@
 package org.csu.demo.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.csu.demo.domain.User;
+import org.csu.demo.persistence.AdminDao;
 import org.csu.demo.persistence.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("UserService")
+@Log4j2
 public class UserService {
     @Autowired
-    private UserDao userDao;             //提供了对数据库操作的方法
+    private UserDao userDao;
+    private AdminDao adminDao;//提供了对数据库操作的方法
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -19,6 +23,8 @@ public class UserService {
     public User login(String username, String password) {
         User user = userDao.findByUsername(username);
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            user.setPassword(null);                 // 密码不返回给前端
+            //System.out.println(user);
             return user;
         }
         return null;
@@ -32,13 +38,21 @@ public class UserService {
         return this.userDao.addUser(user) == 1;
     }
 
+    public boolean checkUsername(String username) {
+        return userDao.getUserByUsername(username) != null;
+    }
+
+
+
+
+
+
+    // ？？？？？？ 什么时候service里写增删查改了？？？？？
+    // ？？？？？？ 把Dao方法在service又写一遍？？？？？？
     public void updateUser(User user, String username, String password, String email, int age) {
         userDao.updateUser(user.getId(), username, password, email, age);
     }
 
-    public boolean checkUsername(String username) {
-        return userDao.getUserByUsername(username) != null;
-    }
 
     public User getUser(int id) {
         return userDao.getUser(id);
@@ -61,30 +75,49 @@ public class UserService {
     }
 
     public int addUser(User user) {
-        return userDao.addUser(user);
+        int result = userDao.addUser(user);
+        userDao.addStatus(user);
+        if(user.getResponsibility().equals("商家"))
+            return userDao.addMerchant(user);
+        return result;
     }
 
-    public List<User> getUserByIsOnlineTrue(){return userDao.getUserByIsOnlineTrue();}
 
-    public List<User> getUserByIsOnlineFalse(){return userDao.getUserByIsOnlineFalse();}
 
-    public List<User> getUserByIsFrozenTrue(){return userDao.getUserByIsFrozenTrue();}
+    public List<User> getUserByIsOnlineTrue(){return adminDao.getUserByIsOnlineTrue();}
 
-    public List<User> getUserByIsFrozenFalse(){return userDao.getUserByIsFrozenFalse();}
+    public List<User> getUserByIsOnlineFalse(){return adminDao.getUserByIsOnlineFalse();}
 
-    public int countAllUsers(){return userDao.countAllUsers();}
+    public List<User> getUserByIsFrozenTrue(){return adminDao.getUserByIsFrozenTrue();}
 
-    public int countOnlineUsers(){return userDao.countOnlineUsers();}
+    public List<User> getUserByIsFrozenFalse(){return adminDao.getUserByIsFrozenFalse();}
 
-    public int countFrozenUsers(){return userDao.countFrozenUsers();}
+    public int countAllUsers(){return adminDao.countAllUsers();}
 
-    public String getFrozenReason(int id){return userDao.getFrozenReason(id);}
+    public int countOnlineUsers(){return adminDao.countOnlineUsers();}
 
-    public void freezeUser(int id, String frozen_reason){userDao.freezeUser(id, frozen_reason);}
+    public int countFrozenUsers(){return adminDao.countFrozenUsers();}
 
-    public void unfreezeUser(int id){userDao.unfreezeUser(id);}
+    public String getFrozenReason(int id){return adminDao.getFrozenReason(id);}
 
-    public List<User> getAllUserStatus(){return userDao.getAllUserStatus();}
+    public void freezeUser(int id, String frozen_reason){adminDao.freezeUser(id, frozen_reason);}
 
-    public List<User> getAllMerchants(){return userDao.getAllMerchants();}
+    public void unfreezeUser(int id){adminDao.unfreezeUser(id);}
+
+    public List<User> getAllUserStatus(){return adminDao.getAllUserStatus();}
+
+    public List<User> getAllMerchants(){return adminDao.getAllMerchants();}
+
+    public void creditDecrease(int merchantId){adminDao.creditDecrease(merchantId);}
+
+    public void creditIncrease(int merchantId){adminDao.creditIncrease(merchantId);}
+
+    public void creditSetUnqualified(int merchantId){adminDao.creditSetUnqualified(merchantId);}
+
+    public void creditSetQualified(int merchantId){adminDao.creditSetQualified(merchantId);}
+//  ?????？？？？  看不懂
+    public void setIsOnlineFalse(int id){adminDao.setIsOnlineFalse(id);}
+//  ?????？？？？  看不懂
+    public void setIsOnlineTrue(int id){adminDao.setIsOnlineTrue(id);}
+
 }

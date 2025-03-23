@@ -1,5 +1,6 @@
 package org.csu.demo.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.CartItem;
 import org.csu.demo.domain.Item;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("CartService")
+@Log4j2
 public class CartService {
     @Autowired
     private CartDao cartDao;
@@ -63,6 +65,15 @@ public class CartService {
         return false;
     }
 
+    public CartItem getCartItemById(Cart cart, int itemid) {
+        for (CartItem cartItem : cart.getItemList()) {
+            if (cartItem.getItemID() == itemid) {
+                return cartItem;
+            }
+        }
+        return null;
+    }
+
     public Cart incrementQuantityByItemId(Cart cart, int itemId) {
         for (CartItem cartItem : cart.getItemList()) {
             if (cartItem.getItemID() == itemId) {
@@ -83,8 +94,19 @@ public class CartService {
                 .userID(cart.getUserId())
                 .name(item.getName())
                 .url(item.getUrl())
+                .price(item.getPrice())
                 .build());
         cartDao.executeAddCart(cart.getUserId(), item.getId(), 1);
+        cart.setTotalPrice(getTotalPrice(cart.getItemList()));
+        cart.setTotalCount(getTotalCount(cart.getItemList()));
+        return cart;
+    }
+
+    public Cart removeItemFromCart(Cart cart, int item) {
+        cart.getItemList().remove(getCartItemById(cart, item));
+        cart.setTotalPrice(getTotalPrice(cart.getItemList()));
+        cart.setTotalCount(getTotalCount(cart.getItemList()));
+        cartDao.executeRemoveCart(cart.getUserId(), item);
         return cart;
     }
 }

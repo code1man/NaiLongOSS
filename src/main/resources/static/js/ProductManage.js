@@ -52,7 +52,7 @@ async function loadProducts(categoryId, element) {
                     <td>${product.name}</td>
                     <td><img src="${product.url}" class="product-thumbnail"></td>
                     <td>${product.remainingNumb}</td>
-                    <td>¥${product.price.toFixed(2)}</td>
+                    <td>¥${product.price}</td>
                     <td>
                         <button onclick="editProduct('${product.id}')">编辑</button>
                         <button onclick="deleteProduct('${product.id}')">删除</button>
@@ -81,6 +81,94 @@ async function loadProducts(categoryId, element) {
 
 
 
+
+function handleEditMainCategoryChange(select, presetSubcategoryId = null) {
+    const mainCategory = select.value;
+    const subcategorySelect = document.getElementById('editSubcategory');
+
+    if (mainCategory) {
+        // 获取对应的子分类元素
+        const subcategories = document.querySelectorAll(
+            `.subcategory-panel[data-parent="${mainCategory}"] .subcategory`
+        );
+
+        subcategorySelect.innerHTML = '';
+        subcategories.forEach(sub => {
+            const option = document.createElement('option');
+            option.value = sub.dataset.id; // ✅ 提交时传 ID
+            option.textContent = sub.textContent.trim(); // 显示文本
+            subcategorySelect.appendChild(option);
+        });
+
+        // 设置默认选中的子分类（根据 ID）
+        if (presetSubcategoryId !== null) {
+            subcategorySelect.value = presetSubcategoryId.toString();
+        }
+        subcategorySelect.disabled = false;
+    } else {
+        subcategorySelect.innerHTML = '<option value="">请先选择主分类</option>';
+        subcategorySelect.disabled = true;
+    }
+}
+
+function previewImage(event) {
+    const preview = document.getElementById('imagePreview');
+    preview.innerHTML = '';
+    selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+        if (!validateFile(selectedFile)) {
+            event.target.value = '';
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = e => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'preview-image';
+            preview.appendChild(img);
+        };
+        reader.readAsDataURL(selectedFile);
+    }
+}
+
+//编辑按钮
+async function editProduct(productId) {
+    try {
+        // 获取商品详细信息
+        const response = await fetch(`/api/products/${productId}`);
+        const product = await response.json();
+
+        console.log("📦 响应数据:", product);
+
+        // 填充表单数据
+        editingProduct = product;
+        document.getElementById('editProductId').value = product.id;
+        document.getElementById('editProductName').value = product.name;
+        document.getElementById('editProductStock').value = product.remainingNumb;
+        document.getElementById('editProductPrice').value = product.price;
+     
+
+        // 处理分类选择
+        const mainCategorySelect = document.getElementById('editMainCategory');
+        mainCategorySelect.value = product.mainCategory;
+        handleEditMainCategoryChange(mainCategorySelect, product.subcategoryid);
+
+        // 显示当前图片
+        const currentPreview = document.getElementById('currentImagePreview');
+        currentPreview.innerHTML = product.url ?
+            `<img src="${product.url}" alt="当前图片">` :
+            '<div>暂无图片</div>';
+
+        // 打开模态框
+        document.getElementById('editProductModal').style.display = 'block';
+    } catch (error) {
+        showMessage(`❌ 获取商品信息失败: ${error.message}`, 'error');
+    }
+}
+
+//删除按钮
 async function deleteProduct(productId) {
     if (confirm('确认删除该商品？')) {
         try {
@@ -107,81 +195,13 @@ function openAddProductModal() {
     selectedFile = null;
 }
 
-function handleMainCategoryChange(select) {
-    const mainCategory = select.value;
-    const subcategorySelect = document.getElementById('subcategorySelect');
-
-    subcategorySelect.innerHTML = mainCategory ? '' : '<option value="">请先选择主分类</option>';
-    subcategorySelect.disabled = !mainCategory;
-
-    if (mainCategory) {
-        document.querySelectorAll(`.subcategory-panel[data-parent="${mainCategory}"] .subcategory`)
-            .forEach(sub => {
-                const option = document.createElement('option');
-                option.value = sub.textContent.trim();
-                option.textContent = sub.textContent.trim();
-                subcategorySelect.appendChild(option);
-            });
-    }
+function showMessage(message, type) {
+    const container = document.getElementById('messageContainer');
+    container.innerHTML = `<div class="message ${type}">${message}</div>`;
+    setTimeout(() => container.innerHTML = '', 3000);
 }
 
-function previewImage(event) {
-    const preview = document.getElementById('imagePreview');
-    preview.innerHTML = '';
-    selectedFile = event.target.files[0];
 
-    if (selectedFile) {
-        if (!validateFile(selectedFile)) {
-            event.target.value = '';
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = e => {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            img.className = 'preview-image';
-            preview.appendChild(img);
-        };
-        reader.readAsDataURL(selectedFile);
-    }
-}
-
-async function submitProductForm(event) {
-    event.preventDefault();
-    const form = event.target;
-
-    // 表单验证
-    if (!validateForm()) return;
-
-    // 显示上传状态
-    const progressContainer = document.createElement('div');
-    progressContainer.innerHTML = `
-        <div class="upload-progress">
-            <div class="progress-bar" style="width: 0%"></div>
-        </div>`;
-    document.getElementById('imagePreview').appendChild(progressContainer);
-
-    try {
-        // 模拟上传过程
-        await simulateUploadWithProgress(progressContainer);
-
-        // 实际提交应替换此部分
-        // const formData = new FormData(form);
-        // const response = await fetch('/api/products', {
-        //     method: 'POST',
-        //     body: formData
-        // });
-
-        showMessage('✅ 商品添加成功', 'success');
-        closeModal();
-        if(currentSubcategory === form.subcategory.value) {
-            loadProducts(currentSubcategory, document.querySelector('.subcategory.active'));
-        }
-    } catch (error) {
-        showMessage(`❌ 保存失败: ${error.message}`, 'error');
-    }
-}
 
 // 辅助函数
 function validateFile(file) {
@@ -203,25 +223,9 @@ function validateFile(file) {
     return true;
 }
 
-function validateForm() {
-    const requiredFields = [
-        'mainCategorySelect',
-        'subcategorySelect',
-        'productName',
-        'productStock',
-        'productPrice'
-    ];
 
-    for (const fieldId of requiredFields) {
-        const field = document.getElementById(fieldId);
-        if (!field.value.trim()) {
-            showMessage('请填写所有必填字段', 'error');
-            field.focus();
-            return false;
-        }
-    }
-    return true;
-}
+
+
 
 function simulateUploadWithProgress(container) {
     return new Promise(resolve => {
@@ -237,11 +241,7 @@ function simulateUploadWithProgress(container) {
     });
 }
 
-function showMessage(message, type) {
-    const container = document.getElementById('messageContainer');
-    container.innerHTML = `<div class="message ${type}">${message}</div>`;
-    setTimeout(() => container.innerHTML = '', 3000);
-}
+
 
 function closeModal() {
     document.getElementById('addProductModal').style.display = 'none';
@@ -253,43 +253,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });// 编辑功能相关函数
 let editingProduct = null;
 
-async function editProduct(productId) {
-    try {
-        // 获取商品详细信息
-        const response = await fetch(`/api/products/${productId}`);
-        const product = await response.json();
 
-        console.log("📦 响应数据:", product);
-
-        // if (!product.success) {
-        //     throw new Error(product.message || "请求失败");
-        // }
-
-        // 填充表单数据
-        editingProduct = product;
-        document.getElementById('editProductId').value = product.id;
-        document.getElementById('editProductName').value = product.name;
-        document.getElementById('editProductStock').value = product.remainingNumb;
-        document.getElementById('editProductPrice').value = product.price.toFixed(2);
-
-        // 处理分类选择
-        const mainCategorySelect = document.getElementById('editMainCategory');
-        mainCategorySelect.value = product.mainCategory;
-        handleEditMainCategoryChange(mainCategorySelect, product.subcategory);
-
-        // 显示当前图片
-        const currentPreview = document.getElementById('currentImagePreview');
-        currentPreview.innerHTML = product.url ?
-            `<img src="${product.url}" alt="当前图片">` :
-            '<div>暂无图片</div>';
-
-        // 打开模态框
-        document.getElementById('editProductModal').style.display = 'block';
-    } catch (error) {
-        showMessage(`❌ 获取商品信息失败: ${error.message}`, 'error');
-    }
-}
-
+//这里没用到，
 function handleEditMainCategoryChange(select, presetSubcategory = null) {
     const mainCategory = select.value;
     const subcategorySelect = document.getElementById('editSubcategory');
@@ -347,6 +312,8 @@ async function submitEditForm(event) {
 
     // 表单验证
     if (!validateEditForm()) return;
+    // ✅ 获取子分类ID（关键修复）
+    const subcategoryId = document.getElementById('editSubcategory').value;
 
     // 准备表单数据
     const formData = new FormData();
@@ -358,9 +325,15 @@ async function submitEditForm(event) {
 
     formData.append('name', document.getElementById('editProductName').value);
     formData.append('mainCategory', document.getElementById('editMainCategory').value);
-    formData.append('subcategory', document.getElementById('editSubcategory').value);
+    // formData.append('subcategory', document.getElementById('editSubcategory').value);
+    formData.append('subcategoryId', subcategoryId); // ✅ 传递 ID
     formData.append('stock', document.getElementById('editProductStock').value);
-    formData.append('price', document.getElementById('editProductPrice').value);
+    // 获取并转换价格
+    const priceInput = document.getElementById('editProductPrice').value;
+    const price = parseInt(priceInput, 10);  // 转为整数
+    formData.append('price', price);  // 添加整数到表单数据
+
+    console.log(formData);
 
     try {
         // 提交更新
@@ -375,7 +348,7 @@ async function submitEditForm(event) {
         closeEditModal();
 
         // 刷新当前列表
-        loadProducts(currentSubcategory, document.querySelector('.subcategory.active'));
+        await loadProducts(currentSubcategory, document.querySelector('.subcategory.active'));
     } catch (error) {
         showMessage(`❌ 更新失败: ${error.message}`, 'error');
     }
@@ -420,3 +393,99 @@ function closeEditModal() {
     document.getElementById('editImagePreview').innerHTML = '';
     editingProduct = null;
 }
+
+
+
+// //编辑表单上传函数
+// async function submitEditForm(event) {
+//     event.preventDefault();
+//     const form = event.target;
+//
+//     // 表单验证
+//     // if (!validateEditForm()) return;
+//
+//     // 准备表单数据
+//     const formData = new FormData();
+//
+//     // 1. 获取并添加分类ID
+//     const subcategoryId = document.getElementById('editSubcategory').value;
+//     console.log(subcategoryId);
+//     formData.append('subcategoryId', subcategoryId);
+//
+//     // 2. 添加其他字段（与表单项一一对应）
+//     const editname=document.getElementById('editProductName').value ;
+//     console.log(editname);
+//     formData.append('name', document.getElementById('editProductName').value);
+//
+//     const editstock=document.getElementById('editProductStock').value;
+//     console.log(editstock);
+//     formData.append('stock', document.getElementById('editProductStock').value);
+//     formData.append('price', document.getElementById('editProductPrice').value);
+//
+//
+//     // 3. 处理文件上传
+//     const imageFile = document.getElementById('editProductImage').files[0];
+//     if (imageFile) {
+//         formData.append('image', imageFile);
+//     }
+//
+//
+//
+//     try {
+//         // 提交更新
+//         const response = await fetch(`/api/products/${editingProduct.id}`, {
+//             method: 'PUT',
+//             body: formData
+//         });
+//
+//         if (!response.ok) throw new Error('更新失败');
+//
+//         showMessage('✅ 商品更新成功', 'success');
+//         closeEditModal();
+//
+//         // 刷新当前列表
+//         loadProducts(currentSubcategory, document.querySelector('.subcategory.active'));
+//     } catch (error) {
+//         showMessage(`❌ 更新失败: ${error.message}`, 'error');
+//     }
+// }
+
+
+
+
+// async function submitProductForm(event) {
+//     event.preventDefault();
+//     const form = event.target;
+//
+//     // 表单验证
+//     if (!validateForm()) return;
+//
+//     // 显示上传状态
+//     const progressContainer = document.createElement('div');
+//     progressContainer.innerHTML = `
+//         <div class="upload-progress">
+//             <div class="progress-bar" style="width: 0%"></div>
+//         </div>`;
+//     document.getElementById('imagePreview').appendChild(progressContainer);
+//
+//     try {
+//         // 模拟上传过程
+//         await simulateUploadWithProgress(progressContainer);
+//
+//         // 实际提交应替换此部分
+//         // const formData = new FormData(form);
+//         // const response = await fetch('/api/products', {
+//         //     method: 'POST',
+//         //     body: formData
+//         // });
+//
+//         showMessage('✅ 商品添加成功', 'success');
+//         closeModal();
+//         if(currentSubcategory === form.subcategory.value) {
+//             loadProducts(currentSubcategory, document.querySelector('.subcategory.active'));
+//         }
+//     } catch (error) {
+//         showMessage(`❌ 保存失败: ${error.message}`, 'error');
+//     }
+// }
+//
