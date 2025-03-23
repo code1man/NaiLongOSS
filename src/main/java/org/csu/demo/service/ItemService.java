@@ -29,4 +29,6 @@ public class ItemService {
     public Item getItemByItemId(int itemId) {
         return itemDao.getItem(itemId);
     }
+
+    public int getItemIdByName(String itemName) {return itemDao.getItemId(itemName);}
 }

@@ -124,8 +124,7 @@ public class UserController {
 
     @RequestMapping("/merchantForm")
     public String merchantForm() {
-        // 记得改
-        return "main";
+        return "merchant";
     }
 
 

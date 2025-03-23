@@ -7,7 +7,20 @@ body {
     margin: 0;
 }
 
- 
+.product-thumbnail {
+    width: 50px; /* 控制缩略图宽度 */
+    height: 50px; /* 保持高度一致 */
+    object-fit: cover; /* 让图片填充整个框，避免变形 */
+    border-radius: 5px; /* 让图片有一点圆角，更美观 */
+    border: 1px solid #ddd; /* 添加边框以区分图片 */
+    padding: 2px; /* 让图片和边框之间有点间距 */
+}
+
+.product-thumbnail:hover {
+    transform: scale(1.5); /* 悬停时放大 1.5 倍 */
+    transition: transform 0.3s ease-in-out; /* 平滑过渡 */
+}
+
 
 /* 标题样式增强 */
 h1 {

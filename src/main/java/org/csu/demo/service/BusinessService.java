@@ -33,16 +33,16 @@ public class BusinessService {
         return (tmp1 + tmp2) - 1;
     }
 
+    /*上下架商品*/
+    public void updateProductAvailability(int itemId, boolean availability) {
+        businessDao.updateProductAvailability(itemId, availability);
+    }
+
     /*删除商品*/
     public int deleteItem(int itemId) {
         int tmp1 = businessDao.deleteBusinessItem(itemId);
         int tmp2 = itemDao.deleteItem(itemId);
         return (tmp1 + tmp2) - 1;
-    }
-
-    /*更新商品库存信息*/
-    public int updateItem(Item item) {
-        return businessDao.updateBusinessItem(item);
     }
 
     /*查询剩余商品数量*/
@@ -51,7 +51,11 @@ public class BusinessService {
     }
 
     /*更新商品各种信息*/
-    public Item updateItem(int itemid, @RequestBody Item item) {
-        return businessDao.updateBusinessItemById(itemid,item);
+    public int updateItem( @RequestBody Item item) {
+        return businessDao.updateBusinessItemById(item);
+    }
+
+    public List<Item> getBusinessItemByIdAndMerchantId(int product_Id, int merchantId) {
+        return businessDao.getBusinessItemByIdAndMerchantId(product_Id, merchantId);
     }
 }
