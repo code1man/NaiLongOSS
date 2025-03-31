@@ -31,7 +31,7 @@ public class User {
     // 数据库中用tinyint表示，这里应该用int的
 
     // 信誉
-    @NotBlank(message = "冻结原因不能为空") // 校验不能为空，会送到@validated进行校验
+    //@NotBlank(message = "冻结原因不能为空") // 校验不能为空，会送到@validated进行校验
     private String frozen_reason;
 
     // 信誉
