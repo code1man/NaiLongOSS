@@ -1,6 +1,7 @@
 package org.csu.demo.Controller;
 
 
+import com.alibaba.fastjson2.JSON;
 import org.aspectj.lang.annotation.After;
 import org.csu.demo.domain.AfterSale;
 import org.csu.demo.persistence.mappers.AfterSaleMapper;
@@ -19,9 +20,6 @@ public class AfterSaleController {
 
     @Autowired
     private OrderService orderService;
-    @Autowired
-    private AfterSaleMapper afterSaleMapper;
-
 
     //www路径可能得改
     @PostMapping("/buttonClick/{orderId}")
@@ -37,7 +35,14 @@ public class AfterSaleController {
 
         afterSale.setAfter_sale_status(id);
 
-        afterSaleMapper.updateById(afterSale);
+        orderService.updateAfterSale(afterSale);
         return "success";
+    }
+
+    @GetMapping("/getAfterSaleInfo")
+    @ResponseBody
+    public String statusChange(@RequestParam("orderId") String orderId){
+        AfterSale afterSale = orderService.getAfterSale(orderId);
+        return JSON.toJSONString(afterSale);
     }
 }

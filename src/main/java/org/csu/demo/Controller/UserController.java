@@ -26,7 +26,7 @@ import java.util.List;
 
 @Controller
 @Validated
-@SessionAttributes(value = { "loginUser", "message", "cart", "captcha", "orderList" }) // 登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
+@SessionAttributes(value = { "loginUser", "message", "cart", "captcha", "orderList","businessLoginUser" }) // 登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
 public class UserController {
     @Autowired
     private UserService userService;
@@ -72,16 +72,20 @@ public class UserController {
             if (loginUser.getResponsibility().equals("user")) {
                 cart = cartService.getCart(loginUser.getId());
             }
-            model.addAttribute("loginUser", loginUser);
+            //防止相互覆盖
+//            model.addAttribute("loginUser", loginUser);
             model.addAttribute("cart", cart);
             // 把买家相关订单放到session
             model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(), 0));
 
             if ("user".equals(loginUser.getResponsibility())) {
+                model.addAttribute("loginUser", loginUser);
                 return "redirect:/mainForm";
             } else if ("merchant".equals(loginUser.getResponsibility())) {
+                model.addAttribute("businessLoginUser", loginUser);
                 return "redirect:/merchantForm";
             } else if ("admin".equals(loginUser.getResponsibility())) {
+                model.addAttribute("loginUser", loginUser);
                 return "redirect:/ManagerForm";
             } else {
                 model.addAttribute("loginMsg", loginUser.getResponsibility());

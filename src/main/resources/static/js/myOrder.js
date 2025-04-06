@@ -2,6 +2,50 @@
 
 $(function (){
 
+    //查看处理结果事件
+    $(document).on('click', '.check_solve', function() {
+        let buttonDiv = $(this).closest('.order-status');
+        let orderId = buttonDiv.data('id'); // 获取订单ID
+
+        $.ajax({
+            url: '/afterSale/getAfterSaleInfo',
+            type: 'GET',
+            data: {orderId: orderId},
+            success: function(response) {
+                let data = JSON.parse(response); // 解析 JSON 字符串
+
+                // 状态文字映射函数
+                function getStatusText(code) {
+                    switch(code) {
+                        case -1: return '已拒绝';
+                        case 0: return '未处理';
+                        case 1: return '已同意';
+                        default: return '未知状态';
+                    }
+                }
+
+                // 赋值状态文本
+                $('#businessSolveResult').text(getStatusText(data.business_solve));
+                $('#adminSolveResult').text(getStatusText(data.admin_solve));
+
+                // 赋值时间（注意格式化时间，可自定义格式）
+                $('#businessSolveTime').text(data.business_solve_time || '暂无时间');
+                $('#adminSolveTime').text(data.admin_solve_time || '暂无时间');
+                // 打开模态框
+                $('#solveModal').show();
+            },
+            error: function() {
+                alert('请求失败，请检查网络或服务器！');
+            }
+        });
+    });
+
+// 模态框关闭按钮
+    $('#closeSolveModal').on('click', function() {
+        $('#solveModal').hide();
+    });
+
+
     // 申请售后按钮点击事件
     $(document).on('click', '.after_sale', function() {
         // 获取当前点击的按钮的父 div 元素
@@ -25,13 +69,33 @@ $(function (){
                 contentType: 'application/json',
                 data: JSON.stringify({ id: buttonId }), // 发送的请求数据，包含按钮ID
                 success: function (response) {
-                    alert('请求成功: ' + response); // 请求成功后提示
                     $('#myModal').fadeOut(); // 请求成功后关闭模态框
                 },
                 error: function () {
                     alert('请求失败，请检查网络或服务器！'); // 请求失败后提示
                 }
             });
+
+            $.ajax({
+                url: "/statusChange",
+                type: "Post",
+                data: {nextStatus: "11", orderId: orderId}, // 直接传递字符串
+                success: function (response){
+                    if (response === "success"){
+                        console.log("来了……")
+                        buttonDiv.html('<button class="after_sale">申请售后</button>\n                ' +
+                            '<button class="confirm">确认收货</button>\n                ' +
+                            '<button class="check_info">查看订单信息</button>'); // 清空按钮
+                        statusTd.html('<span>已申请售后</span>');
+                    }
+                },
+                error: function (xhr, status, error){
+                    console.error("状态码:", xhr.status);  // HTTP 状态码
+                    console.error("响应文本:", xhr.responseText);  // 服务器返回的错误信息
+                    console.error("错误:", error);  // jQuery 解析错误信息
+                    alert("申请售后失败，请稍后重试！错误码：" + xhr.status);
+                }
+            })
         });
 
         // 关闭模态框

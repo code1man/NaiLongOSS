@@ -12,17 +12,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
 @RequestMapping("/business")
-@SessionAttributes({"loginUser"})
+@SessionAttributes({"businessLoginUser"})
 public class businessOrderController {
 
     @Autowired
     private OrderService orderService;
     @GetMapping("/myOrder")
-    public String myOrder(@ModelAttribute("loginUser") User user, Model model){
+    public String myOrder(@ModelAttribute("businessLoginUser") User user, Model model){
         List<Order> orderList = new ArrayList<Order>();
         List<OrderItem> orderItems = orderService.getOrderItems(user.getId(),orderList,1);
         model.addAttribute("orderItems",orderItems);
@@ -32,7 +33,7 @@ public class businessOrderController {
 
     @GetMapping("/updateMyOrder")
     @ResponseBody
-    public String updateMyOrder( @ModelAttribute("loginUser")User user, Model model){
+    public String updateMyOrder( @ModelAttribute("businessLoginUser")User user, Model model){
 
         List<Order> orderList = new ArrayList<Order>();
         List<OrderItem> orderItems = orderService.getOrderItems(user.getId(),orderList,1);
@@ -51,10 +52,21 @@ public class businessOrderController {
         return "success";
     }
 
-    @GetMapping("/getAfterSaleInfo")
+    //应该放afterSale里面
+    @PostMapping("/updateAfterSale")
     @ResponseBody
-    public String statusChange(@RequestParam("orderId") String orderId){
+    public String updateAfterSale(@RequestParam("orderId") String orderId, @RequestParam("operator") String operator,@RequestParam("flag") int flag, Model model){
         AfterSale afterSale = orderService.getAfterSale(orderId);
-        return String.valueOf(afterSale.getAfter_sale_status());
+        if(operator.equals("supplier")){
+            afterSale.setBusiness_solve(flag);
+            afterSale.setBusiness_solve_time(new Date());
+        }
+        if (operator.equals("admin")){
+            afterSale.setAdmin_solve(flag);
+            afterSale.setAdmin_solve_time(new Date());
+        }
+        orderService.updateAfterSale(afterSale);
+        return "success";
     }
+
 }

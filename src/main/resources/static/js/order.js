@@ -9,7 +9,10 @@ $(function () {
     let $button1 = $('#submitCartItems');
     let $button2 = $('#submitItem');
     let $changeable = $('.changed');
+
+
     let priceText = document.querySelector(".price span").innerText; // 获取内部 <span> 的文本
+
     let priceValue = parseFloat(priceText); // 转换成浮点数
 
     let province = document.querySelector(".address-info span:nth-child(1)").innerText;
@@ -84,8 +87,6 @@ $(function () {
 
                     // 显示模态框
                     $("#orderModal").fadeIn();
-
-
 
                     // 15分钟倒计时
                     let timeLeft = 15 * 60; // 15分钟转为秒
