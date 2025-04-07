@@ -2,6 +2,7 @@ package org.csu.demo.persistence;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.csu.demo.domain.User;
 import org.springframework.stereotype.Repository;
 
@@ -15,10 +16,6 @@ public interface UserDao {
     User getUser(@Param("id") int id);
 
     int addUser(User user);
-
-    int addMerchant(User user);
-
-    int addStatus(User user);
 
     User findByUsername(@Param("username") String username);
 
@@ -34,6 +31,9 @@ public interface UserDao {
 
     boolean deleteUser(@Param("id") int id);
 
+    void updateUserPassword(@Param("id") int id, @Param("password") String password);
+
+     int getUserIdByUsername(@Param("username") String username) ;
     // 获取完整的用户信息，包括状态和商家信息
     List<User> getAllUsersWithDetails();
 }

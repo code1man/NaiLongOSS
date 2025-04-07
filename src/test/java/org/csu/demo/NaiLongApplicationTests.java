@@ -5,10 +5,7 @@ import org.csu.demo.domain.Category;
 import org.csu.demo.domain.Product;
 import org.csu.demo.domain.User;
 import org.csu.demo.persistence.*;
-import org.csu.demo.service.CartService;
-import org.csu.demo.service.CatalogService;
-import org.csu.demo.service.ProductService;
-import org.csu.demo.service.UserService;
+import org.csu.demo.service.*;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +40,8 @@ class NaiLongApplicationTests {
     private AdminDao adminDao;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ItemService itemService;
 
     @Test
     void testAddressDao() {
@@ -54,9 +53,7 @@ class NaiLongApplicationTests {
 
     @Test
     void test1(){
-        System.out.println(userDao);
-        User user = userDao.getUserByUsernameAndPassword("zkd", "123");
-        System.out.println(user);
+        System.out.println(productService.getProductIdByName("奶龙唐唐表情包"));
     }
 
     @Test
@@ -90,10 +87,12 @@ class NaiLongApplicationTests {
         List<Product> productList = productService.getProducts();
         System.out.println(categoryList);
         System.out.println(productList);
+        System.out.println(itemService.getItemsByProductId(2));
     }
 
     @Test
     void test5() {
+        System.out.println(userService.login("奶龙", "nailong"));
         System.out.println(cartService.getCart(12));
     }
 

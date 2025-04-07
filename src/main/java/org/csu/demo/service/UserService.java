@@ -3,7 +3,9 @@ package org.csu.demo.service;
 import lombok.extern.log4j.Log4j2;
 import org.csu.demo.domain.User;
 import org.csu.demo.persistence.AdminDao;
+import org.csu.demo.persistence.MerchantDao;
 import org.csu.demo.persistence.UserDao;
+import org.csu.demo.persistence.UserStatusDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,11 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserStatusDao userStatusDao;
+    @Autowired
+    private MerchantDao merchantDao;
+    @Autowired
     private AdminDao adminDao;// 提供了对数据库操作的方法
 
     @Autowired
@@ -24,7 +31,6 @@ public class UserService {
         User user = userDao.findByUsername(username);
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             user.setPassword(null); // 密码不返回给前端
-            // System.out.println(user);
             return user;
         }
         return null;
@@ -34,8 +40,24 @@ public class UserService {
         // 加密密码
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        // 调用 MyBatis Mapper 保存用户信息
-        return this.userDao.addUser(user) == 1;
+
+        // **先插入用户，确保 userinfo 里有 id**
+        int check = userDao.addUser(user);
+        if (check != 1) {
+            return false; // 插入失败，直接返回
+        }
+        user = userDao.getUserByUsername(user.getUsername());
+
+        // **再插入 user_status**
+        userStatusDao.addStatus(user);
+
+        // **如果是商户，插入 merchant**
+        if ("merchant".equals(user.getResponsibility())) {
+            merchantDao.addMerchant(user.getId());
+        }
+
+        // **成功返回**
+        return true;
     }
 
     public boolean checkUsername(String username) {
@@ -47,8 +69,29 @@ public class UserService {
         return userDao.getAllUsersWithDetails();
     }
 
+    // 计算商家信誉度对应的星级
+    public String calculateStars(int credit) {
+        int starCount = credit / 20;
+        StringBuilder stars = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            if (i < starCount) {
+                stars.append("★");
+            } else {
+                stars.append("☆");
+            }
+        }
+        return stars.toString();
+    }
+
+    public void resetPassword(int userId) {
+        String defaultPassword = "123456";
+        String encodedPassword = passwordEncoder.encode(defaultPassword);
+        userDao.updateUserPassword(userId, encodedPassword);
+    }
+
     // ？？？？？？ 什么时候service里写增删查改了？？？？？
     // ？？？？？？ 把Dao方法在service又写一遍？？？？？？
+    // 以下都非yy写的
     public void updateUser(User user, String username, String password, String email, int age) {
         userDao.updateUser(user.getId(), username, password, email, age);
     }
@@ -72,29 +115,6 @@ public class UserService {
     public boolean deleteUser(int id) {
         return userDao.deleteUser(id);
     }
-
-    public int addUser(User user) {
-        int result = userDao.addUser(user);
-        userDao.addStatus(user);
-        if (user.getResponsibility().equals("商家"))
-            return userDao.addMerchant(user);
-        return result;
-    }
-
-    // 计算商家信誉度对应的星级
-    public String calculateStars(int credit) {
-        int starCount = credit / 20;
-        StringBuilder stars = new StringBuilder();
-        for (int i = 0; i < 5; i++) {
-            if (i < starCount) {
-                stars.append("★");
-            } else {
-                stars.append("☆");
-            }
-        }
-        return stars.toString();
-    }
-
 
     public List<User> getUserByIsOnlineTrue() {
         return adminDao.getUserByIsOnlineTrue();
@@ -160,6 +180,10 @@ public class UserService {
         adminDao.creditSetQualified(merchantId);
     }
 
+    public int getMerchantCredit(int merchantId) {
+        return merchantDao.gerCreditByMerchantId(merchantId);
+    }
+
     // ?????？？？？ 看不懂
     public void setIsOnlineFalse(int id) {
         adminDao.setIsOnlineFalse(id);
@@ -169,6 +193,5 @@ public class UserService {
     public void setIsOnlineTrue(int id) {
         adminDao.setIsOnlineTrue(id);
     }
-
 
 }

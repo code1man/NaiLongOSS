@@ -48,14 +48,14 @@
     <!-- 插入新的商品库存信息 -->
     <insert id="insertBusinessItem" parameterType="org.csu.demo.domain.Item">
         INSERT INTO businessItemRemaining (itemId, businessId, RemaingNumb)
-        VALUES (#{itemId}, #{businessId}, #{remainingNumb});
+        VALUES (#{id}, #{businessId}, #{remainingNumb});
     </insert>
 
     <!-- 更新商品库存 -->
     <update id="updateBusinessItem" parameterType="org.csu.demo.domain.Item">
         UPDATE businessItemRemaining
         SET RemaingNumb = #{remainingNumb}
-        WHERE itemId = #{itemId} AND businessId = #{businessId};
+        WHERE itemId = #{id} AND businessId = #{businessId};
     </update>
 
     <!-- 删除库存记录 -->

@@ -39,22 +39,30 @@ public class ProductManageController {
     @GetMapping("/admin/products")
     @ResponseBody
     public List<Item> getAllProducts(@RequestParam(name = "categoryId", required = false) Integer categoryId) {
-        return businessService.getBusinessItemById(categoryId);
+        return businessService.getBusinessItemByIdIgnoreList(categoryId);
     }
 
     @GetMapping("/merchant/products")
     @ResponseBody
-    public List<Item> getMerchantProducts(@SessionAttribute("user") User user,  // 从 session 获取 user
+    public List<Item> getMerchantProducts(@SessionAttribute("loginUser") User user,  // 从 session 获取 user
                                           @RequestParam(name = "categoryId", required = false) Integer categoryId) {
         int merchantId = user.getId();
         return businessService.getBusinessItemByIdAndMerchantId(categoryId, merchantId);
     }
 
+    @DeleteMapping("/api/products/{productId}")
+    @ResponseBody
+    public ResponseEntity<?> deleteEntity(@PathVariable("productId") int productId) {
+        businessService.deleteItem(productId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PostMapping("/api/products")
     @ResponseBody
     public ResponseEntity<?> newItemCreate(
+            @SessionAttribute("loginUser") User user,
             @RequestParam("name") String name,
-            @RequestParam("subcategoryName") String subcategoryName,  // 🚨 如果应该传ID，建议改为 subcategoryId
+            @RequestParam("subcategoryName") int subcategoryId,
             @RequestParam("description") String description,
             @RequestParam("stock") int stock,
             @RequestParam("price") int price,
@@ -69,10 +77,12 @@ public class ProductManageController {
 
             // 2️⃣ 创建 `Item` 对象
             Item newItem = Item.builder()
+                    .id(subcategoryId + (int)(Math.random() * 10086))
                     .name(name)
+                    .businessId(user.getId())
                     .description(description)
                     .price(price)
-                    .product_id(productService.getProductIdByName(subcategoryName))
+                    .product_id(subcategoryId)
                     .remainingNumb(stock)  // `stock` 对应 `remainingNumb`
                     .url(imageUrl)  // 存储图片路径
                     .build();
@@ -111,19 +121,16 @@ public class ProductManageController {
     public ResponseEntity<?> updateProductById(
             @PathVariable("productId") int itemId,
             @RequestParam("name") String name,
-            @RequestParam("subcategoryName") String subcategoryName,
+            @RequestParam("subcategoryName") int subcategoryId,
             @RequestParam("stock") int stock,
             @RequestParam("price") int price,
             @RequestParam(value = "image", required = false) MultipartFile imageFile) {
-
-        System.out.println("✅ 收到编辑商品详情请求，:0 ");
-        System.out.println("商品id: " + itemId);
 
         try {
             // 1. 创建 Item 对象并设置字段
             Item item = itemService.getItemByItemId(itemId);
             item.setName(name);
-            item.setProduct_id(productService.getProductIdByName(subcategoryName));
+            item.setProduct_id(subcategoryId);
             item.setPrice(price);
             item.setRemainingNumb(stock);
             System.out.println("✅ 收到编辑商品详情请求，商品为，: " + item);
@@ -145,6 +152,7 @@ public class ProductManageController {
             return ResponseEntity.internalServerError()
                     .body(Map.of("error", "文件上传失败: " + e.getMessage()));
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(Map.of("error", "更新失败: " + e.getMessage()));
         }

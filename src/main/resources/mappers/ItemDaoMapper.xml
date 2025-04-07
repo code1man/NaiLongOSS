@@ -20,7 +20,14 @@
     <select id="getItemListByProduct" parameterType="int" resultMap="itemResultMap">
         SELECT i.*, b.businessId, b.RemaingNumb
         FROM item i
-        JOIN businessItemRemaining b ON i.id = b.itemId
+        LEFT JOIN businessItemRemaining b ON i.id = b.itemId
+        WHERE i.product_id = #{product_Id} AND i.isDelete = 0 AND i.isListing = 1;
+    </select>
+
+    <select id="getItemListByProductAndIgnoreListing" parameterType="int" resultMap="itemResultMap">
+        SELECT i.*, b.businessId, b.RemaingNumb
+        FROM item i
+                 LEFT JOIN businessItemRemaining b ON i.id = b.itemId
         WHERE i.product_id = #{product_Id} AND i.isDelete = 0;
     </select>
 
@@ -36,7 +43,7 @@
     <!-- 插入新的商品信息 -->
     <insert id="insertItem" parameterType="org.csu.demo.domain.Item">
         INSERT INTO item (id, name, product_id, url, price, isDelete, isListing)
-        VALUES (#{id}, #{name}, #{productId}, #{url}, #{price}, 0, 0);
+        VALUES (#{id}, #{name}, #{product_id}, #{url}, #{price}, 0, 0);
     </insert>
 
     <update id="deleteItem" parameterType="int">

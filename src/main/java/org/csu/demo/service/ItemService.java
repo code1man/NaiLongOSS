@@ -31,4 +31,6 @@ public class ItemService {
     }
 
     public int getItemIdByName(String itemName) {return itemDao.getItemId(itemName);}
+
+
 }

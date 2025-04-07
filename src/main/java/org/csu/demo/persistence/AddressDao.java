@@ -10,4 +10,5 @@ public interface AddressDao {
     public void deleteAddress(int id);
     public void updateAddress(Address address);
     public void updateDefaultAddress(int userId);
+    public Address getAddressById(int id);
 }

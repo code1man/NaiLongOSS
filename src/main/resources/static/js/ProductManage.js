@@ -109,6 +109,35 @@ function handleEditMainCategoryChange(select, presetSubcategoryId = null) {
     }
 }
 
+function handleAddMainCategoryChange(select, presetSubcategoryId = null) {
+    const mainCategory = select.value;
+    const subcategorySelect = document.getElementById('subcategorySelect');
+
+    if (mainCategory) {
+        // 获取对应的子分类元素
+        const subcategories = document.querySelectorAll(
+            `.subcategory-panel[data-parent="${mainCategory}"] .subcategory`
+        );
+
+        subcategorySelect.innerHTML = '';
+        subcategories.forEach(sub => {
+            const option = document.createElement('option');
+            option.value = sub.dataset.id; // ✅ 提交时传 ID
+            option.textContent = sub.textContent.trim(); // 显示文本
+            subcategorySelect.appendChild(option);
+        });
+
+        // 设置默认选中的子分类（根据 ID）
+        if (presetSubcategoryId !== null) {
+            subcategorySelect.value = presetSubcategoryId.toString();
+        }
+        subcategorySelect.disabled = false;
+    } else {
+        subcategorySelect.innerHTML = '<option value="">请先选择主分类</option>';
+        subcategorySelect.disabled = true;
+    }
+}
+
 function previewImage(event) {
     const preview = document.getElementById('imagePreview');
     preview.innerHTML = '';
@@ -289,6 +318,7 @@ async function submitEditForm(event) {
     // formData.append('subcategory', document.getElementById('editSubcategory').value);
     formData.append('subcategoryName', subcategoryName); // ✅ 传递 ID
     formData.append('stock', document.getElementById('editProductStock').value);
+
     // 获取并转换价格
     const priceInput = document.getElementById('editProductPrice').value;
     const price = parseInt(priceInput, 10);  // 转为整数
@@ -412,20 +442,22 @@ async function submitProductForm() {
     formData.append('image', imageFile);
     formData.append('name', document.getElementById('productName').value);
     formData.append('mainCategory', document.getElementById('mainCategorySelect').value);
-    formData.append('subcategorySelect', subcategoryName); // ✅ 传递 ID
+    formData.append('subcategoryName', subcategoryName); // 确保名称匹配后端
     formData.append('description', document.getElementById('productDescription').value);
-    formData.append('productStock', document.getElementById('editProductStock').value);
+    formData.append('stock', document.getElementById('productStock').value);
+    console.log(formData)
     // 获取并转换价格
     const priceInput = document.getElementById('productPrice').value;
     formData.append('price', parseInt(priceInput, 10));  // 添加整数到表单数据
 
-    console.log(formData);
-
     try {
         // 提交更新
         const response = await fetch(`/api/products`, {
-            method: 'PUT',
-            body: formData
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
         });
 
         if (!response.ok) throw new Error('更新失败');

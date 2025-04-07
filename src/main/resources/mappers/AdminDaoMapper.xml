@@ -54,15 +54,15 @@ SELECT COUNT(*) FROM userinfo;
 SELECT COUNT(*) FROM user_status WHERE is_online = true;
 </select>
 
-        <!-- 冻结用户 -->
-<update id="freezeUser">
-UPDATE user_status SET is_frozen = 1,frozen_reason = #{frozen_reason} WHERE id = #{id}
-</update>
+<!--        &lt;!&ndash; 冻结用户 &ndash;&gt;-->
+<!--<update id="freezeUser">-->
+<!--UPDATE user_status SET is_frozen = 1,frozen_reason = #{frozen_reason} WHERE id = #{id}-->
+<!--</update>-->
 
-        <!-- 解冻用户 -->
-<update id="unfreezeUser" parameterType="int">
-UPDATE user_status SET is_frozen = 0 WHERE id = #{id}
-</update>
+<!--        &lt;!&ndash; 解冻用户 &ndash;&gt;-->
+<!--<update id="unfreezeUser" parameterType="int">-->
+<!--UPDATE user_status SET is_frozen = 0 WHERE id = #{id}-->
+<!--</update>-->
 
         <!-- 查询被冻结的用户人数 -->
 <select id="countFrozenUsers" resultType="int">
@@ -111,6 +111,24 @@ WHERE responsibility = '商家';
 
     <update id="setIsOnlineFalse">
         UPDATE user_status SET is_online = false WHERE id = #{id}
+    </update>
+
+
+    
+       <!-- 冻结用户 -->
+    <update id="freezeUser">
+        UPDATE user_status 
+        SET is_frozen = 1, 
+            frozen_reason = #{frozen_reason} 
+        WHERE id = #{id}
+    </update>
+
+    <!-- 解冻用户 -->
+    <update id="unfreezeUser" parameterType="int">
+        UPDATE user_status 
+        SET is_frozen = 0,
+            frozen_reason = ' '
+        WHERE id = #{id}
     </update>
 
 

@@ -34,7 +34,7 @@
                 <th>小计</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="order-table-body">
             <tr th:each="orderItem : ${orderItems}">
                 <td>
                     <img th:src="${orderItem.url}" style="width: 100px; height: auto;" alt="商品图片">
@@ -47,7 +47,7 @@
 
                 <!-- 状态显示 -->
                 <td>
-                    <span th:switch="${orderItem.status}">
+                    <span class = "status" th:switch="${orderItem.status}">
                         <span th:case="0">待客户支付</span>
                         <span th:case="1">客户已支付</span>
                         <span th:case="2">已发货</span>
@@ -66,19 +66,19 @@
                         <div th:case="0">
                             <!--<button th:data-id="${orderItem.order_id}">取消订单</button>
                             <button th:data-id="${orderItem.order_id}">支付</button>-->
-                            <button>查看订单信息</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 已支付 -->
                         <div th:case="1">
-                            <button>发货</button>
-                            <button>查看订单信息</button>
+                            <button class="send">发货</button>
+                            <button class="check_info">查看订单信息</button>
 <!--                            <button th:data-id="${orderItem.order_id}">催发货</button>-->
                         </div>
 
                         <!-- 已发货 -->
                         <div th:case="2">
-                            <button>查看订单信息</button>
+                            <button class="check_info">查看订单信息</button>
 <!--                            <button th:data-id="${orderItem.order_id}">申请售后</button>-->
 <!--                            <button th:data-id="${orderItem.order_id}">确认收货</button>-->
                         </div>
@@ -88,36 +88,35 @@
 
 <!--                            <button th:data-id="${orderItem.order_id}">申请售后</button>-->
 <!--                            <button th:data-id="${orderItem.order_id}">确认收货</button>-->
-                            <button>提醒取件</button>
-                            <button>查看订单信息</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 已签收 -->
                         <div th:case="4">
 <!--                            <button th:data-id="${orderItem.order_id}">申请售后</button>-->
 <!--                            <button th:data-id="${orderItem.order_id}">确认收货</button> -->
-                            <button>查看订单信息</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 已申请售后 -->
                         <div th:case="11">
 <!--                            <button th:data-id="${orderItem.order_id}">申请售后</button>-->
 <!--                            <button th:data-id="${orderItem.order_id}">确认收货</button>-->
-                            <button>处理售后</button>
-                            <button>查看订单信息</button>
+                            <button class="solve">处理售后</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 已取消订单（无按钮）-->
                         <div th:case="10">
                             <!-- 不显示任何按钮 -->
-                            <button>查看订单信息</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
 
                         <!-- 商家已处理售后 -->
                         <div th:case="5">
 <!--                            <button th:data-id="${orderItem.order_id}">申请售后</button>-->
 <!--                            <button th:data-id="${orderItem.order_id}">确认收货</button>-->
-                            <button>查看订单信息</button>
+                            <button class="check_info">查看订单信息</button>
                         </div>
                     </div>
                 </td>
@@ -165,10 +164,23 @@
             }
 </script>-->
 
+<!-- 模态框 -->
+<div id="myModal" class="modal" style="display: none; background-color: rgba(0,0,0,0.4); position: fixed; top:0; left:0; width:100%; height:100%; z-index: 999;">
+    <div class="modal-content" style="background-color: #FFECB3; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); margin: auto; width: 300px; position: relative; top: 20%;">
+        <h2 id="modalTitle">处理售后申请</h2>
+        <div class="button-group">
+            <button id="agreeBtn" style="background-color: #4CAF50; color: white; margin: 5px;">同意处理</button>
+            <button id="rejectBtn" style="background-color: #F44336; color: white; margin: 5px;">拒绝</button>
+        </div>
+        <button id="closeModal" style="background-color: #FF9800; color: white; margin-top: 10px;">关闭</button>
+    </div>
+</div>
+
+
 <script src="/js/cursorFollow.js"></script>
 
 
-<script src="/js/order.js"></script>
+<script src="/js/myBusinessOrder.js"></script>
 <script src="/js/autoUpdateMyOrder.js"></script>
 </body>
 </html>

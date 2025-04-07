@@ -2,8 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.demo.persistence.UserDao">
+
+
+  <update id="updateUserPassword">
+        UPDATE userinfo
+        SET password = #{password}
+        WHERE id = #{id};
+    </update>
+
+    
     <select id="findByUsername" resultType="org.csu.demo.domain.User">
-            SELECT * FROM userinfo WHERE username = #{username}
+            SELECT userinfo.*, user_status.frozen_reason, user_status.is_frozen FROM userinfo
+            JOIN user_status on userinfo.id = user_status.id
+            WHERE username = #{username}
     </select>
 
     <select id="getUserByUsernameAndPassword" resultType="org.csu.demo.domain.User">
@@ -26,12 +37,7 @@
         VALUES (#{username}, #{password}, #{email}, #{age}, #{responsibility});
     </insert>
 
-    <insert id="addStatus" parameterType="org.csu.demo.domain.User">
-        INSERT INTO user_status(ID) VALUES (#{id});
-    </insert>
-    <insert id="addMerchant" parameterType="org.csu.demo.domain.User">
-        INSERT INTO merchant(ID) VALUES (#{id});
-    </insert>
+
     <!-- 更新用户信息 -->
     <update id="updateUser" parameterType="org.csu.demo.domain.User">
         UPDATE userinfo
@@ -42,6 +48,8 @@
         WHERE id = #{id};
     </update>
 
+
+
     <!-- 通过用户名查询用户 -->
     <select id="getUserByUsername" parameterType="string" resultType="org.csu.demo.domain.User">
         SELECT * FROM userinfo WHERE username = #{username};
@@ -51,8 +59,12 @@
     <delete id="deleteUser" parameterType="int">
         DELETE FROM userinfo WHERE id = #{id}
     </delete>
+    <!-- 通过用户名查询用户ID -->
+    <select id="getUserIdByUsername" parameterType="String" resultType="int">
+        SELECT id FROM userinfo WHERE username = #{username};
+    </select>
 
-    <!-- 获取所有用户的完整信息，包括状态和商家信息 -->
+      <!-- 获取所有用户的完整信息，包括状态和商家信息 -->
     <select id="getAllUsersWithDetails" resultType="org.csu.demo.domain.User">
         SELECT 
             u.*,
@@ -65,5 +77,4 @@
         LEFT JOIN merchant m ON u.id = m.id
         ORDER BY u.id;
     </select>
-
 </mapper>

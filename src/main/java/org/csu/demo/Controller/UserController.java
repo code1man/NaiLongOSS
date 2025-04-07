@@ -1,26 +1,32 @@
 package org.csu.demo.Controller;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.csu.demo.common.CommonResponse;
 import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.User;
+import org.csu.demo.exception.LoginException;
 import org.csu.demo.service.CartService;
 import org.csu.demo.service.OrderService;
 import org.csu.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.net.SocketTimeoutException;
 import java.util.List;
 
 @Controller
 @Validated
-@SessionAttributes(value = { "loginUser", "message", "cart", "captcha", "orderList" }) // 登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
-
+@SessionAttributes(value = { "loginUser", "message", "cart", "captcha", "orderList","businessLoginUser" }) // 登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
 public class UserController {
     @Autowired
     private UserService userService;
@@ -45,46 +51,48 @@ public class UserController {
     }
 
     @PostMapping("/doLogin") // @ModelAttribute User user用来获取表单数据，绑定到User对象上，BindingResult用来获取验证结果
-    public String login(@ModelAttribute User user,
-            BindingResult bindingResult,
+    public String login(@Valid @ModelAttribute User user,
+/*            BindingResult bindingResult,*/
             Model model) {
         User loginUser;
-        Cart cart;
-        if (bindingResult.hasErrors()) {
+        Cart cart = new Cart();
+/*        if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
             model.addAttribute("loginMsg", "账号或密码为空");
             return "login";
-        } else {
-            loginUser = userService.login(user.getUsername(), user.getPassword());
-        }
-
+        } */
+        loginUser = userService.login(user.getUsername(), user.getPassword());
         if (loginUser != null) {
-            if (loginUser.is_frozen()) {
-                model.addAttribute("loginMsg", "账号已被冻结，原因：" + userService.getFrozenReason(loginUser.getId()));
-                return "login";
+            if (loginUser.getResponsibility().equals("merchant")) {
+                loginUser.setCredit(userService.getMerchantCredit(loginUser.getId()));
+                if (loginUser.getCredit() < 60) {
+                    throw new LoginException("LOGIN_FAILED", "您的信誉分太低");
+                }
             }
-            if (loginUser.getCredit() < 60 && loginUser.getResponsibility().equals("merchant")) {
-                model.addAttribute("loginMsg", "您的信誉过低，无法登录，请规范行为");
-                return "login";
+            if (loginUser.getResponsibility().equals("user")) {
+                cart = cartService.getCart(loginUser.getId());
             }
-            cart = cartService.getCart(loginUser.getId());
-            model.addAttribute("loginUser", loginUser);
+            //防止相互覆盖
+//            model.addAttribute("loginUser", loginUser);
             model.addAttribute("cart", cart);
             // 把买家相关订单放到session
             model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(), 0));
-            // System.out.println(loginUser.getResponsibility());
+
             if ("user".equals(loginUser.getResponsibility())) {
+                model.addAttribute("loginUser", loginUser);
                 return "redirect:/mainForm";
             } else if ("merchant".equals(loginUser.getResponsibility())) {
+                model.addAttribute("businessLoginUser", loginUser);
                 return "redirect:/merchantForm";
             } else if ("admin".equals(loginUser.getResponsibility())) {
+                model.addAttribute("loginUser", loginUser);
                 return "redirect:/ManagerForm";
             } else {
+                model.addAttribute("loginMsg", loginUser.getResponsibility());
                 return "redirect:/loginForm";
             }
         } else {
-            model.addAttribute("loginMsg", "账号或密码错误");
-            return "login";
+            throw new LoginException("LOGIN_FAILED", "账号或密码错误");
         }
     }
 
@@ -124,12 +132,15 @@ public class UserController {
 
     @RequestMapping("/merchantForm")
     public String merchantForm() {
-        return "merchant";
+        System.out.println("我被调用了");
+        return "ProductMerchantManage";
     }
+
 
     @RequestMapping("/ManagerForm")
     public String ManagerForm(Model model) {
         List<User> userList = userService.getAllUsersWithDetails();
+        System.out.println(userList);
         // 为每个商家计算星级
         for (User user : userList) {
             if ("merchant".equals(user.getResponsibility())) {
@@ -147,4 +158,27 @@ public class UserController {
         model.addAttribute(locationForm + "Msg", validationErrorsMsg.substring(0, validationErrorsMsg.length() - 1));
         return locationForm;
     }
+
+    /// 演示模块
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @GetMapping("/timeout")
+    public String simulateTimeout() throws SocketTimeoutException {
+        try {
+            // 这里访问一个不存在的 IP，模拟请求超时
+            restTemplate.getForObject("http://10.255.255.1", String.class);
+        } catch (ResourceAccessException e) {
+            if (e.getCause() instanceof SocketTimeoutException) {
+                throw new SocketTimeoutException("请求超时");
+            }
+        }
+        return "请求成功";
+    }
+
+    @GetMapping("/errorSystem")
+    public int errorSystem() {
+        return 1/0;
+    }
+
 }
