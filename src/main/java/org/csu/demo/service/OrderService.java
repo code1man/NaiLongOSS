@@ -92,7 +92,7 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
                         0, date, null, null, null, null, null, "",1);
                 orderMapper.insert(order);
                 orderList.add(order);
-                AfterSale afterSale = new AfterSale(orderID, 0);
+                AfterSale afterSale = new AfterSale(orderID, 0,0,0,null,null);
                 afterSaleMapper.insert(afterSale);
             }
         }
@@ -118,7 +118,7 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
                 int supplier = businessDao.getSupplierByItemId(item.getId());
                 Order order = new Order(orderID, user.getId(), Integer.parseInt(address), item.getId(), 1, item.getPrice(), supplier,
                         0, date, null, null, null, null, null, "", 1);
-                AfterSale afterSale = new AfterSale(orderID, 0);
+                AfterSale afterSale = new AfterSale(orderID, 0,0,0,null,null);
                 afterSaleMapper.insert(afterSale);
                 orderMapper.insert(order);
                 model.addAttribute("currentOrder", order);
@@ -299,6 +299,11 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
 
     public AfterSale getAfterSale(String orderId){
         return afterSaleMapper.selectById(orderId);
+    }
+
+    //更新售后订单
+    public void updateAfterSale(AfterSale afterSale){
+        afterSaleMapper.updateById(afterSale);
     }
 
     @Scheduled(fixedRate = 60000) // 每 60 秒执行一次,处理超时订单库存返回。。。

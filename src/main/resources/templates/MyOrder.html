@@ -112,7 +112,7 @@
                         <!-- 商家已处理售后 -->
                         <div th:case="5">
                             <button class="after_sale">申请售后</button>
-                            <button class="confirm">确认收货</button>
+                            <button class="check_solve">查看处理结果</button>
                             <button class="check_info">查看订单信息</button>
                         </div>
                     </div>
@@ -170,6 +170,22 @@
             <button class="action-btn" data-id="3" style="background-color: #FF9800; color: white; margin: 5px;">仅退款</button>
         </div>
         <button id="closeModal" style="background-color: #FF9800; color: white; margin-top: 10px;">关闭</button>
+    </div>
+</div>
+
+<!-- 售后处理查看模态框 -->
+<div id="solveModal" class="modal" style="background-color: #FFF3E0; display: none;">
+    <div class="modal-content" style="background-color: #FFE0B2; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);">
+        <h2>售后处理情况</h2>
+        <p><strong>商家处理：</strong>
+            <span id="businessSolveResult"></span>
+            （<span id="businessSolveTime">-</span>）
+        </p>
+        <p><strong>系统处理：</strong>
+            <span id="adminSolveResult"></span>
+            （<span id="adminSolveTime">-</span>）
+        </p>
+        <button id="closeSolveModal" style="background-color: #FF9800; color: white; margin-top: 10px;">关闭</button>
     </div>
 </div>
 

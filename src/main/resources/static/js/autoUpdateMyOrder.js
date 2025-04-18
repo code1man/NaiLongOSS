@@ -11,7 +11,7 @@ $(function (){
     // 每30秒刷新一次订单状态
     setInterval(function() {
         updateOrderStatus();  // 调用刷新状态的函数
-    }, 10000); // 10秒
+    }, 5000); // 5秒
 
 
     function updateOrderStatus() {
@@ -87,15 +87,20 @@ $(function (){
 
                     // 遍历返回的 orderItems
                     orderItems.forEach(function(orderItem) {
-                        // 选择对应的 .order-status
-                        const statusDiv = document.querySelector(`.order-status[data-id='${orderItem.order_id}']`);
+                        let statusDiv = document.querySelector(`.order-status[data-id='${orderItem.order_id}']`);
+                        let orderElement;
+
                         if (!statusDiv) {
-                            console.warn("订单项未找到，跳过更新:", orderItem.order_id);
-                            return;
+                            //  创建新的订单行（新订单）
+                            orderElement = createOrderRow(orderItem);
+                            const tableBody = document.querySelector(".order-table-body");
+                            tableBody.insertBefore(orderElement, tableBody.firstChild);  // 插入最上方
+
+                            statusDiv = orderElement.querySelector(`.order-status`);
+                        } else {
+                            orderElement = statusDiv.closest('tr');
                         }
 
-                        // 获取所在的 <tr> 行
-                        const orderElement = statusDiv.closest('tr');
                         if (!orderElement) {
                             console.warn("未找到订单项的 <tr>, 订单ID:", orderItem.order_id);
                             return;
@@ -104,7 +109,7 @@ $(function (){
                         let $statusTd = orderElement.querySelector('.status');
 
                         // 根据状态更新按钮
-                        updateButtons1(orderItem, statusDiv, $statusTd);
+                        updateButtons2(orderItem, statusDiv, $statusTd);
 
                         // 订单仍然有效，从集合中移除
                         displayedOrders.delete(orderItem.order_id);
@@ -121,6 +126,7 @@ $(function (){
                         }
                     });
                 },
+
                 error: function() {
                     console.error("更新订单状态失败！");
                 }
@@ -191,7 +197,7 @@ $(function (){
                 statusTd.innerHTML = '<span>已处理售后</span>';
                 statusDiv.innerHTML = `
                 <button class="after_sale">申请售后</button>
-                <button class="confirm">确认收货</button>
+                <button class="check_solve">查看处理结果</button>
                 <button class="check_info">查看订单信息</button>
             `;
                 break;
@@ -279,14 +285,13 @@ $(function (){
             {
                 statusTd.innerHTML='<span>客户已取消订单</span>';
                 statusDiv.innerHTML = '<button>查看订单信息</button>';
-                statusTd.html('<span>客户已取消订单</span>')
                 break;
             }
             case 11: // 已申请售后
             {
                 statusTd.innerHTML='<span>客户已申请售后</span>';
                 statusDiv.innerHTML = `
-                <button>处理售后</button>
+                <button class="solve">处理售后</button>
                 <button class="check_info">查看订单信息</button>
             `;
                 break;
@@ -294,6 +299,54 @@ $(function (){
             default:
                 break;
         }
+    }
+
+
+    function createOrderRow(orderItem) {
+        const statusMap = {
+            0: "待客户支付",
+            1: "客户已支付",
+            2: "已发货",
+            3: "待取件",
+            4: "客户已签收",
+            5: "已处理售后",
+            10: "客户已取消订单",
+            11: "客户已申请售后"
+        };
+
+        const buttonMap = {
+            0: `<button class="check_info">查看订单信息</button>`,
+            1: `<button class="send">发货</button><button class="check_info">查看订单信息</button>`,
+            2: `<button class="check_info">查看订单信息</button>`,
+            3: `<button class="check_info">查看订单信息</button>`,
+            4: `<button class="check_info">查看订单信息</button>`,
+            5: `<button class="check_info">查看订单信息</button>`,
+            10: `<button class="check_info">查看订单信息</button>`,
+            11: `<button class="solve">处理售后</button><button class="check_info">查看订单信息</button>`
+        };
+
+        const subtotal = (orderItem.price * orderItem.itemNum).toFixed(2);
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+        <td>
+            <img src="${orderItem.url}" style="width: 100px; height: auto;" alt="商品图片">
+            <br>
+            <span>${orderItem.name}</span>
+        </td>
+        <td>¥<span>${orderItem.price}</span></td>
+        <td><span>${orderItem.itemNum}</span></td>
+        <td>¥<span>${subtotal}</span></td>
+        <td>
+            <span class="status">${statusMap[orderItem.status]}</span>
+        </td>
+        <td>
+            <div class="order-status" data-id="${orderItem.order_id}">
+                ${buttonMap[orderItem.status] || ""}
+            </div>
+        </td>
+    `;
+        return row;
     }
 
 });
