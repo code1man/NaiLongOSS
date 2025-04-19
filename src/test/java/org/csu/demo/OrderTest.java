@@ -69,8 +69,8 @@ public class OrderTest {
 
     @Test
     void test3(){
-        System.out.println(orderService.getOrderListByClient(1,0));
-        System.out.println(orderService.getOrderListByClient(4,1));
+        System.out.println(orderService.getOrderListByClient(11,0));
+        System.out.println(orderService.getOrderListByClient(9,1));
     }
 
     @Test
