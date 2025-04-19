@@ -1,6 +1,8 @@
 package org.csu.demo.Controller;
 
 import com.google.gson.Gson;
+import org.csu.demo.common.CommonResponse;
+import org.csu.demo.common.ResponseCode;
 import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.Item;
 import org.csu.demo.domain.User;
@@ -24,12 +26,14 @@ public class UserCartController {
     @Autowired
     private ItemService itemService;
 
+    /*
+    * 偷懒，增加减少都用这个
+    */
     @PostMapping("updateCart")
-    public ResponseEntity<String> updateCart(
+    public CommonResponse<String> updateCart(
             @SessionAttribute(value = "loginUser", required = false) User user,
             @SessionAttribute(value = "cart", required = false) Cart cart,
-            @RequestBody Map<String, String> requestData,
-            Model model) {
+            @RequestBody Map<String, String> requestData) {
         // 确保 cart 不为空
         if (cart == null) {
             cart = new Cart();
@@ -39,29 +43,28 @@ public class UserCartController {
             int itemId = Integer.parseInt(requestData.getOrDefault("itemID", "-1"));
             int count = Integer.parseInt(requestData.getOrDefault("count", "0"));
             if (itemId < 0 || count < 0) {
-                return ResponseEntity.badRequest().body("{\"error\": \"无效的 itemID 或 count\"}");
+                return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "商品信息错误");
             }
             // 更新购物车
             cart = cartService.updateCart(userId, itemId, count, cart);
             if (cart == null) {
-                return ResponseEntity.status(500).body("{\"error\": \"购物车更新失败\"}");
+                return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "商品信息错误");
             }
-            model.addAttribute("cart", cart);
 
-            return ResponseEntity.ok("商品已更新");
+            return CommonResponse.createForSuccess("商品已更新");
         } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().body("{\"error\": \"请求参数错误\"}");
+            return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "商品参数错误");
         }
     }
 
     @GetMapping("/AddItemToCart")
-    public ResponseEntity<String> addItemToCart(@RequestParam int itemId,
+    public CommonResponse<String> addItemToCart(@RequestParam int itemId,
                                                 @SessionAttribute("cart") Cart cart,
-                                                @SessionAttribute(name = "loginUser", required = false) User user, Model model) {
+                                                @SessionAttribute(name = "loginUser", required = false) User user) {
         // 获取商品
         Item item = itemService.getItemByItemId(itemId);
         if (item == null) {
-            return ResponseEntity.badRequest().body("商品信息错误或缺失");
+            return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "商品信息错误");
         }
         if (cart == null) {
             cart = Cart.builder().userId(user.getId()).build();
@@ -69,35 +72,32 @@ public class UserCartController {
 
         // 检查商品是否已在购物车中
         if (cartService.containsItemId(cart, itemId)) {
-            cart = cartService.incrementQuantityByItemId(cart, itemId);
+            cartService.incrementQuantityByItemId(cart, itemId);
         } else {
             if (user == null) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("请先登录");
+                return CommonResponse.createForError(ResponseCode.NEED_LOGIN.getCode(), "请先登录");
             }
-            cart = cartService.addItemToCart(cart, item);
+            cartService.addItemToCart(cart, item);
         }
-        model.addAttribute("cart", cart);
 
-        return ResponseEntity.ok("商品已添加到购物车");
+        return CommonResponse.createForSuccess("商品已添加至购物车");
     }
 
     @PostMapping("removeItem")
-    public ResponseEntity<String> removeItem(@RequestBody Map<String, Integer> map,
+    @ResponseBody
+    public CommonResponse<String> removeItem(@RequestBody Map<String, Integer> map,
                                              @SessionAttribute(name = "cart", required = false) Cart cart,
-                                             @SessionAttribute(name = "loginUser", required = false) User user,
-                                             Model model) {
+                                             @SessionAttribute(name = "loginUser", required = false) User user) {
+        if (user == null) {
+            return CommonResponse.createForError(ResponseCode.NEED_LOGIN.getCode(), "请先登录");
+        }
         if (cart == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("购物车未初始化");
+            return CommonResponse.createForError(ResponseCode.NEED_LOGIN.getCode(), "请先登录");
         }
         int itemId = map.get("itemId");
+        cartService.removeItemFromCart(cart, itemId);
 
-        if (user == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("请先登录");
-        }
-        cart = cartService.removeItemFromCart(cart, itemId);
-
-        model.addAttribute("cart", cart);
-        return ResponseEntity.ok("商品已从购物车移除");
+        return CommonResponse.createForSuccess("商品已从购物车移除");
     }
 
 }

@@ -27,6 +27,7 @@ import java.util.List;
 @Controller
 @Validated
 @SessionAttributes(value = { "loginUser", "message", "cart", "captcha", "orderList","businessLoginUser" }) // 登录成功后，将loginUser对象放入session中，供其他页面使用,只有先放在modelAttribute中，才能在页面中获取到
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -50,17 +51,13 @@ public class UserController {
         return "register";
     }
 
-    @PostMapping("/doLogin") // @ModelAttribute User user用来获取表单数据，绑定到User对象上，BindingResult用来获取验证结果
+    @PostMapping("/login") // @ModelAttribute User user用来获取表单数据，绑定到User对象上，BindingResult用来获取验证结果
     public String login(@Valid @ModelAttribute User user,
-/*            BindingResult bindingResult,*/
+
             Model model) {
         User loginUser;
         Cart cart = new Cart();
-/*        if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
-            model.addAttribute("loginMsg", "账号或密码为空");
-            return "login";
-        } */
+
         loginUser = userService.login(user.getUsername(), user.getPassword());
         if (loginUser != null) {
             if (loginUser.getResponsibility().equals("merchant")) {
@@ -72,10 +69,9 @@ public class UserController {
             if (loginUser.getResponsibility().equals("user")) {
                 cart = cartService.getCart(loginUser.getId());
             }
-            //防止相互覆盖
-//            model.addAttribute("loginUser", loginUser);
+
             model.addAttribute("cart", cart);
-            // 把买家相关订单放到session
+
             model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(), 0));
 
             if ("user".equals(loginUser.getResponsibility())) {
@@ -132,7 +128,6 @@ public class UserController {
 
     @RequestMapping("/merchantForm")
     public String merchantForm() {
-        System.out.println("我被调用了");
         return "ProductMerchantManage";
     }
 
@@ -157,28 +152,6 @@ public class UserController {
                 .forEach(error -> validationErrorsMsg.append(error.getDefaultMessage()).append(','));
         model.addAttribute(locationForm + "Msg", validationErrorsMsg.substring(0, validationErrorsMsg.length() - 1));
         return locationForm;
-    }
-
-    /// 演示模块
-    @Autowired
-    private RestTemplate restTemplate;
-
-    @GetMapping("/timeout")
-    public String simulateTimeout() throws SocketTimeoutException {
-        try {
-            // 这里访问一个不存在的 IP，模拟请求超时
-            restTemplate.getForObject("http://10.255.255.1", String.class);
-        } catch (ResourceAccessException e) {
-            if (e.getCause() instanceof SocketTimeoutException) {
-                throw new SocketTimeoutException("请求超时");
-            }
-        }
-        return "请求成功";
-    }
-
-    @GetMapping("/errorSystem")
-    public int errorSystem() {
-        return 1/0;
     }
 
 }
