@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum ResponseCode {
     SUCCESS(0, "Success"),
     ERROR(1, "Error"),
-    BAD_REQUEST(400, "Bad Request"),
+    NEED_LOGIN(10, "NEED_Login"),
+    ILLEGAL_ARGUMENT(2, "Bad Request"),
     UNAUTHORIZED(401, "Unauthorized"),
     FORBIDDEN(403, "Forbidden"),
     NOT_FOUND(404, "Not Found"),

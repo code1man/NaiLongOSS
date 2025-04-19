@@ -26,6 +26,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/order")
+@CrossOrigin  //暂时解决跨域问题
 @SessionAttributes({"loginUser","addressList","item","AddressMsg","cart","totalAmount","orderList","currentOrderList","currentOrder"})
 public class OrderController {
 
