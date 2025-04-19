@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*用户*/
-@Data//生成getter/setter/toString等方法
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

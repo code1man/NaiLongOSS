@@ -23,7 +23,7 @@ public interface UserDao {
 
     User getUserByUsername(@Param("username") String username);
 
-    void updateUser(@Param("id") int id,//@param里面的名字就是传给mybatis的参数名
+    void updateUser(@Param("id") int id,
             @Param("username") String username,
             @Param("password") String password,
             @Param("email") String email,

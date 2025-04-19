@@ -2,15 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.demo.persistence.AdminDao">
-    
-   <!-- <resultMap id="userResultMap" type="User">
-        <id property="id" column="id"/>
-        <result property="username" column="username"/>
-        <result property="password" column="password"/>
-        <result property="email" column="email"/>
-        <result property="age" column="age"/>
-        <result property="isOnline" column="is_online"/>  //property用来对应user类中的数据，column用来对应数据库字段
-    </resultMap>  使用这个要把下面的resultType="xxx"改成resultMap="userResultMap"-->
 
     <!-- 查询所有在线用户 -->
 <select id="getUserByIsOnlineTrue" resultType="org.csu.demo.domain.User">

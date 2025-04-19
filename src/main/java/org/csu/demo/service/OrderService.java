@@ -101,6 +101,36 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
         return true;
     }
 
+    public List<Order> addNewOrder1(User user, String address, List<CartItem> cartItems){
+        String time = getTime();
+        Date date = new Date();
+        List<Order> orderList = new ArrayList<>(); // 用于存储本次创建的订单
+        for(CartItem cartItem : cartItems){
+//            判断库存还有吗？
+            int remain = BusinessService.getItemCount(cartItem.getItemID());
+            if(remain >= cartItem.getItemNum()){
+                //减少库存
+                Item item = itemService.getItemByItemId(cartItem.getItemID());
+                item.setRemainingNumb(remain-cartItem.getItemNum());
+                BusinessService.updateItem(item);
+
+                //保证一次购买多种商品订单编号不一致
+                String orderID = time + getRandomNum();
+                int supplier = businessDao.getSupplierByItemId(cartItem.getItemID());
+                Order order = new Order(orderID, user.getId(), Integer.parseInt(address), cartItem.getItemID(), cartItem.getItemNum(), cartItem.getPrice()*cartItem.getItemNum(), supplier,
+                        0, date, null, null, null, null, null, "",1);
+                orderMapper.insert(order);
+                orderList.add(order);
+                AfterSale afterSale = new AfterSale(orderID, 0,0,0,null,null);
+                afterSaleMapper.insert(afterSale);
+            }
+        }
+//        System.out.println(orderList);
+        return orderList;
+    }
+
+
+
     //在提交订单后生成(item),目前实际上items里面只有一个
     public boolean addNewOrder2(User user, String address, List<Item> items, Model model){
         String time = getTime();
@@ -126,6 +156,33 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
             }
         }
         return false;
+    }
+
+    //在提交订单后生成(item),目前实际上items里面只有一个
+    public Order addNewOrder3(User user, String address, List<Item> items){
+        String time = getTime();
+        Date date = new Date();
+        for(Item item : items){
+            //因为之前取值的时候item里面的最后一个属性是没取到的（所以这里干脆直接查）
+            int remain = BusinessService.getItemCount(item.getId());
+            if(remain >= 1) {
+                //减少库存
+                item.setRemainingNumb(remain - 1);
+                BusinessService.updateItem(item);
+
+                //保证一次购买多种商品订单编号不一致
+                String orderID = time + getRandomNum();
+                int supplier = businessDao.getSupplierByItemId(item.getId());
+                Order order = new Order(orderID, user.getId(), Integer.parseInt(address), item.getId(), 1, item.getPrice(), supplier,
+                        0, date, null, null, null, null, null, "", 1);
+                AfterSale afterSale = new AfterSale(orderID, 0,0,0,null,null);
+                afterSaleMapper.insert(afterSale);
+                orderMapper.insert(order);
+                return order;
+            }
+        }
+        //库存不足
+        return null;
     }
 
     //要改成按照时间

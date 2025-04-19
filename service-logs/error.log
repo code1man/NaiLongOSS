@@ -79,19 +79,3 @@
 2025-03-23 16:05:37,770 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-3] No static resource favicon.ico.
 2025-03-23 16:07:59,027 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource favicon.ico.
 2025-03-23 16:12:10,697 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-3] No static resource favicon.ico.
-2025-03-23 16:19:11,815 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource images/cursor.png.
-2025-03-23 16:19:11,865 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] No static resource js/userManage.js.
-2025-03-23 16:22:33,211 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource images/cursor.png.
-2025-03-23 16:22:33,244 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] No static resource js/userManage.js.
-2025-03-23 16:30:43,167 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] No static resource images/cursor.png.
-2025-03-23 16:30:43,168 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-5] No static resource js/userManage.js.
-2025-03-23 16:37:40,929 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-10] No static resource static/images/delete.png.
-2025-03-23 16:41:43,737 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-4] Missing session attribute 'user' of type User
-2025-03-23 16:41:45,408 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-7] Missing session attribute 'user' of type User
-2025-03-23 16:41:46,302 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] Missing session attribute 'user' of type User
-2025-03-23 16:41:46,779 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-3] Missing session attribute 'user' of type User
-2025-03-23 16:44:27,010 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-2] No static resource static/images/delete.png.
-2025-03-23 16:44:34,954 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-8] No static resource static/images/delete.png.
-2025-03-23 16:44:43,760 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-1] No static resource login.
-2025-03-23 16:44:45,653 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] No static resource login.
-2025-03-23 16:54:56,279 ERROR org.csu.demo.exception.GlobalException [http-nio-8080-exec-6] No static resource static/images/delete.png.

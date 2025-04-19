@@ -225,40 +225,9 @@ public class AdminController {
 //    }
 
     // 非yy写的，yy注释掉的
-//    @PostMapping("/api/freezeAccount/{id}")
-//    public ResponseEntity<?> freezeAccount(@PathVariable int id, @RequestParam String reason) {
-//        try {
-//            userService.freezeUser(id, reason);
-//            return ResponseEntity.ok(Map.of("success", true, "message", "账户已成功冻结"));
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(Map.of("success", false, "message", e.getMessage()));
-//        }
-//    }
-//
-//    @PostMapping("/api/unfreezeAccount/{id}")
-//    public ResponseEntity<?> unfreezeAccount(@PathVariable int id) {
-//        try {
-//            userService.unfreezeUser(id);
-//            return ResponseEntity.ok(Map.of("success", true, "message", "账户已成功解冻"));
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(Map.of("success", false, "message", e.getMessage()));
-//        }
-//    }
-//
-//    @PostMapping("/api/resetPassword")
-//    public ResponseEntity<?> resetPassword(@RequestParam int userId) {
-//        try {
-//            userService.resetPassword(userId);
-//            return ResponseEntity.ok(Map.of("success", true, "message", "密码重置成功"));
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(Map.of("success", false, "message", e.getMessage()));
-//        }
-//    }
-    //我不知道对不对
-    @PutMapping("/{id}/freeze")
-    public ResponseEntity<?> freezeAccount(@PathVariable int id, @RequestBody Map<String, String> body) {
+    @PostMapping("/api/freezeAccount/{id}")
+    public ResponseEntity<?> freezeAccount(@PathVariable int id, @RequestParam String reason) {
         try {
-            String reason = body.get("reason");
             userService.freezeUser(id, reason);
             return ResponseEntity.ok(Map.of("success", true, "message", "账户已成功冻结"));
         } catch (Exception e) {
@@ -266,7 +235,7 @@ public class AdminController {
         }
     }
 
-    @PutMapping("/{id}/unfreeze")
+    @PostMapping("/api/unfreezeAccount/{id}")
     public ResponseEntity<?> unfreezeAccount(@PathVariable int id) {
         try {
             userService.unfreezeUser(id);
@@ -276,10 +245,10 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/{id}/reset-password")
-    public ResponseEntity<?> resetPassword(@PathVariable int id) {
+    @PostMapping("/api/resetPassword")
+    public ResponseEntity<?> resetPassword(@RequestParam int userId) {
         try {
-            userService.resetPassword(id);
+            userService.resetPassword(userId);
             return ResponseEntity.ok(Map.of("success", true, "message", "密码重置成功"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(Map.of("success", false, "message", e.getMessage()));
