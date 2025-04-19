@@ -39,7 +39,7 @@ public class GlobalException {
     @ResponseBody
     public CommonResponse<Object> handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
         logger.error("缺少参数: {}", e.getMessage());
-        return CommonResponse.createForError(ResponseCode.BAD_REQUEST.getCode(), "缺少参数: " + e.getParameterName());
+        return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "缺少参数: " + e.getParameterName());
     }
 
     /**
@@ -66,7 +66,7 @@ public class GlobalException {
     @ResponseBody
     public CommonResponse<Object> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
         logger.error("参数类型错误: {}", e.getMessage());
-        return CommonResponse.createForError(ResponseCode.BAD_REQUEST.getCode(), "参数类型错误: " + e.getName());
+        return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "参数类型错误: " + e.getName());
     }
 
     /**
