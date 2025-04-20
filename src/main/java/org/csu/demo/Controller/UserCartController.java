@@ -100,4 +100,16 @@ public class UserCartController {
         return CommonResponse.createForSuccess("商品已从购物车移除");
     }
 
+    @GetMapping("cart")
+    @ResponseBody
+    public CommonResponse<Cart> getCart(@RequestParam int userId) {
+        Cart cart = cartService.getCart(userId);
+        if (cart != null) {
+            return CommonResponse.createForSuccess(cart);
+        }
+        else {
+            return CommonResponse.createForError("获取用户购物车失败");
+        }
+    }
+
 }

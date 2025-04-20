@@ -1,5 +1,6 @@
 package org.csu.demo.service;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 import org.csu.demo.domain.User;
 import org.csu.demo.persistence.AdminDao;
@@ -23,6 +24,8 @@ public class UserService {
     private MerchantDao merchantDao;
     @Autowired
     private AdminDao adminDao;// 提供了对数据库操作的方法
+    @Autowired
+    private HttpSession session;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -36,10 +39,11 @@ public class UserService {
         return null;
     }
 
-    public boolean register(User user) {
-        // 加密密码
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
+    public boolean register(User user, String captcha) {
+
+        if (session.getAttribute("captcha").equals(captcha)) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
 
         // **先插入用户，确保 userinfo 里有 id**
         int check = userDao.addUser(user);

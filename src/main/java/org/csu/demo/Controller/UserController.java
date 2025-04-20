@@ -1,27 +1,20 @@
 package org.csu.demo.Controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import org.csu.demo.common.CommonResponse;
-import org.csu.demo.domain.Cart;
 import org.csu.demo.domain.User;
-import org.csu.demo.exception.LoginException;
+import org.csu.demo.persistence.Util.CaptchaUtil;
 import org.csu.demo.service.CartService;
 import org.csu.demo.service.OrderService;
 import org.csu.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.ResourceAccessException;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.net.SocketTimeoutException;
 import java.util.List;
 
 @Controller
@@ -41,74 +34,52 @@ public class UserController {
         return (String) session.getAttribute("captcha");
     }
 
-    @GetMapping("/loginForm")
-    public String loginForm() {
-        return "login";
+    @Autowired
+    private HttpSession session;
+
+    // @RequestParam从URL参数或者表单数据中获取数据
+    // @PathVariable从URL中获取路径参数
+    // @RequestBody从请求体中获取数据，可以封装为json对象传递
+    // @ModelAttribute获取表单对象数据
+
+
+
+    @PostMapping("login")
+    @ResponseBody
+    public CommonResponse<User> login(@RequestParam String username, @RequestParam String password) {
+        User user = userService.login(username, password);
+        if (user == null) {
+            return CommonResponse.createForError("用户名或密码错误");
+        }
+        return CommonResponse.createForSuccess(user);
     }
 
-    @GetMapping("/registerForm")
-    public String RegisterForm() {
-        return "register";
+    @PostMapping("register")
+    @ResponseBody
+    public CommonResponse<String> register(@ModelAttribute User user, @RequestParam String captcha) {
+        if (userService.register(user,captcha)) {
+            return CommonResponse.createForSuccess("注册成功");
+        }
+        return CommonResponse.createForError("验证码错误");
     }
 
-    @PostMapping("/login") // @ModelAttribute User user用来获取表单数据，绑定到User对象上，BindingResult用来获取验证结果
-    public String login(@Valid @ModelAttribute User user,
-
-            Model model) {
-        User loginUser;
-        Cart cart = new Cart();
-
-        loginUser = userService.login(user.getUsername(), user.getPassword());
-        if (loginUser != null) {
-            if (loginUser.getResponsibility().equals("merchant")) {
-                loginUser.setCredit(userService.getMerchantCredit(loginUser.getId()));
-                if (loginUser.getCredit() < 60) {
-                    throw new LoginException("LOGIN_FAILED", "您的信誉分太低");
-                }
-            }
-            if (loginUser.getResponsibility().equals("user")) {
-                cart = cartService.getCart(loginUser.getId());
-            }
-
-            model.addAttribute("cart", cart);
-
-            model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(), 0));
-
-            if ("user".equals(loginUser.getResponsibility())) {
-                model.addAttribute("loginUser", loginUser);
-                return "redirect:/mainForm";
-            } else if ("merchant".equals(loginUser.getResponsibility())) {
-                model.addAttribute("businessLoginUser", loginUser);
-                return "redirect:/merchantForm";
-            } else if ("admin".equals(loginUser.getResponsibility())) {
-                model.addAttribute("loginUser", loginUser);
-                return "redirect:/ManagerForm";
-            } else {
-                model.addAttribute("loginMsg", loginUser.getResponsibility());
-                return "redirect:/loginForm";
-            }
-        } else {
-            throw new LoginException("LOGIN_FAILED", "账号或密码错误");
+    @PostMapping("check_username")
+    @ResponseBody
+    public CommonResponse<String> check_username(@RequestParam String username) {
+        System.out.println(username);
+        if (userService.checkUsername(username)) {
+            return CommonResponse.createForError("用户名已存在");
         }
+        return CommonResponse.createForSuccess();
     }
 
-    @PostMapping("/register")
-    public String register(@ModelAttribute User user, @RequestParam String captcha,
-            RedirectAttributes redirectAttributes,
-            Model model) {
-        if (model.getAttribute("captcha") == null || !captcha.equals(model.getAttribute("captcha"))) {
-            redirectAttributes.addFlashAttribute("message", "验证码错误");
-            return "redirect:/registerForm";
-        }
-
-        boolean isSuccess = userService.register(user);
-        if (!isSuccess) {
-            return "redirect:/registerForm";
-        }
-        redirectAttributes.addFlashAttribute("message", "注册成功，请登录！");
-        // 只存在一次message
-        return "redirect:/loginForm";
-        // 使用重定向，防止表单重复提交
+    @GetMapping("captcha")
+    public void captcha(HttpServletResponse response, HttpSession session) {
+        System.out.println("生成验证码");
+        // 调用之前写的 CaptchaUtil 类生成验证码图片并返回验证码文本
+        String captchaText = CaptchaUtil.createCaptchaImage(response);
+        // 将验证码文本存入 session，用于后续验证
+        session.setAttribute("captcha", captchaText);
     }
 
     @GetMapping("/usernameIsExist")
@@ -120,17 +91,6 @@ public class UserController {
         }
         return CommonResponse.createForSuccess();
     }
-
-    @RequestMapping("/main")
-    public String mainForm() {
-        return "main";
-    }
-
-    @RequestMapping("/merchantForm")
-    public String merchantForm() {
-        return "ProductMerchantManage";
-    }
-
 
     @RequestMapping("/ManagerForm")
     public String ManagerForm(Model model) {

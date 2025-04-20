@@ -24,16 +24,12 @@ import java.util.Map;
 
 @Controller
 @Validated
+@RestController
 @SessionAttributes("item")
 public class MainController {
 
     @Autowired
     private ItemService itemService;
-
-    @GetMapping("/mainForm")
-    public String loginForm() {
-        return "main";
-    }
 
     @Autowired
     private CatalogService catalogService;
