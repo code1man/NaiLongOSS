@@ -82,9 +82,18 @@ public class OrderController {
         return "Order";
     }
 
+    //上一个方法修改（用于前后端分离）
+    @GetMapping("/singleOrder")
+    @ResponseBody
+    public CommonResponse<List<Address>> orderForm1(@RequestParam("userId") int userId) {
+            List<Address> addressList = addressDao.getAllAddressById(userId);
+            // 将地址列表保存到session中
+            return CommonResponse.createForSuccess(addressList);
+    }
 
     // 进入购物车结算界面
     @GetMapping("/CartCount")
+
     public String CartCount(@ModelAttribute("loginUser")User user, Model model) {
         if (user == null) {
             // 用户未登录，设置一个标志用于前端提示
@@ -298,14 +307,14 @@ public class OrderController {
         return CommonResponse.createForSuccess(orderItems);
     }
 
-    /*@GetMapping("/getAddress")
+    @GetMapping("/getAddress")
     @ResponseBody
-    public String getAddress( @RequestParam("orderId") String orderId){
+    public String getAddress1( @RequestParam("orderId") String orderId){
         int addressId = orderService.getOrderByOrderId(orderId).getAddress_id();
         Address address = addressDao.getAddressById(addressId);
         String json = JSON.toJSONString(address);
         return json;  // 返回 JSON 字符串
-    }*/
+    }
 
     //修改后
     @GetMapping("/address/{orderId}")
@@ -316,12 +325,12 @@ public class OrderController {
         return CommonResponse.createForSuccess(address);
     }
 
-/*    @GetMapping("/getOrder")
+    @GetMapping("/getOrder")
     @ResponseBody
-    public String getOrder(@RequestParam("orderId") String orderId){
+    public String getOrder1(@RequestParam("orderId") String orderId){
         Order order = orderService.getOrderByOrderId(orderId);
         return JSON.toJSONString(order);
-    }*/
+    }
 
     //修改后
     @GetMapping("/{orderId}")

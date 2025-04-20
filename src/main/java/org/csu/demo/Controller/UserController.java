@@ -154,4 +154,52 @@ public class UserController {
         return locationForm;
     }
 
+
+    //保证原来的网站也能登录
+    @PostMapping("/doLogin") // @ModelAttribute User user用来获取表单数据，绑定到User对象上，BindingResult用来获取验证结果
+    public String login1(@Valid @ModelAttribute User user,
+            /*            BindingResult bindingResult,*/
+                        Model model) {
+        User loginUser;
+        Cart cart = new Cart();
+/*        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
+            model.addAttribute("loginMsg", "账号或密码为空");
+            return "login";
+        } */
+        loginUser = userService.login(user.getUsername(), user.getPassword());
+        if (loginUser != null) {
+            if (loginUser.getResponsibility().equals("merchant")) {
+                loginUser.setCredit(userService.getMerchantCredit(loginUser.getId()));
+                if (loginUser.getCredit() < 60) {
+                    throw new LoginException("LOGIN_FAILED", "您的信誉分太低");
+                }
+            }
+            if (loginUser.getResponsibility().equals("user")) {
+                cart = cartService.getCart(loginUser.getId());
+            }
+            //防止相互覆盖
+//            model.addAttribute("loginUser", loginUser);
+            model.addAttribute("cart", cart);
+            // 把买家相关订单放到session
+            model.addAttribute("orderList", orderService.getOrderListByClient(loginUser.getId(), 0));
+
+            if ("user".equals(loginUser.getResponsibility())) {
+                model.addAttribute("loginUser", loginUser);
+                return "redirect:/user/mainForm";
+            } else if ("merchant".equals(loginUser.getResponsibility())) {
+                model.addAttribute("businessLoginUser", loginUser);
+                return "redirect:/user/merchantForm";
+            } else if ("admin".equals(loginUser.getResponsibility())) {
+                model.addAttribute("loginUser", loginUser);
+                return "redirect:/user/ManagerForm";
+            } else {
+                model.addAttribute("loginMsg", loginUser.getResponsibility());
+                return "redirect:/user/loginForm";
+            }
+        } else {
+            throw new LoginException("LOGIN_FAILED", "账号或密码错误");
+        }
+    }
+
 }
