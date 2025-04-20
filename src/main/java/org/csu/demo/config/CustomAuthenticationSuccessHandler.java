@@ -21,7 +21,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Autowired
     private UserDao userDao;
 
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
