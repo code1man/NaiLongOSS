@@ -1,8 +1,15 @@
 package org.csu.demo.Controller;
 
 import com.google.gson.Gson;
+import org.csu.demo.common.CommonResponse;
+import org.csu.demo.domain.Category;
 import org.csu.demo.domain.Item;
+import org.csu.demo.domain.OrderItem;
+import org.csu.demo.domain.Product;
+import org.csu.demo.service.CatalogService;
 import org.csu.demo.service.ItemService;
+import org.csu.demo.service.OrderService;
+import org.csu.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +33,33 @@ public class MainController {
     @GetMapping("/mainForm")
     public String loginForm() {
         return "main";
+    }
+
+    @Autowired
+    private CatalogService catalogService;
+
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @GetMapping("/homepage-data")
+    public CommonResponse<Map<String, Object>> getHomepageData() {
+        try {
+            List<Category> categoryList = catalogService.getCategories();
+            List<Product> productList = productService.getProducts();
+            List<OrderItem> orderList = orderService.getAllOrders();
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("categoryList", categoryList);
+            data.put("productList", productList);
+            data.put("orderList", orderList);
+
+            return CommonResponse.createForSuccess(data);
+        } catch (Exception e) {
+            return CommonResponse.createForError("获取首页数据失败：" + e.getMessage());
+        }
     }
 
     @GetMapping("/ShoppingCart")
@@ -52,5 +87,4 @@ public class MainController {
 
         return ResponseEntity.badRequest().body("{\"error\": \"搜索关键词不能为空\"}");
     }
-
 }
