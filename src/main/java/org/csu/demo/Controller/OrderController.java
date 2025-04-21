@@ -283,8 +283,6 @@ public class OrderController {
     @PutMapping ("/orderStatus")
     @ResponseBody
     public CommonResponse<String> statusChangeTo1(@RequestBody OrderStatusChangeRequest1 request){
-
-        Cart cart = cartService.getCart(request.getUserId());
         //从请求中取值
         String behavior = request.getBehavior();
         String nextStatus = request.getNextStatus();
@@ -295,7 +293,7 @@ public class OrderController {
         //整个购物车订单一起购买/单个商品购买
         for(String orderId : currentOrderList){
             Order order = orderService.getOrderByOrderId(orderId);
-            cartService.removeItemFromCart(cart,order.getItem_id());
+            cartService.removeItemFromCart(request.getUserId(),order.getItem_id());
             orderService.updateOrder(orderService.getOrderByOrderId(orderId),nextStatus);
         }
         return CommonResponse.createForSuccessMessage(behavior + " SUCCESS");
