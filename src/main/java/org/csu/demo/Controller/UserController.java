@@ -118,6 +118,17 @@ public class UserController {
     }
 
 
+    @GetMapping("/loginForm")
+    public String loginForm() {
+        return "login";
+    }
+
+    @RequestMapping("/merchantForm")
+    public String merchantForm() {
+        System.out.println("我被调用了");
+        return "ProductMerchantManage";
+    }
+
     //保证原来的网站也能登录
     @PostMapping("/doLogin") // @ModelAttribute User user用来获取表单数据，绑定到User对象上，BindingResult用来获取验证结果
     public String login1(@Valid @ModelAttribute User user,

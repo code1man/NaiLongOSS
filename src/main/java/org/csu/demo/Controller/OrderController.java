@@ -188,10 +188,13 @@ public class OrderController {
         List<Item> items = new ArrayList<>();
         items.add(itemSubmitObject.getItem());
         System.out.println(itemSubmitObject.getItem());
+        System.out.println(itemSubmitObject.getAddressID());
 
         User user = userService.getUser(itemSubmitObject.getUserId());
         //这里要返回 currentOrder,便于前端回传修改状态
+        System.out.println("111111.....");
         Order order = orderService.addNewOrder3(user, itemSubmitObject.getAddressID(), items);
+        System.out.println("22222222.....");
         if(order == null){
             return CommonResponse.createForError("库存不足");
         }
