@@ -148,7 +148,7 @@ $(function (){
 
     function getAddress(orderId, callback) {
         $.ajax({
-            url: "/getAddress",
+            url: "/order/getAddress",
             type: "GET",
             data: { orderId: orderId },
             success: function (response) {
@@ -168,7 +168,7 @@ $(function (){
 
     function getOrder(orderId, callback) {
         $.ajax({
-            url: "/getOrder",
+            url: "/order/getOrder",
             type: "GET",
             data: { orderId: orderId },
             success: function (response) {

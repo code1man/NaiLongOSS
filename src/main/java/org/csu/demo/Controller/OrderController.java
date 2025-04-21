@@ -4,14 +4,13 @@ import com.alibaba.fastjson2.JSON;
 import jakarta.servlet.http.HttpSession;
 import org.csu.demo.common.CommonResponse;
 import org.csu.demo.domain.*;
+import org.csu.demo.domain.DTO.ItemSubmitObject;
 import org.csu.demo.domain.DTO.OrderStatusChangeRequest1;
 import org.csu.demo.domain.DTO.OrderStatusChangeRequest2;
+import org.csu.demo.domain.VO.CartOrder;
 import org.csu.demo.persistence.AddressDao;
 import org.csu.demo.persistence.UserDao;
-import org.csu.demo.service.BusinessService;
-import org.csu.demo.service.ItemService;
-import org.csu.demo.service.OrderService;
-import org.csu.demo.service.UserService;
+import org.csu.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +25,8 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/order")
+//@CrossOrigin  //暂时解决跨域问题
+
 @SessionAttributes({"loginUser","addressList","item","AddressMsg","cart","totalAmount","orderList","currentOrderList","currentOrder"})
 public class OrderController {
 
@@ -42,6 +43,9 @@ public class OrderController {
 
     @Autowired
     private BusinessService BusinessService;
+
+    @Autowired
+    private CartService cartService;
 
     @Autowired
     public OrderController(AddressDao addressDao, UserService userService, UserDao userDao) {
@@ -80,9 +84,18 @@ public class OrderController {
         return "Order";
     }
 
+    //上一个方法修改（用于前后端分离）
+    @GetMapping("/singleOrder")
+    @ResponseBody
+    public CommonResponse<List<Address>> orderForm1(@RequestParam("userId") int userId) {
+            List<Address> addressList = addressDao.getAllAddressById(userId);
+            // 将地址列表保存到session中
+            return CommonResponse.createForSuccess(addressList);
+    }
 
     // 进入购物车结算界面
     @GetMapping("/CartCount")
+
     public String CartCount(@ModelAttribute("loginUser")User user, Model model) {
         if (user == null) {
             // 用户未登录，设置一个标志用于前端提示
@@ -98,6 +111,21 @@ public class OrderController {
         return "CartToOrder";
     }
 
+    // 进入购物车结算界面的修改（用于前后端分离）
+    @GetMapping("/cartOrder")
+    @ResponseBody
+    public CommonResponse<CartOrder> CartCount1(@RequestParam("userId")int userId) {
+
+        Cart cart = cartService.getCart(userId);
+        List<Address> addressList = addressDao.getAllAddressById(userId);
+
+        CartOrder cartOrder = new CartOrder();
+        cartOrder.setAddressList(addressList);
+        cartOrder.setCartItemList(cart.getItemList());
+
+        return CommonResponse.createForSuccess(cartOrder);
+    }
+
     // 处理提交购物车订单，清楚购物车数据
     @PostMapping("/CartHandler")
     @ResponseBody
@@ -106,11 +134,33 @@ public class OrderController {
          // 清空购物车逻辑
         session.removeAttribute("cart");
         //增加新订单
+
         List<CartItem> cartItems = cart.getItemList();
         List<Order> currentOrderList = orderService.addNewOrder1(user, addressID, cartItems);
         //这里要返回 currentOrderList,便于前端回传修改状态
         return CommonResponse.createForSuccess(currentOrderList);
     }
+
+    // 处理提交购物车订单，清楚购物车数据（用于前后端分离）
+    @PostMapping("/CartSubmit")
+    @ResponseBody
+    public CommonResponse<List<Order>> CartHandler1(@RequestParam("userId") int userId,@RequestParam("address") String addressID) {
+        //
+        // 清空购物车逻辑
+        System.out.println("/CartSubmit : here.....");
+        //增加新订单
+        Cart cart = cartService.getCart(userId);
+        List<CartItem> cartItems = cart.getItemList();
+        System.out.println("/CartSubmit cartItems: " + cartItems);
+
+        User user = userService.getUser(userId);
+
+        List<Order> currentOrderList = orderService.addNewOrder1(user, addressID, cartItems);
+        System.out.println("/CartSubmit currentOrderList: " + currentOrderList);
+        //这里要返回 currentOrderList,便于前端回传修改状态
+        return CommonResponse.createForSuccess(currentOrderList);
+    }
+
 
     // 处理提交购物车订单，清楚购物车数据
     @PostMapping("/ItemHandler")
@@ -120,8 +170,28 @@ public class OrderController {
         List<Item> items = new ArrayList<>();
         items.add(item);
 
+
         //这里要返回 currentOrder,便于前端回传修改状态
         Order order = orderService.addNewOrder3(user, addressID, items);
+        if(order == null){
+            return CommonResponse.createForError("库存不足");
+        }
+        return CommonResponse.createForSuccess(order);
+    }
+
+
+    // 处理提交购物车订单，清楚购物车数据(用于前后端分离)
+    @PostMapping("/ItemSubmit")
+    @ResponseBody
+    public CommonResponse<Order> ItemHandler1(@RequestBody ItemSubmitObject itemSubmitObject) {
+        //增加新订单
+        List<Item> items = new ArrayList<>();
+        items.add(itemSubmitObject.getItem());
+        System.out.println(itemSubmitObject.getItem());
+
+        User user = userService.getUser(itemSubmitObject.getUserId());
+        //这里要返回 currentOrder,便于前端回传修改状态
+        Order order = orderService.addNewOrder3(user, itemSubmitObject.getAddressID(), items);
         if(order == null){
             return CommonResponse.createForError("库存不足");
         }
@@ -214,13 +284,18 @@ public class OrderController {
     @ResponseBody
     public CommonResponse<String> statusChangeTo1(@RequestBody OrderStatusChangeRequest1 request){
 
+        Cart cart = cartService.getCart(request.getUserId());
         //从请求中取值
         String behavior = request.getBehavior();
         String nextStatus = request.getNextStatus();
         List<String> currentOrderList = request.getCurrentOrderList();
 
+        System.out.println("orderStatus: " + currentOrderList);
+
         //整个购物车订单一起购买/单个商品购买
         for(String orderId : currentOrderList){
+            Order order = orderService.getOrderByOrderId(orderId);
+            cartService.removeItemFromCart(cart,order.getItem_id());
             orderService.updateOrder(orderService.getOrderByOrderId(orderId),nextStatus);
         }
         return CommonResponse.createForSuccessMessage(behavior + " SUCCESS");
@@ -296,14 +371,14 @@ public class OrderController {
         return CommonResponse.createForSuccess(orderItems);
     }
 
-    /*@GetMapping("/getAddress")
+    @GetMapping("/getAddress")
     @ResponseBody
-    public String getAddress( @RequestParam("orderId") String orderId){
+    public String getAddress1( @RequestParam("orderId") String orderId){
         int addressId = orderService.getOrderByOrderId(orderId).getAddress_id();
         Address address = addressDao.getAddressById(addressId);
         String json = JSON.toJSONString(address);
         return json;  // 返回 JSON 字符串
-    }*/
+    }
 
     //修改后
     @GetMapping("/address/{orderId}")
@@ -314,12 +389,12 @@ public class OrderController {
         return CommonResponse.createForSuccess(address);
     }
 
-/*    @GetMapping("/getOrder")
+    @GetMapping("/getOrder")
     @ResponseBody
-    public String getOrder(@RequestParam("orderId") String orderId){
+    public String getOrder1(@RequestParam("orderId") String orderId){
         Order order = orderService.getOrderByOrderId(orderId);
         return JSON.toJSONString(order);
-    }*/
+    }
 
     //修改后
     @GetMapping("/{orderId}")

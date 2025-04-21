@@ -4,38 +4,50 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Component;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 
-@Component
+@Configuration
+@WebFilter(filterName = "CORSFilter")
+@Slf4j
 public class CORSFilter implements Filter {
+
+    Logger logger = LoggerFactory.getLogger(CORSFilter.class);
     @Override
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
-            throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) res;
+    public void init(FilterConfig filterConfig) throws ServletException {
+        Filter.super.init(filterConfig);
+    }
 
-        // 获取请求的Origin，设置允许的跨域源
-        String origin = request.getHeader("Origin");
-        if (origin != null) {
-            response.setHeader("Access-Control-Allow-Origin", origin);  // 允许的来源
-        }
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        // 支持带凭证的跨域请求
+        logger.info("跨源允许已生效…………");
+
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+
+        //允许谁跨域（谁请求我，我允许谁跨域，origin获得源）
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        //允许跨域请求时带上cookie
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
+        //允许哪些请求
+        response.setHeader("Access-Control-Allow-Methods", "POST,GET,PATCH,DELETE,PUT");
+        //最长缓存时间
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+        //超时时间等。。
+        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-        // 处理预检请求，返回200
-        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
-            response.setStatus(HttpServletResponse.SC_OK);
-            return;
-        }
+        //不要忘记
+        filterChain.doFilter(request,response);
 
-        // 正常的请求继续传递
-        chain.doFilter(req, res);
+    }
+
+    @Override
+    public void destroy() {
+        Filter.super.destroy();
     }
 }
-
