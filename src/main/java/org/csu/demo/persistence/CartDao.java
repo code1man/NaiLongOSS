@@ -13,4 +13,5 @@ public interface CartDao {
     void executeRemoveCart(int userID, int itemID);
     List<CartItem> searchUserCartItems(int userID);
     void coverCartItem(int userID, int itemID);
+    int getCartCount(int userID, int itemID);
 }

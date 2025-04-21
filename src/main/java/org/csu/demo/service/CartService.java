@@ -18,17 +18,11 @@ public class CartService {
     @Autowired
     private ItemService itemService;
 
-    public Cart updateCart(int userid, int itemid, int itemNum, Cart cart) {
+    public void updateCart(int userid, int itemid, int itemNum) {
         cartDao.coverCartItem(userid, itemid);
         if (itemNum != 0) {
             cartDao.executeAddCart(userid, itemid, itemNum);
         }
-        cart.setItemList(cartDao.searchUserCartItems(userid));
-        int totalCount = getTotalCount(cart.getItemList());
-        int totalPrice = cart.getTotalPrice() / cart.getTotalCount() * totalCount;
-        cart.setTotalPrice(totalPrice);
-        cart.setTotalCount(totalCount);
-        return cart;
     }
 
     public Cart getCart(int userid) {
@@ -56,9 +50,9 @@ public class CartService {
         return totalPrice;
     }
 
-    public boolean containsItemId(Cart cart, int itemid) {
-        for (CartItem cartItem : cart.getItemList()) {
-            if (cartItem.getItemID() == itemid) {
+    public boolean containsItemId(int userID, int itemID) {
+        for (CartItem item : cartDao.searchUserCartItems(userID)){
+            if (item.getItemID() == itemID){
                 return true;
             }
         }
@@ -74,39 +68,17 @@ public class CartService {
         return null;
     }
 
-    public Cart incrementQuantityByItemId(Cart cart, int itemId) {
-        for (CartItem cartItem : cart.getItemList()) {
-            if (cartItem.getItemID() == itemId) {
-                int userId = cart.getUserId();
-                cartDao.coverCartItem(userId, itemId);
-                cartDao.executeAddCart(userId, itemId, cartItem.getItemNum() + 1);
-                cartItem.setItemNum(cartItem.getItemNum() + 1);
-                return cart;
-            }
-        }
-        return cart;
+    public void incrementQuantityByItemId(int userId, int itemId) {
+        int itemCount = cartDao.getCartCount(userId,itemId);
+        cartDao.coverCartItem(userId, itemId);
+        cartDao.executeAddCart(userId, itemId, itemCount + 1);
     }
 
-    public Cart addItemToCart(Cart cart, Item item) {
-        cart.getItemList().add(CartItem.builder()
-                .itemID(item.getId())
-                .itemNum(1)
-                .userID(cart.getUserId())
-                .name(item.getName())
-                .url(item.getUrl())
-                .price(item.getPrice())
-                .build());
-        cartDao.executeAddCart(cart.getUserId(), item.getId(), 1);
-        cart.setTotalPrice(getTotalPrice(cart.getItemList()));
-        cart.setTotalCount(getTotalCount(cart.getItemList()));
-        return cart;
+    public void addItemToCart(int userID, int itemID) {
+        cartDao.executeAddCart(userID, itemID, 1);
     }
 
-    public Cart removeItemFromCart(Cart cart, int item) {
-        cart.getItemList().remove(getCartItemById(cart, item));
-        cart.setTotalPrice(getTotalPrice(cart.getItemList()));
-        cart.setTotalCount(getTotalCount(cart.getItemList()));
-        cartDao.executeRemoveCart(cart.getUserId(), item);
-        return cart;
+    public void removeItemFromCart(int userId, int item) {
+        cartDao.executeRemoveCart(userId, item);
     }
 }
