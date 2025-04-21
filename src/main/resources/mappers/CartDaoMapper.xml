@@ -31,4 +31,7 @@
           AND  ItemID = #{itemID}
     </update>
 
+    <select id="getCartCount" resultType="int">
+        select cart.ItemNum from cart WHERE ItemID= #{itemID} AND userID= #{userID} AND isDeleted=0 AND isCovered=0;
+    </select>
 </mapper>

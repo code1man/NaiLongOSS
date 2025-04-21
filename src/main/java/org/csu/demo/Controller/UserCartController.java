@@ -17,9 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-
+@RestController
 @Controller
-@SessionAttributes("cart")
 public class UserCartController {
     @Autowired
     private CartService cartService;
@@ -29,74 +28,39 @@ public class UserCartController {
     /*
     * 偷懒，增加减少都用这个
     */
-    @PostMapping("updateCart")
-    public CommonResponse<String> updateCart(
-            @SessionAttribute(value = "loginUser", required = false) User user,
-            @SessionAttribute(value = "cart", required = false) Cart cart,
-            @RequestBody Map<String, String> requestData) {
-        // 确保 cart 不为空
-        if (cart == null) {
-            cart = new Cart();
+    // 方式二：传 itemId 和 count，设置数量
+    @PostMapping("/updateCart/{itemId}/{count}")
+    @ResponseBody
+    public CommonResponse<String> updateCartWithCount(@PathVariable int itemId,
+                                                      @PathVariable int count,
+                                                      @RequestParam int userId) {
+        if (itemId < 0 || count < 0) {
+            return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "参数非法");
         }
-        try {
-            int userId = user.getId();
-            int itemId = Integer.parseInt(requestData.getOrDefault("itemID", "-1"));
-            int count = Integer.parseInt(requestData.getOrDefault("count", "0"));
-            if (itemId < 0 || count < 0) {
-                return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "商品信息错误");
-            }
-            // 更新购物车
-            cart = cartService.updateCart(userId, itemId, count, cart);
-            if (cart == null) {
-                return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "商品信息错误");
-            }
-
-            return CommonResponse.createForSuccess("商品已更新");
-        } catch (NumberFormatException e) {
-            return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "商品参数错误");
-        }
+        cartService.updateCart(userId, itemId, count);
+        return CommonResponse.createForSuccess("商品数量已更新");
     }
 
-    @GetMapping("/AddItemToCart")
-    public CommonResponse<String> addItemToCart(@RequestParam int itemId,
-                                                @SessionAttribute("cart") Cart cart,
-                                                @SessionAttribute(name = "loginUser", required = false) User user) {
-        // 获取商品
-        Item item = itemService.getItemByItemId(itemId);
-        if (item == null) {
-            return CommonResponse.createForError(ResponseCode.ILLEGAL_ARGUMENT.getCode(), "商品信息错误");
-        }
-        if (cart == null) {
-            cart = Cart.builder().userId(user.getId()).build();
-        }
+    @GetMapping("/cart/{itemId}")
+    public CommonResponse<String> addItemToCart(@PathVariable int itemId,
+                                                @RequestParam int userId) {
 
         // 检查商品是否已在购物车中
-        if (cartService.containsItemId(cart, itemId)) {
-            cartService.incrementQuantityByItemId(cart, itemId);
+        if (cartService.containsItemId(userId, itemId)) {
+            cartService.incrementQuantityByItemId(userId, itemId);
         } else {
-            if (user == null) {
-                return CommonResponse.createForError(ResponseCode.NEED_LOGIN.getCode(), "请先登录");
-            }
-            cartService.addItemToCart(cart, item);
+            cartService.addItemToCart(userId, itemId);
         }
 
         return CommonResponse.createForSuccess("商品已添加至购物车");
     }
 
-    @PostMapping("removeItem")
+    @DeleteMapping("/removeItem/{itemId}")
     @ResponseBody
-    public CommonResponse<String> removeItem(@RequestBody Map<String, Integer> map,
-                                             @SessionAttribute(name = "cart", required = false) Cart cart,
-                                             @SessionAttribute(name = "loginUser", required = false) User user) {
-        if (user == null) {
-            return CommonResponse.createForError(ResponseCode.NEED_LOGIN.getCode(), "请先登录");
-        }
-        if (cart == null) {
-            return CommonResponse.createForError(ResponseCode.NEED_LOGIN.getCode(), "请先登录");
-        }
-        int itemId = map.get("itemId");
-        cartService.removeItemFromCart(cart, itemId);
+    public CommonResponse<String> removeItem(@PathVariable int itemId,
+                                             @RequestParam int userId) {
 
+        cartService.removeItemFromCart(userId, itemId);
         return CommonResponse.createForSuccess("商品已从购物车移除");
     }
 
