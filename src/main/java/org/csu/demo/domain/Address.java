@@ -1,11 +1,15 @@
 package org.csu.demo.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@TableName("address")
 public class Address {
 
     // mybatis plus！！
@@ -29,7 +33,7 @@ public class Address {
 //
 //    @Value("is_default")
 //    private boolean isDefault;
-
+    @TableId(type = IdType.AUTO)
     private int id;
     private int userId;
 

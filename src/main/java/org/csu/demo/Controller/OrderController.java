@@ -192,9 +192,9 @@ public class OrderController {
 
         User user = userService.getUser(itemSubmitObject.getUserId());
         //这里要返回 currentOrder,便于前端回传修改状态
-        System.out.println("111111.....");
+//        System.out.println("111111.....");
         Order order = orderService.addNewOrder3(user, itemSubmitObject.getAddressID(), items);
-        System.out.println("22222222.....");
+//        System.out.println("22222222.....");
         if(order == null){
             return CommonResponse.createForError("库存不足");
         }
@@ -217,9 +217,18 @@ public class OrderController {
         return "redirect:/orderForm";
     }
 
+    @PostMapping("/addresses")
+    @ResponseBody
+    public CommonResponse<String> addAddress(@RequestBody Address newAddress) {
+        int isDefault = newAddress.getIsDefault();
+        if(isDefault!=0) addressDao.updateDefaultAddress(newAddress.getUserId());
+        addressDao.addAddress(newAddress);
+        return CommonResponse.createForSuccess();
+    }
+
     // 处理删除地址的需求
     // 对应前端需要的是一个JSON的响应，若返回界面会继续去请求
-    @DeleteMapping("/order/{addressId}")
+    @DeleteMapping("/addresses/{addressId}")
     @ResponseBody
     public Map<String, String> delete(@PathVariable int addressId) {
         addressDao.deleteAddress(addressId);

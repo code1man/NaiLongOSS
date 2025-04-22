@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.csu.demo.domain.*;
 import org.csu.demo.persistence.BusinessDao;
+import org.csu.demo.persistence.ItemDao;
 import org.csu.demo.persistence.mappers.AfterSaleMapper;
 import lombok.extern.log4j.Log4j2;
 import org.csu.demo.persistence.UserDao;
@@ -42,6 +43,9 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
     private BusinessService BusinessService;
     @Autowired
     private AfterSaleMapper afterSaleMapper;
+
+    @Autowired
+    private ItemDao itemDao;
     //获取带格式的时间
     public static String getTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // 时间格式
@@ -167,8 +171,12 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
             int remain = BusinessService.getItemCount(item.getId());
             if(remain >= 1) {
                 //减少库存
+                Item tempItem = itemDao.getItem(item.getId());
+                item.setProduct_id(tempItem.getProduct_id());
+
                 item.setRemainingNumb(remain - 1);
                 BusinessService.updateItem(item);
+
 
                 //保证一次购买多种商品订单编号不一致
                 String orderID = time + getRandomNum();
