@@ -233,13 +233,20 @@ public class OrderController {
 
     // 处理删除地址的需求
     // 对应前端需要的是一个JSON的响应，若返回界面会继续去请求
-    @DeleteMapping("/addresses/{addressId}")
+    /*@DeleteMapping("/addresses/{addressId}")
     @ResponseBody
     public Map<String, String> delete(@PathVariable int addressId) {
         addressDao.deleteAddress(addressId);
         Map<String, String> response = new HashMap<>();
         response.put("status", "success");
         return response;
+    }*/
+
+    @DeleteMapping("/addresses/{addressId}")
+    @ResponseBody
+    public CommonResponse<String> delete(@PathVariable int addressId) {
+        addressDao.deleteAddress(addressId);
+        return CommonResponse.createForSuccess();
     }
 
     /*
