@@ -153,6 +153,11 @@ public class OrderController {
         List<CartItem> cartItems = cart.getItemList();
         System.out.println("/CartSubmit cartItems: " + cartItems);
 
+//        '删除'购物车
+        for(CartItem cartItem : cartItems){
+            cartService.removeItemFromCart(userId,cartItem.getItemID());
+        }
+
         User user = userService.getUser(userId);
 
         List<Order> currentOrderList = orderService.addNewOrder1(user, addressID, cartItems);
@@ -306,7 +311,7 @@ public class OrderController {
         //整个购物车订单一起购买/单个商品购买
         for(String orderId : currentOrderList){
             Order order = orderService.getOrderByOrderId(orderId);
-            cartService.removeItemFromCart(request.getUserId(),order.getItem_id());
+
             orderService.updateOrder(orderService.getOrderByOrderId(orderId),nextStatus);
         }
         return CommonResponse.createForSuccessMessage(behavior + " SUCCESS");
