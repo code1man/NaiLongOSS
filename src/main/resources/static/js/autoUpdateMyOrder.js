@@ -8,7 +8,7 @@ $(function (){
         isBusiness = 1;
     }
 
-    // 每30秒刷新一次订单状态
+    // 每5秒刷新一次订单状态
     setInterval(function() {
         updateOrderStatus();  // 调用刷新状态的函数
     }, 5000); // 5秒
