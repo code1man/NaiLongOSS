@@ -311,6 +311,7 @@ public class OrderController {
         //从请求中取值
         String behavior = request.getBehavior();
         String nextStatus = request.getNextStatus();
+        System.out.println("nextStatus"+nextStatus);
         List<String> currentOrderList = request.getCurrentOrderList();
 
         System.out.println("orderStatus: " + currentOrderList);
@@ -319,7 +320,7 @@ public class OrderController {
         for(String orderId : currentOrderList){
             Order order = orderService.getOrderByOrderId(orderId);
 
-            orderService.updateOrder(orderService.getOrderByOrderId(orderId),nextStatus);
+            orderService.updateOrder(order,nextStatus);
         }
         return CommonResponse.createForSuccessMessage(behavior + " SUCCESS");
     }
